@@ -6,6 +6,8 @@
   ],
   "scripts": {
     "test": "lerna run test",
+    "build": "lerna run build -- --if-present",
+    "predeploy": "lerna run predeploy",
     "pre-commit": "lerna run pre:commit",
     "pre-push": "lerna run pre:push"
   },
@@ -21,7 +23,7 @@
     "arrowParens": "avoid"
   },
   "devDependencies": {
-    "eslint": "^7.10.0",
+    "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
