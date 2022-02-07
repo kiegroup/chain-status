@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import MenuComponent from "./components/Menu";
+import RoutesTree from "./components/RoutesTree";
 
-function App() {
+interface IApp {}
+
+const App = (props: IApp) => {
+  const [basename, setBasename] = useState("");
+
+  useEffect(() => {
+    setBasename(`/${window.location.pathname.split("/")[1]}`);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router basename={basename}>
+      <MenuComponent />
+      <RoutesTree />
+    </Router>
   );
-}
+};
 
 export default App;
