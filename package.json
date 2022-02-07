@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "lerna run test",
     "pre-commit": "lerna run pre:commit",
     "pre-push": "lerna run pre:push"
   },
@@ -35,5 +36,8 @@
     "jest-expect-message": "^1.0.2",
     "lerna": "^4.0.0",
     "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

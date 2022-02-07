@@ -1,8 +1,22 @@
 {
-  "name": "rhba-status",
+  "name": "chain-status-webpage",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ginxo.github.io/rhba-status",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ginxo/chain-status.git"
+  },
+  "keywords": [
+    "build-chain",
+    "cross",
+    "repositories",
+    "pull request",
+    "PR",
+    "status",
+    "action",
+    "github",
+    "reactjs"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
@@ -48,5 +62,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
