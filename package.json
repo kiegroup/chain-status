@@ -1,51 +1,39 @@
 {
-  "name": "rhba-status",
-  "version": "0.1.0",
+  "name": "chain-status",
   "private": true,
-  "homepage": "https://ginxo.github.io/rhba-status",
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^16.11.22",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
-    "bootstrap": "^5.1.3",
-    "flow-bin": "^0.171.0",
-    "gh-pages": "^3.2.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.5.5",
-    "web-vitals": "^2.1.4"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "flow": "flow"
+    "pre-commit": "lerna run pre:commit",
+    "pre-push": "lerna run pre:push"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "git-pre-hooks": {
+    "pre-commit": "npm run pre-commit",
+    "pre-push": "npm run pre-push"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "arrowParens": "avoid"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.19.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "git-pre-hooks": "^1.2.1",
+    "jest": "^25.5.1",
+    "jest-expect-message": "^1.0.2",
+    "lerna": "^4.0.0",
+    "prettier": "^2.0.5"
   }
 }

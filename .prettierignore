@@ -1,0 +1,3 @@
+*.diff
+dist/index.js
+build_chain_20*/**/*
