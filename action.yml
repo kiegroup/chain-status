@@ -4,8 +4,18 @@ description: Generates data for chain status webpage
 
 inputs:
   definition-file:
-    description: "the file where the build chain is defined. It can a file in the same repository (relative path) or a URL"
+    description: "the file where the build chain is defined. It can a file in the same repository (relative path) or a URL."
     required: true
+  output-folder-path:
+    description: "the path where the file should be stored"
+    required: false
+  base-branch-filter:
+    description: "A comma separated list of base branches to be filtered. Like `main,7.59.x,8.x`"
+    required: false
+  logger-level:
+    description: "the log level. 'info' (default) | 'trace' | 'debug'"
+    default: "info"
+    required: false
 runs:
   using: "node14"
   main: "packages/action/dist/index.js"

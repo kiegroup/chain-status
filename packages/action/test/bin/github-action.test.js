@@ -17,7 +17,10 @@ describe("main", () => {
     expect(main).toBeCalledTimes(1);
     expect(main).toHaveBeenCalledWith({
       definitionFile: undefined,
-      debug: false
+      outputFolderPath: expect.any(String),
+      debug: false,
+      token: expect.any(String),
+      baseBranchFilter: []
     });
   });
 
