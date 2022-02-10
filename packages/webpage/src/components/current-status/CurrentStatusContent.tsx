@@ -1,13 +1,11 @@
-import { NodeCollapseOutlined } from "@ant-design/icons";
-import { Button, Card, Layout, List, Menu, Tag, Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
-import ProjectContainer from "../../components/project/ProjectContainer";
+import { Button, Layout, List, Menu } from "antd";
+import React, { Suspense, useEffect, useState } from "react";
 import { IData } from "../../model/data.model";
 import { IProject } from "../../model/project.model";
-import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
-import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
-import Filter from "../shared/Filter";
-
+import Loading from "../shared/Loading";
+const CurrentStatusListItem = React.lazy(
+  () => import("./CurrentStatusListItem")
+);
 const { Content, Sider } = Layout;
 
 interface ICurrentStatusContent {
@@ -64,64 +62,22 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
             {/* <Card title="Filter" style={{ marginBottom: 10 }}>
               <Filter onFilter={onFilter} />
             </Card> */}
-            <List
-              dataSource={filteredData}
-              loadMore={
-                <Button
-                  disabled={props.data?.data?.length === visibleData.length}
-                  onClick={loadMore}
-                >
-                  Load More
-                </Button>
-              }
-              renderItem={project => (
-                <List.Item
-                  id={project.key}
-                  style={{ marginTop: 0, marginBottom: 12, padding: 0 }}
-                >
-                  <Card
-                    title={
-                      <>
-                        <PullRequestCheckTag
-                          title="Number of pull requests"
-                          value={project.pullRequests.length}
-                          color="default"
-                          icon={<NodeCollapseOutlined />}
-                          showZero={true}
-                        />
-                        {project.key}
-                      </>
-                    }
-                    key={project.key}
-                    extra={[
-                      <Tooltip title="Affected Branches">
-                        {Array.from(
-                          new Set(project.pullRequests.map(e => e.base?.ref))
-                        )
-                          .filter(e => e)
-                          .sort((a, b) =>
-                            a && b ? (a < b ? -1 : a > b ? 1 : 0) : 0
-                          )
-                          .map(e => (
-                            <Tag>{e}</Tag>
-                          ))}
-                      </Tooltip>,
-                      <PullRequestStatistics
-                        pullRequests={project.pullRequests}
-                      />
-                    ]}
-                    style={{
-                      width: "100%",
-                      marginTop: 0,
-                      paddingTop: 0,
-                      marginBottom: 12
-                    }}
+            <Suspense fallback={<Loading />}>
+              <List
+                dataSource={props.data.data}
+                loadMore={
+                  <Button
+                    disabled={props.data?.data?.length === visibleData.length}
+                    onClick={loadMore}
                   >
-                    <ProjectContainer project={project} />
-                  </Card>
-                </List.Item>
-              )}
-            />
+                    Load More
+                  </Button>
+                }
+                renderItem={project => (
+                  <CurrentStatusListItem project={project} />
+                )}
+              />
+            </Suspense>
           </Content>
         </Layout>
       </Content>
@@ -146,55 +102,6 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
         </Menu>
       </Sider>
     </Layout>
-    // <Layout>
-    //   <Content>
-    //     <Collapse
-    //       defaultActiveKey={
-    //         props.data.data.length ? props.data.data[0].key : ""
-    //       }
-    //     >
-    //       {props.data.data
-    //         ? props.data.data.map(project => (
-    //             <Panel
-    //               header={
-    //                 <>
-    //                   <PullRequestCheckTag
-    //                     title="Number of pull requests"
-    //                     value={project.pullRequests.length}
-    //                     color="default"
-    //                     icon={<NodeCollapseOutlined />}
-    //                     showZero={true}
-    //                   />
-    //                   {project.key}
-    //                 </>
-    //               }
-    //               key={project.key}
-    //               extra={[
-    //                 <Tooltip title="Affected Branches">
-    //                   {Array.from(
-    //                     new Set(project.pullRequests.map(e => e.base?.ref))
-    //                   )
-    //                     .filter(e => e)
-    //                     .sort((a, b) =>
-    //                       a && b ? (a < b ? -1 : a > b ? 1 : 0) : 0
-    //                     )
-    //                     .map(e => (
-    //                       <Tag>{e}</Tag>
-    //                     ))}
-    //                 </Tooltip>,
-    //                 <PullRequestStatistics
-    //                   pullRequests={project.pullRequests}
-    //                 />
-    //               ]}
-    //             >
-    //               <ProjectContainer project={project} />
-    //             </Panel>
-    //           ))
-    //         : null}
-    //     </Collapse>
-    //     <Sider>{props.data.data.map(project => project.name)}</Sider>
-    //   </Content>
-    // </Layout>
   );
 };
 

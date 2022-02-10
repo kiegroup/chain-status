@@ -3,6 +3,8 @@ import React, { useEffect, useState, Suspense } from "react";
 // import CurrentStatusContent from "../components/current-status/CurrentStatusContent";
 import CurrentStatusHeader from "../components/current-status/CurrentStatusHeader";
 import { defaultValue as defaultValueData, IData } from "../model/data.model";
+import Loading from "../components/shared/Loading";
+
 const CurrentStatusContent = React.lazy(
   () => import("../components/current-status/CurrentStatusContent")
 );
@@ -46,7 +48,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
       <Header
         style={{
           position: "fixed",
-          zIndex: 9999,
+          zIndex: 100,
           width: "100%",
           margin: 0,
           padding: 0,
@@ -62,7 +64,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
         />
       </Header>
       <Content>
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={<Loading />}>
           <CurrentStatusContent data={data} />
         </Suspense>
       </Content>

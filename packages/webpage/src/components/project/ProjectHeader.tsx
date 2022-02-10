@@ -1,10 +1,8 @@
-import {
-  LinkOutlined,
-  NodeCollapseOutlined
-} from "@ant-design/icons";
+import { LinkOutlined, NodeCollapseOutlined } from "@ant-design/icons";
 import { Button, Col, PageHeader, Row, Statistic, Tag } from "antd";
-import React from "react";
+import React, { Suspense } from "react";
 import { IProject } from "../../model/project.model";
+import Loading from "../shared/Loading";
 import StatisticDate from "../shared/StatisticDate";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
 
@@ -21,12 +19,14 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
       title={
         <Button
           type="link"
-          href={props.project.html_url}
+          href={
+            props.project.html_url ?? `https://github.com/${props.project.key}`
+          }
           target="_blank"
           icon={<LinkOutlined />}
           style={{ padding: 0, fontSize: 20, fontWeight: "bold" }}
         >
-          {props.project.name}
+          {props.project.name ?? props.project.key}
         </Button>
       }
       subTitle={props.project.description}
@@ -42,7 +42,10 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
             suffix={
               <Button
                 type="link"
-                href={`${props.project.html_url}/pulls`}
+                href={`${
+                  props.project.html_url ??
+                  `https://github.com/${props.project.key}`
+                }/pulls`}
                 target="_blank"
                 icon={<LinkOutlined />}
                 style={{ padding: 0 }}
@@ -69,11 +72,13 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
         </Col>
         <Col>
           {props.project.updated_at ? (
-            <StatisticDate
-              date={new Date(Date.parse(props.project.updated_at))}
-              text="Since Last Updating"
-              intervalSeconds={1}
-            />
+            <Suspense fallback={<Loading size={16} />}>
+              <StatisticDate
+                date={new Date(Date.parse(props.project.updated_at))}
+                text="Since Last Updating"
+                intervalSeconds={1}
+              />
+            </Suspense>
           ) : null}
         </Col>
       </Row>

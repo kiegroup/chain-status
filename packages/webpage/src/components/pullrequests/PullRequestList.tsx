@@ -1,9 +1,7 @@
-import {
-  List
-} from "antd";
-import React from "react";
+import { List } from "antd";
+import React, { Suspense } from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
-import PullRequestElement from "./PullRequestElement";
+const PullRequestElement = React.lazy(() => import("./PullRequestElement"));
 
 interface IPullRequestList {
   pullRequests: IPullRequest[];
@@ -11,19 +9,20 @@ interface IPullRequestList {
 
 export const PullRequestList: React.FC<IPullRequestList> = props => {
   return (
-    <List
-      header={<div>Pull Request List</div>}
-      className="demo-loadmore-list"
-      loading={props.pullRequests?.length === 0}
-      itemLayout="vertical"
-      dataSource={props.pullRequests}
-      renderItem={pullRequest => (
-        <PullRequestElement
-          key={pullRequest.number}
-          pullRequest={pullRequest}
-        />
-      )}
-    />
+    <Suspense fallback={<List header={<h3>Pull Request List</h3>} loading />}>
+      <List
+        header={<h3>Pull Request List</h3>}
+        className="demo-loadmore-list"
+        itemLayout="vertical"
+        dataSource={props.pullRequests}
+        renderItem={pullRequest => (
+          <PullRequestElement
+            key={pullRequest.number}
+            pullRequest={pullRequest}
+          />
+        )}
+      />
+    </Suspense>
   );
 };
 

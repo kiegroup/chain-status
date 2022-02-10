@@ -1,7 +1,8 @@
-import { ClockCircleOutlined, LoadingOutlined } from "@ant-design/icons";
-import { Spin, Statistic, Tag, Tooltip } from "antd";
+import { ClockCircleOutlined } from "@ant-design/icons";
+import { Statistic, Tag, Tooltip } from "antd";
 import prettyMilliseconds from "pretty-ms";
 import React, { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 interface IStatisticDate {
   date: Date;
@@ -43,7 +44,7 @@ export const StatisticDate: React.FC<IStatisticDate> = props => {
           </Tag>
         </Tooltip>
       ) : (
-        <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+        <Loading />
       )}
     </>
   );

@@ -1,9 +1,10 @@
-import { Avatar, Button, List, Tooltip, Tag, Divider } from "antd";
+import { Avatar, List, Tag, Tooltip } from "antd";
 import prettyMilliseconds from "pretty-ms";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
-import PullRequestStatistics from "./PullRequestStatistics";
+import Loading from "../shared/Loading";
 import UserComponent from "../shared/User";
+import PullRequestStatistics from "./PullRequestStatistics";
 
 interface IPullRequestElement {
   pullRequest: IPullRequest;
@@ -25,7 +26,9 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
   return props.pullRequest ? (
     <List.Item
       actions={[
-        <PullRequestStatistics pullRequests={[props.pullRequest]} />,
+        <Suspense fallback={<Loading size={16} />}>
+          <PullRequestStatistics pullRequests={[props.pullRequest]} />
+        </Suspense>,
         props.pullRequest.requested_reviewers ? (
           <Avatar.Group
             maxCount={5}

@@ -1,6 +1,7 @@
 import { Avatar, Button, Tooltip } from "antd";
-import React from "react";
+import React, { Suspense } from "react";
 import { IUser } from "../../model/user.model";
+import Loading from "./Loading";
 
 interface IUserComponent {
   user?: IUser;
@@ -16,7 +17,9 @@ export const UserComponent: React.FC<IUserComponent> = props => {
         target="_blank"
         style={{ padding: 0 }}
       >
-        <Avatar size={props.size ?? 24} src={props.user.avatar_url} />
+        <Suspense fallback={<Loading size={props.size ?? 24} />}>
+          <Avatar size={props.size ?? 24} src={props.user.avatar_url} />
+        </Suspense>
       </Button>
     </Tooltip>
   ) : null;

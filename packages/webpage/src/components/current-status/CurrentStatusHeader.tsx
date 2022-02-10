@@ -1,7 +1,8 @@
 import { NodeCollapseOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Col, PageHeader, Row, Statistic, Card } from "antd";
-import React from "react";
+import React, { Suspense } from "react";
 import { IData } from "../../model/data.model";
+import Loading from "../shared/Loading";
 import StatisticDate from "../shared/StatisticDate";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
 
@@ -58,22 +59,26 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
             />
           </Col>
           <Col>
-            <StatisticDate
-              date={
-                props.data?.metadata?.date
-                  ? new Date(Date.parse(props.data?.metadata?.date))
-                  : new Date()
-              }
-              text="Creation Date"
-              intervalSeconds={1}
-            />
+            <Suspense fallback={<Loading size={16} />}>
+              <StatisticDate
+                date={
+                  props.data?.metadata?.date
+                    ? new Date(Date.parse(props.data?.metadata?.date))
+                    : new Date()
+                }
+                text="Creation Date"
+                intervalSeconds={1}
+              />
+            </Suspense>
           </Col>
           <Col>
-            <StatisticDate
-              date={props.latestLoad}
-              text="Latest Load"
-              intervalSeconds={1}
-            />
+            <Suspense fallback={<Loading size={16} />}>
+              <StatisticDate
+                date={props.latestLoad}
+                text="Latest Load"
+                intervalSeconds={1}
+              />
+            </Suspense>
           </Col>
         </Row>
       </PageHeader>
