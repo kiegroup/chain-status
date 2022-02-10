@@ -15,10 +15,14 @@ describe("main", () => {
 
     // Assert
     expect(main).toBeCalledTimes(1);
-    expect(main).toHaveBeenCalledWith({
-      definitionFile: undefined,
-      debug: false
-    });
+    expect(main).toHaveBeenCalledWith(
+      expect.objectContaining({
+        createdBy: "TODO",
+        definitionFile: undefined,
+        debug: false,
+        baseBranchFilter: []
+      })
+    );
   });
 
   test("definition-file input", () => {
