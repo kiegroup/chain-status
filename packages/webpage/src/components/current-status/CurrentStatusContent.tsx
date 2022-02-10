@@ -1,6 +1,5 @@
 import { Button, Layout, List, Menu } from "antd";
 import React, { Suspense, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { IData } from "../../model/data.model";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";

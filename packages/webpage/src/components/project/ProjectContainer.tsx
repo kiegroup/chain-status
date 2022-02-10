@@ -1,4 +1,4 @@
-import { Col, Collapse, Row } from "antd";
+import { Col, Row } from "antd";
 import React from "react";
 import { IProject } from "../../model/project.model";
 import PullRequestList from "../pullrequests/PullRequestList";

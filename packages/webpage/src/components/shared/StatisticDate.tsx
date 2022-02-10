@@ -24,7 +24,7 @@ export const StatisticDate: React.FC<IStatisticDate> = props => {
       );
       return () => clearInterval(interval);
     }
-  }, [props.date]);
+  }, [props.date, props.intervalSeconds]);
 
   return (
     <>
