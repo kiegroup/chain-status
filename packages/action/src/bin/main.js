@@ -4,40 +4,67 @@ const {
   getOrderedListForTree
 } = require("@kie/build-chain-configuration-reader");
 const { createOctokitInstance } = require("../utils/bin-utils");
-const { getPullRequests } = require("../lib/git-service");
+const { getPullRequests, getChecks } = require("../lib/git-service");
 const { ClientError } = require("../lib/common");
 const { formatDate } = require("../utils/date-util");
 const fs = require("fs");
 const path = require("path");
 
+const getMetadata = args => ({
+  date: new Date(),
+  createdBy: args.createdBy
+});
+
 const mapUser = user => ({
   login: user.login,
-  avatar_url: user.avatar_url
+  avatar_url: user.avatar_url,
+  html_url: user.html_url
 });
 
-// await getChecks("kiegroup/droolsjbpm-build-bootstrap", "", octokit);
-const mapChecks = async (node, pullRequest) => {
-  logger.debug("mapChecks", node.project, pullRequest.id);
-  return [];
+const mapChecks = check => ({
+  title: check.title,
+  html_url: check.html_url,
+  status: check.status,
+  conclusion: check.conclusion,
+  started_at: check.started_at,
+  completed_at: check.completed_at,
+  slug: check.app.slug
+});
+
+const loadChecks = async (node, ref, octokit) => {
+  return (await getChecks(node.project, ref, octokit)).map(mapChecks);
 };
 
-const mapPullRequest = (node, pullRequest) => ({
-  title: pullRequest.title,
-  url: pullRequest.url,
-  html_url: pullRequest.html_url,
-  state: pullRequest.state,
-  labels: pullRequest.labels.reduce((acc, curr) => [...acc, curr.name], []),
-  draft: pullRequest.draft,
-  requested_reviewers: pullRequest.requested_reviewers.map(mapUser),
-  created_at: pullRequest.created_at,
-  updated_at: pullRequest.updated_at,
-  closed_at: pullRequest.closed_at,
-  merged_at: pullRequest.merged_at,
-  user: mapUser(pullRequest.user),
-  checks: mapChecks(node, pullRequest)
-});
+const mapPullRequest = async (node, pullRequest, octokit) => {
+  return await {
+    number: pullRequest.number,
+    title: pullRequest.title,
+    url: pullRequest.url,
+    html_url: pullRequest.html_url,
+    state: pullRequest.state,
+    labels: pullRequest.labels.reduce((acc, curr) => [...acc, curr.name], []),
+    draft: pullRequest.draft,
+    requested_reviewers: pullRequest.requested_reviewers.map(mapUser),
+    created_at: pullRequest.created_at,
+    updated_at: pullRequest.updated_at,
+    closed_at: pullRequest.closed_at,
+    merged_at: pullRequest.merged_at,
+    base: {
+      ref: pullRequest.base.ref,
+      sha: pullRequest.base.sha,
+      label: pullRequest.base.label
+    },
+    head: {
+      ref: pullRequest.head.ref,
+      sha: pullRequest.head.sha,
+      label: pullRequest.head.label
+    },
+    user: mapUser(pullRequest.user),
+    checks: await loadChecks(node, pullRequest.head.sha, octokit)
+  };
+};
 
-const mapPullRequestInfo = (node, pullRequests) => {
+const mapPullRequestInfo = async (node, pullRequests, octokit) => {
   const baseRepo =
     pullRequests && pullRequests.length ? pullRequests[0].base.repo : {};
   return {
@@ -49,7 +76,11 @@ const mapPullRequestInfo = (node, pullRequests) => {
     homepage: baseRepo.homepage,
     language: baseRepo.language,
     default_branch: baseRepo.default_branch,
-    pullRequests: pullRequests.map(e => mapPullRequest(node, e))
+    repo_url: baseRepo.html_url,
+    pulls_url: baseRepo.pulls_url,
+    pullRequests: await Promise.all(
+      pullRequests.map(async e => await mapPullRequest(node, e, octokit))
+    )
   };
 };
 
@@ -87,9 +118,10 @@ async function main(args) {
   const pullRequestInformation = await Promise.all(
     orderedList.map(async node => {
       try {
-        return mapPullRequestInfo(
+        return await mapPullRequestInfo(
           node,
-          await getPullRequests(node.project, octokit)
+          await getPullRequests(node.project, octokit),
+          octokit
         );
       } catch (err) {
         throw { project: node.project, message: err };
@@ -101,9 +133,12 @@ async function main(args) {
       logger.error(`[${err.project}] Error checking it out. ${err.message}`);
       throw err.message;
     });
-
   saveFiles(
-    JSON.stringify(pullRequestInformation, null, args.debug ? 2 : 0),
+    JSON.stringify(
+      { metadata: getMetadata(args), data: pullRequestInformation },
+      null,
+      args.debug ? 2 : 0
+    ),
     args.outputFolderPath
   );
 }

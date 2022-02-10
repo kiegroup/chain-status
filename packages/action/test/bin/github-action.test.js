@@ -16,6 +16,7 @@ describe("main", () => {
     // Assert
     expect(main).toBeCalledTimes(1);
     expect(main).toHaveBeenCalledWith({
+      createdBy: "TODO",
       definitionFile: undefined,
       outputFolderPath: expect.any(String),
       debug: false,

@@ -13,7 +13,8 @@ const start = async () => {
     baseBranchFilter: core.getInput("baseBranchFilter")
       ? core.getInput("baseBranchFilter").split(",")
       : [],
-    debug: core.getInput("logger-level") === "debug"
+    debug: core.getInput("logger-level") === "debug",
+    createdBy: "TODO"
   };
   await main(args);
 };
