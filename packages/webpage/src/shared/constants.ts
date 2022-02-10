@@ -10,3 +10,5 @@ export const CHECKS = {
     IN_PROGRESS: "in_progress"
   }
 };
+
+export const STATUS_MARGIN_TOP = 180;

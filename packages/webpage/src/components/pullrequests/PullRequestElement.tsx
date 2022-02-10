@@ -58,6 +58,7 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
         title={
           <a
             href={props.pullRequest.html_url}
+            rel="noopener noreferrer"
             target="_blank"
             style={{ fontWeight: "bold" }}
           >
@@ -65,10 +66,11 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
           </a>
         }
         description={
-          <div>
+          <>
             <a
               href={props.pullRequest.html_url}
               target="_blank"
+              rel="noopener noreferrer"
               style={{ fontWeight: "bold" }}
             >
               #{props.pullRequest.number}
@@ -83,11 +85,12 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
             <a
               href={props.pullRequest.user?.html_url}
               target="_blank"
+              rel="noopener noreferrer"
               style={{ fontWeight: "bold" }}
             >
               {props.pullRequest.user?.login}
             </a>
-          </div>
+          </>
         }
       />
     </List.Item>

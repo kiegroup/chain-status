@@ -1,7 +1,9 @@
 import { Button, Layout, List, Menu } from "antd";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IData } from "../../model/data.model";
 import { IProject } from "../../model/project.model";
+import { STATUS_MARGIN_TOP } from "../../shared/constants";
 import Loading from "../shared/Loading";
 const CurrentStatusListItem = React.lazy(
   () => import("./CurrentStatusListItem")
@@ -12,56 +14,30 @@ interface ICurrentStatusContent {
   data: IData;
 }
 export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
-  const marginTop = 180;
   const [visibleData, setVisibleData] = useState<IProject[]>([]);
-  const [filteredData, setFilteredData] = useState<IProject[]>([]);
-
-  useEffect(() => {
-    if (props.data?.data) {
-      const projects =
-        props.data?.data?.length > 0 ? [props.data?.data[0]] : [];
-      setVisibleData(projects);
-      setFilteredData(projects);
-    }
-  }, [props.data]);
 
   const loadMore = () => {
     if (visibleData.length < props.data?.data?.length) {
       for (let project of props.data?.data) {
         if (!visibleData.find(p => p.key === project.key)) {
           setVisibleData([...visibleData, project]);
-          filter([...visibleData, project]);
           break;
         }
       }
     }
   };
 
-  const filter = (projects: IProject[], filterValue?: string) => {
-    setFilteredData(
-      filterValue
-        ? projects.filter(project => project.name?.includes(filterValue ?? ""))
-        : projects
-    );
-  };
-  const onFilter = (filterElement: any) => {
-    filter(props.data.data, filterElement.target.value);
-  };
-
   return (
     <Layout
       style={{
         padding: "0 24px",
-        marginTop,
+        marginTop: STATUS_MARGIN_TOP,
         marginBottom: 24
       }}
     >
       <Content style={{ marginRight: 210 }}>
         <Layout>
           <Content>
-            {/* <Card title="Filter" style={{ marginBottom: 10 }}>
-              <Filter onFilter={onFilter} />
-            </Card> */}
             <Suspense fallback={<Loading />}>
               <List
                 dataSource={props.data.data}
@@ -88,7 +64,7 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
           height: "100vh",
           position: "fixed",
           right: 24,
-          top: marginTop,
+          top: STATUS_MARGIN_TOP,
           bottom: 0,
           minHeight: 1000
         }}
@@ -97,7 +73,14 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
           {props.data.data
             .filter(e => e.name)
             .map(project => (
-              <Menu.Item>{project.name}</Menu.Item>
+              <Menu.Item>
+                <a
+                  href={`#${project.key.replace("/", "_")}`}
+                  rel="noopener noreferrer"
+                >
+                  {project.name}
+                </a>
+              </Menu.Item>
             ))}
         </Menu>
       </Sider>

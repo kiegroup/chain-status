@@ -3,6 +3,7 @@ import { Card, List, Tag, Tooltip } from "antd";
 import React, { Suspense } from "react";
 import ProjectContainer from "../../components/project/ProjectContainer";
 import { IProject } from "../../model/project.model";
+import { STATUS_MARGIN_TOP } from "../../shared/constants";
 import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
 import Loading from "../shared/Loading";
@@ -15,8 +16,13 @@ export const CurrentStatusListItem: React.FC<
 > = props => {
   return (
     <List.Item
-      id={props.project.key}
-      style={{ marginTop: 0, marginBottom: 12, padding: 0 }}
+      id={props.project.key.replace("/", "_")}
+      style={{
+        marginTop: 0,
+        marginBottom: 12,
+        padding: 0,
+        scrollMarginTop: STATUS_MARGIN_TOP
+      }}
     >
       <Card
         title={
