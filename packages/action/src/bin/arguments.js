@@ -19,6 +19,16 @@ function getArgumentsObject() {
       []
     )
     .option("-d, --debug", "to enable debug logging mode.", undefined)
+    .option(
+      "-cb, --created-by <user>",
+      "The user or system who generates the report",
+      "local execution"
+    )
+    .option(
+      "-cu, --created-url <url>",
+      "The job's URL where the repor is generated",
+      undefined
+    )
     .parse();
 
   return { ...program.opts() };

@@ -17,7 +17,8 @@ describe("main", () => {
     expect(main).toBeCalledTimes(1);
     expect(main).toHaveBeenCalledWith(
       expect.objectContaining({
-        createdBy: "TODO",
+        createdBy: undefined,
+        createdUrl: undefined,
         definitionFile: undefined,
         debug: false,
         baseBranchFilter: []

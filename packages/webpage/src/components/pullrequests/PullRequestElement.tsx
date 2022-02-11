@@ -1,60 +1,66 @@
-import { Avatar, List, Tag, Tooltip } from "antd";
-import prettyMilliseconds from "pretty-ms";
-import React, { useEffect, useState, Suspense } from "react";
+import { List, Skeleton } from "antd";
+import React, { Suspense } from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
-import Loading from "../shared/Loading";
-import UserComponent from "../shared/User";
-import PullRequestStatistics from "./PullRequestStatistics";
+const PullRequestStatistics = React.lazy(
+  () => import("./PullRequestStatistics")
+);
+const UserComponent = React.lazy(() => import("../shared/User"));
+const PullRequestBranchInfo = React.lazy(
+  () => import("./PullRequestBranchInfo")
+);
+const PullRequestDescription = React.lazy(
+  () => import("./PullRequestDescription")
+);
 
 interface IPullRequestElement {
   pullRequest: IPullRequest;
 }
 
 export const PullRequestElement: React.FC<IPullRequestElement> = props => {
-  const [dateDifferenceMiliseconds, setDateDifferenceMiliseconds] =
-    useState<number>(0);
-
-  useEffect(() => {
-    if (props.pullRequest?.created_at) {
-      setDateDifferenceMiliseconds(
-        new Date().getTime() -
-          new Date(Date.parse(props.pullRequest.created_at)).getTime()
-      );
-    }
-  }, [props.pullRequest]);
-
   return props.pullRequest ? (
     <List.Item
       actions={[
-        <Suspense fallback={<Loading size={16} />}>
+        <Suspense
+          fallback={
+            <Skeleton.Input
+              style={{ width: 100 }}
+              active={false}
+              size="small"
+            />
+          }
+        >
           <PullRequestStatistics pullRequests={[props.pullRequest]} />
         </Suspense>,
-        props.pullRequest.requested_reviewers ? (
-          <Avatar.Group
-            maxCount={5}
-            maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
-          >
-            {props.pullRequest.requested_reviewers.map(reviewer => (
-              <UserComponent user={reviewer} />
-            ))}
-          </Avatar.Group>
-        ) : null
+        props.pullRequest.requested_reviewers
+          ? props.pullRequest.requested_reviewers.map(reviewer => (
+              <Suspense
+                fallback={<Skeleton.Avatar size="small" active={false} />}
+              >
+                <UserComponent user={reviewer} />
+              </Suspense>
+            ))
+          : null
       ]}
       extra={
-        <>
-          <Tooltip title="Base branch">
-            <Tag>{props.pullRequest.base?.ref}</Tag>
-          </Tooltip>
-          {"<-"}
-          &nbsp;
-          <Tooltip title="Head branch">
-            <Tag>{props.pullRequest.head?.label}</Tag>
-          </Tooltip>
-        </>
+        <Suspense
+          fallback={
+            <Skeleton.Input
+              style={{ width: 250 }}
+              active={false}
+              size="small"
+            />
+          }
+        >
+          <PullRequestBranchInfo pullRequest={props.pullRequest} />
+        </Suspense>
       }
     >
       <List.Item.Meta
-        avatar={<UserComponent user={props.pullRequest.user} size={36} />}
+        avatar={
+          <Suspense fallback={<Skeleton.Avatar size="large" active={false} />}>
+            <UserComponent user={props.pullRequest.user} size={36} />
+          </Suspense>
+        }
         title={
           <a
             href={props.pullRequest.html_url}
@@ -66,31 +72,17 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
           </a>
         }
         description={
-          <>
-            <a
-              href={props.pullRequest.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontWeight: "bold" }}
-            >
-              #{props.pullRequest.number}
-            </a>
-            &nbsp;opened&nbsp;
-            <span style={{ fontWeight: "bold" }}>
-              <Tooltip title={props.pullRequest.created_at}>
-                {prettyMilliseconds(dateDifferenceMiliseconds)}
-              </Tooltip>
-            </span>
-            &nbsp; ago by&nbsp;
-            <a
-              href={props.pullRequest.user?.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ fontWeight: "bold" }}
-            >
-              {props.pullRequest.user?.login}
-            </a>
-          </>
+          <Suspense
+            fallback={
+              <Skeleton.Input
+                style={{ width: 300 }}
+                active={false}
+                size="small"
+              />
+            }
+          >
+            <PullRequestDescription pullRequest={props.pullRequest} />
+          </Suspense>
         }
       />
     </List.Item>

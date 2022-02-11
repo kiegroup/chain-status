@@ -1,14 +1,24 @@
-import { Statistic } from "antd";
+import { Statistic, Popover, Tooltip } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
+import { RenderFunction, TooltipPlacement } from "antd/lib/tooltip";
 import React, { useEffect, useState } from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
+import { STATISTICS_STYLE } from "../../shared/constants";
 import { calculateErrorIndex } from "../../utils/pullrequest.utils";
 
 interface IStaticErrorIndex {
+  title?: string;
   pullRequests: IPullRequest[];
+  popoverContent?: React.ReactNode | RenderFunction;
+  size?: number;
+  placement?: TooltipPlacement;
 }
 export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
   const [errorIndex, setErrorIndex] = useState<number>(0);
-  const staticStyle = { fontSize: 20 };
+
+  const fontSizeStyle = props.size
+    ? { fontSize: props.size }
+    : STATISTICS_STYLE;
 
   useEffect(() => {
     if (props.pullRequests?.length) {
@@ -16,13 +26,31 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
     }
   }, [props.pullRequests]);
 
-  return (
+  return props.popoverContent ? (
+    <Popover content={props.popoverContent} placement={props.placement}>
+      <Statistic
+        prefix={
+          <Tooltip title="This index is calculated by n_failures/n_checks">
+            <InfoCircleOutlined style={{ fontSize: 12 }} />
+          </Tooltip>
+        }
+        title={props.title}
+        value={errorIndex}
+        precision={2}
+        valueStyle={{
+          ...fontSizeStyle,
+          color: errorIndex <= 20 ? "#3f8600" : "#cf1322"
+        }}
+        suffix="%"
+      />
+    </Popover>
+  ) : (
     <Statistic
-      title="Error Index"
+      title={props.title}
       value={errorIndex}
       precision={2}
       valueStyle={{
-        ...staticStyle,
+        ...fontSizeStyle,
         color: errorIndex <= 20 ? "#3f8600" : "#cf1322"
       }}
       suffix="%"
