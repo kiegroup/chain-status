@@ -1,3 +1,4 @@
+import { IProject } from "../model/project.model";
 import { IPullRequest } from "../model/pullrequest.model";
 import { CHECKS } from "../shared/constants";
 export const calculateErrorIndex = (pullrequests: IPullRequest[]) => {
@@ -7,3 +8,6 @@ export const calculateErrorIndex = (pullrequests: IPullRequest[]) => {
   );
   return checks?.length ? (failureChecks.length * 100) / checks.length : 0;
 };
+
+export const getProjectKey = (project: IProject) =>
+  project.key.replace("/", "_");

@@ -4,7 +4,11 @@ const {
   getOrderedListForTree
 } = require("@kie/build-chain-configuration-reader");
 const { createOctokitInstance } = require("../utils/bin-utils");
-const { getPullRequests, getChecks } = require("../lib/git-service");
+const {
+  getPullRequests,
+  getChecks,
+  getRepository
+} = require("../lib/git-service");
 const { ClientError } = require("../lib/common");
 const { formatDate } = require("../utils/date-util");
 const fs = require("fs");
@@ -12,7 +16,8 @@ const path = require("path");
 
 const getMetadata = args => ({
   date: new Date(),
-  createdBy: args.createdBy
+  createdBy: args.createdBy,
+  createdUrl: args.createdUrl
 });
 
 const mapUser = user => ({
@@ -66,7 +71,9 @@ const mapPullRequest = async (node, pullRequest, octokit) => {
 
 const mapPullRequestInfo = async (node, pullRequests, octokit) => {
   const baseRepo =
-    pullRequests && pullRequests.length ? pullRequests[0].base.repo : {};
+    pullRequests && pullRequests.length
+      ? pullRequests[0].base.repo
+      : await getRepository(node.project, octokit);
   return {
     key: node.project,
     name: baseRepo.name,

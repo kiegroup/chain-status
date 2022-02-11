@@ -1,10 +1,10 @@
-import { Layout } from "antd";
-import React, { useEffect, useState, Suspense } from "react";
-// import CurrentStatusContent from "../components/current-status/CurrentStatusContent";
-import CurrentStatusHeader from "../components/current-status/CurrentStatusHeader";
-import { defaultValue as defaultValueData, IData } from "../model/data.model";
+import { Layout, Skeleton } from "antd";
+import React, { Suspense, useEffect, useState } from "react";
 import Loading from "../components/shared/Loading";
-
+import { defaultValue as defaultValueData, IData } from "../model/data.model";
+const CurrentStatusHeader = React.lazy(
+  () => import("../components/current-status/CurrentStatusHeader")
+);
 const CurrentStatusContent = React.lazy(
   () => import("../components/current-status/CurrentStatusContent")
 );
@@ -55,13 +55,15 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
           backgroundColor: "#f0f2f5"
         }}
       >
-        <CurrentStatusHeader
-          data={data}
-          toggleCollapse={toggleCollapse}
-          loading={loading}
-          reload={getData}
-          latestLoad={latestLoad}
-        />
+        <Suspense fallback={<Skeleton />}>
+          <CurrentStatusHeader
+            data={data}
+            toggleCollapse={toggleCollapse}
+            loading={loading}
+            reload={getData}
+            latestLoad={latestLoad}
+          />
+        </Suspense>
       </Header>
       <Content>
         <Suspense fallback={<Loading />}>

@@ -16,6 +16,13 @@ inputs:
     description: "the log level. 'info' (default) | 'trace' | 'debug'"
     default: "info"
     required: false
+  created-by:
+    description: "The user/machine/whatever that regenerates the report"
+    default: "github action"
+    required: false
+  created-url:
+    description: "Normally the job generating the info URL"
+    required: false
 runs:
   using: "node14"
   main: "packages/action/dist/index.js"
