@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import ProjectContainer from "../../components/project/ProjectContainer";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
+import { alphabeticallySort } from "../../utils/common";
 import { getProjectKey } from "../../utils/pullrequest.utils";
 import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
@@ -40,17 +41,20 @@ export const CurrentStatusListItem: React.FC<
         }
         key={props.project.key}
         extra={[
-          <Tooltip title="Affected Branches">
+          <Tooltip key="affected-branches-tooltip" title="Affected Branches">
             {Array.from(
               new Set(props.project.pullRequests.map(e => e.base?.ref))
             )
               .filter(e => e)
-              .sort((a, b) => (a && b ? (a < b ? -1 : a > b ? 1 : 0) : 0))
+              .sort(alphabeticallySort)
               .map(e => (
-                <Tag>{e}</Tag>
+                <Tag key={e}>{e}</Tag>
               ))}
           </Tooltip>,
-          <Suspense fallback={<Loading size={16} />}>
+          <Suspense
+            key="affected-branches-statistics"
+            fallback={<Loading size={16} />}
+          >
             <PullRequestStatistics pullRequests={props.project.pullRequests} />
           </Suspense>
         ]}

@@ -3,6 +3,7 @@ import { TooltipPlacement } from "antd/lib/tooltip";
 import React from "react";
 import { IProject } from "../../model/project.model";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
+import ProjectLink from "./ProjectLink";
 
 interface IStatisticErrorIndexByProject {
   projects: IProject[];
@@ -17,7 +18,7 @@ export const StatisticErrorIndexByProject: React.FC<
         <Row key={project.key} gutter={[16, 16]}>
           <Col flex="none">
             <Typography.Text ellipsis={true} style={{ fontWeight: "bold" }}>
-              {project.name}
+              <ProjectLink project={project} />
             </Typography.Text>
           </Col>
           <Col flex="auto" style={{ textAlign: "end" }}>

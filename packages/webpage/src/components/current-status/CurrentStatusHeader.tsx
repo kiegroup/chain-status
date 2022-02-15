@@ -35,7 +35,6 @@ const StatisticErrorIndexByProject = React.lazy(
 
 interface ICurrentStatusHeader {
   data: IData;
-  toggleCollapse?: () => void;
   activePanels?: string[];
   loading: boolean;
   reload: () => void;
@@ -60,7 +59,7 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
         subTitle="List of pull requests"
         style={{ padding: 0 }}
         extra={[
-          <Tooltip title="Reload information from service">
+          <Tooltip key="reaload" title="Reload information from service">
             <Button
               key="reload"
               type="primary"
@@ -71,7 +70,7 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
               Reload
             </Button>
           </Tooltip>,
-          <Tooltip title="Show project status information">
+          <Tooltip key="info" title="Show project status information">
             <Button
               key="info"
               type="text"

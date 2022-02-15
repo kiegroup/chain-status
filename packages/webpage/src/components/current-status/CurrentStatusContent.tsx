@@ -14,14 +14,7 @@ interface ICurrentStatusContent {
 }
 export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
   return (
-    <Layout
-      style={{
-        padding: "0 24px",
-        marginTop: STATUS_MARGIN_TOP,
-        marginBottom: 24
-      }}
-      hasSider
-    >
+    <Layout hasSider>
       <Content style={{ marginRight: STATUS_MARGIN_RIGHT }}>
         <Suspense fallback={<Loading />}>
           <List

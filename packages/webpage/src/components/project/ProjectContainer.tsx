@@ -17,7 +17,10 @@ export const ProjectContainer: React.FC<IProjectContainer> = props => {
       </Row>
       <Row>
         <Col span={24} style={{ padding: 24 }}>
-          <PullRequestList pullRequests={props.project?.pullRequests} />
+          <PullRequestList
+            pullRequests={props.project.pullRequests}
+            project={props.project}
+          />
         </Col>
       </Row>
     </>

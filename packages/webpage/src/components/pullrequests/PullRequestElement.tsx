@@ -1,6 +1,9 @@
 import { List, Skeleton } from "antd";
 import React, { Suspense } from "react";
+import { IProject } from "../../model/project.model";
 import { IPullRequest } from "../../model/pullrequest.model";
+import { STATUS_MARGIN_TOP } from "../../shared/constants";
+import { getProjectKey } from "../../utils/pullrequest.utils";
 const PullRequestStatistics = React.lazy(
   () => import("./PullRequestStatistics")
 );
@@ -13,12 +16,17 @@ const PullRequestDescription = React.lazy(
 );
 
 interface IPullRequestElement {
+  project?: IProject;
   pullRequest: IPullRequest;
 }
 
 export const PullRequestElement: React.FC<IPullRequestElement> = props => {
   return props.pullRequest ? (
     <List.Item
+      id={`${props.project ? getProjectKey(props.project) : "project"}_${
+        props.pullRequest.number
+      }`}
+      style={{ scrollMarginTop: STATUS_MARGIN_TOP - 5 }}
       actions={[
         <Suspense
           fallback={
@@ -34,6 +42,7 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
         props.pullRequest.requested_reviewers
           ? props.pullRequest.requested_reviewers.map(reviewer => (
               <Suspense
+                key={`user-${props.pullRequest.number}-${reviewer.login}`}
                 fallback={<Skeleton.Avatar size="small" active={false} />}
               >
                 <UserComponent user={reviewer} />

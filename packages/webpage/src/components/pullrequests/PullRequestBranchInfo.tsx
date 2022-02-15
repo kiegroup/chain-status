@@ -1,7 +1,6 @@
-import { Tag, Tooltip } from "antd";
+import { Button, Tag, Tooltip } from "antd";
 import React from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
-
 interface IPullRequestBranchInfo {
   pullRequest: IPullRequest;
 }
@@ -9,6 +8,9 @@ interface IPullRequestBranchInfo {
 export const PullRequestBranchInfo: React.FC<
   IPullRequestBranchInfo
 > = props => {
+  const openCrossPullRequest = () => {
+    // TODO
+  };
   return (
     <>
       <Tooltip title="Base branch">
@@ -16,8 +18,10 @@ export const PullRequestBranchInfo: React.FC<
       </Tooltip>
       {"<-"}
       &nbsp;
-      <Tooltip title="Head branch">
-        <Tag>{props.pullRequest.head?.label}</Tag>
+      <Tooltip title="Head branch. Click to see Cross-PR information.">
+        <Button onClick={openCrossPullRequest}>
+          <Tag>{props.pullRequest.head?.label}</Tag>
+        </Button>
       </Tooltip>
     </>
   );
