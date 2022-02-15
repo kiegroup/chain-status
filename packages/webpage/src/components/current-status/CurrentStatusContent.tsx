@@ -1,6 +1,7 @@
 import { Layout, List, Skeleton } from "antd";
 import React, { Suspense } from "react";
-import { IData } from "../../model/data.model";
+import { useSelector } from "react-redux";
+import { IRootState } from "../../service";
 import { STATUS_MARGIN_RIGHT, STATUS_MARGIN_TOP } from "../../shared/constants";
 import Loading from "../shared/Loading";
 const CurrentStatusListItem = React.lazy(
@@ -9,16 +10,16 @@ const CurrentStatusListItem = React.lazy(
 const CurrentStatusMenu = React.lazy(() => import("./CurrentStatusMenu"));
 const { Content, Sider } = Layout;
 
-interface ICurrentStatusContent {
-  data: IData;
-}
+interface ICurrentStatusContent {}
 export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
+  const data = useSelector((store: IRootState) => store.data.data);
+
   return (
     <Layout hasSider>
       <Content style={{ marginRight: STATUS_MARGIN_RIGHT }}>
         <Suspense fallback={<Loading />}>
           <List
-            dataSource={props.data.data}
+            dataSource={data.projects}
             renderItem={project => <CurrentStatusListItem project={project} />}
           />
         </Suspense>
@@ -37,7 +38,7 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
         <Suspense
           fallback={<Skeleton.Input size="small" style={{ width: 150 }} />}
         >
-          <CurrentStatusMenu data={props.data} />
+          <CurrentStatusMenu />
         </Suspense>
       </Sider>
     </Layout>

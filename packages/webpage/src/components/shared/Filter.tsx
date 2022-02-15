@@ -1,20 +1,14 @@
-import {
-  Col,
-  DatePicker,
-  Form,
-  Input, Row,
-  Select
-} from "antd";
+import { Col, DatePicker, Form, Input, Row, Select } from "antd";
 import SkeletonAvatar from "antd/lib/skeleton/Avatar";
 import React, { Suspense, useEffect, useRef, useState } from "react";
-import { IData } from "../../model/data.model";
+import { useSelector } from "react-redux";
 import { defaultValue } from "../../model/filter.model";
 import { IUser } from "../../model/user.model";
+import { IRootState } from "../../service";
 import { alphabeticallySort } from "../../utils/common";
 const UserComponent = React.lazy(() => import("../shared/User"));
 
 interface IFilter {
-  data: IData;
   onFilter: (e: any) => void;
 }
 export const Filter: React.FC<IFilter> = props => {
@@ -24,6 +18,7 @@ export const Filter: React.FC<IFilter> = props => {
   const [headBranches, setHeadBranches] = useState<(string | undefined)[]>([]);
   const [users, setUsers] = useState<IUser[]>([]);
   const [reviewers, setReviewers] = useState<IUser[]>([]);
+  const data = useSelector((store: IRootState) => store.data.data);
 
   const treatUsers = (users: (IUser | undefined)[]): IUser[] =>
     users
@@ -50,11 +45,11 @@ export const Filter: React.FC<IFilter> = props => {
   }, []);
 
   useEffect(() => {
-    if (props.data?.data) {
+    if (data.projects?.length) {
       setBaseBranches(
         Array.from(
           new Set(
-            props.data.data.flatMap(project =>
+            data.projects.flatMap(project =>
               project.pullRequests
                 .map(pullrequest => pullrequest.base.ref)
                 .filter(e => e)
@@ -65,7 +60,7 @@ export const Filter: React.FC<IFilter> = props => {
       setHeadBranches(
         Array.from(
           new Set(
-            props.data.data.flatMap(project =>
+            data.projects.flatMap(project =>
               project.pullRequests
                 .map(pullrequest => pullrequest.head.ref)
                 .filter(e => e)
@@ -75,7 +70,7 @@ export const Filter: React.FC<IFilter> = props => {
       );
       setUsers(
         treatUsers(
-          props.data.data.flatMap(project =>
+          data.projects.flatMap(project =>
             project.pullRequests
               .map(pullrequest => pullrequest.user)
               .filter(e => e)
@@ -84,7 +79,7 @@ export const Filter: React.FC<IFilter> = props => {
       );
       setReviewers(
         treatUsers(
-          props.data.data.flatMap(project =>
+          data.projects.flatMap(project =>
             project.pullRequests
               .flatMap(pullrequest => pullrequest.requested_reviewers)
               .filter(e => e)
@@ -92,15 +87,12 @@ export const Filter: React.FC<IFilter> = props => {
         )
       );
     }
-  }, [props.data]);
+  }, [data]);
 
   return (
     <Row>
       <Col span={24}>
-        <Form
-          initialValues={defaultValue}
-          onValuesChange={props.onFilter}
-        >
+        <Form initialValues={defaultValue} onValuesChange={props.onFilter}>
           <Row gutter={[12, 0]}>
             <Col span={12}>
               <Form.Item

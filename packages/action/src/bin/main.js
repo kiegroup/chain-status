@@ -15,6 +15,8 @@ const fs = require("fs");
 const path = require("path");
 
 const getMetadata = args => ({
+  title: args.title,
+  subtitle: args.subtitle,
   date: new Date(),
   createdBy: args.createdBy,
   createdUrl: args.createdUrl
@@ -142,7 +144,7 @@ async function main(args) {
     });
   saveFiles(
     JSON.stringify(
-      { metadata: getMetadata(args), data: pullRequestInformation },
+      { metadata: getMetadata(args), projects: pullRequestInformation },
       null,
       args.debug ? 2 : 0
     ),

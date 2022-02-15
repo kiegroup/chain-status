@@ -1,9 +1,12 @@
 import { Layout, Skeleton } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CrossPullRequestDrawer from "../components/pullrequests/CrossPullRequestDrawer";
 import Loading from "../components/shared/Loading";
-import { defaultValue as defaultValueData, IData } from "../model/data.model";
+import { IRootState } from "../service";
+import * as dataService from "../service/data.service";
 import { STATUS_MARGIN_TOP } from "../shared/constants";
+
 const CurrentStatusHeader = React.lazy(
   () => import("../components/current-status/CurrentStatusHeader")
 );
@@ -14,31 +17,25 @@ const { Header, Content } = Layout;
 
 interface ICurrentStatus {}
 export const CurrentStatus: React.FC<ICurrentStatus> = props => {
-  const [data, setData] = useState<IData>(defaultValueData);
   // const [filteredData, setFilteredData] = useState<IData>(defaultValueData);
-  const [loading, setLoading] = useState<boolean>(false);
   const [latestLoad, setLatestLoad] = useState<Date>(new Date());
+  const dispatch = useDispatch();
+  const data = useSelector((store: IRootState) => store.data.data);
+  const loading = useSelector((store: IRootState) => store.data.loading);
 
   const getData = () => {
-    setLoading(true);
-    fetch("data/latest.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(json => {
-        setData(json);
-        // setFilteredData(json);
-        setLoading(false);
-        setLatestLoad(new Date());
-      });
+    dispatch(dataService.loadData());
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (data?.projects) {
+      setLatestLoad(new Date());
+    }
+  }, [data]);
 
   return (
     <Layout>
@@ -54,8 +51,6 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
       >
         <Suspense fallback={<Skeleton />}>
           <CurrentStatusHeader
-            data={data}
-            // data={filteredData}
             loading={loading}
             reload={getData}
             latestLoad={latestLoad}
@@ -92,7 +87,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
                   style={{ margin: 0, padding: 0 }}
                 >
                   <Suspense fallback={<Skeleton />}>
-                    <Filter data={data} onFilter={onFilter} />
+                    <Filter onFilter={onFilter} />
                   </Suspense>
                 </Collapse.Panel>
               </Collapse>
@@ -100,18 +95,10 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
           </Header> */}
           <Content>
             <Suspense fallback={<Loading />}>
-              <CurrentStatusContent
-                // data={filteredData}
-                data={data}
-              />
+              <CurrentStatusContent />
             </Suspense>
 
-            <CrossPullRequestDrawer
-              visible={false}
-              onClose={() => null}
-              data={data}
-              headBranch={undefined}
-            />
+            <CrossPullRequestDrawer />
           </Content>
         </Layout>
       </Content>

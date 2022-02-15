@@ -1,12 +1,13 @@
 import { Menu, Tooltip, Typography } from "antd";
 import React from "react";
-import { IData } from "../../model/data.model";
+import { useSelector } from "react-redux";
+import { IRootState } from "../../service";
 import ProjectLink from "../shared/ProjectLink";
 
-interface ICurrentStatusMenu {
-  data: IData;
-}
+interface ICurrentStatusMenu {}
 export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
+  const data = useSelector((store: IRootState) => store.data.data);
+
   return (
     <>
       <Typography.Title
@@ -16,7 +17,7 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
         Repositories
       </Typography.Title>
       <Menu theme="light" mode="inline">
-        {props.data.data
+        {data.projects
           .filter(e => e.name)
           .map(project => (
             <Menu.Item key={project.key}>

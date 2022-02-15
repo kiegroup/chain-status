@@ -1,6 +1,10 @@
 import { IUser } from "./user.model";
 import { ICheck } from "./check.model";
-import { IPullRequestInfo, defaultValue as IPullRequestInfoDefault } from "./pullrequestinfo.model";
+import {
+  IPullRequestInfo,
+  defaultValue as IPullRequestInfoDefault
+} from "./pullrequestinfo.model";
+import { IProject } from "./project.model";
 export interface IPullRequest {
   number?: number;
   title?: string;
@@ -17,6 +21,7 @@ export interface IPullRequest {
   head: IPullRequestInfo;
   user?: IUser;
   checks: ICheck[];
+  project?: IProject;
 }
 
 export const defaultValue: Readonly<IPullRequest> = {

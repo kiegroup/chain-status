@@ -14,6 +14,8 @@ const start = async () => {
       ? core.getInput("baseBranchFilter").split(",")
       : [],
     debug: core.getInput("logger-level") === "debug",
+    title: core.getInput("title"),
+    subtitle: core.getInput("subtitle"),
     createdBy: core.getInput("created-by"),
     createdUrl: core.getInput("created-url")
   };

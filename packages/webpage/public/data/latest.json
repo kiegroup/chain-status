@@ -1,10 +1,12 @@
 {
   "metadata": {
-    "date": "2022-02-11T12:18:22.694Z",
+    "title": "RHBA Status",
+    "subtitle": "Contribution status",
+    "date": "2022-02-15T09:57:03.736Z",
     "createdBy": "ginxo",
     "createdUrl": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/actions/runs/1820960650"
   },
-  "data": [
+  "projects": [
     {
       "key": "kiegroup/droolsjbpm-build-bootstrap",
       "name": "droolsjbpm-build-bootstrap",
@@ -70,53 +72,6 @@
               "conclusion": "skipped",
               "started_at": "2022-02-09T23:23:15Z",
               "completed_at": "2022-02-09T23:23:15Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 1889,
-          "title": "Upgrade bonigarcia webdrivermanager",
-          "url": "https://api.github.com/repos/kiegroup/droolsjbpm-build-bootstrap/pulls/1889",
-          "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/pull/1889",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [],
-          "created_at": "2022-02-08T09:08:40Z",
-          "updated_at": "2022-02-10T08:08:11Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "2fb000d09dde3f22c9e5a86ab631dc481e672896",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "bonigarcia-5.0.3",
-            "sha": "1c21f206c314cfe31f3893a2c9ce4c0e478d8208",
-            "label": "jomarko:bonigarcia-5.0.3"
-          },
-          "user": {
-            "login": "jomarko",
-            "avatar_url": "https://avatars.githubusercontent.com/u/8044780?v=4",
-            "html_url": "https://github.com/jomarko"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/runs/5106438097?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T09:08:56Z",
-              "completed_at": "2022-02-08T09:09:44Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/runs/5106437986?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T09:08:55Z",
-              "completed_at": "2022-02-08T09:09:35Z",
               "slug": "github-actions"
             }
           ]
@@ -247,17 +202,17 @@
             }
           ],
           "created_at": "2022-02-01T11:20:52Z",
-          "updated_at": "2022-02-09T08:28:33Z",
+          "updated_at": "2022-02-11T14:30:56Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "921489a5f30d71422cdf67f0d643194974b87bb1",
+            "sha": "2fb000d09dde3f22c9e5a86ab631dc481e672896",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "DROOLS-6479",
-            "sha": "86405ce0fb016abbf59326614a262c2e383e0336",
+            "sha": "af8163759b9faaa1d2cf879511ce8d21b06f89c7",
             "label": "pibizza:DROOLS-6479"
           },
           "user": {
@@ -267,19 +222,19 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/runs/5020281028?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/runs/5157437200?check_suite_focus=true",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2022-02-01T11:34:57Z",
-              "completed_at": "2022-02-01T11:35:52Z",
+              "started_at": "2022-02-11T14:32:58Z",
+              "completed_at": "2022-02-11T14:33:46Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/runs/5020280889?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-build-bootstrap/runs/5157437083?check_suite_focus=true",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2022-02-01T11:22:19Z",
-              "completed_at": "2022-02-01T11:23:00Z",
+              "started_at": "2022-02-11T14:45:18Z",
+              "completed_at": "2022-02-11T14:46:50Z",
               "slug": "github-actions"
             }
           ]
@@ -1151,145 +1106,6 @@
           ]
         },
         {
-          "number": 588,
-          "title": "JBPM-9992 Created ExecutionErrorInfoDeleteBuilder",
-          "url": "https://api.github.com/repos/kiegroup/droolsjbpm-knowledge/pulls/588",
-          "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/pull/588",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "elguardian",
-              "avatar_url": "https://avatars.githubusercontent.com/u/6625846?v=4",
-              "html_url": "https://github.com/elguardian"
-            },
-            {
-              "login": "fjtirado",
-              "avatar_url": "https://avatars.githubusercontent.com/u/65240126?v=4",
-              "html_url": "https://github.com/fjtirado"
-            }
-          ],
-          "created_at": "2022-02-04T12:04:06Z",
-          "updated_at": "2022-02-11T12:17:40Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "7.x",
-            "sha": "9b0bb2c65aea08783baa7e3b6cc210a566e2446b",
-            "label": "kiegroup:7.x"
-          },
-          "head": {
-            "ref": "JBPM-9992",
-            "sha": "cdbfd6fa1d80febd73f04f38e71ae215f4fb4163",
-            "label": "hbelmiro:JBPM-9992"
-          },
-          "user": {
-            "login": "hbelmiro",
-            "avatar_url": "https://avatars.githubusercontent.com/u/11776454?v=4",
-            "html_url": "https://github.com/hbelmiro"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/5155886149?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
-              "started_at": "2022-02-11T12:18:06Z",
-              "completed_at": null,
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/5155886070?check_suite_focus=true",
-              "status": "queued",
-              "conclusion": null,
-              "started_at": "2022-02-11T12:17:44Z",
-              "completed_at": null,
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/5155885974?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-11T12:17:45Z",
-              "completed_at": "2022-02-11T12:17:45Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/5155885897?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-11T12:17:45Z",
-              "completed_at": "2022-02-11T12:17:45Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 578,
-          "title": "[TEST] issue 106",
-          "url": "https://api.github.com/repos/kiegroup/droolsjbpm-knowledge/pulls/578",
-          "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/pull/578",
-          "state": "open",
-          "labels": [
-            "DO_NOT_MERGE"
-          ],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2021-11-03T11:05:13Z",
-          "updated_at": "2021-11-03T11:14:02Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "7.x",
-            "sha": "ee9d5018b7e265c11d38df1f46e49dff690562d5",
-            "label": "kiegroup:7.x"
-          },
-          "head": {
-            "ref": "issues/106",
-            "sha": "17b203a3e50b8ae6e10ee6b10689eadd85d9cf16",
-            "label": "Ginxo:issues/106"
-          },
-          "user": {
-            "login": "Ginxo",
-            "avatar_url": "https://avatars.githubusercontent.com/u/25130444?v=4",
-            "html_url": "https://github.com/Ginxo"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/4091658761?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-11-03T11:16:01Z",
-              "completed_at": "2021-11-03T11:17:48Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/4091658705?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-11-03T11:16:56Z",
-              "completed_at": "2021-11-03T11:20:04Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/4091658649?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-11-03T11:14:13Z",
-              "completed_at": "2021-11-03T11:16:46Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-knowledge/runs/4091658607?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-11-03T11:14:12Z",
-              "completed_at": "2021-11-03T11:15:48Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
           "number": 574,
           "title": "Removed Spring-boot-starter-parent and updated h2 dependency version …",
           "url": "https://api.github.com/repos/kiegroup/droolsjbpm-knowledge/pulls/574",
@@ -1452,13 +1268,246 @@
       "name": "drools",
       "description": "Drools is a rule engine, DMN engine and complex event processing (CEP) engine for Java.",
       "html_url": "https://github.com/kiegroup/drools",
-      "updated_at": "2022-02-11T12:08:40Z",
+      "updated_at": "2022-02-14T06:17:29Z",
       "homepage": "http://www.drools.org",
       "language": "Java",
       "default_branch": "main",
       "repo_url": "https://github.com/kiegroup/drools",
       "pulls_url": "https://api.github.com/repos/kiegroup/drools/pulls{/number}",
       "pullRequests": [
+        {
+          "number": 4204,
+          "title": "[DROOLS-6821] Inconsistent propety reactivity with Join and From",
+          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4204",
+          "html_url": "https://github.com/kiegroup/drools/pull/4204",
+          "state": "open",
+          "labels": [],
+          "draft": false,
+          "requested_reviewers": [],
+          "created_at": "2022-02-15T09:50:14Z",
+          "updated_at": "2022-02-15T09:50:14Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "4ed9632d5c6ce38293ffaaac8abfe239c6b99b19",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "DROOLS-6821-main",
+            "sha": "50595a50db5a0e5a9d589eaadf1d2cf8e3e94f5a",
+            "label": "tkobayas:DROOLS-6821-main"
+          },
+          "user": {
+            "login": "tkobayas",
+            "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
+            "html_url": "https://github.com/tkobayas"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5197938279?check_suite_focus=true",
+              "status": "in_progress",
+              "conclusion": null,
+              "started_at": "2022-02-15T09:50:30Z",
+              "completed_at": null,
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5197938274?check_suite_focus=true",
+              "status": "in_progress",
+              "conclusion": null,
+              "started_at": "2022-02-15T09:50:29Z",
+              "completed_at": null,
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5197938171?check_suite_focus=true",
+              "status": "in_progress",
+              "conclusion": null,
+              "started_at": "2022-02-15T09:50:29Z",
+              "completed_at": null,
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5197938167?check_suite_focus=true",
+              "status": "in_progress",
+              "conclusion": null,
+              "started_at": "2022-02-15T09:50:29Z",
+              "completed_at": null,
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5197938166?check_suite_focus=true",
+              "status": "in_progress",
+              "conclusion": null,
+              "started_at": "2022-02-15T09:50:28Z",
+              "completed_at": null,
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 4203,
+          "title": "[DROOLS-6114][DROOLS-6119][DROOLS-6123][DROOLS-6140][DROOLS-6143][DRO…",
+          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4203",
+          "html_url": "https://github.com/kiegroup/drools/pull/4203",
+          "state": "open",
+          "labels": [],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "mariofusco",
+              "avatar_url": "https://avatars.githubusercontent.com/u/372781?v=4",
+              "html_url": "https://github.com/mariofusco"
+            }
+          ],
+          "created_at": "2022-02-15T06:33:15Z",
+          "updated_at": "2022-02-15T09:43:34Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "4ed9632d5c6ce38293ffaaac8abfe239c6b99b19",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "DROOLS-6114-main",
+            "sha": "4bfd74a89bc8386776f786989301b69eb798ecb8",
+            "label": "tkobayas:DROOLS-6114-main"
+          },
+          "user": {
+            "login": "tkobayas",
+            "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
+            "html_url": "https://github.com/tkobayas"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5196217310",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T07:19:18Z",
+              "completed_at": "2022-02-15T07:19:19Z",
+              "slug": "github-code-scanning"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5196217088",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T07:11:34Z",
+              "completed_at": "2022-02-15T07:19:14Z",
+              "slug": "sonarcloud"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195823007?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:33:29Z",
+              "completed_at": "2022-02-15T08:25:57Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195822951?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:33:30Z",
+              "completed_at": "2022-02-15T08:38:00Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195822950?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:33:45Z",
+              "completed_at": "2022-02-15T07:34:36Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195822948?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:33:29Z",
+              "completed_at": "2022-02-15T07:17:28Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195822946?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:33:29Z",
+              "completed_at": "2022-02-15T07:07:11Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 4202,
+          "title": "[DROOLS-6114][DROOLS-6119][DROOLS-6123][DROOLS-6140][DROOLS-6143][DRO…",
+          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4202",
+          "html_url": "https://github.com/kiegroup/drools/pull/4202",
+          "state": "open",
+          "labels": [],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "mariofusco",
+              "avatar_url": "https://avatars.githubusercontent.com/u/372781?v=4",
+              "html_url": "https://github.com/mariofusco"
+            }
+          ],
+          "created_at": "2022-02-15T06:29:11Z",
+          "updated_at": "2022-02-15T09:43:24Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "7.x",
+            "sha": "ad55365e84c52987cc27dd19781cd247a4718e47",
+            "label": "kiegroup:7.x"
+          },
+          "head": {
+            "ref": "DROOLS-6114-7.x",
+            "sha": "5431485aea7935407d9fd5a6cda1e7736ea8b5f7",
+            "label": "tkobayas:DROOLS-6114-7.x"
+          },
+          "user": {
+            "login": "tkobayas",
+            "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
+            "html_url": "https://github.com/tkobayas"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195793168?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T07:36:50Z",
+              "completed_at": "2022-02-15T09:18:31Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195793123?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T07:38:35Z",
+              "completed_at": "2022-02-15T09:37:41Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195793076?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:29:24Z",
+              "completed_at": "2022-02-15T07:36:36Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5195793007?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-15T06:29:24Z",
+              "completed_at": "2022-02-15T07:38:19Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
         {
           "number": 4197,
           "title": "[8.x][DROOLS-6773] Create \"Regression\" model static interpreted version",
@@ -1467,15 +1516,9 @@
           "state": "open",
           "labels": [],
           "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "danielezonca",
-              "avatar_url": "https://avatars.githubusercontent.com/u/244607?v=4",
-              "html_url": "https://github.com/danielezonca"
-            }
-          ],
+          "requested_reviewers": [],
           "created_at": "2022-02-11T11:01:14Z",
-          "updated_at": "2022-02-11T11:47:19Z",
+          "updated_at": "2022-02-14T13:14:44Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -1485,7 +1528,7 @@
           },
           "head": {
             "ref": "DROOLS-6773_8.x",
-            "sha": "bfd654d7fabdb8db59a3fc54862633d73e62764f",
+            "sha": "9b50d4d2bcf38596c13280d7a46aeb3be095513c",
             "label": "gitgabrio:DROOLS-6773_8.x"
           },
           "user": {
@@ -1495,51 +1538,51 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5155521673",
+              "html_url": "https://github.com/kiegroup/drools/runs/5181152991",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2022-02-11T11:38:16Z",
-              "completed_at": "2022-02-11T11:46:05Z",
+              "started_at": "2022-02-14T09:01:06Z",
+              "completed_at": "2022-02-14T09:09:01Z",
               "slug": "sonarcloud"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5155026562?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5180636152?check_suite_focus=true",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2022-02-11T11:01:30Z",
-              "completed_at": "2022-02-11T11:30:27Z",
+              "started_at": "2022-02-14T08:23:46Z",
+              "completed_at": "2022-02-14T10:09:59Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5155026463?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
-              "started_at": "2022-02-11T11:01:31Z",
-              "completed_at": null,
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5155026461?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5180636129?check_suite_focus=true",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2022-02-11T11:01:29Z",
-              "completed_at": "2022-02-11T11:45:53Z",
+              "started_at": "2022-02-14T08:23:45Z",
+              "completed_at": "2022-02-14T10:30:54Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5155026458?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
-              "started_at": "2022-02-11T11:02:03Z",
-              "completed_at": null,
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5155026453?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5180636082?check_suite_focus=true",
               "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-11T11:01:32Z",
-              "completed_at": "2022-02-11T11:59:56Z",
+              "conclusion": "success",
+              "started_at": "2022-02-14T08:23:44Z",
+              "completed_at": "2022-02-14T08:54:18Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5180636078?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T08:23:45Z",
+              "completed_at": "2022-02-14T09:24:19Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5180636075?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T08:23:46Z",
+              "completed_at": "2022-02-14T09:10:35Z",
               "slug": "github-actions"
             }
           ]
@@ -1554,13 +1597,13 @@
           "draft": false,
           "requested_reviewers": [
             {
-              "login": "elguardian",
-              "avatar_url": "https://avatars.githubusercontent.com/u/6625846?v=4",
-              "html_url": "https://github.com/elguardian"
+              "login": "gmunozfe",
+              "avatar_url": "https://avatars.githubusercontent.com/u/1962786?v=4",
+              "html_url": "https://github.com/gmunozfe"
             }
           ],
           "created_at": "2022-02-11T09:32:22Z",
-          "updated_at": "2022-02-11T09:32:22Z",
+          "updated_at": "2022-02-14T07:44:20Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -1589,10 +1632,10 @@
             },
             {
               "html_url": "https://github.com/kiegroup/drools/runs/5154028582?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
+              "status": "completed",
+              "conclusion": "success",
               "started_at": "2022-02-11T10:55:02Z",
-              "completed_at": null,
+              "completed_at": "2022-02-11T12:26:19Z",
               "slug": "github-actions"
             },
             {
@@ -1609,296 +1652,6 @@
               "conclusion": "success",
               "started_at": "2022-02-11T09:32:35Z",
               "completed_at": "2022-02-11T10:37:27Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 4195,
-          "title": "[DROOLS-6823] fix exec model compilation when comparing a BigDecimal …",
-          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4195",
-          "html_url": "https://github.com/kiegroup/drools/pull/4195",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "tkobayas",
-              "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
-              "html_url": "https://github.com/tkobayas"
-            }
-          ],
-          "created_at": "2022-02-10T13:39:20Z",
-          "updated_at": "2022-02-10T14:42:07Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "7787bb3c1644075b4b5901190a46f94c2cb06022",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "d6823",
-            "sha": "2fce7d8d1175e24a5679fb2ea0e59e47fd5f1ed9",
-            "label": "mariofusco:d6823"
-          },
-          "user": {
-            "login": "mariofusco",
-            "avatar_url": "https://avatars.githubusercontent.com/u/372781?v=4",
-            "html_url": "https://github.com/mariofusco"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5142436219",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T14:29:46Z",
-              "completed_at": "2022-02-10T14:37:38Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5141609785?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T14:16:07Z",
-              "completed_at": "2022-02-10T16:16:35Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5141609732?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T14:09:35Z",
-              "completed_at": "2022-02-10T17:10:19Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5141609728?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T13:47:39Z",
-              "completed_at": "2022-02-10T14:43:34Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5141609726?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T13:39:33Z",
-              "completed_at": "2022-02-10T16:40:05Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5141609723?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T13:43:09Z",
-              "completed_at": "2022-02-10T14:40:14Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 4194,
-          "title": "[DROOLS-6821] Inconsistent propety reactivity with Join and From",
-          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4194",
-          "html_url": "https://github.com/kiegroup/drools/pull/4194",
-          "state": "open",
-          "labels": [],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2022-02-10T07:32:54Z",
-          "updated_at": "2022-02-10T07:37:38Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "7.x",
-            "sha": "528a594a5e897deec524b5e3b2130a60464673dc",
-            "label": "kiegroup:7.x"
-          },
-          "head": {
-            "ref": "DROOLS-6821",
-            "sha": "7ac5d75800e82136a307b49af16d99f1757a8dbf",
-            "label": "tkobayas:DROOLS-6821"
-          },
-          "user": {
-            "login": "tkobayas",
-            "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
-            "html_url": "https://github.com/tkobayas"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137245491?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T08:33:25Z",
-              "completed_at": "2022-02-10T10:03:31Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137245420?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T07:33:11Z",
-              "completed_at": "2022-02-10T09:15:53Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137245359?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T09:23:18Z",
-              "completed_at": "2022-02-10T10:26:56Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137245309?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T07:33:07Z",
-              "completed_at": "2022-02-10T08:25:33Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 4193,
-          "title": "[JBPM-10016] Drools/jBPM integration: high number of instances waiting for signal adversely impacts execution time",
-          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4193",
-          "html_url": "https://github.com/kiegroup/drools/pull/4193",
-          "state": "open",
-          "labels": [],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2022-02-09T11:33:18Z",
-          "updated_at": "2022-02-10T08:37:03Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "7.x",
-            "sha": "528a594a5e897deec524b5e3b2130a60464673dc",
-            "label": "kiegroup:7.x"
-          },
-          "head": {
-            "ref": "JBPM-10016",
-            "sha": "de45f8860c8026260d2246680b4cafb1bcf71ca7",
-            "label": "elguardian:JBPM-10016"
-          },
-          "user": {
-            "login": "elguardian",
-            "avatar_url": "https://avatars.githubusercontent.com/u/6625846?v=4",
-            "html_url": "https://github.com/elguardian"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137873975?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:12:53Z",
-              "completed_at": "2022-02-10T11:38:07Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137873819?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:22:17Z",
-              "completed_at": "2022-02-10T12:09:31Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137873749?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:37:17Z",
-              "completed_at": "2022-02-10T09:41:03Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5137873658?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:37:19Z",
-              "completed_at": "2022-02-10T09:48:03Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 4192,
-          "title": "[DROOLS-6816] implement structural typing in executable model DSL",
-          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4192",
-          "html_url": "https://github.com/kiegroup/drools/pull/4192",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [],
-          "created_at": "2022-02-08T17:24:36Z",
-          "updated_at": "2022-02-11T08:47:19Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "7787bb3c1644075b4b5901190a46f94c2cb06022",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "d6816",
-            "sha": "f5ff699de7faf65c30386e2f7a0bf3123211382e",
-            "label": "mariofusco:d6816"
-          },
-          "user": {
-            "login": "mariofusco",
-            "avatar_url": "https://avatars.githubusercontent.com/u/372781?v=4",
-            "html_url": "https://github.com/mariofusco"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5153531550",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-11T08:38:24Z",
-              "completed_at": "2022-02-11T08:46:08Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5153015427?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T07:49:57Z",
-              "completed_at": "2022-02-11T08:39:22Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5153015406?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-11T07:49:57Z",
-              "completed_at": "2022-02-11T09:50:14Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5153015365?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T07:50:00Z",
-              "completed_at": "2022-02-11T08:18:14Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5153015353?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-11T07:50:01Z",
-              "completed_at": "2022-02-11T10:50:57Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5153015345?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-11T07:49:59Z",
-              "completed_at": "2022-02-11T10:50:40Z",
               "slug": "github-actions"
             }
           ]
@@ -1984,7 +1737,7 @@
           "draft": false,
           "requested_reviewers": [],
           "created_at": "2022-02-03T09:09:01Z",
-          "updated_at": "2022-02-10T15:58:11Z",
+          "updated_at": "2022-02-11T12:32:41Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -2038,87 +1791,13 @@
           ]
         },
         {
-          "number": 4183,
-          "title": "[DROOLS-6112] executable-model test failure in test-compiler-integrat…",
-          "url": "https://api.github.com/repos/kiegroup/drools/pulls/4183",
-          "html_url": "https://github.com/kiegroup/drools/pull/4183",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "pibizza",
-              "avatar_url": "https://avatars.githubusercontent.com/u/7407073?v=4",
-              "html_url": "https://github.com/pibizza"
-            },
-            {
-              "login": "hellowdan",
-              "avatar_url": "https://avatars.githubusercontent.com/u/22012223?v=4",
-              "html_url": "https://github.com/hellowdan"
-            }
-          ],
-          "created_at": "2022-02-03T08:53:05Z",
-          "updated_at": "2022-02-08T15:38:06Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "7.x",
-            "sha": "18f49133020c176a650c5accbf000c7b20990015",
-            "label": "kiegroup:7.x"
-          },
-          "head": {
-            "ref": "DROOLS-6112-7.x",
-            "sha": "05f077e9ac404f06845a662997bc8a21e87d1869",
-            "label": "tkobayas:DROOLS-6112-7.x"
-          },
-          "user": {
-            "login": "tkobayas",
-            "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
-            "html_url": "https://github.com/tkobayas"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5064739465?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T11:28:47Z",
-              "completed_at": "2022-02-04T13:09:59Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5064739411?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T11:50:24Z",
-              "completed_at": "2022-02-04T13:26:47Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5064739344?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T10:25:42Z",
-              "completed_at": "2022-02-04T11:24:21Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5064739281?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T10:24:51Z",
-              "completed_at": "2022-02-04T11:28:34Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
           "number": 4182,
-          "title": "drools-compiler refactoring",
+          "title": "DROOLS-6826 Modularize drools-compiler",
           "url": "https://api.github.com/repos/kiegroup/drools/pulls/4182",
           "html_url": "https://github.com/kiegroup/drools/pull/4182",
           "state": "open",
           "labels": [],
-          "draft": true,
+          "draft": false,
           "requested_reviewers": [
             {
               "login": "mariofusco",
@@ -2127,17 +1806,17 @@
             }
           ],
           "created_at": "2022-02-02T16:25:27Z",
-          "updated_at": "2022-02-10T18:28:10Z",
+          "updated_at": "2022-02-15T09:35:12Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "7787bb3c1644075b4b5901190a46f94c2cb06022",
+            "sha": "4ed9632d5c6ce38293ffaaac8abfe239c6b99b19",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "drools-compiler-refactor",
-            "sha": "d344e968ddd380921eed369903bdefebbe62b07d",
+            "sha": "1b7345c7f72a42b655080452cb60ae6648145746",
             "label": "evacchi:drools-compiler-refactor"
           },
           "user": {
@@ -2147,51 +1826,43 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5145780423",
+              "html_url": "https://github.com/kiegroup/drools/runs/5197682328?check_suite_focus=true",
               "status": "completed",
               "conclusion": "failure",
-              "started_at": "2022-02-10T18:18:52Z",
-              "completed_at": "2022-02-10T18:26:58Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/5145144006?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T20:25:46Z",
-              "completed_at": "2022-02-10T20:56:23Z",
+              "started_at": "2022-02-15T09:31:11Z",
+              "completed_at": "2022-02-15T09:38:58Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5145143900?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5197682323?check_suite_focus=true",
               "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T19:15:26Z",
-              "completed_at": "2022-02-10T22:15:40Z",
+              "conclusion": "failure",
+              "started_at": "2022-02-15T09:31:10Z",
+              "completed_at": "2022-02-15T09:34:49Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5145143877?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5197682203?check_suite_focus=true",
               "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T18:53:13Z",
-              "completed_at": "2022-02-10T21:53:21Z",
+              "conclusion": "failure",
+              "started_at": "2022-02-15T09:31:08Z",
+              "completed_at": "2022-02-15T09:34:40Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5145143853?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5197682197?check_suite_focus=true",
               "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T18:44:03Z",
-              "completed_at": "2022-02-10T20:49:02Z",
+              "conclusion": "failure",
+              "started_at": "2022-02-15T09:31:08Z",
+              "completed_at": "2022-02-15T09:33:17Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/5145143846?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5197682188?check_suite_focus=true",
               "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T19:41:44Z",
-              "completed_at": "2022-02-10T21:04:57Z",
+              "conclusion": "failure",
+              "started_at": "2022-02-15T09:31:08Z",
+              "completed_at": "2022-02-15T09:34:04Z",
               "slug": "github-actions"
             }
           ]
@@ -2736,17 +2407,17 @@
           "draft": true,
           "requested_reviewers": [],
           "created_at": "2021-12-16T15:24:22Z",
-          "updated_at": "2021-12-20T14:20:27Z",
+          "updated_at": "2022-02-14T12:54:31Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "9ebccbe93847950dfd66e2a86bec3d66760ad90c",
+            "sha": "219ad6355d6c6a419b37650dfe6c298390268e8c",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "split_nightly_jobs",
-            "sha": "fa21d42485a002ad2691e74f374429abdfb29fc5",
+            "sha": "e9f11b1c94855f7f1bdbbd97f004781abd9c6c6a",
             "label": "radtriste:split_nightly_jobs"
           },
           "user": {
@@ -2756,11 +2427,43 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/drools/runs/4583426553?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/drools/runs/5183984203?check_suite_focus=true",
               "status": "completed",
               "conclusion": "failure",
-              "started_at": "2021-12-20T14:24:51Z",
-              "completed_at": "2021-12-20T14:27:11Z",
+              "started_at": "2022-02-14T12:54:44Z",
+              "completed_at": "2022-02-14T12:57:03Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5183984196?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T12:54:47Z",
+              "completed_at": "2022-02-14T12:57:54Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5183984116?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T12:54:44Z",
+              "completed_at": "2022-02-14T13:28:37Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5183984104?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T12:54:46Z",
+              "completed_at": "2022-02-14T12:57:18Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/drools/runs/5183984092?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T12:54:44Z",
+              "completed_at": "2022-02-14T13:59:09Z",
               "slug": "github-actions"
             }
           ]
@@ -3484,85 +3187,6 @@
           ]
         },
         {
-          "number": 3806,
-          "title": "[DROOLS-6535] test CI",
-          "url": "https://api.github.com/repos/kiegroup/drools/pulls/3806",
-          "html_url": "https://github.com/kiegroup/drools/pull/3806",
-          "state": "open",
-          "labels": [],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2021-08-27T06:05:24Z",
-          "updated_at": "2021-08-27T07:16:39Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "a6a54b51da3f525fb7e6d58484b35394811c66c7",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "DROOLS-6535",
-            "sha": "18d689cbe2c717dc134cd17515cbfef49b8f461d",
-            "label": "Ginxo:DROOLS-6535"
-          },
-          "user": {
-            "login": "Ginxo",
-            "avatar_url": "https://avatars.githubusercontent.com/u/25130444?v=4",
-            "html_url": "https://github.com/Ginxo"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/3440713648",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-08-27T07:07:00Z",
-              "completed_at": "2021-08-27T07:16:38Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/3440342621?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2021-08-27T07:22:09Z",
-              "completed_at": "2021-08-27T07:22:09Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/3440342558?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-08-27T06:17:19Z",
-              "completed_at": "2021-08-27T07:22:07Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/3440342501?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-08-27T06:17:19Z",
-              "completed_at": "2021-08-27T07:15:33Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/3440342453?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2021-08-27T07:22:09Z",
-              "completed_at": "2021-08-27T07:22:09Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/drools/runs/3440264989?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-08-27T06:05:37Z",
-              "completed_at": "2021-08-27T07:46:06Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
           "number": 3775,
           "title": "[DO-NOT-MERGE] [DROOLS-6534] DowncastTest failure with github action build chain wit…",
           "url": "https://api.github.com/repos/kiegroup/drools/pulls/3775",
@@ -4167,261 +3791,13 @@
       "name": "optaplanner",
       "description": "AI constraint solver in Java to optimize the vehicle routing problem, employee rostering, task assignment, maintenance scheduling, conference scheduling and other planning problems.",
       "html_url": "https://github.com/kiegroup/optaplanner",
-      "updated_at": "2022-02-11T05:02:04Z",
+      "updated_at": "2022-02-15T05:02:00Z",
       "homepage": "https://www.optaplanner.org",
       "language": "Java",
       "default_branch": "main",
       "repo_url": "https://github.com/kiegroup/optaplanner",
       "pulls_url": "https://api.github.com/repos/kiegroup/optaplanner/pulls{/number}",
       "pullRequests": [
-        {
-          "number": 1838,
-          "title": "PLANNER-2658 Split CS off into its own module",
-          "url": "https://api.github.com/repos/kiegroup/optaplanner/pulls/1838",
-          "html_url": "https://github.com/kiegroup/optaplanner/pull/1838",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "yurloc",
-              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
-              "html_url": "https://github.com/yurloc"
-            },
-            {
-              "login": "rsynek",
-              "avatar_url": "https://avatars.githubusercontent.com/u/1422582?v=4",
-              "html_url": "https://github.com/rsynek"
-            }
-          ],
-          "created_at": "2022-02-10T16:19:01Z",
-          "updated_at": "2022-02-11T12:15:24Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "862515a4ed9a7315a31afc1c1964da39d6dd1923",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "PLANNER-2658",
-            "sha": "96aad008f8fc95f644201a2ec9ec2ebce7285da4",
-            "label": "triceo:PLANNER-2658"
-          },
-          "user": {
-            "login": "triceo",
-            "avatar_url": "https://avatars.githubusercontent.com/u/247403?v=4",
-            "html_url": "https://github.com/triceo"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5155714008",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T11:59:35Z",
-              "completed_at": "2022-02-11T12:03:26Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5155352145?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T11:30:03Z",
-              "completed_at": "2022-02-11T12:17:03Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5155352066?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T11:30:39Z",
-              "completed_at": "2022-02-11T12:00:53Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5155351993?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T11:30:03Z",
-              "completed_at": "2022-02-11T12:04:17Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5155351886?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T11:30:04Z",
-              "completed_at": "2022-02-11T12:08:38Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5155351751?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T11:30:02Z",
-              "completed_at": "2022-02-11T11:32:22Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 1837,
-          "title": "[main] Bump Quarkus version to 2.7.1.Final",
-          "url": "https://api.github.com/repos/kiegroup/optaplanner/pulls/1837",
-          "html_url": "https://github.com/kiegroup/optaplanner/pull/1837",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [],
-          "created_at": "2022-02-10T08:48:46Z",
-          "updated_at": "2022-02-10T16:30:41Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "862515a4ed9a7315a31afc1c1964da39d6dd1923",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "bump-main-quarkus-2.7.1.Final",
-            "sha": "e57760a7c08dd8fcbdeecef117272c03a144233a",
-            "label": "kiegroup:bump-main-quarkus-2.7.1.Final"
-          },
-          "user": {
-            "login": "kie-ci",
-            "avatar_url": "https://avatars.githubusercontent.com/u/11995863?v=4",
-            "html_url": "https://github.com/kie-ci"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138392170",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T09:17:46Z",
-              "completed_at": "2022-02-10T09:21:04Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138004805?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:49:05Z",
-              "completed_at": "2022-02-10T09:47:49Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138004708?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:49:04Z",
-              "completed_at": "2022-02-10T09:37:55Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138004589?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:48:59Z",
-              "completed_at": "2022-02-10T09:23:50Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138004470?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:48:58Z",
-              "completed_at": "2022-02-10T09:17:05Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138004346?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T08:48:56Z",
-              "completed_at": "2022-02-10T08:52:48Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 1836,
-          "title": "Fix optaplanner-javadoc to include optaplanner-core-impl and optaplanner-constraint-drl",
-          "url": "https://api.github.com/repos/kiegroup/optaplanner/pulls/1836",
-          "html_url": "https://github.com/kiegroup/optaplanner/pull/1836",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [],
-          "created_at": "2022-02-09T14:22:05Z",
-          "updated_at": "2022-02-10T10:20:48Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "862515a4ed9a7315a31afc1c1964da39d6dd1923",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "fix-javadoc-and-module-names",
-            "sha": "84b6e9e2e88888c5ba4ab37a37f4b051ed55ebdb",
-            "label": "yurloc:fix-javadoc-and-module-names"
-          },
-          "user": {
-            "login": "yurloc",
-            "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
-            "html_url": "https://github.com/yurloc"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5139095664",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:13:57Z",
-              "completed_at": "2022-02-10T10:17:06Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138670352?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:12:12Z",
-              "completed_at": "2022-02-10T10:56:45Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138670255?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T09:52:51Z",
-              "completed_at": "2022-02-10T10:17:00Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138670186?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:27:07Z",
-              "completed_at": "2022-02-10T10:52:55Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138670082?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:21:53Z",
-              "completed_at": "2022-02-10T11:06:47Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5138669901?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T09:47:59Z",
-              "completed_at": "2022-02-10T09:52:37Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
         {
           "number": 1833,
           "title": "[8.17.x] Update project version to 8.17.0.Final",
@@ -4486,91 +3862,6 @@
           ]
         },
         {
-          "number": 1832,
-          "title": "PLANNER-2629 Pause the best solution consumer",
-          "url": "https://api.github.com/repos/kiegroup/optaplanner/pulls/1832",
-          "html_url": "https://github.com/kiegroup/optaplanner/pull/1832",
-          "state": "open",
-          "labels": [],
-          "draft": true,
-          "requested_reviewers": [
-            {
-              "login": "ge0ffrey",
-              "avatar_url": "https://avatars.githubusercontent.com/u/176880?v=4",
-              "html_url": "https://github.com/ge0ffrey"
-            }
-          ],
-          "created_at": "2022-02-07T12:11:46Z",
-          "updated_at": "2022-02-08T08:39:05Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "7c0353393906f11c31e0a214eeb9a843180d69c6",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "PLANNER-2629",
-            "sha": "807337c7372a6c4249bde2272c6355184ad85187",
-            "label": "rsynek:PLANNER-2629"
-          },
-          "user": {
-            "login": "rsynek",
-            "avatar_url": "https://avatars.githubusercontent.com/u/1422582?v=4",
-            "html_url": "https://github.com/rsynek"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5105960226",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-08T08:25:22Z",
-              "completed_at": "2022-02-08T08:28:34Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5105602100?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T07:57:07Z",
-              "completed_at": "2022-02-08T08:42:03Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5105602051?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T07:58:27Z",
-              "completed_at": "2022-02-08T08:36:57Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5105601998?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T07:56:07Z",
-              "completed_at": "2022-02-08T08:23:33Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5105601900?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T07:56:07Z",
-              "completed_at": "2022-02-08T08:24:44Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/5105601839?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-08T07:56:04Z",
-              "completed_at": "2022-02-08T07:59:15Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
           "number": 1742,
           "title": "Split nightly jobs",
           "url": "https://api.github.com/repos/kiegroup/optaplanner/pulls/1742",
@@ -4580,17 +3871,17 @@
           "draft": true,
           "requested_reviewers": [],
           "created_at": "2021-12-20T14:51:44Z",
-          "updated_at": "2021-12-20T15:18:57Z",
+          "updated_at": "2022-02-11T14:32:35Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "d9c531453d44df772cd761c343a953b9d8b3fc5b",
+            "sha": "862515a4ed9a7315a31afc1c1964da39d6dd1923",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "split_nightly_jobs",
-            "sha": "3b89a4b69baf14fbae0bc87f9565e710b1c6f07c",
+            "sha": "c6cc6cb326dacd123b981706ef6fd0a98806f4bf",
             "label": "radtriste:split_nightly_jobs"
           },
           "user": {
@@ -4600,11 +3891,51 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/optaplanner/runs/4583891499?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/optaplanner/runs/5157507761?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-11T14:54:54Z",
+              "completed_at": "2022-02-11T15:36:51Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaplanner/runs/5157507627?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-11T15:16:56Z",
+              "completed_at": "2022-02-11T16:04:24Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaplanner/runs/5157507483?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-11T15:08:15Z",
+              "completed_at": "2022-02-11T15:42:25Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaplanner/runs/5157507297?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-11T15:30:05Z",
+              "completed_at": "2022-02-11T15:57:45Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaplanner/runs/5157507171?check_suite_focus=true",
               "status": "completed",
               "conclusion": "failure",
-              "started_at": "2021-12-20T15:07:18Z",
-              "completed_at": "2021-12-20T15:09:14Z",
+              "started_at": "2022-02-11T14:47:02Z",
+              "completed_at": "2022-02-11T14:47:22Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaplanner/runs/5157506984?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-11T14:36:30Z",
+              "completed_at": "2022-02-11T14:40:13Z",
               "slug": "github-actions"
             }
           ]
@@ -4831,103 +4162,6 @@
       "pulls_url": "https://api.github.com/repos/kiegroup/lienzo-tests/pulls{/number}",
       "pullRequests": [
         {
-          "number": 129,
-          "title": "[TEST] issue 137",
-          "url": "https://api.github.com/repos/kiegroup/lienzo-tests/pulls/129",
-          "html_url": "https://github.com/kiegroup/lienzo-tests/pull/129",
-          "state": "open",
-          "labels": [
-            "DO NOT MERGE"
-          ],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2021-10-26T06:28:40Z",
-          "updated_at": "2021-10-26T06:28:40Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "a31260e2a63ae6e61f021eda8967e84ee09c1176",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "issue_137",
-            "sha": "12e3c49f96ef914dcbdb89d9b98d713cb0012f1d",
-            "label": "Ginxo:issue_137"
-          },
-          "user": {
-            "login": "Ginxo",
-            "avatar_url": "https://avatars.githubusercontent.com/u/25130444?v=4",
-            "html_url": "https://github.com/Ginxo"
-          },
-          "checks": []
-        },
-        {
-          "number": 100,
-          "title": "[TEST] BXMSPROD-911",
-          "url": "https://api.github.com/repos/kiegroup/lienzo-tests/pulls/100",
-          "html_url": "https://github.com/kiegroup/lienzo-tests/pull/100",
-          "state": "open",
-          "labels": [
-            "DO NOT MERGE"
-          ],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2020-08-12T10:51:37Z",
-          "updated_at": "2021-07-25T08:15:09Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "1be66027322fbea828c2f2092a1444e1e3668297",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "BXMSPROD-911_test",
-            "sha": "a986a53b09602d65539ef59e95d3ed911f6fa0d7",
-            "label": "Ginxo:BXMSPROD-911_test"
-          },
-          "user": {
-            "login": "Ginxo",
-            "avatar_url": "https://avatars.githubusercontent.com/u/25130444?v=4",
-            "html_url": "https://github.com/Ginxo"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/lienzo-tests/runs/979166443?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2020-08-13T06:27:59Z",
-              "completed_at": "2020-08-13T06:30:03Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/lienzo-tests/runs/979166429?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2020-08-13T06:28:00Z",
-              "completed_at": "2020-08-13T06:30:18Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/lienzo-tests/runs/975475902?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2020-08-12T10:51:49Z",
-              "completed_at": "2020-08-12T10:53:51Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/lienzo-tests/runs/975475871?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2020-08-12T10:51:50Z",
-              "completed_at": "2020-08-12T10:54:12Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
           "number": 77,
           "title": "JBPM-8858 [Stunner] Lienzo - Unit Testing for the core migration to n…",
           "url": "https://api.github.com/repos/kiegroup/lienzo-tests/pulls/77",
@@ -4977,6 +4211,56 @@
       "repo_url": "https://github.com/kiegroup/appformer",
       "pulls_url": "https://api.github.com/repos/kiegroup/appformer/pulls{/number}",
       "pullRequests": [
+        {
+          "number": 1235,
+          "title": "Bump ajv from 6.10.0 to 6.12.6 in /appformer-js",
+          "url": "https://api.github.com/repos/kiegroup/appformer/pulls/1235",
+          "html_url": "https://github.com/kiegroup/appformer/pull/1235",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [],
+          "created_at": "2022-02-13T23:32:00Z",
+          "updated_at": "2022-02-13T23:32:02Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "c26d4ac66ac1a4b9e1bdeb2d5154dd7cbb2a1373",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/appformer-js/ajv-6.12.6",
+            "sha": "a3c1497f480202c3df97b91ff20f0e935ee65cdc",
+            "label": "kiegroup:dependabot/npm_and_yarn/appformer-js/ajv-6.12.6"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/appformer/runs/5176857396?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-13T23:32:13Z",
+              "completed_at": "2022-02-14T00:27:46Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/appformer/runs/5176857368?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-13T23:32:13Z",
+              "completed_at": "2022-02-14T00:29:52Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
         {
           "number": 1233,
           "title": "Bump tmpl from 1.0.4 to 1.0.5 in /dashbuilder/dashbuilder-shared/dashbuilder-js",
@@ -6040,13 +5324,13 @@
           "draft": false,
           "requested_reviewers": [
             {
-              "login": "elguardian",
-              "avatar_url": "https://avatars.githubusercontent.com/u/6625846?v=4",
-              "html_url": "https://github.com/elguardian"
+              "login": "gmunozfe",
+              "avatar_url": "https://avatars.githubusercontent.com/u/1962786?v=4",
+              "html_url": "https://github.com/gmunozfe"
             }
           ],
           "created_at": "2022-02-11T09:32:25Z",
-          "updated_at": "2022-02-11T11:16:22Z",
+          "updated_at": "2022-02-14T07:44:15Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -6087,150 +5371,6 @@
               "conclusion": "cancelled",
               "started_at": "2022-02-11T09:34:09Z",
               "completed_at": "2022-02-11T11:26:47Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 2104,
-          "title": "JBPM-9992 Extended LogCleanupCommand to clean up ExecutionErrorInfo",
-          "url": "https://api.github.com/repos/kiegroup/jbpm/pulls/2104",
-          "html_url": "https://github.com/kiegroup/jbpm/pull/2104",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "gmunozfe",
-              "avatar_url": "https://avatars.githubusercontent.com/u/1962786?v=4",
-              "html_url": "https://github.com/gmunozfe"
-            },
-            {
-              "login": "elguardian",
-              "avatar_url": "https://avatars.githubusercontent.com/u/6625846?v=4",
-              "html_url": "https://github.com/elguardian"
-            },
-            {
-              "login": "fjtirado",
-              "avatar_url": "https://avatars.githubusercontent.com/u/65240126?v=4",
-              "html_url": "https://github.com/fjtirado"
-            }
-          ],
-          "created_at": "2022-02-10T19:29:47Z",
-          "updated_at": "2022-02-11T09:05:53Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "1e2ee31ba7bfd9f95e126867c7136155a3835af3",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "JBPM-9992",
-            "sha": "b9f6881d6868dc1269f4a504d8ea1704b5817b2b",
-            "label": "hbelmiro:JBPM-9992"
-          },
-          "user": {
-            "login": "hbelmiro",
-            "avatar_url": "https://avatars.githubusercontent.com/u/11776454?v=4",
-            "html_url": "https://github.com/hbelmiro"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5150028729",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-11T00:43:16Z",
-              "completed_at": "2022-02-11T00:47:18Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5146565494?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T19:35:25Z",
-              "completed_at": "2022-02-11T00:17:44Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5146565397?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T19:53:51Z",
-              "completed_at": "2022-02-11T00:18:31Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5140951485?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T12:49:09Z",
-              "completed_at": "2022-02-10T12:57:45Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5140951390?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T12:57:50Z",
-              "completed_at": "2022-02-10T12:57:50Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 2102,
-          "title": "[JBPM-10016] Drools/jBPM integration: high number of instances waiting for signal adversely impacts execution time",
-          "url": "https://api.github.com/repos/kiegroup/jbpm/pulls/2102",
-          "html_url": "https://github.com/kiegroup/jbpm/pull/2102",
-          "state": "open",
-          "labels": [
-            "DO_NOT_MERGE"
-          ],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2022-02-08T12:05:07Z",
-          "updated_at": "2022-02-10T10:47:33Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "5ee699bf4de8a7bbe18f7d949d6561c6cad0753c",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "JBPM-10016",
-            "sha": "4e17d0a10dc60a1b54aef749cc5f0af67ebcd36d",
-            "label": "elguardian:JBPM-10016"
-          },
-          "user": {
-            "login": "elguardian",
-            "avatar_url": "https://avatars.githubusercontent.com/u/6625846?v=4",
-            "html_url": "https://github.com/elguardian"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5139488979",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-10T10:43:34Z",
-              "completed_at": "2022-02-10T10:47:32Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5137875875?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T08:37:30Z",
-              "completed_at": "2022-02-10T14:37:53Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5137875809?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-10T08:37:30Z",
-              "completed_at": "2022-02-10T14:38:06Z",
               "slug": "github-actions"
             }
           ]
@@ -6342,61 +5482,6 @@
           ]
         },
         {
-          "number": 2096,
-          "title": "[JBPM-10009] NPE at EJBTimerScheduler.removeJob",
-          "url": "https://api.github.com/repos/kiegroup/jbpm/pulls/2096",
-          "html_url": "https://github.com/kiegroup/jbpm/pull/2096",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [],
-          "created_at": "2022-02-02T15:20:12Z",
-          "updated_at": "2022-02-03T15:28:48Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "95ac08bc03aebf22807f217063ce450c57f45824",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "JBPM-10009",
-            "sha": "7b48aae32b6308bab87924dfc827bfad2bbfce3f",
-            "label": "gmunozfe:JBPM-10009"
-          },
-          "user": {
-            "login": "gmunozfe",
-            "avatar_url": "https://avatars.githubusercontent.com/u/1962786?v=4",
-            "html_url": "https://github.com/gmunozfe"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5053825532",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2022-02-03T15:18:04Z",
-              "completed_at": "2022-02-03T15:22:03Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5048825951?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-03T08:38:03Z",
-              "completed_at": "2022-02-03T14:38:16Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5048825885?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2022-02-03T08:38:03Z",
-              "completed_at": "2022-02-03T14:38:28Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
           "number": 2095,
           "title": "[JBPM-10008] Update quartz_tables_h2.sql",
           "url": "https://api.github.com/repos/kiegroup/jbpm/pulls/2095",
@@ -6426,19 +5511,19 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5154144382?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
-              "started_at": "2022-02-11T09:52:46Z",
-              "completed_at": null,
+              "html_url": "https://github.com/kiegroup/jbpm/runs/5161304627?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-11T19:32:45Z",
+              "completed_at": "2022-02-11T21:28:42Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/5154144273?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
-              "started_at": "2022-02-11T10:02:31Z",
-              "completed_at": null,
+              "html_url": "https://github.com/kiegroup/jbpm/runs/5161304526?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "cancelled",
+              "started_at": "2022-02-11T19:32:43Z",
+              "completed_at": "2022-02-11T21:29:08Z",
               "slug": "github-actions"
             },
             {
@@ -6721,7 +5806,7 @@
             }
           ],
           "created_at": "2021-09-07T01:44:42Z",
-          "updated_at": "2022-01-03T12:36:20Z",
+          "updated_at": "2022-02-14T08:38:39Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -6763,53 +5848,6 @@
               "started_at": "2021-12-14T14:56:02Z",
               "completed_at": "2021-12-14T15:00:24Z",
               "slug": "sonarcloud"
-            }
-          ]
-        },
-        {
-          "number": 2004,
-          "title": "[DROOLS-6535] test CI",
-          "url": "https://api.github.com/repos/kiegroup/jbpm/pulls/2004",
-          "html_url": "https://github.com/kiegroup/jbpm/pull/2004",
-          "state": "open",
-          "labels": [],
-          "draft": true,
-          "requested_reviewers": [],
-          "created_at": "2021-08-27T06:45:25Z",
-          "updated_at": "2021-08-27T06:45:25Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "1ca5f6e345182f555b920832b8d1bbcaf4ef0434",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "DROOLS-6535",
-            "sha": "103cb6e10884cbf1044f6d21cbc922b3b1726950",
-            "label": "Ginxo:DROOLS-6535"
-          },
-          "user": {
-            "login": "Ginxo",
-            "avatar_url": "https://avatars.githubusercontent.com/u/25130444?v=4",
-            "html_url": "https://github.com/Ginxo"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/3440504007?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "cancelled",
-              "started_at": "2021-08-27T06:45:34Z",
-              "completed_at": "2021-08-27T12:45:47Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/jbpm/runs/3440503917?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "failure",
-              "started_at": "2021-08-27T06:45:37Z",
-              "completed_at": "2021-08-27T08:57:42Z",
-              "slug": "github-actions"
             }
           ]
         },
@@ -7406,18 +6444,18 @@
           "checks": [
             {
               "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5154157995?check_suite_focus=true",
-              "status": "queued",
-              "conclusion": null,
-              "started_at": "2022-02-11T09:44:12Z",
-              "completed_at": null,
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-11T13:54:12Z",
+              "completed_at": "2022-02-11T18:02:44Z",
               "slug": "github-actions"
             },
             {
               "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5154157871?check_suite_focus=true",
-              "status": "in_progress",
-              "conclusion": null,
+              "status": "completed",
+              "conclusion": "success",
               "started_at": "2022-02-11T09:46:23Z",
-              "completed_at": null,
+              "completed_at": "2022-02-11T13:53:58Z",
               "slug": "github-actions"
             },
             {
@@ -7542,17 +6580,17 @@
           "draft": false,
           "requested_reviewers": [],
           "created_at": "2021-11-12T15:10:46Z",
-          "updated_at": "2022-01-13T07:07:47Z",
+          "updated_at": "2022-02-11T14:24:19Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "2b66a864dd6b01d403e9fae69e046fda61e91c79",
+            "sha": "12b3a08d6164fe8fdf71d3f4a3348682a18d36bd",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "JBPM-9945",
-            "sha": "14c92aa2c49ecadb2bf2f16f0efaf923d2c41b88",
+            "sha": "9556f390e5bb05448517f93a3c067d400a963a6e",
             "label": "Cory-jbpm:JBPM-9945"
           },
           "user": {
@@ -7562,27 +6600,19 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/4799883337",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5157397439?check_suite_focus=true",
               "status": "completed",
               "conclusion": "failure",
-              "started_at": "2022-01-13T07:03:11Z",
-              "completed_at": "2022-01-13T07:07:45Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/4791945061?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-01-12T22:28:50Z",
-              "completed_at": "2022-01-13T02:33:50Z",
+              "started_at": "2022-02-11T14:26:38Z",
+              "completed_at": "2022-02-11T14:46:40Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/4791944953?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5157397243?check_suite_focus=true",
               "status": "completed",
               "conclusion": "cancelled",
-              "started_at": "2022-01-12T16:28:21Z",
-              "completed_at": "2022-01-12T22:28:37Z",
+              "started_at": "2022-02-11T14:44:42Z",
+              "completed_at": "2022-02-11T14:46:50Z",
               "slug": "github-actions"
             }
           ]
@@ -7603,17 +6633,17 @@
             }
           ],
           "created_at": "2021-11-10T08:52:10Z",
-          "updated_at": "2022-01-04T10:21:10Z",
+          "updated_at": "2022-02-11T17:00:41Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "2ddbc490766441ab7f09190c1218710d89866061",
+            "sha": "12b3a08d6164fe8fdf71d3f4a3348682a18d36bd",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "JBPM-9942",
-            "sha": "3cde2db0b670bacee3d5146091d45f4434205125",
+            "sha": "19551a4e0e486982fa48c8d962eee5e30bc5bbf5",
             "label": "Cory-jbpm:JBPM-9942"
           },
           "user": {
@@ -7623,27 +6653,27 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/4166315905",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5159499626",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2021-11-10T14:12:01Z",
-              "completed_at": "2021-11-10T14:19:16Z",
+              "started_at": "2022-02-11T16:57:03Z",
+              "completed_at": "2022-02-11T17:00:40Z",
               "slug": "sonarcloud"
             },
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/4163170458?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5157495665?check_suite_focus=true",
               "status": "completed",
-              "conclusion": "success",
-              "started_at": "2021-11-10T09:18:40Z",
-              "completed_at": "2021-11-10T12:56:18Z",
+              "conclusion": "failure",
+              "started_at": "2022-02-11T18:02:48Z",
+              "completed_at": "2022-02-11T21:05:15Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/4163170367?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/droolsjbpm-integration/runs/5157495517?check_suite_focus=true",
               "status": "completed",
               "conclusion": "success",
-              "started_at": "2021-11-10T09:18:43Z",
-              "completed_at": "2021-11-10T12:23:14Z",
+              "started_at": "2022-02-11T14:47:45Z",
+              "completed_at": "2022-02-11T18:02:32Z",
               "slug": "github-actions"
             }
           ]
@@ -8940,9 +7970,20 @@
           "state": "open",
           "labels": [],
           "draft": false,
-          "requested_reviewers": [],
+          "requested_reviewers": [
+            {
+              "login": "romartin",
+              "avatar_url": "https://avatars.githubusercontent.com/u/4602417?v=4",
+              "html_url": "https://github.com/romartin"
+            },
+            {
+              "login": "LuboTerifaj",
+              "avatar_url": "https://avatars.githubusercontent.com/u/12122769?v=4",
+              "html_url": "https://github.com/LuboTerifaj"
+            }
+          ],
           "created_at": "2022-02-08T22:25:25Z",
-          "updated_at": "2022-02-09T00:06:36Z",
+          "updated_at": "2022-02-14T14:06:39Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -8983,61 +8024,6 @@
               "conclusion": "failure",
               "started_at": "2022-02-08T22:25:38Z",
               "completed_at": "2022-02-08T22:28:04Z",
-              "slug": "github-actions"
-            }
-          ]
-        },
-        {
-          "number": 3722,
-          "title": "KOGITO-6704: Fix long DMN data type constraint documentation",
-          "url": "https://api.github.com/repos/kiegroup/kie-wb-common/pulls/3722",
-          "html_url": "https://github.com/kiegroup/kie-wb-common/pull/3722",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [],
-          "created_at": "2022-02-04T16:00:38Z",
-          "updated_at": "2022-02-07T07:35:32Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "945298ae01d747193cde413f77363925f3e7624e",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "KOGITO-6704",
-            "sha": "a4442fe6d656e1bcbb72bb5ab2d82677f9b1a9e9",
-            "label": "jomarko:KOGITO-6704"
-          },
-          "user": {
-            "login": "jomarko",
-            "avatar_url": "https://avatars.githubusercontent.com/u/8044780?v=4",
-            "html_url": "https://github.com/jomarko"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/kie-wb-common/runs/5070595301",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T17:44:27Z",
-              "completed_at": "2022-02-04T17:58:11Z",
-              "slug": "sonarcloud"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/kie-wb-common/runs/5069119748?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T16:25:32Z",
-              "completed_at": "2022-02-04T18:07:08Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/kie-wb-common/runs/5069119664?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-04T16:02:34Z",
-              "completed_at": "2022-02-04T17:39:05Z",
               "slug": "github-actions"
             }
           ]
@@ -9900,17 +8886,17 @@
           "draft": false,
           "requested_reviewers": [],
           "created_at": "2021-11-12T15:11:36Z",
-          "updated_at": "2022-01-03T09:21:14Z",
+          "updated_at": "2022-02-14T08:28:52Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
             "ref": "main",
-            "sha": "633db37bbdd460e797a6de2ce70ec111e169bfc4",
+            "sha": "0b3732cd120ba4f23bafe807ed90effcd83cb202",
             "label": "kiegroup:main"
           },
           "head": {
             "ref": "JBPM-9945",
-            "sha": "7de5cf18792fa5f600f7e3f2b03a55a4ee42b177",
+            "sha": "d56993e2ac0029ec8c25f6daf7f8d3b87311ca69",
             "label": "Cory-jbpm:JBPM-9945"
           },
           "user": {
@@ -9920,19 +8906,19 @@
           },
           "checks": [
             {
-              "html_url": "https://github.com/kiegroup/jbpm-wb/runs/4580953476?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/jbpm-wb/runs/5157413672?check_suite_focus=true",
               "status": "completed",
               "conclusion": "failure",
-              "started_at": "2021-12-20T10:18:22Z",
-              "completed_at": "2021-12-20T11:42:00Z",
+              "started_at": "2022-02-11T15:12:19Z",
+              "completed_at": "2022-02-11T15:40:51Z",
               "slug": "github-actions"
             },
             {
-              "html_url": "https://github.com/kiegroup/jbpm-wb/runs/4580953402?check_suite_focus=true",
+              "html_url": "https://github.com/kiegroup/jbpm-wb/runs/5157413523?check_suite_focus=true",
               "status": "completed",
               "conclusion": "failure",
-              "started_at": "2021-12-20T10:18:19Z",
-              "completed_at": "2021-12-20T11:31:14Z",
+              "started_at": "2022-02-11T14:40:26Z",
+              "completed_at": "2022-02-11T15:11:00Z",
               "slug": "github-actions"
             }
           ]
@@ -10349,6 +9335,242 @@
       "repo_url": "https://github.com/kiegroup/optaweb-employee-rostering",
       "pulls_url": "https://api.github.com/repos/kiegroup/optaweb-employee-rostering/pulls{/number}",
       "pullRequests": [
+        {
+          "number": 766,
+          "title": "Bump ssri from 6.0.1 to 6.0.2 in /optaweb-employee-rostering-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-employee-rostering/pulls/766",
+          "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/pull/766",
+          "state": "open",
+          "labels": [
+            "dependencies"
+          ],
+          "draft": false,
+          "requested_reviewers": [],
+          "created_at": "2022-02-14T14:03:45Z",
+          "updated_at": "2022-02-14T14:03:47Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "dc3fb91029c303944845e4012bfd14cdc52439d5",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/ssri-6.0.2",
+            "sha": "0944d11f19676b396dfbe4c00b719d6f58676c25",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/ssri-6.0.2"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184938286?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T14:03:59Z",
+              "completed_at": "2022-02-14T14:25:19Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184938114?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T14:04:02Z",
+              "completed_at": "2022-02-14T14:27:58Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184937920?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:03:49Z",
+              "completed_at": "2022-02-14T14:03:49Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 765,
+          "title": "Bump follow-redirects from 1.5.10 to 1.14.8 in /optaweb-employee-rostering-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-employee-rostering/pulls/765",
+          "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/pull/765",
+          "state": "open",
+          "labels": [
+            "dependencies"
+          ],
+          "draft": false,
+          "requested_reviewers": [],
+          "created_at": "2022-02-14T14:03:43Z",
+          "updated_at": "2022-02-14T14:03:45Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "dc3fb91029c303944845e4012bfd14cdc52439d5",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/follow-redirects-1.14.8",
+            "sha": "11abcc4cfb25247df22b68a1117a47b2b423339a",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/follow-redirects-1.14.8"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184937778?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T14:03:57Z",
+              "completed_at": "2022-02-14T14:27:14Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184937619?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T14:03:59Z",
+              "completed_at": "2022-02-14T14:28:21Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184937376?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:03:47Z",
+              "completed_at": "2022-02-14T14:03:47Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 764,
+          "title": "Bump yargs-parser from 13.1.1 to 13.1.2 in /optaweb-employee-rostering-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-employee-rostering/pulls/764",
+          "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/pull/764",
+          "state": "open",
+          "labels": [
+            "dependencies"
+          ],
+          "draft": false,
+          "requested_reviewers": [],
+          "created_at": "2022-02-14T14:03:42Z",
+          "updated_at": "2022-02-14T14:03:44Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "dc3fb91029c303944845e4012bfd14cdc52439d5",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/yargs-parser-13.1.2",
+            "sha": "6111f0784937af6121863228b2ac5aa58c25957b",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/yargs-parser-13.1.2"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184937330?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T14:03:58Z",
+              "completed_at": "2022-02-14T14:25:31Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184937149?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T14:03:57Z",
+              "completed_at": "2022-02-14T14:28:45Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5184936892?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:03:45Z",
+              "completed_at": "2022-02-14T14:03:45Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 762,
+          "title": "Bump ajv from 6.10.2 to 6.12.6 in /optaweb-employee-rostering-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-employee-rostering/pulls/762",
+          "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/pull/762",
+          "state": "open",
+          "labels": [
+            "dependencies"
+          ],
+          "draft": false,
+          "requested_reviewers": [],
+          "created_at": "2022-02-14T01:49:56Z",
+          "updated_at": "2022-02-14T06:55:35Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "e120614461a0806ae864c923a52ffde629926ea2",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/ajv-6.12.6",
+            "sha": "08b42fee17c4d75ada943d6bc66e444d43fa8432",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-employee-rostering-frontend/ajv-6.12.6"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5179818355",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T06:54:25Z",
+              "completed_at": "2022-02-14T06:55:34Z",
+              "slug": "sonarcloud"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5177725593?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T01:50:11Z",
+              "completed_at": "2022-02-14T02:16:03Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5177725559?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-14T01:50:09Z",
+              "completed_at": "2022-02-14T02:09:44Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-employee-rostering/runs/5177725470?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T01:50:00Z",
+              "completed_at": "2022-02-14T01:50:00Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
         {
           "number": 761,
           "title": "Bump node-sass from 4.14.1 to 7.0.0 in /optaweb-employee-rostering-frontend",
@@ -11285,6 +10507,542 @@
       "pulls_url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls{/number}",
       "pullRequests": [
         {
+          "number": 656,
+          "title": "Bump ws from 5.2.2 to 5.2.3 in /optaweb-vehicle-routing-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/656",
+          "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/pull/656",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "yurloc",
+              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
+              "html_url": "https://github.com/yurloc"
+            }
+          ],
+          "created_at": "2022-02-14T14:45:20Z",
+          "updated_at": "2022-02-14T14:45:23Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "e77eaac53cb3aabbbf7dc8c3f9abdc1223d53fc7",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/ws-5.2.3",
+            "sha": "26303daff72cc23db91a69cb8d64486f97e2679c",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/ws-5.2.3"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185559201?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T15:04:43Z",
+              "completed_at": "2022-02-14T15:27:14Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185559090?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T15:02:21Z",
+              "completed_at": "2022-02-14T15:23:50Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558917?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T15:01:34Z",
+              "completed_at": "2022-02-14T16:59:28Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558778?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T15:00:36Z",
+              "completed_at": "2022-02-14T15:16:19Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558281?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:24Z",
+              "completed_at": "2022-02-14T14:45:24Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558178?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:24Z",
+              "completed_at": "2022-02-14T14:45:24Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 655,
+          "title": "Bump json-schema from 0.2.3 to 0.4.0 in /optaweb-vehicle-routing-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/655",
+          "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/pull/655",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "yurloc",
+              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
+              "html_url": "https://github.com/yurloc"
+            }
+          ],
+          "created_at": "2022-02-14T14:45:19Z",
+          "updated_at": "2022-02-14T14:45:22Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "e77eaac53cb3aabbbf7dc8c3f9abdc1223d53fc7",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/json-schema-0.4.0",
+            "sha": "78533f5dd863988910b4a1fb8ab898728a246926",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/json-schema-0.4.0"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558999?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T15:00:12Z",
+              "completed_at": "2022-02-14T15:26:12Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558837?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:52:54Z",
+              "completed_at": "2022-02-14T15:12:15Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558725?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:59:51Z",
+              "completed_at": "2022-02-14T15:16:00Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558519?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:51:49Z",
+              "completed_at": "2022-02-14T15:09:04Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558260?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:24Z",
+              "completed_at": "2022-02-14T14:45:24Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558100?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:24Z",
+              "completed_at": "2022-02-14T14:45:24Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 654,
+          "title": "Bump ajv from 6.10.2 to 6.12.6 in /optaweb-vehicle-routing-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/654",
+          "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/pull/654",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "yurloc",
+              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
+              "html_url": "https://github.com/yurloc"
+            }
+          ],
+          "created_at": "2022-02-14T14:45:18Z",
+          "updated_at": "2022-02-14T14:45:22Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "e77eaac53cb3aabbbf7dc8c3f9abdc1223d53fc7",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/ajv-6.12.6",
+            "sha": "9a85a90d83fb57baeb01dbacf4920150d3ac695b",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/ajv-6.12.6"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558805?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:36Z",
+              "completed_at": "2022-02-14T15:07:01Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558632?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:35Z",
+              "completed_at": "2022-02-14T15:05:31Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558411?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:34Z",
+              "completed_at": "2022-02-14T14:59:38Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558119?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:35Z",
+              "completed_at": "2022-02-14T15:04:17Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557792?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:23Z",
+              "completed_at": "2022-02-14T14:45:23Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557648?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:22Z",
+              "completed_at": "2022-02-14T14:45:22Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 653,
+          "title": "Bump path-parse from 1.0.6 to 1.0.7 in /optaweb-vehicle-routing-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/653",
+          "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/pull/653",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "yurloc",
+              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
+              "html_url": "https://github.com/yurloc"
+            }
+          ],
+          "created_at": "2022-02-14T14:45:17Z",
+          "updated_at": "2022-02-14T14:45:20Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "e77eaac53cb3aabbbf7dc8c3f9abdc1223d53fc7",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/path-parse-1.0.7",
+            "sha": "d9583e6338e49911b1dc61a20d43955711ce0959",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/path-parse-1.0.7"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558815?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:36Z",
+              "completed_at": "2022-02-14T15:09:02Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558679?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:37Z",
+              "completed_at": "2022-02-14T15:04:27Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558492?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:39Z",
+              "completed_at": "2022-02-14T15:00:19Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558280?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:34Z",
+              "completed_at": "2022-02-14T15:01:17Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557649?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:22Z",
+              "completed_at": "2022-02-14T14:45:22Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557275?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:21Z",
+              "completed_at": "2022-02-14T14:45:21Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 652,
+          "title": "Bump tmpl from 1.0.4 to 1.0.5 in /optaweb-vehicle-routing-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/652",
+          "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/pull/652",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "yurloc",
+              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
+              "html_url": "https://github.com/yurloc"
+            }
+          ],
+          "created_at": "2022-02-14T14:45:15Z",
+          "updated_at": "2022-02-14T14:45:17Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "e77eaac53cb3aabbbf7dc8c3f9abdc1223d53fc7",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/tmpl-1.0.5",
+            "sha": "319351f9ea77b4d48b11e14d74cc0a07199e6eeb",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/tmpl-1.0.5"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185558179?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:35Z",
+              "completed_at": "2022-02-14T15:08:57Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557972?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:34Z",
+              "completed_at": "2022-02-14T14:59:33Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557782?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:34Z",
+              "completed_at": "2022-02-14T15:06:02Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185557480?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-14T14:45:34Z",
+              "completed_at": "2022-02-14T14:59:56Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185556956?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:19Z",
+              "completed_at": "2022-02-14T14:45:19Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5185556838?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-14T14:45:19Z",
+              "completed_at": "2022-02-14T14:45:19Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
+          "number": 650,
+          "title": "Bump follow-redirects from 1.13.0 to 1.14.8 in /optaweb-vehicle-routing-frontend",
+          "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/650",
+          "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/pull/650",
+          "state": "open",
+          "labels": [
+            "dependencies",
+            "javascript"
+          ],
+          "draft": false,
+          "requested_reviewers": [
+            {
+              "login": "yurloc",
+              "avatar_url": "https://avatars.githubusercontent.com/u/673386?v=4",
+              "html_url": "https://github.com/yurloc"
+            }
+          ],
+          "created_at": "2022-02-12T20:34:35Z",
+          "updated_at": "2022-02-12T21:01:37Z",
+          "closed_at": null,
+          "merged_at": null,
+          "base": {
+            "ref": "main",
+            "sha": "bfacda386e2b91b2fff97642440c798fefd8b2f9",
+            "label": "kiegroup:main"
+          },
+          "head": {
+            "ref": "dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/follow-redirects-1.14.8",
+            "sha": "80ab3a622dc1df63e7384fef5d807a6888a86559",
+            "label": "kiegroup:dependabot/npm_and_yarn/optaweb-vehicle-routing-frontend/follow-redirects-1.14.8"
+          },
+          "user": {
+            "login": "dependabot[bot]",
+            "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+            "html_url": "https://github.com/apps/dependabot"
+          },
+          "checks": [
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169651598",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2022-02-12T21:00:31Z",
+              "completed_at": "2022-02-12T21:01:35Z",
+              "slug": "sonarcloud"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169540906?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-12T20:35:14Z",
+              "completed_at": "2022-02-12T20:54:18Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169540881?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-12T20:34:49Z",
+              "completed_at": "2022-02-12T20:53:15Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169540853?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-12T20:34:46Z",
+              "completed_at": "2022-02-12T20:50:03Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169540811?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-12T20:34:38Z",
+              "completed_at": "2022-02-12T20:34:38Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169540805?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "skipped",
+              "started_at": "2022-02-12T20:34:38Z",
+              "completed_at": "2022-02-12T20:34:38Z",
+              "slug": "github-actions"
+            },
+            {
+              "html_url": "https://github.com/kiegroup/optaweb-vehicle-routing/runs/5169540790?check_suite_focus=true",
+              "status": "completed",
+              "conclusion": "failure",
+              "started_at": "2022-02-12T20:35:24Z",
+              "completed_at": "2022-02-12T20:57:03Z",
+              "slug": "github-actions"
+            }
+          ]
+        },
+        {
           "number": 649,
           "title": "[8.17.x] Update project version to 8.17.0.Final",
           "url": "https://api.github.com/repos/kiegroup/optaweb-vehicle-routing/pulls/649",
@@ -12133,15 +11891,9 @@
             "kogito"
           ],
           "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "hmanwani-rh",
-              "avatar_url": "https://avatars.githubusercontent.com/u/59050394?v=4",
-              "html_url": "https://github.com/hmanwani-rh"
-            }
-          ],
+          "requested_reviewers": [],
           "created_at": "2022-02-10T12:05:52Z",
-          "updated_at": "2022-02-10T14:52:39Z",
+          "updated_at": "2022-02-14T06:08:28Z",
           "closed_at": null,
           "merged_at": null,
           "base": {
@@ -12160,59 +11912,6 @@
             "html_url": "https://github.com/VaniHaripriya"
           },
           "checks": []
-        },
-        {
-          "number": 4154,
-          "title": "[DROOLS-6822] Note Rule Unit is experimental in Drools 7",
-          "url": "https://api.github.com/repos/kiegroup/kie-docs/pulls/4154",
-          "html_url": "https://github.com/kiegroup/kie-docs/pull/4154",
-          "state": "open",
-          "labels": [],
-          "draft": false,
-          "requested_reviewers": [
-            {
-              "login": "mariofusco",
-              "avatar_url": "https://avatars.githubusercontent.com/u/372781?v=4",
-              "html_url": "https://github.com/mariofusco"
-            }
-          ],
-          "created_at": "2022-02-10T10:03:31Z",
-          "updated_at": "2022-02-10T10:10:57Z",
-          "closed_at": null,
-          "merged_at": null,
-          "base": {
-            "ref": "main",
-            "sha": "9a037e7771172b7214252acc6352084e2cf8a69c",
-            "label": "kiegroup:main"
-          },
-          "head": {
-            "ref": "DROOLS-6822",
-            "sha": "525af22a5aeedb0d9101007c2d55063f4ba8f931",
-            "label": "tkobayas:DROOLS-6822"
-          },
-          "user": {
-            "login": "tkobayas",
-            "avatar_url": "https://avatars.githubusercontent.com/u/489731?v=4",
-            "html_url": "https://github.com/tkobayas"
-          },
-          "checks": [
-            {
-              "html_url": "https://github.com/kiegroup/kie-docs/runs/5138912127?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:10:23Z",
-              "completed_at": "2022-02-10T10:11:59Z",
-              "slug": "github-actions"
-            },
-            {
-              "html_url": "https://github.com/kiegroup/kie-docs/runs/5138911880?check_suite_focus=true",
-              "status": "completed",
-              "conclusion": "success",
-              "started_at": "2022-02-10T10:19:57Z",
-              "completed_at": "2022-02-10T10:21:30Z",
-              "slug": "github-actions"
-            }
-          ]
         },
         {
           "number": 4140,

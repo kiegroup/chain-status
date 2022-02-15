@@ -65,7 +65,7 @@ export const CurrentStatusListItem: React.FC<
           marginBottom: 0
         }}
       >
-        <ProjectContainer project={props.project} />
+        <ProjectContainer project={props.project}/>
       </Card>
     </List.Item>
   );

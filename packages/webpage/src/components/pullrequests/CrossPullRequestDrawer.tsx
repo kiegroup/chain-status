@@ -1,34 +1,33 @@
-import { Button, Drawer, Skeleton, Space } from "antd";
+import { Drawer, Skeleton } from "antd";
 import React, { Suspense } from "react";
-import { IData } from "../../model/data.model";
-import { IPullRequestInfo } from "../../model/pullrequestinfo.model";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "../../service";
+import * as layoutService from "../../service/layout.service";
 const CrossPullRequestList = React.lazy(() => import("./CrossPullRequestList"));
 
-interface ICrossPullRequestDrawer {
-  visible: boolean;
-  onClose: () => void;
-  data: IData;
-  headBranch?: IPullRequestInfo;
-}
+interface ICrossPullRequestDrawer {}
 
 export const CrossPullRequestDrawer: React.FC<
   ICrossPullRequestDrawer
 > = props => {
+  const dispatch = useDispatch();
+  const onClose = () => dispatch(layoutService.closeHeadBranchDrawer());
+  const drawer = useSelector((store: IRootState) => store.layout.headBranchDrawer);
+
   return (
     <Drawer
-      title={props.headBranch?.ref}
+      title={drawer.baseBranch?.label}
       placement="right"
       size="large"
-      onClose={props.onClose}
-      visible={props.visible}
-      extra={
-        <Space>
-          <Button onClick={props.onClose}>Close</Button>
-        </Space>
-      }
+      onClose={onClose}
+      visible={drawer.visible}
     >
       <Suspense fallback={<Skeleton />}>
-        <CrossPullRequestList data={props.data} headBranch={props.headBranch} />
+        <CrossPullRequestList
+          headBranch={drawer.baseBranch}
+          hideMetadata={true}
+          showProject={true}
+        />
       </Suspense>
     </Drawer>
   );

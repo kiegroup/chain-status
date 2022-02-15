@@ -1,4 +1,4 @@
-import { List, Skeleton } from "antd";
+import { List, Skeleton, Tag } from "antd";
 import React, { Suspense } from "react";
 import { IProject } from "../../model/project.model";
 import { IPullRequest } from "../../model/pullrequest.model";
@@ -18,6 +18,8 @@ const PullRequestDescription = React.lazy(
 interface IPullRequestElement {
   project?: IProject;
   pullRequest: IPullRequest;
+  hideMetadata?: boolean;
+  showProject?: boolean;
 }
 
 export const PullRequestElement: React.FC<IPullRequestElement> = props => {
@@ -27,41 +29,47 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
         props.pullRequest.number
       }`}
       style={{ scrollMarginTop: STATUS_MARGIN_TOP - 5 }}
-      actions={[
-        <Suspense
-          fallback={
-            <Skeleton.Input
-              style={{ width: 100 }}
-              active={false}
-              size="small"
-            />
-          }
-        >
-          <PullRequestStatistics pullRequests={[props.pullRequest]} />
-        </Suspense>,
-        props.pullRequest.requested_reviewers
-          ? props.pullRequest.requested_reviewers.map(reviewer => (
+      actions={
+        !props.hideMetadata
+          ? [
               <Suspense
-                key={`user-${props.pullRequest.number}-${reviewer.login}`}
-                fallback={<Skeleton.Avatar size="small" active={false} />}
+                fallback={
+                  <Skeleton.Input
+                    style={{ width: 100 }}
+                    active={false}
+                    size="small"
+                  />
+                }
               >
-                <UserComponent user={reviewer} />
-              </Suspense>
-            ))
-          : null
-      ]}
+                <PullRequestStatistics pullRequests={[props.pullRequest]} />
+              </Suspense>,
+              props.pullRequest.requested_reviewers
+                ? props.pullRequest.requested_reviewers.map(reviewer => (
+                    <Suspense
+                      key={`user-${props.pullRequest.number}-${reviewer.login}`}
+                      fallback={<Skeleton.Avatar size="small" active={false} />}
+                    >
+                      <UserComponent user={reviewer} />
+                    </Suspense>
+                  ))
+                : null
+            ]
+          : []
+      }
       extra={
-        <Suspense
-          fallback={
-            <Skeleton.Input
-              style={{ width: 250 }}
-              active={false}
-              size="small"
-            />
-          }
-        >
-          <PullRequestBranchInfo pullRequest={props.pullRequest} />
-        </Suspense>
+        !props.hideMetadata ? (
+          <Suspense
+            fallback={
+              <Skeleton.Input
+                style={{ width: 250 }}
+                active={false}
+                size="small"
+              />
+            }
+          >
+            <PullRequestBranchInfo pullRequest={props.pullRequest} />
+          </Suspense>
+        ) : null
       }
     >
       <List.Item.Meta
@@ -71,14 +79,21 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
           </Suspense>
         }
         title={
-          <a
-            href={props.pullRequest.html_url}
-            rel="noopener noreferrer"
-            target="_blank"
-            style={{ fontWeight: "bold" }}
-          >
-            {props.pullRequest.title}
-          </a>
+          <>
+            <a
+              href={props.pullRequest.html_url}
+              rel="noopener noreferrer"
+              target="_blank"
+              style={{ fontWeight: "bold" }}
+            >
+              {props.pullRequest.title}
+            </a>
+            {props.pullRequest.project && props.showProject ? (
+              <Tag style={{ marginLeft: 5 }}>
+                {props.pullRequest.project.name}
+              </Tag>
+            ) : null}
+          </>
         }
         description={
           <Suspense

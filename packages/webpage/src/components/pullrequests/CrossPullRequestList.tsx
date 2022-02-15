@@ -1,41 +1,53 @@
 import { List } from "antd";
 import React, { useEffect, useState } from "react";
-import { IData } from "../../model/data.model";
+import { useSelector } from "react-redux";
 import { IPullRequest } from "../../model/pullrequest.model";
 import { IPullRequestInfo } from "../../model/pullrequestinfo.model";
+import { IRootState } from "../../service";
 const PullRequestElement = React.lazy(() => import("./PullRequestElement"));
 
 interface ICrossPullRequestList {
-  data: IData;
   headBranch?: IPullRequestInfo;
+  hideMetadata?: boolean;
+  showProject?: boolean;
 }
 
 export const CrossPullRequestList: React.FC<ICrossPullRequestList> = props => {
   const [pullRequestList, setPullRequestList] = useState<IPullRequest[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const data = useSelector((store: IRootState) => store.data.data);
 
   useEffect(() => {
-    if (props.data?.data && props.headBranch) {
+    setLoading(true);
+    if (data.projects && props.headBranch) {
       setPullRequestList(
-        props.data?.data.flatMap(project =>
-          project.pullRequests.filter(
-            pullRquest =>
-              props.headBranch && pullRquest.head.ref === props.headBranch.ref
-          )
+        data.projects.flatMap(project =>
+          project.pullRequests
+            .filter(
+              pr => props.headBranch && pr.head.label === props.headBranch.label
+            )
+            .map(pr => {
+              pr.project = project;
+              return pr;
+            })
         )
       );
+      setLoading(false);
     }
-  }, [props.data, props.headBranch]);
+  }, [data, props.headBranch]);
 
   return (
     <List
-      header={<h3>Pull Request List</h3>}
       className="demo-loadmore-list"
       itemLayout="vertical"
       dataSource={pullRequestList}
+      loading={loading}
       renderItem={pullRequest => (
         <PullRequestElement
           key={pullRequest.number}
           pullRequest={pullRequest}
+          hideMetadata={props.hideMetadata}
+          showProject={props.showProject}
         />
       )}
     />
