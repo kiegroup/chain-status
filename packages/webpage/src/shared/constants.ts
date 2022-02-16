@@ -7,7 +7,13 @@ export const CHECKS = {
   },
   STATUS: {
     COMPLETED: "completed",
-    IN_PROGRESS: "in_progress"
+    IN_PROGRESS: "in_progress",
+    QUEUED: "queued"
+  },
+  SLUGS: {
+    GITHUB: "github-actions",
+    SONAR: "sonarcloud",
+    JENKINS: "jenkins"
   }
 };
 

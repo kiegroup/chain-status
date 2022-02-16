@@ -1,3 +1,4 @@
+import { IPullRequest } from "../model/pullrequest.model";
 import {
   defaultValue as defaultValuePullRequestInfo,
   IPullRequestInfo
@@ -5,16 +6,22 @@ import {
 
 export const ACTION_TYPES = {
   OPEN_HEAD_BRANCH_DRAWER: "layout/OPEN_HEAD_BRANCH_DRAWER",
-  CLOSE_HEAD_BRANCH_DRAWER: "layout/CLOSE_HEAD_BRANCH_DRAWER"
+  CLOSE_HEAD_BRANCH_DRAWER: "layout/CLOSE_HEAD_BRANCH_DRAWER",
+  OPEN_CHECKS_DRAWER: "layout/OPEN_CHECKS_DRAWER",
+  CLOSE_CHECKS_DRAWER: "layout/CLOSE_CHECKS_DRAWER"
 };
 
-interface IDrawer {
+interface IBaseBranchDrawer {
   visible: boolean;
   baseBranch: IPullRequestInfo;
 }
+interface IPullRequestDrawer {
+  visible: boolean;
+  pullRequests: IPullRequest[];
+}
 interface IInitialState {
-  headBranchDrawer: IDrawer;
-  checksDrawer: IDrawer;
+  headBranchDrawer: IBaseBranchDrawer;
+  checksDrawer: IPullRequestDrawer;
 }
 const initialState: IInitialState = {
   headBranchDrawer: {
@@ -23,7 +30,7 @@ const initialState: IInitialState = {
   },
   checksDrawer: {
     visible: false,
-    baseBranch: defaultValuePullRequestInfo
+    pullRequests: []
   }
 };
 
@@ -42,7 +49,18 @@ const handle = (
       };
     case ACTION_TYPES.CLOSE_HEAD_BRANCH_DRAWER:
       return {
-        ...initialState
+        ...state,
+        headBranchDrawer: { ...initialState.headBranchDrawer }
+      };
+    case ACTION_TYPES.OPEN_CHECKS_DRAWER:
+      return {
+        ...state,
+        checksDrawer: { visible: true, pullRequests: action.payload }
+      };
+    case ACTION_TYPES.CLOSE_CHECKS_DRAWER:
+      return {
+        ...state,
+        checksDrawer: { ...initialState.checksDrawer }
       };
     default:
       return state;
@@ -56,6 +74,13 @@ export const openHeadBranchDrawer = (baseBranch: IPullRequestInfo) => ({
 });
 export const closeHeadBranchDrawer = () => ({
   type: ACTION_TYPES.CLOSE_HEAD_BRANCH_DRAWER
+});
+export const openChecksDrawer = (pullRequests: IPullRequest[]) => ({
+  type: ACTION_TYPES.OPEN_CHECKS_DRAWER,
+  payload: pullRequests
+});
+export const closeChecksDrawer = () => ({
+  type: ACTION_TYPES.CLOSE_CHECKS_DRAWER
 });
 
 export default handle;

@@ -1,7 +1,6 @@
 import { Layout, Skeleton } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CrossPullRequestDrawer from "../components/pullrequests/CrossPullRequestDrawer";
 import Loading from "../components/shared/Loading";
 import { IRootState } from "../service";
 import * as dataService from "../service/data.service";
@@ -12,6 +11,12 @@ const CurrentStatusHeader = React.lazy(
 );
 const CurrentStatusContent = React.lazy(
   () => import("../components/current-status/CurrentStatusContent")
+);
+const CrossPullRequestDrawer = React.lazy(
+  () => import("../components/pullrequests/CrossPullRequestDrawer")
+);
+const ChecksDrawer = React.lazy(
+  () => import("../components/checks/ChecksDrawer")
 );
 const { Header, Content } = Layout;
 
@@ -98,7 +103,12 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
               <CurrentStatusContent />
             </Suspense>
 
-            <CrossPullRequestDrawer />
+            <Suspense fallback={<Loading />}>
+              <CrossPullRequestDrawer />
+            </Suspense>
+            <Suspense fallback={<Loading />}>
+              <ChecksDrawer />
+            </Suspense>
           </Content>
         </Layout>
       </Content>
