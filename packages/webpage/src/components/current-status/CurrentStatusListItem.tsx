@@ -1,6 +1,7 @@
 import { NodeCollapseOutlined } from "@ant-design/icons";
 import { Card, List, Tag, Tooltip, Typography } from "antd";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import ProjectContainer from "../../components/project/ProjectContainer";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
@@ -9,6 +10,7 @@ import { getProjectId } from "../../utils/id.utils";
 import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
 import Loading from "../shared/Loading";
+import * as layoutService from "../../service/layout.service";
 
 interface ICurrentStatusListItem {
   project: IProject;
@@ -16,6 +18,16 @@ interface ICurrentStatusListItem {
 export const CurrentStatusListItem: React.FC<
   ICurrentStatusListItem
 > = props => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(layoutService.projectsLoaded());
+
+    return () => {
+      dispatch(layoutService.reset());
+    };
+  }, [dispatch]);
+
   return (
     <List.Item
       id={getProjectId(props.project)}

@@ -7,9 +7,11 @@ const { createOctokitInstance } = require("../utils/bin-utils");
 const {
   getPullRequests,
   getChecks,
-  getRepository
+  getRepository,
+  getRefStatuses
 } = require("../lib/git-service");
 const { ClientError } = require("../lib/common");
+const { filterPullRequests } = require("../utils/pullrequest-utils");
 const { formatDate } = require("../utils/date-util");
 const fs = require("fs");
 const path = require("path");
@@ -28,7 +30,7 @@ const mapUser = user => ({
   html_url: user.html_url
 });
 
-const mapChecks = check => ({
+const mapCheck = check => ({
   id: check.id,
   name: check.name ? check.name : check.context,
   html_url: check.html_url,
@@ -36,11 +38,40 @@ const mapChecks = check => ({
   conclusion: check.conclusion,
   started_at: check.started_at,
   completed_at: check.completed_at,
-  slug: check.app.slug
+  slug: check.app.slug,
+  avatar_url: check.app.owner.avatar_url
 });
 
-const loadChecks = async (node, ref, octokit) => {
-  return (await getChecks(node.project, ref, octokit)).map(mapChecks);
+const mapStatus = status => ({
+  id: status.id,
+  name: status.name
+    ? status.name
+    : status.context
+    ? status.context
+    : status.description,
+  html_url: status.target_url,
+  conclusion: status.state,
+  started_at: status.created_at,
+  completed_at: status.updated_at,
+  slug: status.target_url ? status.target_url.includes("jenkins") : "unknown",
+  avatar_url: status.avatar_url
+});
+
+const loadChecks = async (node, sha, octokit) => {
+  const checks = (await getChecks(node.project, sha, octokit)).map(mapCheck);
+  const statuses = (await getRefStatuses(node.project, sha, octokit)).map(
+    mapStatus
+  );
+  // if (
+  //   node.project === "kiegroup/droolsjbpm-build-bootstrap" &&
+  //   statuses &&
+  //   statuses.length
+  // ) {
+  //   // logger.debug("checks", ref, checks);
+  //   logger.debug("statuses", ref, statuses);
+  //   process.exit(1);
+  // }
+  return [...checks, ...statuses];
 };
 
 const mapPullRequest = async (node, pullRequest, octokit) => {
@@ -130,7 +161,16 @@ async function main(args) {
       try {
         return await mapPullRequestInfo(
           node,
-          await getPullRequests(node.project, octokit),
+          filterPullRequests(
+            orderedList[0],
+            node,
+            await getPullRequests(node.project, octokit, {
+              state: "open",
+              page: 1,
+              per_page: 100
+            }),
+            args.baseBranchFilter
+          ),
           octokit
         );
       } catch (err) {

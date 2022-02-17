@@ -2,7 +2,8 @@ import {
   InfoCircleOutlined,
   LinkOutlined,
   NodeCollapseOutlined,
-  ReloadOutlined
+  ReloadOutlined,
+  PullRequestOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -141,9 +142,17 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
                 title="Number of Projects"
                 prefix={<NodeCollapseOutlined />}
                 value={data.projects.length}
-                valueStyle={STATISTICS_STYLE}
+                valueStyle={{ ...STATISTICS_STYLE, fontWeight: "bold" }}
               />
             </Popover>
+          </Col>
+          <Col>
+            <Statistic
+              title="Number of Pull Requests"
+              prefix={<PullRequestOutlined />}
+              value={data.projects.flatMap(p => p.pullRequests).length}
+              valueStyle={STATISTICS_STYLE}
+            />
           </Col>
           <Col>
             <StatisticErrorIndex

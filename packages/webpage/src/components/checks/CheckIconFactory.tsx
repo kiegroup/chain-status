@@ -38,6 +38,13 @@ export const CheckIconFactory: React.FC<ICheckIconFactory> = props => {
           style={{ fontSize: props.size ?? 14, color: "#faad14" }}
         />
       );
+    case CHECKS.CONCLUSION.PENDING:
+      return (
+        <SyncOutlined
+          style={{ fontSize: props.size ?? 14, color: "#42a5ff" }}
+          spin
+        />
+      );
     default:
       switch (statusToSwitch) {
         case CHECKS.STATUS.IN_PROGRESS:

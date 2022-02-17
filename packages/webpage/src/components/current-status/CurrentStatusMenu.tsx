@@ -14,13 +14,16 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
 
   const data = useSelector((store: IRootState) => store.data.data);
   const selectedKey = useSelector((store: IRootState) => store.menu.key);
+  const projectsLoaded = useSelector(
+    (store: IRootState) => store.layout.projectsLoaded
+  );
+
   const headingElementsRef: any = useRef({});
 
   useEffect(() => {
-    if (data?.projects) {
+    if (data?.projects?.length && projectsLoaded) {
       // Menu selection on scroll
       const onClick = (key: string) => dispatch(menuService.onSelect(key));
-
       const scrollMenu = (projectElementId: string) => {
         const menuId = projectElementId.replace(
           PROJECT_ID_PREFIX,
@@ -60,23 +63,25 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
           scrollMenu(sortedVisibleHeadings[0].target.id);
         }
       };
-
       const observer = new IntersectionObserver(callback, {
         rootMargin: "-220px 0px -40% 0px"
       });
-
       const headingElements = Array.from(
         document.querySelectorAll(`*[id^="${PROJECT_ID_PREFIX}"]`)
       );
-
       headingElements.forEach(element => observer.observe(element));
 
       return () => observer.disconnect();
     }
-  }, [dispatch, data]);
+  }, [dispatch, data, projectsLoaded]);
 
   const MenuComponent = (props: { projects: IProject[] }) => (
-    <Menu selectedKeys={[selectedKey]} theme="light" mode="inline">
+    <Menu
+      selectedKeys={[selectedKey]}
+      theme="light"
+      mode="inline"
+      // onClick={e => onClick(e.key)}
+    >
       {props.projects
         .filter(e => e.name)
         .map(project => (

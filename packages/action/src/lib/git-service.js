@@ -69,6 +69,7 @@ const getChecks = async (
     ref,
     ...options
   });
+
   if (status === 200 && data.check_runs && data.check_runs.length > 0) {
     result.push(...data.check_runs);
     if (data.check_runs.length === options.per_page) {
@@ -83,9 +84,33 @@ const getChecks = async (
   return result;
 };
 
+const getRefStatuses = async (
+  project,
+  ref,
+  octokit,
+  options = { page: 1, per_page: 100 }
+) => {
+  logger.info(
+    `Requesting statuses for ${project}. https://api.github.com/repos/${project}/commits/${ref}/status`
+  );
+  const statuses = await octokit
+    .paginate(
+      "GET /repos/{owner}/{repo}/commits/{ref}/status",
+      {
+        ...getOwnerProject(project),
+        ref,
+        ...options
+      },
+      response => response.data.statuses
+    )
+    .then(statuses => statuses);
+  return statuses;
+};
+
 module.exports = {
   getDefaultBranch,
   getRepository,
   getPullRequests,
-  getChecks
+  getChecks,
+  getRefStatuses
 };

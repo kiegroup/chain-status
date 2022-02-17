@@ -8,7 +8,9 @@ export const ACTION_TYPES = {
   OPEN_HEAD_BRANCH_DRAWER: "layout/OPEN_HEAD_BRANCH_DRAWER",
   CLOSE_HEAD_BRANCH_DRAWER: "layout/CLOSE_HEAD_BRANCH_DRAWER",
   OPEN_CHECKS_DRAWER: "layout/OPEN_CHECKS_DRAWER",
-  CLOSE_CHECKS_DRAWER: "layout/CLOSE_CHECKS_DRAWER"
+  CLOSE_CHECKS_DRAWER: "layout/CLOSE_CHECKS_DRAWER",
+  PROJECTS_LOADED: "layout/PROJECTS_LOADED",
+  RESET: "layout/RESET"
 };
 
 interface IBaseBranchDrawer {
@@ -22,6 +24,7 @@ interface IPullRequestDrawer {
 interface IInitialState {
   headBranchDrawer: IBaseBranchDrawer;
   checksDrawer: IPullRequestDrawer;
+  projectsLoaded: boolean;
 }
 const initialState: IInitialState = {
   headBranchDrawer: {
@@ -31,7 +34,8 @@ const initialState: IInitialState = {
   checksDrawer: {
     visible: false,
     pullRequests: []
-  }
+  },
+  projectsLoaded: false
 };
 
 export type LayoutState = Readonly<typeof initialState>;
@@ -62,6 +66,15 @@ const handle = (
         ...state,
         checksDrawer: { ...initialState.checksDrawer }
       };
+    case ACTION_TYPES.PROJECTS_LOADED:
+      return {
+        ...state,
+        projectsLoaded: true
+      };
+    case ACTION_TYPES.RESET:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }
@@ -81,6 +94,12 @@ export const openChecksDrawer = (pullRequests: IPullRequest[]) => ({
 });
 export const closeChecksDrawer = () => ({
   type: ACTION_TYPES.CLOSE_CHECKS_DRAWER
+});
+export const projectsLoaded = () => ({
+  type: ACTION_TYPES.PROJECTS_LOADED
+});
+export const reset = () => ({
+  type: ACTION_TYPES.RESET
 });
 
 export default handle;

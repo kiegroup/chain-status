@@ -1,8 +1,8 @@
 import { List, Skeleton } from "antd";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../service";
-
+import Loading from "../shared/Loading";
 const CurrentStatusListItem = React.lazy(
   () => import("./CurrentStatusListItem")
 );
@@ -15,10 +15,12 @@ export const CurrentStatusList: React.FC<ICurrentStatusList> = props => {
   return loading ? (
     <Skeleton />
   ) : (
-    <List
-      dataSource={data.projects}
-      renderItem={project => <CurrentStatusListItem project={project} />}
-    />
+    <Suspense fallback={<Loading />}>
+      <List
+        dataSource={data.projects}
+        renderItem={project => <CurrentStatusListItem project={project} />}
+      />
+    </Suspense>
   );
 };
 

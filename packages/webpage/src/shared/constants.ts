@@ -6,7 +6,8 @@ export const CHECKS = {
     SUCCESS: "success",
     SKIPPED: "skipped",
     FAILURE: "failure",
-    CANCELLED: "cancelled"
+    CANCELLED: "cancelled",
+    PENDING: "pending"
   },
   STATUS: {
     COMPLETED: "completed",

@@ -10,6 +10,7 @@ export interface ICheck {
   completed_at?: string;
   slug?: string;
   pullRequest?: IPullRequest;
+  avatar_url?: string;
 }
 
 export const defaultValue: Readonly<ICheck> = {};
