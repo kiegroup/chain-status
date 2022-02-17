@@ -1,5 +1,5 @@
 import Icon, { GithubOutlined, QuestionOutlined } from "@ant-design/icons";
-import { Tooltip } from "antd";
+import { Tooltip, Avatar } from "antd";
 import React from "react";
 import { ICheck } from "../../model/check.model";
 import { CHECKS } from "../../shared/constants";
@@ -49,7 +49,12 @@ export const CheckSlugIconFactory: React.FC<ICheckSlugIconFactory> = props => {
         </Tooltip>
       );
     default:
-      return (
+      return props.check?.avatar_url ? (
+        <Avatar
+          size={props.size ?? defaultSize}
+          src={props.check?.avatar_url}
+        />
+      ) : (
         <Tooltip title={props.check?.slug}>
           <QuestionOutlined style={{ fontSize: props.size ?? defaultSize }} />
         </Tooltip>

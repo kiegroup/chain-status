@@ -39,7 +39,8 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
         precision={2}
         valueStyle={{
           ...fontSizeStyle,
-          color: errorIndex <= 20 ? "#3f8600" : "#cf1322"
+          color: errorIndex <= 20 ? "#3f8600" : "#cf1322",
+          fontWeight: "bold"
         }}
         suffix="%"
       />
@@ -51,7 +52,8 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
       precision={2}
       valueStyle={{
         ...fontSizeStyle,
-        color: errorIndex <= 20 ? "#3f8600" : "#cf1322"
+        color: errorIndex <= 20 ? "#3f8600" : "#cf1322",
+        fontWeight: "bold"
       }}
       suffix="%"
     />

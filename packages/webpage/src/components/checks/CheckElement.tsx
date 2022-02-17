@@ -49,6 +49,7 @@ export const CheckElement: React.FC<ICheckElement> = props => {
         }
         description={
           <>
+            <p>{props.check.name}</p>
             <a
               href={props.check.html_url}
               target="_blank"
