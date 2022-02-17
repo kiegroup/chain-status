@@ -2,8 +2,10 @@ import { List, Skeleton, Tag } from "antd";
 import React, { Suspense } from "react";
 import { IProject } from "../../model/project.model";
 import { IPullRequest } from "../../model/pullrequest.model";
-import { STATUS_MARGIN_TOP } from "../../shared/constants";
-import { getProjectKey } from "../../utils/pullrequest.utils";
+import {
+  STATUS_MARGIN_TOP
+} from "../../shared/constants";
+import { getPullRequestId } from "../../utils/id.utils";
 const PullRequestStatistics = React.lazy(
   () => import("./PullRequestStatistics")
 );
@@ -25,9 +27,7 @@ interface IPullRequestElement {
 export const PullRequestElement: React.FC<IPullRequestElement> = props => {
   return props.pullRequest ? (
     <List.Item
-      id={`${props.project ? getProjectKey(props.project) : "project"}_${
-        props.pullRequest.number
-      }`}
+      id={getPullRequestId(props.pullRequest, props.project)}
       style={{ scrollMarginTop: STATUS_MARGIN_TOP - 5 }}
       actions={
         !props.hideMetadata

@@ -24,7 +24,6 @@ export const ProjectStatusInformation: React.FC<
     })
       .then(response => response.text())
       .then(data => {
-        console.log("data", data);
         setMarkdown(data);
         setLoading(false);
       });

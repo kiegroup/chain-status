@@ -4,8 +4,8 @@ import React, { Suspense } from "react";
 import ProjectContainer from "../../components/project/ProjectContainer";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
-import { alphabeticallySort } from "../../utils/common";
-import { getProjectKey } from "../../utils/pullrequest.utils";
+import { alphabeticallySort } from "../../utils/common.utils";
+import { getProjectId } from "../../utils/id.utils";
 import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
 import Loading from "../shared/Loading";
@@ -18,7 +18,7 @@ export const CurrentStatusListItem: React.FC<
 > = props => {
   return (
     <List.Item
-      id={getProjectKey(props.project)}
+      id={getProjectId(props.project)}
       style={{
         marginTop: 0,
         marginBottom: 8,
@@ -65,7 +65,7 @@ export const CurrentStatusListItem: React.FC<
           marginBottom: 0
         }}
       >
-        <ProjectContainer project={props.project}/>
+        <ProjectContainer project={props.project} />
       </Card>
     </List.Item>
   );

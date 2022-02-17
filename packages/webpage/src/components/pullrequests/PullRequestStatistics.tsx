@@ -44,8 +44,8 @@ export const PullRequestStatistics: React.FC<
     }, []);
 
   useEffect(() => {
-    if (props.pullRequests?.length) {
-      setLoading(true);
+    setLoading(true);
+    if (props.pullRequests.length) {
       setSuccessPullRequests(
         filterPullRequests(
           props.pullRequests,
@@ -78,8 +78,8 @@ export const PullRequestStatistics: React.FC<
             )
         )
       );
-      setLoading(false);
     }
+    setLoading(false);
   }, [props.pullRequests]);
 
   const CheckButton = (props: {
@@ -103,7 +103,7 @@ export const PullRequestStatistics: React.FC<
   );
 
   return loading ? (
-    <Skeleton.Input style={{ width: 20 }} />
+    <Skeleton.Input style={{ width: 150 }} />
   ) : (
     <>
       <CheckButton

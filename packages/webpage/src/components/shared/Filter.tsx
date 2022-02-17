@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { defaultValue } from "../../model/filter.model";
 import { IUser } from "../../model/user.model";
 import { IRootState } from "../../service";
-import { alphabeticallySort } from "../../utils/common";
+import { alphabeticallySort } from "../../utils/common.utils";
 const UserComponent = React.lazy(() => import("../shared/User"));
 
 interface IFilter {

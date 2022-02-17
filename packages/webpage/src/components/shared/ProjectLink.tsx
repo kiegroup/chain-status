@@ -1,6 +1,6 @@
 import React from "react";
 import { IProject } from "../../model/project.model";
-import { getProjectKey } from "../../utils/pullrequest.utils";
+import { getProjectId } from "../../utils/id.utils";
 
 interface IProjectLink {
   project: IProject;
@@ -9,12 +9,12 @@ interface IProjectLink {
 export const ProjectLink: React.FC<IProjectLink> = props => {
   return (
     <a
-      href={`#${getProjectKey(props.project)}`}
+      href={`#${getProjectId(props.project)}`}
       rel="noopener noreferrer"
       onClick={e => {
         e.preventDefault();
         document
-          ?.getElementById(`${getProjectKey(props.project)}`)
+          ?.getElementById(getProjectId(props.project))
           ?.scrollIntoView({ behavior: "smooth" });
       }}
     >

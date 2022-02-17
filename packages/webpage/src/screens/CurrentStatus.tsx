@@ -1,16 +1,12 @@
 import { Layout, Skeleton } from "antd";
-import React, { Suspense, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Loading from "../components/shared/Loading";
-import { IRootState } from "../service";
+import React, { Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import CurrentStatusContent from "../components/current-status/CurrentStatusContent";
 import * as dataService from "../service/data.service";
 import { STATUS_MARGIN_TOP } from "../shared/constants";
 
 const CurrentStatusHeader = React.lazy(
   () => import("../components/current-status/CurrentStatusHeader")
-);
-const CurrentStatusContent = React.lazy(
-  () => import("../components/current-status/CurrentStatusContent")
 );
 const CrossPullRequestDrawer = React.lazy(
   () => import("../components/pullrequests/CrossPullRequestDrawer")
@@ -18,33 +14,19 @@ const CrossPullRequestDrawer = React.lazy(
 const ChecksDrawer = React.lazy(
   () => import("../components/checks/ChecksDrawer")
 );
-const { Header, Content } = Layout;
-
 interface ICurrentStatus {}
 export const CurrentStatus: React.FC<ICurrentStatus> = props => {
-  // const [filteredData, setFilteredData] = useState<IData>(defaultValueData);
-  const [latestLoad, setLatestLoad] = useState<Date>(new Date());
   const dispatch = useDispatch();
-  const data = useSelector((store: IRootState) => store.data.data);
-  const loading = useSelector((store: IRootState) => store.data.loading);
-
-  const getData = () => {
-    dispatch(dataService.loadData());
-  };
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
-    if (data?.projects) {
-      setLatestLoad(new Date());
+    if (dispatch) {
+      dispatch(dataService.loadData());
     }
-  }, [data]);
+  }, [dispatch]);
 
   return (
     <Layout>
-      <Header
+      <Layout.Header
         style={{
           position: "fixed",
           zIndex: 100,
@@ -55,19 +37,15 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
         }}
       >
         <Suspense fallback={<Skeleton />}>
-          <CurrentStatusHeader
-            loading={loading}
-            reload={getData}
-            latestLoad={latestLoad}
-          />
+          <CurrentStatusHeader />
         </Suspense>
-      </Header>
-      <Content>
+      </Layout.Header>
+      <Layout.Content>
         <Layout
           style={{
             padding: "0 24px",
             marginTop: STATUS_MARGIN_TOP,
-            marginBottom: 24
+            marginBottom: 10
           }}
         >
           {/* <Header
@@ -98,20 +76,17 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
               </Collapse>
             </Card>
           </Header> */}
-          <Content>
-            <Suspense fallback={<Loading />}>
-              <CurrentStatusContent />
-            </Suspense>
-
-            <Suspense fallback={<Loading />}>
+          <Layout.Content>
+            <CurrentStatusContent />
+            <Suspense fallback={<></>}>
               <CrossPullRequestDrawer />
             </Suspense>
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<></>}>
               <ChecksDrawer />
             </Suspense>
-          </Content>
+          </Layout.Content>
         </Layout>
-      </Content>
+      </Layout.Content>
     </Layout>
   );
 };

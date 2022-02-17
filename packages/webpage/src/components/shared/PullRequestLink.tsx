@@ -1,7 +1,7 @@
 import React from "react";
 import { IProject } from "../../model/project.model";
 import { IPullRequest } from "../../model/pullrequest.model";
-import { getProjectKey } from "../../utils/pullrequest.utils";
+import { getPullRequestId } from "../../utils/id.utils";
 
 interface IPullRequestLink {
   project: IProject;
@@ -11,14 +11,12 @@ interface IPullRequestLink {
 export const PullRequestLink: React.FC<IPullRequestLink> = props => {
   return (
     <a
-      href={`#${getProjectKey(props.project)}_${props.pullRequest.number}`}
+      href={`#${getPullRequestId(props.pullRequest, props.project)}`}
       rel="noopener noreferrer"
       onClick={e => {
         e.preventDefault();
         document
-          ?.getElementById(
-            `${getProjectKey(props.project)}_${props.pullRequest.number}`
-          )
+          ?.getElementById(getPullRequestId(props.pullRequest, props.project))
           ?.scrollIntoView({ behavior: "smooth" });
       }}
     >

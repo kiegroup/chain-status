@@ -1,31 +1,21 @@
-import { Layout, List, Skeleton } from "antd";
+import { Layout } from "antd";
 import React, { Suspense } from "react";
-import { useSelector } from "react-redux";
-import { IRootState } from "../../service";
 import { STATUS_MARGIN_RIGHT, STATUS_MARGIN_TOP } from "../../shared/constants";
 import Loading from "../shared/Loading";
-const CurrentStatusListItem = React.lazy(
-  () => import("./CurrentStatusListItem")
-);
-const CurrentStatusMenu = React.lazy(() => import("./CurrentStatusMenu"));
-const { Content, Sider } = Layout;
+import CurrentStatusMenu from "./CurrentStatusMenu";
 
+const CurrentStatusList = React.lazy(() => import("./CurrentStatusList"));
 interface ICurrentStatusContent {}
 export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
-  const data = useSelector((store: IRootState) => store.data.data);
-
   return (
     <Layout hasSider>
-      <Content style={{ marginRight: STATUS_MARGIN_RIGHT }}>
+      <Layout.Content style={{ marginRight: STATUS_MARGIN_RIGHT }}>
         <Suspense fallback={<Loading />}>
-          <List
-            dataSource={data.projects}
-            renderItem={project => <CurrentStatusListItem project={project} />}
-          />
+          <CurrentStatusList />
         </Suspense>
-      </Content>
+      </Layout.Content>
 
-      <Sider
+      <Layout.Sider
         style={{
           overflow: "auto",
           position: "fixed",
@@ -35,12 +25,8 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
         }}
         theme="light"
       >
-        <Suspense
-          fallback={<Skeleton.Input size="small" style={{ width: 150 }} />}
-        >
-          <CurrentStatusMenu />
-        </Suspense>
-      </Sider>
+        <CurrentStatusMenu />
+      </Layout.Sider>
     </Layout>
   );
 };

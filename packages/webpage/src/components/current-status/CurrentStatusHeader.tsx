@@ -1,5 +1,7 @@
 import {
-  InfoCircleOutlined, LinkOutlined, NodeCollapseOutlined,
+  InfoCircleOutlined,
+  LinkOutlined,
+  NodeCollapseOutlined,
   ReloadOutlined
 } from "@ant-design/icons";
 import {
@@ -11,15 +13,19 @@ import {
   Popover,
   Row,
   Skeleton,
-  Statistic, Tooltip, Typography
+  Statistic,
+  Tooltip,
+  Typography
 } from "antd";
-import React, { Suspense } from "react";
-import { useSelector } from "react-redux";
+import React, { Suspense, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../../service";
 import { STATISTICS_STYLE } from "../../shared/constants";
 import Loading from "../shared/Loading";
 import StatisticDate from "../shared/StatisticDate";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
+import * as dataService from "../../service/data.service";
+
 const ProjectStatusInformation = React.lazy(
   () => import("../shared/ProjectStatusInformation")
 );
@@ -30,14 +36,22 @@ const StatisticErrorIndexByProject = React.lazy(
   () => import("../shared/StatisticErrorIndexByProject")
 );
 
-interface ICurrentStatusHeader {
-  activePanels?: string[];
-  loading: boolean;
-  reload: () => void;
-  latestLoad: Date;
-}
+interface ICurrentStatusHeader {}
 export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
+  const dispatch = useDispatch();
   const data = useSelector((store: IRootState) => store.data.data);
+  const loading = useSelector((store: IRootState) => store.data.loading);
+  const [latestLoad, setLatestLoad] = useState<Date>(new Date());
+
+  const getData = () => {
+    dispatch(dataService.loadData());
+  };
+
+  useEffect(() => {
+    if (data?.projects) {
+      setLatestLoad(new Date());
+    }
+  }, [data]);
 
   const infoModal = () =>
     Modal.info({
@@ -63,9 +77,7 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
           )
         }
         subTitle={
-          data.metadata?.subtitle ?? (
-            <Skeleton.Input style={{ width: 400 }} />
-          )
+          data.metadata?.subtitle ?? <Skeleton.Input style={{ width: 400 }} />
         }
         style={{ padding: 0 }}
         extra={[
@@ -74,8 +86,8 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
               key="reload"
               type="primary"
               icon={<ReloadOutlined />}
-              loading={props.loading}
-              onClick={props.reload}
+              loading={loading}
+              onClick={getData}
             >
               Reload
             </Button>
@@ -163,7 +175,7 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
           <Col>
             <Suspense fallback={<Loading size={16} />}>
               <StatisticDate
-                date={props.latestLoad}
+                date={latestLoad}
                 text="Latest Load"
                 intervalSeconds={1}
               />
