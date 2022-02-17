@@ -6,6 +6,14 @@ inputs:
   definition-file:
     description: "the file where the build chain is defined. It can a file in the same repository (relative path) or a URL."
     required: true
+  title:
+    description: "The project title."
+    default: "Project Status"
+    required: false
+  subtitle:
+    description: "The project subtitle."
+    default: "Contribution status"
+    required: false
   output-folder-path:
     description: "the path where the file should be stored"
     required: false

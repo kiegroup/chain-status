@@ -4,7 +4,8 @@ import React, { Suspense } from "react";
 import ProjectContainer from "../../components/project/ProjectContainer";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
-import { getProjectKey } from "../../utils/pullrequest.utils";
+import { alphabeticallySort } from "../../utils/common.utils";
+import { getProjectId } from "../../utils/id.utils";
 import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
 import Loading from "../shared/Loading";
@@ -17,7 +18,7 @@ export const CurrentStatusListItem: React.FC<
 > = props => {
   return (
     <List.Item
-      id={getProjectKey(props.project)}
+      id={getProjectId(props.project)}
       style={{
         marginTop: 0,
         marginBottom: 8,
@@ -40,17 +41,20 @@ export const CurrentStatusListItem: React.FC<
         }
         key={props.project.key}
         extra={[
-          <Tooltip title="Affected Branches">
+          <Tooltip key="affected-branches-tooltip" title="Affected Branches">
             {Array.from(
               new Set(props.project.pullRequests.map(e => e.base?.ref))
             )
               .filter(e => e)
-              .sort((a, b) => (a && b ? (a < b ? -1 : a > b ? 1 : 0) : 0))
+              .sort(alphabeticallySort)
               .map(e => (
-                <Tag>{e}</Tag>
+                <Tag key={e}>{e}</Tag>
               ))}
           </Tooltip>,
-          <Suspense fallback={<Loading size={16} />}>
+          <Suspense
+            key="affected-branches-statistics"
+            fallback={<Loading size={16} />}
+          >
             <PullRequestStatistics pullRequests={props.project.pullRequests} />
           </Suspense>
         ]}

@@ -4,6 +4,7 @@ import { TooltipPlacement } from "antd/lib/tooltip";
 import React from "react";
 import { IProject } from "../../model/project.model";
 import { STATISTICS_STYLE } from "../../shared/constants";
+import ProjectLink from "./ProjectLink";
 
 interface IStaticPullRequests {
   projects: IProject[];
@@ -21,7 +22,7 @@ export const StaticPullRequests: React.FC<IStaticPullRequests> = props => {
         <Row key={project.key} gutter={[16, 16]}>
           <Col flex="none">
             <Typography.Text ellipsis={true} style={{ fontWeight: "bold" }}>
-              {project.name}
+              <ProjectLink project={project} />
             </Typography.Text>
           </Col>
           <Col flex="auto" style={{ textAlign: "end" }}>

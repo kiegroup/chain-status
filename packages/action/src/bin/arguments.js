@@ -7,6 +7,8 @@ function getArgumentsObject() {
       "-df, --definition-file <filePath or URL>",
       "Filesystem path or URL to the definition file."
     )
+    .requiredOption("-t, --title <title>", "Project title.")
+    .requiredOption("-st, --subtitle <subtitle>", "Project subtitle.")
     .option(
       "-o --outputFolderPath <folderPath>",
       "the path where the files should be stored",

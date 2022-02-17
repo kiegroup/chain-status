@@ -15,6 +15,8 @@ const fs = require("fs");
 const path = require("path");
 
 const getMetadata = args => ({
+  title: args.title,
+  subtitle: args.subtitle,
   date: new Date(),
   createdBy: args.createdBy,
   createdUrl: args.createdUrl
@@ -27,7 +29,8 @@ const mapUser = user => ({
 });
 
 const mapChecks = check => ({
-  title: check.title,
+  id: check.id,
+  name: check.name ? check.name : check.context,
   html_url: check.html_url,
   status: check.status,
   conclusion: check.conclusion,
@@ -142,7 +145,7 @@ async function main(args) {
     });
   saveFiles(
     JSON.stringify(
-      { metadata: getMetadata(args), data: pullRequestInformation },
+      { metadata: getMetadata(args), projects: pullRequestInformation },
       null,
       args.debug ? 2 : 0
     ),

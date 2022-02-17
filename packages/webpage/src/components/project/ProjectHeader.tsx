@@ -56,11 +56,11 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
             pullRequests={props.project.pullRequests}
             placement="right"
             popoverContent={
-              <Suspense fallback={<Loading />}>
-                <StatisticErrorIndexByPullRequest
-                  pullRequests={props.project.pullRequests}
-                />
-              </Suspense>
+              props.project.pullRequests?.length ? (
+                <Suspense fallback={<Loading />}>
+                  <StatisticErrorIndexByPullRequest project={props.project} />
+                </Suspense>
+              ) : null
             }
           />
         </Col>

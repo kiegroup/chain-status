@@ -1,7 +1,9 @@
-import { Tooltip } from "antd";
-import prettyMilliseconds from "pretty-ms";
-import React, { useEffect, useState } from "react";
+import { Skeleton } from "antd";
+import React, { Suspense } from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
+const PrettyMiliseconds = React.lazy(
+  () => import("../shared/PrettyMiliseconds")
+);
 
 interface IPullRequestDescription {
   pullRequest: IPullRequest;
@@ -10,18 +12,6 @@ interface IPullRequestDescription {
 export const PullRequestDescription: React.FC<
   IPullRequestDescription
 > = props => {
-  const [dateDifferenceMiliseconds, setDateDifferenceMiliseconds] =
-    useState<number>(0);
-
-  useEffect(() => {
-    if (props.pullRequest?.created_at) {
-      setDateDifferenceMiliseconds(
-        new Date().getTime() -
-          new Date(Date.parse(props.pullRequest.created_at)).getTime()
-      );
-    }
-  }, [props.pullRequest]);
-
   return (
     <>
       <a
@@ -34,9 +24,9 @@ export const PullRequestDescription: React.FC<
       </a>
       &nbsp;opened&nbsp;
       <span style={{ fontWeight: "bold" }}>
-        <Tooltip title={props.pullRequest.created_at}>
-          {prettyMilliseconds(dateDifferenceMiliseconds)}
-        </Tooltip>
+        <Suspense fallback={<Skeleton.Input style={{ width: 100 }} />}>
+          <PrettyMiliseconds date={props.pullRequest.created_at} />
+        </Suspense>
       </span>
       &nbsp; ago by&nbsp;
       <a

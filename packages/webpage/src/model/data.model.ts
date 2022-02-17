@@ -3,9 +3,9 @@ import { IProject } from "./project.model";
 
 export interface IData {
   metadata?: IMetadata;
-  data: IProject[];
+  projects: IProject[];
 }
 
 export const defaultValue: Readonly<IData> = {
-  data: []
+  projects: []
 };
