@@ -4,7 +4,6 @@ import { STATISTICS_STYLE } from "../../shared/constants";
 
 interface IStatisticDate {
   date: Date;
-  intervalSeconds?: number;
   text: string;
 }
 export const StatisticDate: React.FC<IStatisticDate> = props => {

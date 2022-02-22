@@ -1,10 +1,12 @@
-import { Menu, Skeleton, Tooltip, Typography } from "antd";
-import React, { Suspense, useEffect, useRef } from "react";
+import { Badge, Menu, Skeleton, Tooltip, Typography } from "antd";
+import React, { Suspense, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IProject } from "../../model/project.model";
 import { IRootState } from "../../service";
+import * as layoutService from "../../service/layout.service";
 import * as menuService from "../../service/menu.service";
 import { MENU_ID_PREFIX, PROJECT_ID_PREFIX } from "../../shared/constants";
+import debounce from "lodash.debounce";
 import { getMenuId, getProjectId } from "../../utils/id.utils";
 import ProjectLink from "../shared/ProjectLink";
 
@@ -12,18 +14,35 @@ interface ICurrentStatusMenu {}
 export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
   const dispatch = useDispatch();
 
-  const data = useSelector((store: IRootState) => store.data.data);
+  const data = useSelector((store: IRootState) => store.filter.filteredData);
+  const showZeroPullRequests = useSelector(
+    (store: IRootState) => store.filter.filter.showZeroPullRequests
+  );
   const selectedKey = useSelector((store: IRootState) => store.menu.key);
   const projectsLoaded = useSelector(
     (store: IRootState) => store.layout.projectsLoaded
   );
-
   const headingElementsRef: any = useRef({});
+
+  const show = (project: IProject) =>
+    showZeroPullRequests || project.pullRequests.length > 0;
+
+  // Menu selection on scroll
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const registerSection = useCallback(
+    debounce(
+      (key: string) => dispatch(layoutService.registerSection(key)),
+      200
+    ),
+    []
+  );
+  const onClick = (key: string) => {
+    dispatch(menuService.onSelect(key));
+    registerSection(key);
+  };
 
   useEffect(() => {
     if (data?.projects?.length && projectsLoaded) {
-      // Menu selection on scroll
-      const onClick = (key: string) => dispatch(menuService.onSelect(key));
       const scrollMenu = (projectElementId: string) => {
         const menuId = projectElementId.replace(
           PROJECT_ID_PREFIX,
@@ -73,7 +92,8 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
 
       return () => observer.disconnect();
     }
-  }, [dispatch, data, projectsLoaded]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, data, projectsLoaded, showZeroPullRequests]);
 
   const MenuComponent = (props: { projects: IProject[] }) => (
     <Menu
@@ -83,7 +103,7 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
       // onClick={e => onClick(e.key)}
     >
       {props.projects
-        .filter(e => e.name)
+        .filter(e => e.name && show(e))
         .map(project => (
           <Menu.Item
             id={getMenuId(project)}
@@ -91,7 +111,18 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
             style={{ scrollMarginTop: 162 }}
           >
             <Tooltip title={project.key} placement="left">
-              <ProjectLink project={project} />
+              {project.pullRequests.length ? (
+                <ProjectLink project={project} />
+              ) : (
+                <Badge
+                  showZero
+                  count={0}
+                  offset={[15, 0]}
+                  style={{ backgroundColor: "#108ee9" }}
+                >
+                  <ProjectLink project={project} />
+                </Badge>
+              )}
             </Tooltip>
           </Menu.Item>
         ))}

@@ -3,7 +3,11 @@ import React, { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import CurrentStatusContent from "../components/current-status/CurrentStatusContent";
 import * as dataService from "../service/data.service";
-import { STATUS_MARGIN_TOP } from "../shared/constants";
+import {
+  GENERAL_MARGIN,
+  STATUS_MARGIN_RIGHT,
+  STATUS_MARGIN_TOP
+} from "../shared/constants";
 
 const CurrentStatusHeader = React.lazy(
   () => import("../components/current-status/CurrentStatusHeader")
@@ -14,6 +18,7 @@ const CrossPullRequestDrawer = React.lazy(
 const ChecksDrawer = React.lazy(
   () => import("../components/checks/ChecksDrawer")
 );
+const FilterComponent = React.lazy(() => import("../components/shared/Filter"));
 interface ICurrentStatus {}
 export const CurrentStatus: React.FC<ICurrentStatus> = props => {
   const dispatch = useDispatch();
@@ -48,7 +53,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
             marginBottom: 10
           }}
         >
-          {/* <Header
+          <Layout.Header
             style={{
               margin: 0,
               padding: 0,
@@ -58,24 +63,10 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
               height: "auto"
             }}
           >
-            <Card style={{ margin: 0, padding: 0 }}>
-              <Collapse
-                defaultActiveKey={["1"]}
-                ghost
-                style={{ margin: 0, padding: 0 }}
-              >
-                <Collapse.Panel
-                  header={<Typography.Title level={5}>Filter</Typography.Title>}
-                  key="1"
-                  style={{ margin: 0, padding: 0 }}
-                >
-                  <Suspense fallback={<Skeleton />}>
-                    <Filter onFilter={onFilter} />
-                  </Suspense>
-                </Collapse.Panel>
-              </Collapse>
-            </Card>
-          </Header> */}
+            <Suspense fallback={<Skeleton />}>
+              <FilterComponent />
+            </Suspense>
+          </Layout.Header>
           <Layout.Content>
             <CurrentStatusContent />
             <Suspense fallback={<></>}>

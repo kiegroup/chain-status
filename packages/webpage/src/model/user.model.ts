@@ -1,7 +1,9 @@
 export interface IUser {
-  login?: string;
+  login: string;
   avatar_url?: string;
   html_url?: string;
 }
 
-export const defaultValue: Readonly<IUser> = {};
+export const defaultValue: Readonly<IUser> = {
+  login: ""
+};
