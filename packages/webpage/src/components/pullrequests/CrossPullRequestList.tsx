@@ -15,7 +15,7 @@ interface ICrossPullRequestList {
 export const CrossPullRequestList: React.FC<ICrossPullRequestList> = props => {
   const [pullRequestList, setPullRequestList] = useState<IPullRequest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const data = useSelector((store: IRootState) => store.data.data);
+  const data = useSelector((store: IRootState) => store.filter.filteredData);
 
   useEffect(() => {
     setLoading(true);
@@ -48,6 +48,8 @@ export const CrossPullRequestList: React.FC<ICrossPullRequestList> = props => {
           pullRequest={pullRequest}
           hideMetadata={props.hideMetadata}
           showProject={props.showProject}
+          loading={false}
+          hideUserAvatar={false}
         />
       )}
     />

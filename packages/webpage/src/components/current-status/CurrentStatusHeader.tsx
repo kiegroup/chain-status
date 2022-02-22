@@ -40,7 +40,7 @@ const StatisticErrorIndexByProject = React.lazy(
 interface ICurrentStatusHeader {}
 export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
   const dispatch = useDispatch();
-  const data = useSelector((store: IRootState) => store.data.data);
+  const data = useSelector((store: IRootState) => store.filter.filteredData);
   const loading = useSelector((store: IRootState) => store.data.loading);
   const [latestLoad, setLatestLoad] = useState<Date>(new Date());
 
@@ -177,7 +177,6 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
                     : new Date()
                 }
                 text="Creation Date"
-                intervalSeconds={1}
               />
             </Suspense>
           </Col>
@@ -186,7 +185,6 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
               <StatisticDate
                 date={latestLoad}
                 text="Latest Load"
-                intervalSeconds={1}
               />
             </Suspense>
           </Col>

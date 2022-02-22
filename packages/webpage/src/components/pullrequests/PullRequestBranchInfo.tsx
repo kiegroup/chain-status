@@ -13,7 +13,7 @@ interface IPullRequestBranchInfo {
 export const PullRequestBranchInfo: React.FC<
   IPullRequestBranchInfo
 > = props => {
-  const data = useSelector((store: IRootState) => store.data.data);
+  const data = useSelector((store: IRootState) => store.filter.filteredData);
   const dispatch = useDispatch();
   const openCrossPullRequest = () =>
     dispatch(layoutService.openHeadBranchDrawer(props.pullRequest.head));

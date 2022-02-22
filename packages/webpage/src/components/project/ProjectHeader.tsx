@@ -84,7 +84,6 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
               <StatisticDate
                 date={new Date(Date.parse(props.project.updated_at))}
                 text="Since Last Updating"
-                intervalSeconds={1}
               />
             </Suspense>
           ) : null}

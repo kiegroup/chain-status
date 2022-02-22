@@ -1,4 +1,5 @@
 import { Avatar, Button, Tooltip } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import React from "react";
 import { IUser } from "../../model/user.model";
 
@@ -6,7 +7,8 @@ interface IUserComponent {
   user?: IUser;
   size?: number;
   showName?: boolean;
-  hiddeButton?: boolean;
+  hideButton?: boolean;
+  hideAvatar?: boolean;
 }
 
 export const UserComponent: React.FC<IUserComponent> = props => {
@@ -14,9 +16,15 @@ export const UserComponent: React.FC<IUserComponent> = props => {
     showName?: boolean;
     user?: IUser;
     size?: number;
+    hideAvatar?: boolean;
   }) => (
     <>
-      <Avatar size={props.size ?? 24} src={props.user?.avatar_url} />
+      {props.hideAvatar ? (
+        <Avatar size={props.size ?? 24} icon={<UserOutlined />} />
+      ) : (
+        <Avatar size={props.size ?? 24} src={props.user?.avatar_url} />
+      )}
+
       {props.showName ? (
         <span style={{ marginLeft: 5, color: "#2d2d2d" }}>
           {props.user?.login}
@@ -26,7 +34,7 @@ export const UserComponent: React.FC<IUserComponent> = props => {
   );
   return props.user ? (
     <Tooltip title={props.user.login}>
-      {!props.hiddeButton ? (
+      {!props.hideButton ? (
         <Button
           type="link"
           href={props.user.html_url}
@@ -37,6 +45,7 @@ export const UserComponent: React.FC<IUserComponent> = props => {
             showName={props.showName}
             user={props.user}
             size={props.size}
+            hideAvatar={props.hideAvatar}
           />
         </Button>
       ) : (
@@ -44,6 +53,7 @@ export const UserComponent: React.FC<IUserComponent> = props => {
           showName={props.showName}
           user={props.user}
           size={props.size}
+          hideAvatar={props.hideAvatar}
         />
       )}
     </Tooltip>

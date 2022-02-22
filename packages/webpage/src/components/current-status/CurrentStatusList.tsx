@@ -9,7 +9,7 @@ const CurrentStatusListItem = React.lazy(
 interface ICurrentStatusList {}
 
 export const CurrentStatusList: React.FC<ICurrentStatusList> = props => {
-  const data = useSelector((store: IRootState) => store.data.data);
+  const data = useSelector((store: IRootState) => store.filter.filteredData);
   const loading = useSelector((store: IRootState) => store.data.loading);
 
   return loading ? (
@@ -17,6 +17,7 @@ export const CurrentStatusList: React.FC<ICurrentStatusList> = props => {
   ) : (
     <Suspense fallback={<Loading />}>
       <List
+        style={{ minHeight: 700 }}
         dataSource={data.projects}
         renderItem={project => <CurrentStatusListItem project={project} />}
       />

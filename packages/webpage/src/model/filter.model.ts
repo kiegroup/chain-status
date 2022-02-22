@@ -1,13 +1,13 @@
-import { IPullRequestInfo } from "./pullrequestinfo.model";
-import { IUser } from "./user.model";
+import { Moment } from "moment";
 
 export interface IFilter {
   search?: string;
-  base?: IPullRequestInfo;
-  head?: IPullRequestInfo;
-  user?: IUser;
-  requested_reviewers?: IUser[];
-  date?: string;
+  base?: string[];
+  head?: string[];
+  userLogins?: string[];
+  requested_reviewersLogins?: string[];
+  date?: Moment[];
+  showZeroPullRequests?: boolean;
 }
 
 export const defaultValue: Readonly<IFilter> = {};

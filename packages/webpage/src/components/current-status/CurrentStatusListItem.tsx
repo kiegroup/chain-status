@@ -1,7 +1,7 @@
 import { NodeCollapseOutlined } from "@ant-design/icons";
 import { Card, List, Tag, Tooltip, Typography } from "antd";
-import React, { Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { Suspense, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProjectContainer from "../../components/project/ProjectContainer";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
@@ -11,6 +11,7 @@ import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
 import Loading from "../shared/Loading";
 import * as layoutService from "../../service/layout.service";
+import { IRootState } from "../../service";
 
 interface ICurrentStatusListItem {
   project: IProject;
@@ -19,6 +20,10 @@ export const CurrentStatusListItem: React.FC<
   ICurrentStatusListItem
 > = props => {
   const dispatch = useDispatch();
+  const showZeroPullRequests = useSelector(
+    (store: IRootState) => store.filter.filter.showZeroPullRequests
+  );
+  const [showItem, setShowItem] = useState<boolean>(true);
 
   useEffect(() => {
     dispatch(layoutService.projectsLoaded());
@@ -28,7 +33,15 @@ export const CurrentStatusListItem: React.FC<
     };
   }, [dispatch]);
 
-  return (
+  useEffect(() => {
+    if (props.project.pullRequests) {
+      setShowItem(
+        showZeroPullRequests || props.project.pullRequests.length > 0
+      );
+    }
+  }, [showZeroPullRequests, props.project.pullRequests]);
+
+  return showItem ? (
     <List.Item
       id={getProjectId(props.project)}
       style={{
@@ -80,7 +93,7 @@ export const CurrentStatusListItem: React.FC<
         <ProjectContainer project={props.project} />
       </Card>
     </List.Item>
-  );
+  ) : null;
 };
 
 export default CurrentStatusListItem;

@@ -10,6 +10,8 @@ export const ACTION_TYPES = {
   OPEN_CHECKS_DRAWER: "layout/OPEN_CHECKS_DRAWER",
   CLOSE_CHECKS_DRAWER: "layout/CLOSE_CHECKS_DRAWER",
   PROJECTS_LOADED: "layout/PROJECTS_LOADED",
+  REGISTER_SECTION: "layout/REGISTER_SECTION",
+  CLEAR_SECTION: "layout/CLEAR_SECTION",
   RESET: "layout/RESET"
 };
 
@@ -25,6 +27,7 @@ interface IInitialState {
   headBranchDrawer: IBaseBranchDrawer;
   checksDrawer: IPullRequestDrawer;
   projectsLoaded: boolean;
+  sectionsShown: string[];
 }
 const initialState: IInitialState = {
   headBranchDrawer: {
@@ -35,7 +38,8 @@ const initialState: IInitialState = {
     visible: false,
     pullRequests: []
   },
-  projectsLoaded: false
+  projectsLoaded: false,
+  sectionsShown: []
 };
 
 export type LayoutState = Readonly<typeof initialState>;
@@ -65,6 +69,18 @@ const handle = (
       return {
         ...state,
         checksDrawer: { ...initialState.checksDrawer }
+      };
+    case ACTION_TYPES.REGISTER_SECTION:
+      return {
+        ...state,
+        sectionsShown: !state.sectionsShown.includes(action.payload)
+          ? [...state.sectionsShown, action.payload]
+          : state.sectionsShown
+      };
+    case ACTION_TYPES.CLEAR_SECTION:
+      return {
+        ...state,
+        sectionsShown: initialState.sectionsShown
       };
     case ACTION_TYPES.PROJECTS_LOADED:
       return {
@@ -98,6 +114,15 @@ export const closeChecksDrawer = () => ({
 export const projectsLoaded = () => ({
   type: ACTION_TYPES.PROJECTS_LOADED
 });
+
+export const registerSection = (sectionId: string) => ({
+  type: ACTION_TYPES.REGISTER_SECTION,
+  payload: sectionId
+});
+export const clearSections = () => ({
+  type: ACTION_TYPES.CLEAR_SECTION
+});
+
 export const reset = () => ({
   type: ACTION_TYPES.RESET
 });
