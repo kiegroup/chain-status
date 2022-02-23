@@ -20,16 +20,16 @@ inputs:
   base-branch-filter:
     description: "A comma separated list of base branches to be filtered. Like `main,7.59.x,8.x`"
     required: false
-  logger-level:
-    description: "the log level. 'info' (default) | 'trace' | 'debug'"
-    default: "info"
-    required: false
   created-by:
     description: "The user/machine/whatever that regenerates the report"
     default: "github action"
     required: false
   created-url:
     description: "Normally the job generating the info URL"
+    required: false
+  logger-level:
+    description: "the log level. 'info' (default) | 'trace' | 'debug'"
+    default: "info"
     required: false
 runs:
   using: "node14"
