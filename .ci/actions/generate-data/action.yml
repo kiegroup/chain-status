@@ -1,0 +1,63 @@
+name: "Generate Chain Status Data"
+description: "Executes chain-status data generation"
+inputs:
+  github-token:
+    description: "the github token"
+    required: true
+  definition-file:
+    description: "The `definition-file` input for the build-chain"
+    required: true
+  title:
+    description: "The project/webapp title."
+    default: "Project Status"
+    required: false
+  subtitle:
+    description: "The project/webapp subtitle."
+    default: "Contribution status"
+    required: false
+  base-branch-filter:
+    description: "A comma separated list of base branches to be filtered. Like `main,7.59.x,8.x`"
+    required: false
+  created-by:
+    description: "The user/machine/whatever that regenerates the report"
+    default: "github action"
+    required: false
+  created-url:
+    description: "Normally the job generating the info URL"
+    required: false
+  logger-level:
+    description: "the log level. 'info' (default) | 'trace' | 'debug'"
+    default: "info"
+    required: false
+  gh-pages-branch:
+    description: "the gh-pages branch"
+    default: "gh-pages"
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout chain-status repo
+      uses: actions/checkout@v2
+      with:
+        path: ./chain-status
+        ref: ${{ inputs.gh-pages-branch }}
+    - name: Chain Status Generator
+      id: build-chain
+      uses: Ginxo/chain-status@main
+      with:
+        definition-file: ${{ inputs.definition-file }}
+        title: ${{ inputs.title }}
+        subtitle: ${{ inputs.subtitle }}
+        output-folder-path: ./chain-status/data
+        base-branch-filter: ${{ inputs.base-branch-filter }}
+        created-by: ${{ inputs.created-by }}
+        created-url: ${{ inputs.created-url }}
+        logger-level: ${{ inputs.logger-level }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ inputs.github-token }}
+        branch: ${{ inputs.gh-pages-branch }}
