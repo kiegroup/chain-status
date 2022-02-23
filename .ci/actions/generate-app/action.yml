@@ -37,21 +37,21 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout tools repo
-      uses: actions/checkout@v2
-      with:
-        repository: Ginxo/chain-status
-        path: chain-status
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14
-        registry-url: https://registry.npmjs.org/
-    - run: yarn
-      shell: bash
-      working-directory: ./chain-status
-    - run: yarn predeploy
-      shell: bash
-      working-directory: ./chain-status
+    # - name: Checkout tools repo
+    #   uses: actions/checkout@v2
+    #   with:
+    #     repository: Ginxo/chain-status
+    #     path: ./chain-status
+    # - uses: actions/setup-node@v1
+    #   with:
+    #     node-version: 14
+    #     registry-url: https://registry.npmjs.org/
+    # - run: yarn
+    #   shell: bash
+    #   working-directory: ./chain-status
+    # - run: yarn predeploy
+    #   shell: bash
+    #   working-directory: ./chain-status
     - name: Chain Status Generator
       id: build-chain
       uses: Ginxo/chain-status@main
@@ -66,9 +66,11 @@ runs:
         logger-level: ${{ inputs.logger-level }}
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
-    - name: Deploy with gh-pages
-      shell: bash
-      working-directory: ./chain-status
-      run: |
-        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        npx ${{ inputs.gh-pages-branch }} -d packages/webpage/build -u "github-actions-bot <support+actions@github.com>"        
+    # - name: Deploy with gh-pages
+    #   shell: bash
+    #   working-directory: ./chain-status
+    #   run: |
+    #     git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+    #     npx gh-pages -d packages/webpage/build -u "github-actions-bot <support+actions@github.com>"
+    #   env:
+    #     GITHUB_TOKEN: ${{ inputs.github-token }}
