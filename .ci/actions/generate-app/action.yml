@@ -40,6 +40,7 @@ runs:
         repository: Ginxo/chain-status
         path: chain-status
     - run: yarn predeploy
+      shell: bash
       working-directory: ./chain-status
     - name: Chain Status Generator
       id: build-chain
@@ -56,6 +57,7 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
     - name: Deploy with gh-pages
+      shell: bash
       working-directory: ./chain-status
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
