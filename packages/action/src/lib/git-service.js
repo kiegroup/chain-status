@@ -35,23 +35,37 @@ const getPullRequests = async (
       .map(e => `${e}=${options[e]}`)
       .join("&")}`
   );
-  const result = [];
-  const { status, data } = await octokit.pulls.list({
-    ...getOwnerProject(project),
-    ...options
-  });
-  if (status === 200) {
-    result.push(...data);
-    if (data && data.length === options.per_page) {
-      result.push(
-        ...(await getPullRequests(project, octokit, {
-          ...options,
-          page: ++options.page
-        }))
-      );
+  try {
+    const result = [];
+    const { status, data } = await octokit.pulls.list({
+      ...getOwnerProject(project),
+      ...options
+    });
+    if (status === 200) {
+      result.push(...data);
+      if (data && data.length === options.per_page) {
+        result.push(
+          ...(await getPullRequests(project, octokit, {
+            ...options,
+            page: ++options.page
+          }))
+        );
+      }
     }
+    return result;
+  } catch (e) {
+    logger.error(
+      `Error requesting pull requests for ${project}. Page ${
+        options.page
+      }. Per Page: ${
+        options.per_page
+      }. https://api.github.com/repos/${project}/pulls?${Object.keys(options)
+        .map(e => `${e}=${options[e]}`)
+        .join("&")}`,
+      e
+    );
+    throw e;
   }
-  return result;
 };
 
 const getChecks = async (
@@ -63,25 +77,33 @@ const getChecks = async (
   logger.info(
     `Requesting checks for ${project}. https://api.github.com/repos/${project}/check-runs/${ref}`
   );
-  const result = [];
-  const { status, data } = await octokit.checks.listForRef({
-    ...getOwnerProject(project),
-    ref,
-    ...options
-  });
+  try {
+    const result = [];
+    const { status, data } = await octokit.checks.listForRef({
+      ...getOwnerProject(project),
+      ref,
+      ...options
+    });
 
-  if (status === 200 && data.check_runs && data.check_runs.length > 0) {
-    result.push(...data.check_runs);
-    if (data.check_runs.length === options.per_page) {
-      result.push(
-        ...(await getChecks(project, ref, octokit, {
-          ...options,
-          page: ++options.page
-        }))
-      );
+    if (status === 200 && data.check_runs && data.check_runs.length > 0) {
+      result.push(...data.check_runs);
+      if (data.check_runs.length === options.per_page) {
+        result.push(
+          ...(await getChecks(project, ref, octokit, {
+            ...options,
+            page: ++options.page
+          }))
+        );
+      }
     }
+    return result;
+  } catch (e) {
+    logger.error(
+      `Error requesting checks for ${project}. https://api.github.com/repos/${project}/check-runs/${ref}`,
+      e
+    );
+    throw e;
   }
-  return result;
 };
 
 const getRefStatuses = async (
@@ -93,18 +115,26 @@ const getRefStatuses = async (
   logger.info(
     `Requesting statuses for ${project}. https://api.github.com/repos/${project}/commits/${ref}/status`
   );
-  const statuses = await octokit
-    .paginate(
-      "GET /repos/{owner}/{repo}/commits/{ref}/status",
-      {
-        ...getOwnerProject(project),
-        ref,
-        ...options
-      },
-      response => response.data.statuses
-    )
-    .then(statuses => statuses);
-  return statuses;
+  try {
+    const statuses = await octokit
+      .paginate(
+        "GET /repos/{owner}/{repo}/commits/{ref}/status",
+        {
+          ...getOwnerProject(project),
+          ref,
+          ...options
+        },
+        response => response.data.statuses
+      )
+      .then(statuses => statuses);
+    return statuses;
+  } catch (e) {
+    logger.error(
+      `Error requesting statuses for ${project}. https://api.github.com/repos/${project}/commits/${ref}/status`,
+      e
+    );
+    throw e;
+  }
 };
 
 module.exports = {
