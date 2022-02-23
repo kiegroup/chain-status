@@ -58,7 +58,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github-token }}
     - name: Commit & Push changes
       uses: actions-js/push@master
-      working-directory: ./chain-status
       with:
         github_token: ${{ inputs.github-token }}
         branch: ${{ inputs.gh-pages-branch }}
+        directory: ./chain-status
