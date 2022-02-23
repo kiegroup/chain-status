@@ -7,7 +7,7 @@ function filterPullRequests(
   pullRequests,
   baseBranchesToFilter
 ) {
-  console.log("filterPullRequests", baseBranchesToFilter);
+  logger.debug("filterPullRequests", baseBranchesToFilter);
   if (baseBranchesToFilter && baseBranchesToFilter.length) {
     const baseBranchesToFilterMapped = baseBranchesToFilter.map(baseBranch =>
       getBaseBranch(

@@ -10,8 +10,8 @@ const start = async () => {
       ? core.getInput("output-folder-path")
       : __dirname,
     token: getProcessEnvVariable("GITHUB_TOKEN", false),
-    baseBranchFilter: core.getInput("baseBranchFilter")
-      ? core.getInput("baseBranchFilter").split(",")
+    baseBranchFilter: core.getInput("base-branch-filter")
+      ? core.getInput("base-branch-filter").split(",")
       : [],
     debug: core.getInput("logger-level") === "debug",
     title: core.getInput("title"),
