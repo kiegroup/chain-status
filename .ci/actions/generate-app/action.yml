@@ -1,6 +1,9 @@
 name: 'Generate Chain Status'
 description: 'Executes chain-status webpage generation'
 inputs:
+  github-token:
+    description: "the github token"
+    required: true
   definition-file:
     description: 'The `definition-file` input for the build-chain'
     required: true
