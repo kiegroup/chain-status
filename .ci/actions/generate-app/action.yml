@@ -39,6 +39,13 @@ runs:
       with:
         repository: Ginxo/chain-status
         path: chain-status
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
+        registry-url: https://registry.npmjs.org/
+    - run: yarn
+      shell: bash
+      working-directory: ./chain-status
     - run: yarn predeploy
       shell: bash
       working-directory: ./chain-status
