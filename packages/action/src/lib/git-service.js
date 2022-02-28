@@ -137,10 +137,47 @@ const getRefStatuses = async (
   }
 };
 
+const listBranches = async (
+  project,
+  octokit,
+  options = { page: 1, per_page: 100 }
+) => {
+  logger.info(
+    `Requesting branches for ${project}. https://api.github.com/repos/${project}/branches`
+  );
+  try {
+    const result = [];
+    const { status, data } = await octokit.repos.listBranches({
+      ...getOwnerProject(project),
+      ...options
+    });
+
+    if (status === 200 && data && data.length > 0) {
+      result.push(...data);
+      if (data.length === options.per_page) {
+        result.push(
+          ...(await getChecks(project, octokit, {
+            ...options,
+            page: ++options.page
+          }))
+        );
+      }
+    }
+    return result;
+  } catch (e) {
+    logger.error(
+      `Error requesting list of branches for ${project}. https://api.github.com/repos/${project}/branches`,
+      e
+    );
+    throw e;
+  }
+};
+
 module.exports = {
   getDefaultBranch,
   getRepository,
   getPullRequests,
   getChecks,
-  getRefStatuses
+  getRefStatuses,
+  listBranches
 };

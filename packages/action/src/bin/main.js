@@ -8,7 +8,8 @@ const {
   getPullRequests,
   getChecks,
   getRepository,
-  getRefStatuses
+  getRefStatuses,
+  listBranches
 } = require("../lib/git-service");
 const { ClientError } = require("../lib/common");
 const { filterPullRequests } = require("../utils/pullrequest-utils");
@@ -62,15 +63,6 @@ const loadChecks = async (node, sha, octokit) => {
   const statuses = (await getRefStatuses(node.project, sha, octokit)).map(
     mapStatus
   );
-  // if (
-  //   node.project === "kiegroup/droolsjbpm-build-bootstrap" &&
-  //   statuses &&
-  //   statuses.length
-  // ) {
-  //   // logger.debug("checks", ref, checks);
-  //   logger.debug("statuses", ref, statuses);
-  //   process.exit(1);
-  // }
   return [...checks, ...statuses];
 };
 
@@ -143,6 +135,18 @@ const saveFiles = (data, outputFolderPath, extesion = "json") => {
   fs.writeFileSync(latestFilePath, data);
 };
 
+async function mainProjectBranches(project, octokit, baseBranchFilter) {
+  const repoBranches = await (await listBranches(project, octokit))
+    .map(branch => branch.name)
+    .filter(branchName =>
+      baseBranchFilter.find(baseBranch =>
+        new RegExp(baseBranch).test(branchName)
+      )
+    );
+  logger.debug("Repo Branches", repoBranches);
+  return repoBranches;
+}
+
 async function main(args) {
   logger.level = args.debug ? "debug" : "info";
   logger.debug("args", args);
@@ -155,6 +159,11 @@ async function main(args) {
   if (!orderedList || !orderedList.length) {
     throw new ClientError("No projects on the definition file");
   }
+  const baseBranchFilter = await mainProjectBranches(
+    orderedList[0].project,
+    octokit,
+    args.baseBranchFilter
+  );
 
   const pullRequestInformation = await Promise.all(
     orderedList.map(async node => {
@@ -169,7 +178,7 @@ async function main(args) {
               page: 1,
               per_page: 100
             }),
-            args.baseBranchFilter
+            baseBranchFilter
           ),
           octokit
         );
