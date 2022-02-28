@@ -17,7 +17,7 @@ function getArgumentsObject() {
     .option("--token <token>", "the github token", process.env["GITHUB_TOKEN"])
     .option(
       "--baseBranchFilter <branch...>",
-      "a list of base branches to filter pull requests from",
+      "a list of base branches RegEx to filter pull requests from",
       []
     )
     .option("-d, --debug", "to enable debug logging mode.", undefined)

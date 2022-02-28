@@ -7,27 +7,35 @@ function filterPullRequests(
   pullRequests,
   baseBranchesToFilter
 ) {
-  logger.debug("filterPullRequests", baseBranchesToFilter);
+  logger.debug(
+    "filterPullRequests",
+    node.project,
+    node.mapping,
+    baseBranchesToFilter
+  );
   if (baseBranchesToFilter && baseBranchesToFilter.length) {
-    const baseBranchesToFilterMapped = baseBranchesToFilter.map(baseBranch =>
-      getBaseBranch(
+    const baseBranchesToFilterMapped = baseBranchesToFilter.map(baseBranch => {
+      process.env.GITHUB_BASE_REF = baseBranch;
+      logger.debug("MAPPING", node.mapping);
+      return getBaseBranch(
         nodeTriggeringTheJob.project,
         nodeTriggeringTheJob.mapping,
         node.project,
         node.mapping,
         baseBranch
-      )
-    );
+      );
+    });
 
-    logger.debug("baseBranchesToFilterMapped", baseBranchesToFilterMapped);
     const result = pullRequests.filter(pr =>
       baseBranchesToFilterMapped.includes(pr.base.ref)
     );
     logger.debug(
       "baseBranchesToFilterMapped",
+      node.project,
       baseBranchesToFilterMapped,
       pullRequests.length,
-      result.length
+      result.length,
+      new Set(pullRequests.map(pr => pr.base.ref))
     );
     return result;
   } else {
