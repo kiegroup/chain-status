@@ -1,4 +1,4 @@
-const { getBaseBranch } = require("@kie/build-chain-configuration-reader");
+const { getBaseMappingInfo } = require("@kie/build-chain-configuration-reader");
 const { logger } = require("../lib/logger");
 
 function filterPullRequests(
@@ -15,15 +15,34 @@ function filterPullRequests(
   );
   if (baseBranchesToFilter && baseBranchesToFilter.length) {
     const baseBranchesToFilterMapped = baseBranchesToFilter.map(baseBranch => {
-      process.env.GITHUB_BASE_REF = baseBranch;
-      logger.debug("MAPPING", node.mapping);
-      return getBaseBranch(
+      const baseMappingInfo = getBaseMappingInfo(
         nodeTriggeringTheJob.project,
         nodeTriggeringTheJob.mapping,
         node.project,
         node.mapping,
         baseBranch
       );
+      logger.debug(`baseMappingInfo ${node.project}`, baseMappingInfo);
+      if (baseMappingInfo && baseMappingInfo.targetExpression) {
+        const expression = baseMappingInfo.targetExpression.replace(
+          "process.env.GITHUB_BASE_REF",
+          "baseBranch"
+        );
+        try {
+          baseMappingInfo.target = eval(expression);
+          logger.debug(
+            `Expression ${expression} evaluated`,
+            baseMappingInfo.target
+          );
+        } catch (e) {
+          logger.error(
+            `Error evaluating expression ${expression} for ${node.project}`,
+            e
+          );
+          throw e;
+        }
+      }
+      return baseMappingInfo ? baseMappingInfo.target : baseBranch;
     });
 
     const result = pullRequests.filter(pr =>

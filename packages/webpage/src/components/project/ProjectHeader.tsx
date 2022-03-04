@@ -2,10 +2,12 @@ import { LinkOutlined, NodeCollapseOutlined } from "@ant-design/icons";
 import { Button, Col, PageHeader, Row, Statistic, Tag } from "antd";
 import React, { Suspense } from "react";
 import { IProject } from "../../model/project.model";
-import { STATISTICS_STYLE } from "../../shared/constants";
+import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
 import Loading from "../shared/Loading";
 import StatisticDate from "../shared/StatisticDate";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
+import moment from "moment";
+
 const StatisticErrorIndexByPullRequest = React.lazy(
   () => import("../shared/StatisticErrorIndexByPullRequest")
 );
@@ -82,7 +84,9 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
           {props.project.updated_at ? (
             <Suspense fallback={<Loading size={16} />}>
               <StatisticDate
-                date={new Date(Date.parse(props.project.updated_at))}
+                date={moment(
+                  new Date(Date.parse(props.project.updated_at))
+                ).format(APP_TIMESTAMP_FORMAT)}
                 text="Since Last Updating"
               />
             </Suspense>

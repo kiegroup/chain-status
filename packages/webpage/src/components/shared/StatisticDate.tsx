@@ -3,7 +3,7 @@ import React from "react";
 import { STATISTICS_STYLE } from "../../shared/constants";
 
 interface IStatisticDate {
-  date: Date;
+  date: string;
   text: string;
 }
 export const StatisticDate: React.FC<IStatisticDate> = props => {

@@ -18,7 +18,7 @@ inputs:
     description: "the path where the file should be stored"
     required: false
   base-branch-filter:
-    description: "A comma separated list of base branches to be filtered. Like `main,7.59.x,8.x`"
+    description: "A comma separated list of base branches RegEx to be filtered. Like `main,7.59.x,8.x` or `main,^7.*`"
     required: false
   created-by:
     description: "The user/machine/whatever that regenerates the report"

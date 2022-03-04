@@ -26,3 +26,6 @@ export const STATUS_MARGIN_TOP = 198;
 export const STATUS_MARGIN_RIGHT = STATUS_MARGIN_TOP + GENERAL_MARGIN / 2;
 
 export const STATISTICS_STYLE = { fontSize: 18 };
+
+export const APP_TIMESTAMP_FORMAT = 'YYYY/MM/DD HH:mm:ss';
+
