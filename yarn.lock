@@ -1635,10 +1635,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@kie/build-chain-configuration-reader@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@kie/build-chain-configuration-reader/-/build-chain-configuration-reader-2.2.5.tgz#1aecd9a81eeac8108dda80c5210d31faf91d1ad2"
-  integrity sha512-oA6XjOWMAqihVxcPztTg+J7mpM5TJOHAQkqFI+AnvyYWOXahYWyPUW99JgXX7j/EBschrYY77Alu125q93bKJA==
+"@kie/build-chain-configuration-reader@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@kie/build-chain-configuration-reader/-/build-chain-configuration-reader-2.2.6.tgz#4b979301f9d00bc05a3766a1117598742683d98c"
+  integrity sha512-OLpTu6rxh+Wq15Qq9C+y1UWpEjSm8mBR0oyJfJDXhMFqI9ZX8W8FaEB3yUEMMkrVCipYhMgFbTf748EfCEibww==
   dependencies:
     "@actions/artifact" "^0.3.5"
     "@actions/core" "^1.1.3"
