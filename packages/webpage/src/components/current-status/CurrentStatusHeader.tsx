@@ -21,11 +21,12 @@ import {
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../../service";
-import { STATISTICS_STYLE } from "../../shared/constants";
+import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
 import Loading from "../shared/Loading";
 import StatisticDate from "../shared/StatisticDate";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
 import * as dataService from "../../service/data.service";
+import moment from "moment";
 
 const ProjectStatusInformation = React.lazy(
   () => import("../shared/ProjectStatusInformation")
@@ -171,11 +172,13 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
           <Col>
             <Suspense fallback={<Loading size={16} />}>
               <StatisticDate
-                date={
-                  data.metadata?.date
-                    ? new Date(Date.parse(data.metadata?.date))
-                    : new Date()
-                }
+                date={moment(
+                  new Date(
+                    data.metadata?.date
+                      ? Date.parse(data.metadata?.date)
+                      : new Date()
+                  )
+                ).format(APP_TIMESTAMP_FORMAT)}
                 text="Creation Date"
               />
             </Suspense>
@@ -183,7 +186,7 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
           <Col>
             <Suspense fallback={<Loading size={16} />}>
               <StatisticDate
-                date={latestLoad}
+                date={moment(latestLoad).format(APP_TIMESTAMP_FORMAT)}
                 text="Latest Load"
               />
             </Suspense>

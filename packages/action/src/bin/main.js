@@ -143,7 +143,7 @@ async function mainProjectBranches(project, octokit, baseBranchFilter) {
         new RegExp(baseBranch).test(branchName)
       )
     );
-  logger.debug("Repo Branches", repoBranches);
+  logger.debug(`Main Project ${project} branches`, repoBranches);
   return repoBranches;
 }
 
@@ -159,11 +159,6 @@ async function main(args) {
   if (!orderedList || !orderedList.length) {
     throw new ClientError("No projects on the definition file");
   }
-  const baseBranchFilter = await mainProjectBranches(
-    orderedList[0].project,
-    octokit,
-    args.baseBranchFilter
-  );
 
   const pullRequestInformation = await Promise.all(
     orderedList.map(async node => {
@@ -178,7 +173,11 @@ async function main(args) {
               page: 1,
               per_page: 100
             }),
-            baseBranchFilter
+            await mainProjectBranches(
+              orderedList[0].project,
+              octokit,
+              args.baseBranchFilter
+            )
           ),
           octokit
         );

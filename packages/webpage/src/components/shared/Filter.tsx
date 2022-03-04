@@ -49,7 +49,7 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
   );
 
   const [form] = Form.useForm();
-  
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onFilter = useCallback(
     debounce((values: IFilter) => dispatch(filterService.filter(values)), 400),
@@ -228,11 +228,20 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
               key="1"
               extra={
                 <Form.Item name="showZeroPullRequests">
-                  <Switch
-                    checkedChildren="Show 0 Pull Requests"
-                    unCheckedChildren="Hide 0 Pull Requests"
-                    defaultChecked
-                  />
+                  <span
+                    onClick={e => {
+                      onFilter({
+                        showZeroPullRequests: !filter.showZeroPullRequests
+                      });
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Switch
+                      checkedChildren="Show 0 Pull Requests"
+                      unCheckedChildren="Hide 0 Pull Requests"
+                      defaultChecked
+                    />
+                  </span>
                 </Form.Item>
               }
             >
