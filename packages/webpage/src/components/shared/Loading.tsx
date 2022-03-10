@@ -1,15 +1,17 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
-import React from "react";
+import React, { CSSProperties } from "react";
 
 interface ILoading {
-  size?: number;
+  style?: CSSProperties | undefined;
 }
-export const Loading: React.FC<ILoading> = props => {
+export const Loading: React.FC<
+  ILoading & React.RefAttributes<HTMLDivElement>
+> = props => {
   return (
     <Spin
       indicator={
-        <LoadingOutlined style={{ fontSize: props.size ?? 24 }} spin />
+        <LoadingOutlined style={{ fontSize: 24, ...props.style }} spin />
       }
     />
   );

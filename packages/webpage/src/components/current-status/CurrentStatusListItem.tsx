@@ -78,7 +78,7 @@ export const CurrentStatusListItem: React.FC<
           </Tooltip>,
           <Suspense
             key="affected-branches-statistics"
-            fallback={<Loading size={16} />}
+            fallback={<Loading style={{ fontSize: 16 }} />}
           >
             <PullRequestStatistics pullRequests={props.project.pullRequests} />
           </Suspense>

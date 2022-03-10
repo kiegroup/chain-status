@@ -27,6 +27,7 @@ import StatisticDate from "../shared/StatisticDate";
 import StatisticErrorIndex from "../shared/StatisticErrorIndex";
 import * as dataService from "../../service/data.service";
 import moment from "moment";
+import { IPullRequest } from "../../model/pullrequest.model";
 
 const ProjectStatusInformation = React.lazy(
   () => import("../shared/ProjectStatusInformation")
@@ -44,14 +45,26 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
   const data = useSelector((store: IRootState) => store.filter.filteredData);
   const loading = useSelector((store: IRootState) => store.data.loading);
   const [latestLoad, setLatestLoad] = useState<Date>(new Date());
+  const [totalPullRequests, setTotalPullRequests] = useState<IPullRequest[]>(
+    []
+  );
+
+  const selectedProduct = useSelector(
+    (store: IRootState) => store.product.selectedProduct
+  );
 
   const getData = () => {
-    dispatch(dataService.loadData());
+    if (selectedProduct?.folder) {
+      dispatch(dataService.loadData(selectedProduct.folder));
+    }
   };
 
   useEffect(() => {
     if (data?.projects) {
       setLatestLoad(new Date());
+      setTotalPullRequests(data.projects.flatMap(p => p.pullRequests));
+    } else {
+      setTotalPullRequests([]);
     }
   }, [data]);
 
@@ -75,7 +88,7 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
               {data.metadata?.title}
             </Typography.Title>
           ) : (
-            <Skeleton.Input style={{ width: 200 }} />
+            <Skeleton.Input style={{ width: 200, height: 55.5 }} />
           )
         }
         subTitle={
@@ -151,16 +164,14 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
             <Statistic
               title="Number of Pull Requests"
               prefix={<PullRequestOutlined />}
-              value={data.projects.flatMap(p => p.pullRequests).length}
+              value={totalPullRequests.length}
               valueStyle={STATISTICS_STYLE}
             />
           </Col>
           <Col>
             <StatisticErrorIndex
               title="Error Index"
-              pullRequests={data.projects.flatMap(
-                project => project.pullRequests
-              )}
+              pullRequests={totalPullRequests}
               placement="bottom"
               popoverContent={
                 <Suspense fallback={<Loading />}>
@@ -170,21 +181,21 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
             />
           </Col>
           <Col>
-            <Suspense fallback={<Loading size={16} />}>
+            <Suspense fallback={<Loading style={{ fontSize: 16 }} />}>
               <StatisticDate
-                date={moment(
-                  new Date(
-                    data.metadata?.date
-                      ? Date.parse(data.metadata?.date)
-                      : new Date()
-                  )
-                ).format(APP_TIMESTAMP_FORMAT)}
+                date={
+                  data.metadata?.date
+                    ? moment(new Date(Date.parse(data.metadata?.date))).format(
+                        APP_TIMESTAMP_FORMAT
+                      )
+                    : undefined
+                }
                 text="Creation Date"
               />
             </Suspense>
           </Col>
           <Col>
-            <Suspense fallback={<Loading size={16} />}>
+            <Suspense fallback={<Loading style={{ fontSize: 16 }} />}>
               <StatisticDate
                 date={moment(latestLoad).format(APP_TIMESTAMP_FORMAT)}
                 text="Latest Load"

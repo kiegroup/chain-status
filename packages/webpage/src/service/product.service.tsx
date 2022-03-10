@@ -1,26 +1,33 @@
-import { IData, defaultValue as defaultValueData } from "../model/data.model";
+import { IProduct, defaultValue } from "../model/product.model";
+import { IProjectStatus } from "../model/project-status.model";
 import { REQUEST, SUCCESS, FAILURE } from "./action-type.util";
 
 export const ACTION_TYPES = {
-  LOAD_DATA: "data/LOAD_DATA",
-  RESET: "data/RESET"
+  LOAD_DATA: "product/LOAD_DATA",
+  SELECT_PRODUCT: "product/SELECT_PRODUCT",
+  RESET: "product/RESET"
 };
 
 interface IInitialState {
-  data: IData;
+  data: IProduct;
   loading: boolean;
-  errorMessage?: string;
+  errorMessage?: boolean;
+  selectedProduct?: IProjectStatus;
 }
 const initialState: IInitialState = {
-  data: defaultValueData,
+  data: defaultValue,
   loading: false,
-  errorMessage: undefined
+  errorMessage: undefined,
+  selectedProduct: undefined
 };
 
-export type DataState = Readonly<typeof initialState>;
+export type ProductState = Readonly<typeof initialState>;
 
 // Reducer
-const handle = (state: DataState = initialState, action: any): DataState => {
+const handle = (
+  state: ProductState = initialState,
+  action: any
+): ProductState => {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.LOAD_DATA):
       return {
@@ -39,6 +46,11 @@ const handle = (state: DataState = initialState, action: any): DataState => {
         loading: false,
         data: action.payload
       };
+    case ACTION_TYPES.SELECT_PRODUCT:
+      return {
+        ...state,
+        selectedProduct: action.payload
+      };
     case ACTION_TYPES.RESET:
       return {
         ...initialState
@@ -49,14 +61,19 @@ const handle = (state: DataState = initialState, action: any): DataState => {
 };
 
 // Actions
-export const loadData = (file: string) => ({
+export const loadData = () => ({
   type: ACTION_TYPES.LOAD_DATA,
-  payload: fetch(`${process.env.PUBLIC_URL}/data/${file}`, {
+  payload: fetch(`${process.env.PUBLIC_URL}/data/product.json`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json"
     }
   }).then(response => response.json())
+});
+
+export const selectProduct = (product: IProjectStatus) => ({
+  type: ACTION_TYPES.SELECT_PRODUCT,
+  payload: product
 });
 
 export const reset = () => ({

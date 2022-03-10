@@ -82,7 +82,7 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
         </Col>
         <Col>
           {props.project.updated_at ? (
-            <Suspense fallback={<Loading size={16} />}>
+            <Suspense fallback={<Loading style={{ fontSize: 16 }} />}>
               <StatisticDate
                 date={moment(
                   new Date(Date.parse(props.project.updated_at))

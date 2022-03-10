@@ -14,7 +14,7 @@ interface IStaticErrorIndex {
   placement?: TooltipPlacement;
 }
 export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
-  const [errorIndex, setErrorIndex] = useState<number>(0);
+  const [errorIndex, setErrorIndex] = useState<number | undefined>(undefined);
 
   const fontSizeStyle = props.size
     ? { fontSize: props.size }
@@ -23,6 +23,8 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
   useEffect(() => {
     if (props.pullRequests?.length) {
       setErrorIndex(calculateErrorIndex(props.pullRequests));
+    } else {
+      setErrorIndex(undefined);
     }
   }, [props.pullRequests]);
 
@@ -39,7 +41,7 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
         precision={2}
         valueStyle={{
           ...fontSizeStyle,
-          color: errorIndex <= 20 ? "#3f8600" : "#cf1322",
+          color: errorIndex && errorIndex <= 20 ? "#3f8600" : "#cf1322",
           fontWeight: "bold"
         }}
         suffix="%"
@@ -52,7 +54,7 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
       precision={2}
       valueStyle={{
         ...fontSizeStyle,
-        color: errorIndex <= 20 ? "#3f8600" : "#cf1322",
+        color: errorIndex && errorIndex <= 20 ? "#3f8600" : "#cf1322",
         fontWeight: "bold"
       }}
       suffix="%"
