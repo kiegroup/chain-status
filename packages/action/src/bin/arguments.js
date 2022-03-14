@@ -32,7 +32,7 @@ function getArgumentsObject() {
       undefined
     )
     .option("-ju, --jenkinsUrl <url>", "The jenkins URL", undefined)
-    .option("-job, --jobUrl <url>", "The jenkins job URL", undefined)
+    .option("-job, --jobUrl <url...>", "A list of jenkins job URLs", undefined)
     .option("-jf, --jobFilter <regex>", "The regex to filter jobs", undefined)
     .option(
       "-cert, --certFilePath <filePath>",

@@ -1,22 +1,19 @@
 const { logger } = require("../logger");
 const { getJobs, genericRequest } = require("./jenkins.service");
 const { saveFiles } = require("../../utils/file.utils");
+const assert = require("assert");
 
-const getBuilds = async (builds, jobUrl, jenkinsUrl, certFilePath) => {
-  logger.info(`Getting builds from ${jobUrl}`);
+const getBuilds = async (builds, certFilePath) => {
   return await Promise.all(
     builds.map(async build => {
-      const buildInfo = await genericRequest(
-        jenkinsUrl,
-        `${jobUrl}/${build.number}`,
-        certFilePath
-      );
+      logger.info(`Getting builds from ${build.url}`);
+      const buildInfo = await genericRequest(build.url, certFilePath);
       return {
+        id: buildInfo.number,
         building: buildInfo.building,
+        result: buildInfo.result,
         duration: buildInfo.duration,
         estimatedDuration: buildInfo.estimatedDuration,
-        id: buildInfo.number,
-        result: buildInfo.result,
         date: buildInfo.timestamp
       };
     })
@@ -32,37 +29,52 @@ async function main(
   metadata,
   isDebug
 ) {
-  const jobs = await getJobs(jenkinsUrl, jobUrl, certFilePath);
+  assert(jenkinsUrl, "The jenkinsUrl is not defined");
+  assert(jobUrl || jobUrl.length === 0, "The jobUrl is not defined");
+
+  const jobs = await jobUrl.reduce(async (accP, curr) => {
+    const acc = await accP;
+    logger.info(`Getting jobs for ${curr}`);
+    const currJobs = await getJobs(jenkinsUrl, curr, certFilePath);
+    if (!currJobs) {
+      logger.warn(
+        `The are no jobs for ${curr}. Are you sure you defined a proper job URL?`
+      );
+      return acc;
+    }
+    logger.info(`${curr.length} Jobs for ${curr} already retrieved`);
+    return [...acc, ...currJobs];
+  }, Promise.resolve([]));
+
   const jobInfos = await Promise.all(
     jobs
       .filter(job => !jobFilter || new RegExp(jobFilter).test(job.name))
-      .map(
-        async job =>
-          await genericRequest(
-            jenkinsUrl,
-            `${jobUrl}/job/${job.name}`,
-            certFilePath
-          )
-      )
+      .map(async job => {
+        logger.info("Getting job info for", job.url);
+        return await genericRequest(job.url, certFilePath);
+      })
   );
   const result = await Promise.all(
     jobInfos.map(async jobInfo => ({
+      id: jobInfo.name,
       name: jobInfo.displayName,
       description: jobInfo.description,
       url: jobInfo.url,
       color: jobInfo.color,
-      builds: await getBuilds(
-        jobInfo.builds,
-        `${jobUrl}/job/${jobInfo.name}`,
-        jenkinsUrl,
-        certFilePath
-      )
+      builds: await getBuilds(jobInfo.builds, certFilePath)
     }))
   );
   logger.debug("result", result);
 
   return saveFiles(
-    JSON.stringify({ metadata, jobs: result }, null, isDebug ? 2 : 0),
+    JSON.stringify(
+      {
+        metadata,
+        jobs: result.filter(job => job.builds && job.builds.length > 0)
+      },
+      null,
+      isDebug ? 2 : 0
+    ),
     outputFolderPath
   );
 }
