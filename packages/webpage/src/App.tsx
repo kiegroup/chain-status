@@ -19,7 +19,6 @@ const App = (props: IApp) => {
   return (
     <StoreProvider store={store}>
       <Router basename={basename}>
-        {/* <MenuComponent /> */}
         <BackTop key="back-to-top" />
         <RoutesTree />
       </Router>

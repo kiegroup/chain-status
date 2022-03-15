@@ -3,7 +3,7 @@ const { Command } = require("commander");
 function getArgumentsObject() {
   const program = new Command();
   program
-    .requiredOption(
+    .option(
       "-df, --definition-file <filePath or URL>",
       "Filesystem path or URL to the definition file."
     )
@@ -31,6 +31,15 @@ function getArgumentsObject() {
       "The job's URL where the repor is generated",
       undefined
     )
+    .option("-ju, --jenkinsUrl <url>", "The jenkins URL", undefined)
+    .option("-job, --jobUrl <url...>", "A list of jenkins job URLs", undefined)
+    .option("-jf, --jobFilter <regex>", "The regex to filter jobs", undefined)
+    .option(
+      "-cert, --certFilePath <filePath>",
+      "The jenkins cert file",
+      undefined
+    )
+    .option("--order <order>", "The order on the menu", 1000)
     .parse();
 
   return { ...program.opts() };

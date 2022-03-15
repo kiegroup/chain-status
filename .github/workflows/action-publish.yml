@@ -1,0 +1,23 @@
+name: Publish Action
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/action/package.json"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: yarn
+      - run: yarn publish --access public
+        working-directory: packages/action/      
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

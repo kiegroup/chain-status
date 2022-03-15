@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { IPullRequest } from "../../model/pullrequest.model";
 import { IPullRequestInfo } from "../../model/pullrequestinfo.model";
 import { IRootState } from "../../service";
-const PullRequestElement = React.lazy(() => import("./PullRequestElement"));
+const ListItem = React.lazy(() => import("./ListItem"));
 
 interface ICrossPullRequestList {
   headBranch?: IPullRequestInfo;
@@ -15,7 +15,7 @@ interface ICrossPullRequestList {
 export const CrossPullRequestList: React.FC<ICrossPullRequestList> = props => {
   const [pullRequestList, setPullRequestList] = useState<IPullRequest[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const data = useSelector((store: IRootState) => store.filter.filteredData);
+  const data = useSelector((store: IRootState) => store.pullrequestFilter.filteredData);
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +43,7 @@ export const CrossPullRequestList: React.FC<ICrossPullRequestList> = props => {
       dataSource={pullRequestList}
       loading={loading}
       renderItem={pullRequest => (
-        <PullRequestElement
+        <ListItem
           key={pullRequest.number}
           pullRequest={pullRequest}
           hideMetadata={props.hideMetadata}

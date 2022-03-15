@@ -1,26 +1,29 @@
-import { IData, defaultValue as defaultValueData } from "../model/data.model";
+import {
+  IJobsData,
+  defaultValue as defaultValueJobsData
+} from "../model/jobs-data.model";
 import { REQUEST, SUCCESS, FAILURE } from "./action-type.util";
 
 export const ACTION_TYPES = {
-  LOAD_DATA: "data/LOAD_DATA",
-  RESET: "data/RESET"
+  LOAD_DATA: "jobsdata/LOAD_DATA",
+  RESET: "jobsdata/RESET"
 };
 
 interface IInitialState {
-  data: IData;
+  data: IJobsData;
   loading: boolean;
   errorMessage?: string;
 }
 const initialState: IInitialState = {
-  data: defaultValueData,
+  data: defaultValueJobsData,
   loading: false,
   errorMessage: undefined
 };
 
-export type DataState = Readonly<typeof initialState>;
+export type JobsDataState = Readonly<typeof initialState>;
 
 // Reducer
-const handle = (state: DataState = initialState, action: any): DataState => {
+const handle = (state: JobsDataState = initialState, action: any): JobsDataState => {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.LOAD_DATA):
       return {
