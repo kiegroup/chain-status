@@ -40,6 +40,6 @@ runs:
       working-directory: ./chain-status
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        npx gh-pages -d packages/webpage/build -u "github-actions-bot <support+actions@github.com>" b ${{ inputs.gh-pages-branch }} -r https://github.com/${GITHUB_REPOSITORY}
+        npx gh-pages -d packages/webpage/build -u "github-actions-bot <support+actions@github.com>" b ${{ inputs.gh-pages-branch }}
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
