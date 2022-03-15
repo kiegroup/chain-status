@@ -5,12 +5,12 @@ const PrettyMiliseconds = React.lazy(
   () => import("../shared/PrettyMiliseconds")
 );
 
-interface IPullRequestDescription {
+interface IDescription {
   pullRequest: IPullRequest;
 }
 
-export const PullRequestDescription: React.FC<
-  IPullRequestDescription
+export const Description: React.FC<
+  IDescription
 > = props => {
   return (
     <>
@@ -41,4 +41,4 @@ export const PullRequestDescription: React.FC<
   );
 };
 
-export default PullRequestDescription;
+export default Description;

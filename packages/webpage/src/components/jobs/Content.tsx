@@ -2,16 +2,17 @@ import { Layout } from "antd";
 import React, { Suspense } from "react";
 import { STATUS_MARGIN_RIGHT, STATUS_MARGIN_TOP } from "../../shared/constants";
 import Loading from "../shared/Loading";
-import CurrentStatusMenu from "./CurrentStatusMenu";
+import Menu from "./Menu";
 
-const CurrentStatusList = React.lazy(() => import("./CurrentStatusList"));
-interface ICurrentStatusContent {}
-export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
+const List = React.lazy(() => import("./List"));
+interface IContent {
+}
+export const Content: React.FC<IContent> = props => {
   return (
     <Layout hasSider>
       <Layout.Content style={{ marginRight: STATUS_MARGIN_RIGHT }}>
         <Suspense fallback={<Loading />}>
-          <CurrentStatusList />
+          <List />
         </Suspense>
       </Layout.Content>
 
@@ -25,10 +26,10 @@ export const CurrentStatusContent: React.FC<ICurrentStatusContent> = props => {
         }}
         theme="light"
       >
-        <CurrentStatusMenu />
+        <Menu />
       </Layout.Sider>
     </Layout>
   );
 };
 
-export default CurrentStatusContent;
+export default Content;

@@ -2,7 +2,7 @@ import { NodeCollapseOutlined } from "@ant-design/icons";
 import { Card, List, Tag, Tooltip, Typography } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProjectContainer from "../../components/project/ProjectContainer";
+import Container from "./Container";
 import { IProject } from "../../model/project.model";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
 import { alphabeticallySort } from "../../utils/common.utils";
@@ -13,15 +13,15 @@ import Loading from "../shared/Loading";
 import * as layoutService from "../../service/layout.service";
 import { IRootState } from "../../service";
 
-interface ICurrentStatusListItem {
+interface IListItem {
   project: IProject;
 }
-export const CurrentStatusListItem: React.FC<
-  ICurrentStatusListItem
+export const ListItem: React.FC<
+  IListItem
 > = props => {
   const dispatch = useDispatch();
   const showZeroPullRequests = useSelector(
-    (store: IRootState) => store.filter.filter.showZeroPullRequests
+    (store: IRootState) => store.pullrequestFilter.filter.showZeroPullRequests
   );
   const [showItem, setShowItem] = useState<boolean>(true);
 
@@ -90,10 +90,10 @@ export const CurrentStatusListItem: React.FC<
           marginBottom: 0
         }}
       >
-        <ProjectContainer project={props.project} />
+        <Container project={props.project} />
       </Card>
     </List.Item>
   ) : null;
 };
 
-export default CurrentStatusListItem;
+export default ListItem;

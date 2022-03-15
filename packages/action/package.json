@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Ginxo/chain-status#readme",
   "private": false,
   "bin": {
-    "chain-status": "src/bin/cli.js"
+    "build-chain-status-report": "src/bin/cli.js"
   },
   "scripts": {
     "test": "jest",

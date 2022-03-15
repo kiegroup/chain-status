@@ -1,8 +1,8 @@
-import { UnorderedListOutlined, ToolOutlined } from "@ant-design/icons";
+import { ToolOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IRootState } from "../../service";
 import * as productService from "../../service/product.service";
 import Loading from "../shared/Loading";
@@ -38,17 +38,23 @@ export const MenuLayout: React.FC<IMenuLayout> = props => {
         ? productData.jobs.map(element => ({
             key: `/job/${element.id}`,
             name: element.name ?? "",
-            icon: <UnorderedListOutlined />
+            icon: <UnorderedListOutlined />,
+            order: element.order
           }))
         : [];
       const projectStatusElements = productData?.projectStatuses
         ? productData.projectStatuses.map(element => ({
             key: `/status/${element.id}`,
             name: element.name ?? "",
-            icon: <ToolOutlined />
+            icon: <ToolOutlined />,
+            order: element.order
           }))
         : [];
-      setMenuElements([...jobElements, ...projectStatusElements]);
+      setMenuElements(
+        [...jobElements, ...projectStatusElements].sort(
+          (a, b) => a.order - b.order
+        )
+      );
     }
   }, [productData?.jobs, productData?.projectStatuses]);
 

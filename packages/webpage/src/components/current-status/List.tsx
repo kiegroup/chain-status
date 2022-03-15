@@ -1,28 +1,28 @@
-import { List, Skeleton } from "antd";
+import { List as AntdList, Skeleton } from "antd";
 import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../service";
 import Loading from "../shared/Loading";
-const CurrentStatusListItem = React.lazy(
-  () => import("./CurrentStatusListItem")
+const ListItem = React.lazy(
+  () => import("./ListItem")
 );
-interface ICurrentStatusList {}
+interface IList {}
 
-export const CurrentStatusList: React.FC<ICurrentStatusList> = props => {
-  const data = useSelector((store: IRootState) => store.filter.filteredData);
+export const List: React.FC<IList> = props => {
+  const data = useSelector((store: IRootState) => store.pullrequestFilter.filteredData);
   const loading = useSelector((store: IRootState) => store.data.loading);
 
   return loading ? (
     <Skeleton />
   ) : (
     <Suspense fallback={<Loading />}>
-      <List
+      <AntdList
         style={{ minHeight: 700 }}
         dataSource={data.projects}
-        renderItem={project => <CurrentStatusListItem project={project} />}
+        renderItem={project => <ListItem project={project} />}
       />
     </Suspense>
   );
 };
 
-export default CurrentStatusList;
+export default List;

@@ -20,6 +20,7 @@ const generateProductFile = (
   productFilePath,
   id,
   name,
+  order,
   key = "projectStatuses"
 ) => {
   const content = fs.existsSync(productFilePath)
@@ -35,6 +36,7 @@ const generateProductFile = (
   projectStatusElement.id = id;
   projectStatusElement.name = name;
   projectStatusElement.folder = id;
+  projectStatusElement.order = order;
   if (!existingStatus) {
     content[key] = [...content[key], projectStatusElement];
   }
@@ -65,6 +67,7 @@ async function main(args) {
       path.join(args.outputFolderPath, "product.json"),
       folderTitle,
       args.title,
+      args.order,
       "jobs"
     );
   } else {
@@ -80,6 +83,7 @@ async function main(args) {
       path.join(args.outputFolderPath, "product.json"),
       folderTitle,
       args.title,
+      args.order,
       "projectStatuses"
     );
   }

@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 
-export interface IFilter {
+export interface IPullRequestFilter {
   search?: string;
   base?: string[];
   head?: string[];
@@ -10,4 +10,4 @@ export interface IFilter {
   showZeroPullRequests?: boolean;
 }
 
-export const defaultValue: Readonly<IFilter> = {};
+export const defaultValue: Readonly<IPullRequestFilter> = {};

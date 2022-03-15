@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { List as AntdList } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IProject } from "../../model/project.model";
@@ -6,14 +6,14 @@ import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
 import { getProjectId } from "../../utils/id.utils";
 
-const PullRequestElement = React.lazy(() => import("./PullRequestElement"));
+const ListItem = React.lazy(() => import("./ListItem"));
 
-interface IPullRequestList {
+interface IList {
   pullRequests: IPullRequest[];
   project: IProject;
 }
 
-export const PullRequestList: React.FC<IPullRequestList> = props => {
+export const List: React.FC<IList> = props => {
   const [loading, setLoading] = useState<boolean>(true);
   const sectionsShown = useSelector(
     (store: IRootState) => store.layout.sectionsShown
@@ -27,15 +27,15 @@ export const PullRequestList: React.FC<IPullRequestList> = props => {
   }, [props.pullRequests, sectionsShown, sectionsShown.length, props.project]);
 
   return (
-    <Suspense fallback={<List header={<h3>Pull Request List</h3>} loading />}>
-      <List
+    <Suspense fallback={<AntdList header={<h3>Pull Request List</h3>} loading />}>
+      <AntdList
         header={<h3>Pull Request List</h3>}
         className="demo-loadmore-list"
         itemLayout="vertical"
         dataSource={props.pullRequests}
         // loading={loading}
         renderItem={pullRequest => (
-          <PullRequestElement
+          <ListItem
             key={pullRequest.number}
             pullRequest={pullRequest}
             project={props.project}
@@ -48,4 +48,4 @@ export const PullRequestList: React.FC<IPullRequestList> = props => {
   );
 };
 
-export default PullRequestList;
+export default List;

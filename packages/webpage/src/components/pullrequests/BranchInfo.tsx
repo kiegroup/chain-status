@@ -6,14 +6,14 @@ import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
 import * as layoutService from "../../service/layout.service";
 
-interface IPullRequestBranchInfo {
+interface IBranchInfo {
   pullRequest: IPullRequest;
 }
 
-export const PullRequestBranchInfo: React.FC<
-  IPullRequestBranchInfo
+export const BranchInfo: React.FC<
+  IBranchInfo
 > = props => {
-  const data = useSelector((store: IRootState) => store.filter.filteredData);
+  const data = useSelector((store: IRootState) => store.pullrequestFilter.filteredData);
   const dispatch = useDispatch();
   const openCrossPullRequest = () =>
     dispatch(layoutService.openHeadBranchDrawer(props.pullRequest.head));
@@ -55,4 +55,4 @@ export const PullRequestBranchInfo: React.FC<
   );
 };
 
-export default PullRequestBranchInfo;
+export default BranchInfo;

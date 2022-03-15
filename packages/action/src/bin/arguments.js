@@ -39,6 +39,7 @@ function getArgumentsObject() {
       "The jenkins cert file",
       undefined
     )
+    .option("--order <order>", "The order on the menu", 1000)
     .parse();
 
   return { ...program.opts() };

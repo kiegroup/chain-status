@@ -2,15 +2,15 @@ import { Col, Row, Typography } from "antd";
 import { TooltipPlacement } from "antd/lib/tooltip";
 import React from "react";
 import { IProject } from "../../model/project.model";
-import StatisticErrorIndex from "../shared/StatisticErrorIndex";
+import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
 import ProjectLink from "./ProjectLink";
 
-interface IStatisticErrorIndexByProject {
+interface IPullRequestStatisticErrorIndexByProject {
   projects: IProject[];
   placement?: TooltipPlacement;
 }
-export const StatisticErrorIndexByProject: React.FC<
-  IStatisticErrorIndexByProject
+export const PullRequestStatisticErrorIndexByProject: React.FC<
+  IPullRequestStatisticErrorIndexByProject
 > = props => {
   return (
     <>
@@ -22,7 +22,7 @@ export const StatisticErrorIndexByProject: React.FC<
             </Typography.Text>
           </Col>
           <Col flex="auto" style={{ textAlign: "end" }}>
-            <StatisticErrorIndex
+            <PullRequestStatisticErrorIndex
               pullRequests={project.pullRequests}
               size={12}
               placement={props.placement}
@@ -34,4 +34,4 @@ export const StatisticErrorIndexByProject: React.FC<
   );
 };
 
-export default StatisticErrorIndexByProject;
+export default PullRequestStatisticErrorIndexByProject;

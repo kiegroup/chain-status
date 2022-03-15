@@ -1,7 +1,7 @@
 import { Layout, Skeleton, Alert } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CurrentStatusContent from "../components/current-status/CurrentStatusContent";
+import Content from "../components/current-status/Content";
 import MenuLayout from "../components/layout/MenuLayout";
 import * as dataService from "../service/data.service";
 import * as productService from "../service/product.service";
@@ -13,8 +13,8 @@ import {
 } from "../shared/constants";
 import { useParams } from "react-router-dom";
 import { IRootState } from "../service";
-const CurrentStatusHeader = React.lazy(
-  () => import("../components/current-status/CurrentStatusHeader")
+const Header = React.lazy(
+  () => import("../components/current-status/Header")
 );
 const CrossPullRequestDrawer = React.lazy(
   () => import("../components/pullrequests/CrossPullRequestDrawer")
@@ -22,7 +22,7 @@ const CrossPullRequestDrawer = React.lazy(
 const ChecksDrawer = React.lazy(
   () => import("../components/checks/ChecksDrawer")
 );
-const FilterComponent = React.lazy(() => import("../components/shared/Filter"));
+const FilterComponent = React.lazy(() => import("../components/current-status/Filter"));
 interface ICurrentStatus {}
 
 export const CurrentStatus: React.FC<ICurrentStatus> = props => {
@@ -80,7 +80,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
           }}
         >
           <Suspense fallback={<Skeleton />}>
-            <CurrentStatusHeader />
+            <Header />
           </Suspense>
         </Layout.Header>
         <Layout.Content>
@@ -114,7 +114,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
                 </Suspense>
               </Layout.Header>
               <Layout.Content>
-                <CurrentStatusContent />
+                <Content />
                 <Suspense fallback={<></>}>
                   <CrossPullRequestDrawer />
                 </Suspense>

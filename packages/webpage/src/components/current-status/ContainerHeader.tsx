@@ -5,18 +5,18 @@ import { IProject } from "../../model/project.model";
 import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
 import Loading from "../shared/Loading";
 import StatisticDate from "../shared/StatisticDate";
-import StatisticErrorIndex from "../shared/StatisticErrorIndex";
+import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
 import moment from "moment";
 
-const StatisticErrorIndexByPullRequest = React.lazy(
-  () => import("../shared/StatisticErrorIndexByPullRequest")
+const PullRequestStatisticErrorIndexByPullRequest = React.lazy(
+  () => import("../shared/PullRequestStatisticErrorIndexByPullRequest")
 );
 
-interface IProjectHeader {
+interface IContainerHeader {
   project: IProject;
 }
 
-export const ProjectHeader: React.FC<IProjectHeader> = props => {
+export const ContainerHeader: React.FC<IContainerHeader> = props => {
   return (
     <PageHeader
       className="site-page-header"
@@ -53,14 +53,14 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
           />
         </Col>
         <Col>
-          <StatisticErrorIndex
+          <PullRequestStatisticErrorIndex
             title="Error Index"
             pullRequests={props.project.pullRequests}
             placement="right"
             popoverContent={
               props.project.pullRequests?.length ? (
                 <Suspense fallback={<Loading />}>
-                  <StatisticErrorIndexByPullRequest project={props.project} />
+                  <PullRequestStatisticErrorIndexByPullRequest project={props.project} />
                 </Suspense>
               ) : null
             }
@@ -97,4 +97,4 @@ export const ProjectHeader: React.FC<IProjectHeader> = props => {
   );
 };
 
-export default ProjectHeader;
+export default ContainerHeader;

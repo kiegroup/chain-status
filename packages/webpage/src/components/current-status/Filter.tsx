@@ -20,12 +20,12 @@ import React, {
   useState
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { defaultValue, IFilter } from "../../model/filter.model";
+import { defaultValue, IPullRequestFilter } from "../../model/pullrequest-filter.model"
 import { IProject } from "../../model/project.model";
 import { IPullRequestInfo } from "../../model/pullrequestinfo.model";
 import { IUser } from "../../model/user.model";
 import { IRootState } from "../../service";
-import * as filterService from "../../service/filter.service";
+import * as pullRequestFilterService from "../../service/pullrequest-filter.service";
 import { alphabeticallySort } from "../../utils/common.utils";
 import debounce from "lodash.debounce";
 import moment, { Moment } from "moment";
@@ -43,22 +43,22 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
   const [reviewers, setReviewers] = useState<IUser[]>([]);
   const [collapsed, setCollapsed] = useState<boolean>(true);
   const data = useSelector((store: IRootState) => store.data.data);
-  const filter = useSelector((store: IRootState) => store.filter.filter);
+  const filter = useSelector((store: IRootState) => store.pullrequestFilter.filter);
   const filteredData = useSelector(
-    (store: IRootState) => store.filter.filteredData
+    (store: IRootState) => store.pullrequestFilter.filteredData
   );
 
   const [form] = Form.useForm();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onFilter = useCallback(
-    debounce((values: IFilter) => dispatch(filterService.filter(values)), 400),
+    debounce((values: IPullRequestFilter) => dispatch(pullRequestFilterService.filter(values)), 400),
     []
   );
 
   const clear = () => {
     form.resetFields();
-    dispatch(filterService.reset());
+    dispatch(pullRequestFilterService.reset());
   };
 
   const treatUsers = (users: (IUser | undefined)[]): IUser[] =>
@@ -154,7 +154,7 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
     (prDate &&
       moment(prDate).isBetween(dates[0].startOf("day"), dates[1].endOf("day")));
 
-  const isFilterEmpty = (filter: IFilter) =>
+  const isFilterEmpty = (filter: IPullRequestFilter) =>
     Object.keys(filter).length === 1 ||
     ((!filter.base || filter.base.length === 0) &&
       (!filter.head || filter.head.length === 0) &&
@@ -167,7 +167,7 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
   useEffect(() => {
     if (data?.projects) {
       if (isFilterEmpty(filter)) {
-        dispatch(filterService.setData(data));
+        dispatch(pullRequestFilterService.setData(data));
       } else {
         const searchLowerCase = filter.search
           ? filter.search.toLocaleLowerCase()
@@ -194,7 +194,7 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
           []
         );
         dispatch(
-          filterService.setData({
+          pullRequestFilterService.setData({
             metadata: data.metadata,
             projects: filteredProjects
           })

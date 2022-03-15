@@ -1,18 +1,18 @@
 import { Col, Row } from "antd";
 import React from "react";
 import { IProject } from "../../model/project.model";
-import PullRequestList from "../pullrequests/PullRequestList";
-import ProjectHeader from "./ProjectHeader";
+import { List as PullRequestList } from "../pullrequests/List";
+import ContainerHeader from "./ContainerHeader";
 
-interface IProjectContainer {
+interface IContainer {
   project: IProject;
 }
-export const ProjectContainer: React.FC<IProjectContainer> = props => {
+export const Container: React.FC<IContainer> = props => {
   return (
     <>
       <Row>
         <Col span={24}>
-          <ProjectHeader project={props.project} />
+          <ContainerHeader project={props.project} />
         </Col>
       </Row>
       <Row>
@@ -27,4 +27,4 @@ export const ProjectContainer: React.FC<IProjectContainer> = props => {
   );
 };
 
-export default ProjectContainer;
+export default Container;

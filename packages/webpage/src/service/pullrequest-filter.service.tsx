@@ -1,15 +1,15 @@
 import { IData, defaultValue } from "../model/data.model";
-import { IFilter } from "../model/filter.model";
+import { IPullRequestFilter } from "../model/pullrequest-filter.model";
 
 export const ACTION_TYPES = {
-  FILTER: "filter/FILTER",
-  RESET: "filter/RESET",
-  SET_DATA: "filter/SET_DATA"
+  FILTER: "pullrequestfilter/FILTER",
+  RESET: "pullrequestfilter/RESET",
+  SET_DATA: "pullrequestfilter/SET_DATA"
 };
 
 export interface IInitialState {
   filteredData: IData;
-  filter: IFilter;
+  filter: IPullRequestFilter;
 }
 
 const initialState: IInitialState = {
@@ -17,13 +17,13 @@ const initialState: IInitialState = {
   filteredData: defaultValue
 };
 
-export type FilterState = Readonly<typeof initialState>;
+export type PullRequestFilterState = Readonly<typeof initialState>;
 
 // Reducer
 const handle = (
-  state: FilterState = initialState,
+  state: PullRequestFilterState = initialState,
   action: any
-): FilterState => {
+): PullRequestFilterState => {
   switch (action.type) {
     case ACTION_TYPES.FILTER:
       return {
@@ -49,7 +49,7 @@ const handle = (
 };
 
 // Actions
-export const filter = (filter: IFilter) => ({
+export const filter = (filter: IPullRequestFilter) => ({
   type: ACTION_TYPES.FILTER,
   payload: filter
 });

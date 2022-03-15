@@ -8,14 +8,14 @@ const PullRequestStatistics = React.lazy(
   () => import("./PullRequestStatistics")
 );
 const UserComponent = React.lazy(() => import("../shared/User"));
-const PullRequestBranchInfo = React.lazy(
-  () => import("./PullRequestBranchInfo")
+const BranchInfo = React.lazy(
+  () => import("./BranchInfo")
 );
-const PullRequestDescription = React.lazy(
-  () => import("./PullRequestDescription")
+const Description = React.lazy(
+  () => import("./Description")
 );
 
-interface IPullRequestElement {
+interface IListItem {
   project?: IProject;
   pullRequest: IPullRequest;
   hideUserAvatar?: boolean;
@@ -24,7 +24,7 @@ interface IPullRequestElement {
   loading: boolean;
 }
 
-export const PullRequestElement: React.FC<IPullRequestElement> = props => {
+export const ListItem: React.FC<IListItem> = props => {
   return props.pullRequest ? (
     <List.Item
       id={getPullRequestId(props.pullRequest, props.project)}
@@ -80,7 +80,7 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
               />
             }
           >
-            <PullRequestBranchInfo pullRequest={props.pullRequest} />
+            <BranchInfo pullRequest={props.pullRequest} />
           </Suspense>
         ) : null
       }
@@ -128,7 +128,7 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
               />
             }
           >
-            <PullRequestDescription pullRequest={props.pullRequest} />
+            <Description pullRequest={props.pullRequest} />
           </Suspense>
         }
       />
@@ -136,4 +136,4 @@ export const PullRequestElement: React.FC<IPullRequestElement> = props => {
   ) : null;
 };
 
-export default PullRequestElement;
+export default ListItem;

@@ -1,22 +1,22 @@
-import { Badge, Menu, Skeleton, Tooltip, Typography } from "antd";
+import { Badge, Menu as AntdMenu, Skeleton, Tooltip, Typography } from "antd";
+import debounce from "lodash.debounce";
 import React, { Suspense, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IProject } from "../../model/project.model";
+import { IJob } from "../../model/job.model";
 import { IRootState } from "../../service";
 import * as layoutService from "../../service/layout.service";
 import * as menuService from "../../service/menu.service";
-import { MENU_ID_PREFIX, PROJECT_ID_PREFIX } from "../../shared/constants";
-import debounce from "lodash.debounce";
-import { getMenuId, getProjectId } from "../../utils/id.utils";
-import ProjectLink from "../shared/ProjectLink";
+import { MENU_ID_PREFIX, JOB_ID_PREFIX } from "../../shared/constants";
+import { getJobId, getJobMenuId } from "../../utils/id.utils";
+import JobLink from "../shared/JobLink";
 
-interface ICurrentStatusMenu {}
-export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
+interface IMenu {}
+export const Menu: React.FC<IMenu> = props => {
   const dispatch = useDispatch();
 
-  const data = useSelector((store: IRootState) => store.filter.filteredData);
-  const showZeroPullRequests = useSelector(
-    (store: IRootState) => store.filter.filter.showZeroPullRequests
+  const data = useSelector((store: IRootState) => store.jobFilter.filteredData);
+  const showZeroBuilds = useSelector(
+    (store: IRootState) => store.jobFilter.filter.showZeroBuilds
   );
   const selectedKey = useSelector((store: IRootState) => store.menu.key);
   const projectsLoaded = useSelector(
@@ -24,8 +24,7 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
   );
   const headingElementsRef: any = useRef({});
 
-  const show = (project: IProject) =>
-    showZeroPullRequests || project.pullRequests.length > 0;
+  const show = (job: IJob) => showZeroBuilds || job.builds.length > 0;
 
   // Menu selection on scroll
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,12 +41,9 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
   };
 
   useEffect(() => {
-    if (data?.projects?.length && projectsLoaded) {
-      const scrollMenu = (projectElementId: string) => {
-        const menuId = projectElementId.replace(
-          PROJECT_ID_PREFIX,
-          MENU_ID_PREFIX
-        );
+    if (data?.jobs?.length && projectsLoaded) {
+      const scrollMenu = (elementId: string) => {
+        const menuId = elementId.replace(JOB_ID_PREFIX, MENU_ID_PREFIX);
         document
           ?.getElementById(menuId)
           ?.scrollIntoView({ behavior: "smooth" });
@@ -86,33 +82,36 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
         rootMargin: "-220px 0px -40% 0px"
       });
       const headingElements = Array.from(
-        document.querySelectorAll(`*[id^="${PROJECT_ID_PREFIX}"]`)
+        document.querySelectorAll(`*[id^="${JOB_ID_PREFIX}"]`)
       );
       headingElements.forEach(element => observer.observe(element));
 
-      return () => observer.disconnect();
+      return () => {
+        observer.disconnect();
+        dispatch(layoutService.reset());
+      };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, data, projectsLoaded, showZeroPullRequests]);
+  }, [dispatch, data, projectsLoaded, showZeroBuilds]);
 
-  const MenuComponent = (props: { projects: IProject[] }) => (
-    <Menu
+  const MenuComponent = (props: { jobs: IJob[] }) => (
+    <AntdMenu
       selectedKeys={[selectedKey]}
       theme="light"
       mode="inline"
       // onClick={e => onClick(e.key)}
     >
-      {props.projects
+      {props.jobs
         .filter(e => e.name && show(e))
-        .map(project => (
-          <Menu.Item
-            id={getMenuId(project)}
-            key={getProjectId(project)}
+        .map(job => (
+          <AntdMenu.Item
+            id={getJobMenuId(job)}
+            key={getJobId(job)}
             style={{ scrollMarginTop: 162 }}
           >
-            <Tooltip title={project.key} placement="left">
-              {project.pullRequests.length ? (
-                <ProjectLink project={project} />
+            <Tooltip title={job.name} placement="left">
+              {job.builds.length ? (
+                <JobLink job={job} />
               ) : (
                 <Badge
                   showZero
@@ -120,13 +119,13 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
                   offset={[15, 0]}
                   style={{ backgroundColor: "#108ee9" }}
                 >
-                  <ProjectLink project={project} />
+                  <JobLink job={job} />
                 </Badge>
               )}
             </Tooltip>
-          </Menu.Item>
+          </AntdMenu.Item>
         ))}
-    </Menu>
+    </AntdMenu>
   );
 
   return (
@@ -135,13 +134,13 @@ export const CurrentStatusMenu: React.FC<ICurrentStatusMenu> = props => {
         level={4}
         style={{ marginLeft: 24, marginTop: 24, marginBottom: 24 }}
       >
-        Repositories
+        Jobs
       </Typography.Title>
       <Suspense fallback={<Skeleton />}>
-        <MenuComponent projects={data.projects} />
+        <MenuComponent jobs={data.jobs} />
       </Suspense>
     </>
   );
 };
 
-export default CurrentStatusMenu;
+export default Menu;

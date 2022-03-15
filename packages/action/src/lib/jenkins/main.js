@@ -1,5 +1,5 @@
 const { logger } = require("../logger");
-const { getJobs, genericRequest } = require("./jenkins.service");
+const { genericRequest } = require("./jenkins.service");
 const { saveFiles } = require("../../utils/file.utils");
 const assert = require("assert");
 
@@ -14,11 +14,21 @@ const getBuilds = async (builds, certFilePath) => {
         result: buildInfo.result,
         duration: buildInfo.duration,
         estimatedDuration: buildInfo.estimatedDuration,
-        date: buildInfo.timestamp
+        date: buildInfo.timestamp,
+        url: buildInfo.url
       };
     })
   );
 };
+
+const mapJobInfo = jobInfo => ({
+  id: jobInfo.name,
+  name: jobInfo.displayName,
+  description: jobInfo.description,
+  url: jobInfo.url,
+  color: jobInfo.color,
+  parent: jobInfo.parent
+});
 
 async function main(
   jenkinsUrl,
@@ -32,35 +42,44 @@ async function main(
   assert(jenkinsUrl, "The jenkinsUrl is not defined");
   assert(jobUrl || jobUrl.length === 0, "The jobUrl is not defined");
 
-  const jobs = await jobUrl.reduce(async (accP, curr) => {
+  const jobs = await jobUrl.reduce(async (accP, parentJobUrl) => {
     const acc = await accP;
-    logger.info(`Getting jobs for ${curr}`);
-    const currJobs = await getJobs(jenkinsUrl, curr, certFilePath);
-    if (!currJobs) {
+    logger.info(`Getting jobs for ${parentJobUrl}`);
+    const parentJobInfo = await genericRequest(
+      parentJobUrl,
+      certFilePath,
+      jenkinsUrl
+    );
+    if (!parentJobInfo || !parentJobInfo.jobs) {
       logger.warn(
-        `The are no jobs for ${curr}. Are you sure you defined a proper job URL?`
+        `The are no jobs for ${parentJobUrl}. Are you sure you defined a proper job URL?`
       );
       return acc;
     }
-    logger.info(`${curr.length} Jobs for ${curr} already retrieved`);
-    return [...acc, ...currJobs];
+    logger.info(
+      `${parentJobInfo.jobs.length} jobs for ${parentJobUrl} already retrieved`
+    );
+    return [
+      ...acc,
+      ...parentJobInfo.jobs.map(job => ({
+        parent: mapJobInfo(parentJobInfo),
+        ...job
+      }))
+    ];
   }, Promise.resolve([]));
 
   const jobInfos = await Promise.all(
     jobs
       .filter(job => !jobFilter || new RegExp(jobFilter).test(job.name))
-      .map(async job => {
-        logger.info("Getting job info for", job.url);
-        return await genericRequest(job.url, certFilePath);
+      .map(async parentJobInfo => {
+        logger.info("Getting job info for", parentJobInfo.url);
+        const jobInfo = await genericRequest(parentJobInfo.url, certFilePath);
+        return { parent: parentJobInfo.parent, ...jobInfo };
       })
   );
   const result = await Promise.all(
     jobInfos.map(async jobInfo => ({
-      id: jobInfo.name,
-      name: jobInfo.displayName,
-      description: jobInfo.description,
-      url: jobInfo.url,
-      color: jobInfo.color,
+      ...mapJobInfo(jobInfo),
       builds: await getBuilds(jobInfo.builds, certFilePath)
     }))
   );
@@ -70,7 +89,7 @@ async function main(
     JSON.stringify(
       {
         metadata,
-        jobs: result.filter(job => job.builds && job.builds.length > 0)
+        jobs: result
       },
       null,
       isDebug ? 2 : 0

@@ -1,3 +1,4 @@
+export const JOB_ID_PREFIX = "job_";
 export const PROJECT_ID_PREFIX = "project_";
 export const PULLREQUEST_ID_PREFIX = "pullrequest_";
 export const MENU_ID_PREFIX = "menu_";
@@ -19,6 +20,19 @@ export const CHECKS = {
     SONAR: "sonarcloud",
     JENKINS: "jenkins"
   }
+};
+
+export const BUILDS = {
+  RESULTS: {
+    SUCCESS: "SUCCESS",
+    UNSTABLE: "UNSTABLE",
+    FAILURE: "FAILURE"
+  }
+};
+
+export const COLOURS = {
+  GREEN: "#3f8600",
+  RED: "#cf1322"
 };
 
 export const GENERAL_MARGIN = 10;

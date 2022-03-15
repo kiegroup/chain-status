@@ -1,9 +1,9 @@
 import {
+  CloudSyncOutlined,
   InfoCircleOutlined,
   LinkOutlined,
-  NodeCollapseOutlined,
   ReloadOutlined,
-  PullRequestOutlined
+  RocketOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -18,36 +18,30 @@ import {
   Tooltip,
   Typography
 } from "antd";
+import moment from "moment";
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IBuild } from "../../model/build.model";
 import { IRootState } from "../../service";
+import * as jobDataService from "../../service/jobs-data.service";
 import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
+import BuildStatisticErrorIndex from "../shared/BuildsStatisticErrorIndex";
+import BuildStatisticErrorIndexByJob from "../shared/BuildStatisticErrorIndexByJob";
 import Loading from "../shared/Loading";
+import StaticJobs from "../shared/StatisticBuilds";
 import StatisticDate from "../shared/StatisticDate";
-import StatisticErrorIndex from "../shared/StatisticErrorIndex";
-import * as dataService from "../../service/data.service";
-import moment from "moment";
-import { IPullRequest } from "../../model/pullrequest.model";
 
 const ProjectStatusInformation = React.lazy(
   () => import("../shared/ProjectStatusInformation")
 );
-const StatisticPullRequests = React.lazy(
-  () => import("../shared/StatisticPullRequests")
-);
-const StatisticErrorIndexByProject = React.lazy(
-  () => import("../shared/StatisticErrorIndexByProject")
-);
 
-interface ICurrentStatusHeader {}
-export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
+interface IHeader {}
+export const Header: React.FC<IHeader> = props => {
   const dispatch = useDispatch();
-  const data = useSelector((store: IRootState) => store.filter.filteredData);
+  const data = useSelector((store: IRootState) => store.jobFilter.filteredData);
   const loading = useSelector((store: IRootState) => store.data.loading);
   const [latestLoad, setLatestLoad] = useState<Date>(new Date());
-  const [totalPullRequests, setTotalPullRequests] = useState<IPullRequest[]>(
-    []
-  );
+  const [totalBuilds, setTotalBuilds] = useState<IBuild[]>([]);
 
   const selectedProduct = useSelector(
     (store: IRootState) => store.product.selectedProduct
@@ -55,16 +49,16 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
 
   const getData = () => {
     if (selectedProduct?.folder) {
-      dispatch(dataService.loadData(selectedProduct.folder));
+      dispatch(jobDataService.loadData(selectedProduct.folder));
     }
   };
 
   useEffect(() => {
-    if (data?.projects) {
+    if (data?.jobs) {
       setLatestLoad(new Date());
-      setTotalPullRequests(data.projects.flatMap(p => p.pullRequests));
+      setTotalBuilds(data.jobs.flatMap(e => e.builds));
     } else {
-      setTotalPullRequests([]);
+      setTotalBuilds([]);
     }
   }, [data]);
 
@@ -147,35 +141,44 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
             <Popover
               content={
                 <Suspense fallback={<Loading />}>
-                  <StatisticPullRequests projects={data.projects} size={12} />
+                  <StaticJobs jobs={data.jobs} size={12} />
                 </Suspense>
               }
               placement="bottom"
             >
               <Statistic
-                title="Number of Projects"
-                prefix={<NodeCollapseOutlined />}
-                value={data.projects.length}
+                title="Number of Jobs"
+                prefix={<RocketOutlined />}
+                value={data.jobs.length}
                 valueStyle={{ ...STATISTICS_STYLE, fontWeight: "bold" }}
               />
             </Popover>
           </Col>
           <Col>
-            <Statistic
-              title="Number of Pull Requests"
-              prefix={<PullRequestOutlined />}
-              value={totalPullRequests.length}
-              valueStyle={STATISTICS_STYLE}
-            />
+            <Popover
+              content={
+                <Suspense fallback={<Loading />}>
+                  <StaticJobs jobs={data.jobs} size={12} />
+                </Suspense>
+              }
+              placement="bottom"
+            >
+              <Statistic
+                title="Number of Builds"
+                prefix={<CloudSyncOutlined />}
+                value={totalBuilds.length}
+                valueStyle={STATISTICS_STYLE}
+              />
+            </Popover>
           </Col>
           <Col>
-            <StatisticErrorIndex
+            <BuildStatisticErrorIndex
               title="Error Index"
-              pullRequests={totalPullRequests}
+              builds={totalBuilds}
               placement="bottom"
               popoverContent={
                 <Suspense fallback={<Loading />}>
-                  <StatisticErrorIndexByProject projects={data.projects} />
+                  <BuildStatisticErrorIndexByJob jobs={data.jobs} />
                 </Suspense>
               }
             />
@@ -208,4 +211,4 @@ export const CurrentStatusHeader: React.FC<ICurrentStatusHeader> = props => {
   );
 };
 
-export default CurrentStatusHeader;
+export default Header;

@@ -3,18 +3,21 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import { RenderFunction, TooltipPlacement } from "antd/lib/tooltip";
 import React, { useEffect, useState } from "react";
 import { IPullRequest } from "../../model/pullrequest.model";
-import { STATISTICS_STYLE } from "../../shared/constants";
+import { COLOURS, STATISTICS_STYLE } from "../../shared/constants";
 import { calculateErrorIndex } from "../../utils/pullrequest.utils";
 
-interface IStaticErrorIndex {
+interface IPullRequestStatisticErrorIndex {
   title?: string;
   pullRequests: IPullRequest[];
   popoverContent?: React.ReactNode | RenderFunction;
   size?: number;
   placement?: TooltipPlacement;
 }
-export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
+export const PullRequestStatisticErrorIndex: React.FC<
+  IPullRequestStatisticErrorIndex
+> = props => {
   const [errorIndex, setErrorIndex] = useState<number | undefined>(undefined);
+  const [color, setColor] = useState<string>(COLOURS.GREEN);
 
   const fontSizeStyle = props.size
     ? { fontSize: props.size }
@@ -22,9 +25,12 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
 
   useEffect(() => {
     if (props.pullRequests?.length) {
-      setErrorIndex(calculateErrorIndex(props.pullRequests));
+      const value = calculateErrorIndex(props.pullRequests);
+      setErrorIndex(value);
+      setColor(value <= 20 ? COLOURS.GREEN : COLOURS.RED);
     } else {
       setErrorIndex(undefined);
+      setColor(COLOURS.GREEN);
     }
   }, [props.pullRequests]);
 
@@ -41,7 +47,7 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
         precision={2}
         valueStyle={{
           ...fontSizeStyle,
-          color: errorIndex && errorIndex <= 20 ? "#3f8600" : "#cf1322",
+          color,
           fontWeight: "bold"
         }}
         suffix="%"
@@ -54,7 +60,7 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
       precision={2}
       valueStyle={{
         ...fontSizeStyle,
-        color: errorIndex && errorIndex <= 20 ? "#3f8600" : "#cf1322",
+        color,
         fontWeight: "bold"
       }}
       suffix="%"
@@ -62,4 +68,4 @@ export const StaticErrorIndex: React.FC<IStaticErrorIndex> = props => {
   );
 };
 
-export default StaticErrorIndex;
+export default PullRequestStatisticErrorIndex;

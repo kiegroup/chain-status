@@ -8,10 +8,10 @@ const getAgent = certFilePath =>
     ca: fs.readFileSync(certFilePath)
   });
 
-const getJobs = async (baseUrl, jobUrl, certFilePath) =>
+const getJobs = async (baseURL, jobUrl, certFilePath) =>
   await axios
     .get(`${jobUrl}/api/json`, {
-      baseURL: baseUrl,
+      baseURL,
       httpsAgent: getAgent(certFilePath)
     })
     .then(response => response.data.jobs)
@@ -20,9 +20,10 @@ const getJobs = async (baseUrl, jobUrl, certFilePath) =>
       throw e;
     });
 
-const genericRequest = async (url, certFilePath) =>
+const genericRequest = async (url, certFilePath, baseURL = undefined) =>
   await axios
     .get(`${url}/api/json`, {
+      baseURL,
       httpsAgent: getAgent(certFilePath)
     })
     .then(response => response.data)

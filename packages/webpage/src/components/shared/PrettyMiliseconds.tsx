@@ -3,7 +3,8 @@ import prettyMilliseconds from "pretty-ms";
 import React, { useEffect, useState } from "react";
 
 interface IPrettyMiliseconds {
-  date: string | undefined;
+  date?: string;
+  ms?: number;
 }
 export const PrettyMiliseconds: React.FC<IPrettyMiliseconds> = props => {
   const [diffMs, setDiffMs] = useState<string | undefined>(undefined);
@@ -17,6 +18,12 @@ export const PrettyMiliseconds: React.FC<IPrettyMiliseconds> = props => {
       );
     }
   }, [props.date]);
+
+  useEffect(() => {
+    if (props.ms) {
+      setDiffMs(prettyMilliseconds(props.ms));
+    }
+  }, [props.ms]);
 
   return diffMs ? (
     <Tooltip title={props.date}>{diffMs}</Tooltip>
