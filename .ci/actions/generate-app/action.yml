@@ -12,6 +12,14 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: set PUBLIC_URL
+      shell: bash
+      run: |
+        PUBLIC_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
+        echo "PUBLIC_URL=${PUBLIC_URL}" >> $GITHUB_ENV
+    - name: printenv
+      shell: bash
+      run: printenv
     - name: Checkout chain-status repo
       uses: actions/checkout@v2
       with:
