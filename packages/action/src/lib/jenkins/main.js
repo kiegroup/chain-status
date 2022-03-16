@@ -37,6 +37,7 @@ async function main(
   certFilePath,
   outputFolderPath,
   metadata,
+  skipZero,
   isDebug
 ) {
   assert(jenkinsUrl, "The jenkinsUrl is not defined");
@@ -89,7 +90,9 @@ async function main(
     JSON.stringify(
       {
         metadata,
-        jobs: result
+        jobs: skipZero
+          ? result.filter(job => job.builds && job.builds.length > 0)
+          : result
       },
       null,
       isDebug ? 2 : 0

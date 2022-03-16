@@ -59,6 +59,7 @@ async function main(args) {
       args.certFilePath,
       outputFolder,
       getMetadata(args),
+      args.skipZero,
       args.debug
     );
     logger.debug("Jenkins saved files", jenkinsSavedFiles);
@@ -75,6 +76,7 @@ async function main(args) {
       args,
       outputFolder,
       getMetadata(args),
+      args.skipZero,
       args.debug
     );
     logger.debug("Github Saved Files", githubSavedFiles);
