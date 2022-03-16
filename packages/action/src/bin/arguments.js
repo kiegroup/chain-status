@@ -1,7 +1,9 @@
 const { Command } = require("commander");
+const pkg = require("../../package.json");
 
 function getArgumentsObject() {
   const program = new Command();
+  program.name(pkg.name).description(pkg.description).version(pkg.version);
   program
     .option(
       "-df, --definition-file <filePath or URL>",
@@ -40,6 +42,11 @@ function getArgumentsObject() {
       undefined
     )
     .option("--order <order>", "The order on the menu", 1000)
+    .option(
+      "--skipZero",
+      "Skip jobs or projects with zero builds or pull requests",
+      1000
+    )
     .parse();
 
   return { ...program.opts() };

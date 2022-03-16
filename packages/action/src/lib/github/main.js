@@ -119,7 +119,7 @@ async function mainProjectBranches(project, octokit, baseBranchFilter) {
   return repoBranches;
 }
 
-async function main(args, outputFolderPath, metadata, isDebug) {
+async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
   const octokit = createOctokitInstance(args.token);
 
   logger.info(`Getting projects from definition file ${args.definitionFile}`);
@@ -163,7 +163,14 @@ async function main(args, outputFolderPath, metadata, isDebug) {
     });
   return saveFiles(
     JSON.stringify(
-      { metadata, projects: pullRequestInformation },
+      {
+        metadata,
+        projects: skipZero
+          ? pullRequestInformation.filter(
+              e => e.pullRequests && e.pullRequest.length > 0
+            )
+          : pullRequestInformation
+      },
       null,
       isDebug ? 2 : 0
     ),
