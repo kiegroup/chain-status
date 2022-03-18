@@ -9,7 +9,8 @@ export const ACTION_TYPES = {
   CLOSE_HEAD_BRANCH_DRAWER: "layout/CLOSE_HEAD_BRANCH_DRAWER",
   OPEN_CHECKS_DRAWER: "layout/OPEN_CHECKS_DRAWER",
   CLOSE_CHECKS_DRAWER: "layout/CLOSE_CHECKS_DRAWER",
-  PROJECTS_LOADED: "layout/PROJECTS_LOADED",
+  PUSH_ITEM_LOADED: "layout/PUSH_ITEM_LOADED",
+  POP_ITEM_LOADED: "layout/POP_ITEM_LOADED",
   REGISTER_SECTION: "layout/REGISTER_SECTION",
   CLEAR_SECTION: "layout/CLEAR_SECTION",
   RESET: "layout/RESET"
@@ -26,7 +27,7 @@ interface IPullRequestDrawer {
 interface IInitialState {
   headBranchDrawer: IBaseBranchDrawer;
   checksDrawer: IPullRequestDrawer;
-  projectsLoaded: boolean;
+  listItemLoaded: string[];
   sectionsShown: string[];
 }
 const initialState: IInitialState = {
@@ -38,7 +39,7 @@ const initialState: IInitialState = {
     visible: false,
     pullRequests: []
   },
-  projectsLoaded: false,
+  listItemLoaded: [],
   sectionsShown: []
 };
 
@@ -82,10 +83,15 @@ const handle = (
         ...state,
         sectionsShown: initialState.sectionsShown
       };
-    case ACTION_TYPES.PROJECTS_LOADED:
+    case ACTION_TYPES.PUSH_ITEM_LOADED:
       return {
         ...state,
-        projectsLoaded: true
+        listItemLoaded: [...state.listItemLoaded, action.payload]
+      };
+    case ACTION_TYPES.POP_ITEM_LOADED:
+      return {
+        ...state,
+        listItemLoaded: state.listItemLoaded.filter(e => e !== action.payload)
       };
     case ACTION_TYPES.RESET:
       return {
@@ -111,8 +117,13 @@ export const openChecksDrawer = (pullRequests: IPullRequest[]) => ({
 export const closeChecksDrawer = () => ({
   type: ACTION_TYPES.CLOSE_CHECKS_DRAWER
 });
-export const projectsLoaded = () => ({
-  type: ACTION_TYPES.PROJECTS_LOADED
+export const pushItemLoaded = (id: string) => ({
+  type: ACTION_TYPES.PUSH_ITEM_LOADED,
+  payload: id
+});
+export const popItemLoaded = (id: string) => ({
+  type: ACTION_TYPES.POP_ITEM_LOADED,
+  payload: id
 });
 
 export const registerSection = (sectionId: string) => ({

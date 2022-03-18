@@ -15,7 +15,7 @@ import debounce from "lodash.debounce";
 import moment, { Moment } from "moment";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IJobFilter, defaultValue } from "../../model/job-filter.model";
+import { defaultValue, IJobFilter } from "../../model/job-filter.model";
 import { IJob } from "../../model/job.model";
 import { IRootState } from "../../service";
 import * as jobFilterService from "../../service/job-filter.service";
@@ -39,10 +39,9 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onFilter = useCallback(
-    debounce(
-      (values: IJobFilter) => dispatch(jobFilterService.filter(values)),
-      400
-    ),
+    debounce((values: IJobFilter) => {
+      dispatch(jobFilterService.filter(values));
+    }, 400),
     []
   );
 
@@ -146,7 +145,9 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
         dispatch(
           jobFilterService.setData({
             metadata: data.metadata,
-            jobs
+            jobs: filter.showZeroBuilds
+              ? jobs
+              : jobs.filter(job => job.builds?.length > 0)
           })
         );
       }
