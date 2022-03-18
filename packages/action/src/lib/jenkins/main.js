@@ -15,7 +15,8 @@ const getBuilds = async (builds, certFilePath) => {
         duration: buildInfo.duration,
         estimatedDuration: buildInfo.estimatedDuration,
         date: buildInfo.timestamp,
-        url: buildInfo.url
+        url: buildInfo.url,
+        console_url: `${buildInfo.url}/console`
       };
     })
   );
