@@ -19,25 +19,17 @@ interface IListItem {
 }
 export const ListItem: React.FC<IListItem> = props => {
   const dispatch = useDispatch();
-  const showZeroBuilds = useSelector(
-    (store: IRootState) => store.jobFilter.filter.showZeroBuilds
-  );
-  const [showItem, setShowItem] = useState<boolean>(true);
+  const filter = useSelector((store: IRootState) => store.jobFilter.filter);
   const [latestBuild, setLatestBuild] = useState<IBuild | undefined>(undefined);
 
   useEffect(() => {
-    dispatch(layoutService.projectsLoaded());
-
-    return () => {
-      dispatch(layoutService.reset());
-    };
-  }, [dispatch, props.job]);
-
-  useEffect(() => {
-    if (props.job.builds) {
-      setShowItem(showZeroBuilds || props.job.builds.length > 0);
+    if (props.job) {
+      dispatch(layoutService.pushItemLoaded(getJobId(props.job)));
     }
-  }, [showZeroBuilds, props.job.builds]);
+    return () => {
+      dispatch(layoutService.popItemLoaded(getJobId(props.job)));
+    };
+  }, [dispatch, filter, props.job]);
 
   useEffect(() => {
     if (props.job?.builds?.length > 0) {
@@ -45,7 +37,7 @@ export const ListItem: React.FC<IListItem> = props => {
     }
   }, [props.job]);
 
-  return showItem ? (
+  return (
     <List.Item
       id={getJobId(props.job)}
       style={{
@@ -88,14 +80,6 @@ export const ListItem: React.FC<IListItem> = props => {
             </Tooltip>
           )
         ]}
-        // extra={[
-        //   <Suspense
-        //     key="affected-branches-statistics"
-        //     fallback={<Loading style={{ fontSize: 16 }} />}
-        //   >
-        //     <PullRequestStatistics pullRequests={props.job.builds} />
-        //   </Suspense>
-        // ]}
         style={{
           width: "100%",
           marginTop: 0,
@@ -106,7 +90,7 @@ export const ListItem: React.FC<IListItem> = props => {
         <Container job={props.job} />
       </Card>
     </List.Item>
-  ) : null;
+  );
 };
 
 export default ListItem;

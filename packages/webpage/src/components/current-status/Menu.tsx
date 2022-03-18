@@ -1,19 +1,14 @@
-import { Badge, Menu as AntdMenu, Skeleton, Tooltip, Typography } from "antd";
-import React, { Suspense, useCallback, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IProject } from "../../model/project.model";
+import { Badge, Menu as AntdMenu, Tooltip } from "antd";
+import React from "react";
+import { useSelector } from "react-redux";
 import { IRootState } from "../../service";
-import * as layoutService from "../../service/layout.service";
-import * as menuService from "../../service/menu.service";
-import { MENU_ID_PREFIX, PROJECT_ID_PREFIX } from "../../shared/constants";
-import debounce from "lodash.debounce";
-import { getPullRequestMenuId, getProjectId } from "../../utils/id.utils";
+import { PROJECT_ID_PREFIX } from "../../shared/constants";
+import { getProjectId, getPullRequestMenuId } from "../../utils/id.utils";
+import MenuSelection from "../shared/MenuSelection";
 import ProjectLink from "../shared/ProjectLink";
 
 interface IMenu {}
 export const Menu: React.FC<IMenu> = props => {
-  const dispatch = useDispatch();
-
   const data = useSelector(
     (store: IRootState) => store.pullrequestFilter.filteredData
   );
@@ -21,128 +16,46 @@ export const Menu: React.FC<IMenu> = props => {
     (store: IRootState) => store.pullrequestFilter.filter
   );
   const selectedKey = useSelector((store: IRootState) => store.menu.key);
-  const projectsLoaded = useSelector(
-    (store: IRootState) => store.layout.projectsLoaded
-  );
-  const headingElementsRef: any = useRef({});
-
-  const show = (project: IProject) =>
-    filter.showZeroPullRequests || project.pullRequests.length > 0;
-
-  // Menu selection on scroll
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const registerSection = useCallback(
-    debounce(
-      (key: string) => dispatch(layoutService.registerSection(key)),
-      200
-    ),
-    []
-  );
-  const onClick = (key: string) => {
-    dispatch(menuService.onSelect(key));
-    registerSection(key);
-  };
-
-  useEffect(() => {
-    if (data?.projects?.length && projectsLoaded) {
-      const scrollMenu = (elementId: string) => {
-        const menuId = elementId.replace(PROJECT_ID_PREFIX, MENU_ID_PREFIX);
-        document
-          ?.getElementById(menuId)
-          ?.scrollIntoView({ behavior: "smooth" });
-      };
-      const callback = (headings: any) => {
-        headingElementsRef.current = headings.reduce(
-          (map: any, headingElement: any) => {
-            map[headingElement.target.id] = headingElement;
-            return map;
-          },
-          headingElementsRef.current
-        );
-
-        const visibleHeadings: any[] = [];
-        Object.keys(headingElementsRef.current).forEach((key: string) => {
-          const headingElement: any = headingElementsRef.current[key];
-          if (headingElement.isIntersecting)
-            visibleHeadings.push(headingElement);
-        });
-
-        const getIndexFromId = (id: string) =>
-          headingElements.findIndex(heading => heading.id === id);
-
-        if (visibleHeadings.length === 1) {
-          onClick(visibleHeadings[0].target.id);
-          scrollMenu(visibleHeadings[0].target.id);
-        } else if (visibleHeadings.length > 1) {
-          const sortedVisibleHeadings = visibleHeadings.sort((a: any, b: any) =>
-            getIndexFromId(a.target.id) > getIndexFromId(b.target.id) ? 0 : 1
-          );
-          onClick(sortedVisibleHeadings[0].target.id);
-          scrollMenu(sortedVisibleHeadings[0].target.id);
-        }
-      };
-      const observer = new IntersectionObserver(callback, {
-        rootMargin: "-220px 0px -40% 0px"
-      });
-      const headingElements = Array.from(
-        document.querySelectorAll(`*[id^="${PROJECT_ID_PREFIX}"]`)
-      );
-      headingElements.forEach(element => observer.observe(element));
-
-      return () => {
-        observer.disconnect();
-        dispatch(layoutService.reset());
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, data, projectsLoaded, filter]);
-
-  const MenuComponent = (props: { projects: IProject[] }) => (
-    <AntdMenu
-      selectedKeys={[selectedKey]}
-      theme="light"
-      mode="inline"
-      // onClick={e => onClick(e.key)}
-    >
-      {props.projects
-        .filter(e => e.name && show(e))
-        .map(project => (
-          <AntdMenu.Item
-            id={getPullRequestMenuId(project)}
-            key={getProjectId(project)}
-            style={{ scrollMarginTop: 162 }}
-          >
-            <Tooltip title={project.key} placement="left">
-              {project.pullRequests.length ? (
-                <ProjectLink project={project} />
-              ) : (
-                <Badge
-                  showZero
-                  count={0}
-                  offset={[15, 0]}
-                  style={{ backgroundColor: "#108ee9" }}
-                >
-                  <ProjectLink project={project} />
-                </Badge>
-              )}
-            </Tooltip>
-          </AntdMenu.Item>
-        ))}
-    </AntdMenu>
-  );
 
   return (
-    <>
-      <Typography.Title
-        level={4}
-        style={{ marginLeft: 24, marginTop: 24, marginBottom: 24 }}
+    <MenuSelection
+      filter={filter}
+      filteredData={data.projects}
+      title="Repositories"
+      querySelectorPrefix={PROJECT_ID_PREFIX}
+    >
+      <AntdMenu
+        selectedKeys={[selectedKey]}
+        theme="light"
+        mode="inline"
+        // onClick={e => onClick(e.key)}
       >
-        Repositories
-      </Typography.Title>
-      <Suspense fallback={<Skeleton />}>
-        <MenuComponent projects={data.projects} />
-      </Suspense>
-    </>
+        {data.projects
+          .filter(e => e.name)
+          .map(project => (
+            <AntdMenu.Item
+              id={getPullRequestMenuId(project)}
+              key={getProjectId(project)}
+              style={{ scrollMarginTop: 162 }}
+            >
+              <Tooltip title={project.key} placement="left">
+                {project.pullRequests.length ? (
+                  <ProjectLink project={project} />
+                ) : (
+                  <Badge
+                    showZero
+                    count={0}
+                    offset={[15, 0]}
+                    style={{ backgroundColor: "#108ee9" }}
+                  >
+                    <ProjectLink project={project} />
+                  </Badge>
+                )}
+              </Tooltip>
+            </AntdMenu.Item>
+          ))}
+      </AntdMenu>
+    </MenuSelection>
   );
 };
 

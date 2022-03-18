@@ -20,7 +20,10 @@ import React, {
   useState
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { defaultValue, IPullRequestFilter } from "../../model/pullrequest-filter.model"
+import {
+  defaultValue,
+  IPullRequestFilter
+} from "../../model/pullrequest-filter.model";
 import { IProject } from "../../model/project.model";
 import { IPullRequestInfo } from "../../model/pullrequestinfo.model";
 import { IUser } from "../../model/user.model";
@@ -43,7 +46,9 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
   const [reviewers, setReviewers] = useState<IUser[]>([]);
   const [collapsed, setCollapsed] = useState<boolean>(true);
   const data = useSelector((store: IRootState) => store.data.data);
-  const filter = useSelector((store: IRootState) => store.pullrequestFilter.filter);
+  const filter = useSelector(
+    (store: IRootState) => store.pullrequestFilter.filter
+  );
   const filteredData = useSelector(
     (store: IRootState) => store.pullrequestFilter.filteredData
   );
@@ -52,7 +57,9 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onFilter = useCallback(
-    debounce((values: IPullRequestFilter) => dispatch(pullRequestFilterService.filter(values)), 400),
+    debounce((values: IPullRequestFilter) => {
+      dispatch(pullRequestFilterService.filter(values));
+    }, 400),
     []
   );
 
@@ -172,7 +179,7 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
         const searchLowerCase = filter.search
           ? filter.search.toLocaleLowerCase()
           : undefined;
-        const filteredProjects = data.projects.reduce(
+        const projects = data.projects.reduce(
           (accProject: IProject[], currProject: IProject) => {
             const pullRequests = currProject.pullRequests.filter(
               pr =>
@@ -196,7 +203,9 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
         dispatch(
           pullRequestFilterService.setData({
             metadata: data.metadata,
-            projects: filteredProjects
+            projects: filter.showZeroPullRequests
+              ? projects
+              : projects.filter(project => project.pullRequests?.length > 0)
           })
         );
       }
