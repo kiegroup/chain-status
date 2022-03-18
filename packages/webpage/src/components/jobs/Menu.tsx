@@ -1,11 +1,5 @@
 import {
-  Badge,
-  Menu as AntdMenu,
-  Skeleton,
-  Tooltip,
-  Typography,
-  Row,
-  Col
+  Badge, Col, Menu as AntdMenu, Row, Skeleton, Typography
 } from "antd";
 import debounce from "lodash.debounce";
 import React, { Suspense, useCallback, useEffect, useRef } from "react";
@@ -14,7 +8,7 @@ import { IJob } from "../../model/job.model";
 import { IRootState } from "../../service";
 import * as layoutService from "../../service/layout.service";
 import * as menuService from "../../service/menu.service";
-import { MENU_ID_PREFIX, JOB_ID_PREFIX } from "../../shared/constants";
+import { JOB_ID_PREFIX, MENU_ID_PREFIX } from "../../shared/constants";
 import { getJobId, getJobMenuId } from "../../utils/id.utils";
 import { getColor } from "../../utils/job.utils";
 import JobLink from "../shared/JobLink";
