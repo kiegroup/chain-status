@@ -52,7 +52,7 @@ export const ListItem: React.FC<IListItem> = props => {
         marginTop: 0,
         marginBottom: 8,
         padding: 0,
-        scrollMarginTop: STATUS_MARGIN_TOP
+        scrollMarginTop: STATUS_MARGIN_TOP - 1
       }}
     >
       <Card

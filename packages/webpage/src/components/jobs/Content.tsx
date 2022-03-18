@@ -1,12 +1,15 @@
 import { Layout } from "antd";
 import React, { Suspense } from "react";
-import { STATUS_MARGIN_RIGHT, STATUS_MARGIN_TOP } from "../../shared/constants";
+import {
+  MENU_WIDTH,
+  STATUS_MARGIN_RIGHT,
+  STATUS_MARGIN_TOP
+} from "../../shared/constants";
 import Loading from "../shared/Loading";
 import Menu from "./Menu";
 
 const List = React.lazy(() => import("./List"));
-interface IContent {
-}
+interface IContent {}
 export const Content: React.FC<IContent> = props => {
   return (
     <Layout hasSider>
@@ -24,6 +27,7 @@ export const Content: React.FC<IContent> = props => {
           top: STATUS_MARGIN_TOP,
           bottom: 0
         }}
+        width={MENU_WIDTH}
         theme="light"
       >
         <Menu />

@@ -1,4 +1,12 @@
-import { Badge, Menu as AntdMenu, Skeleton, Tooltip, Typography } from "antd";
+import {
+  Badge,
+  Menu as AntdMenu,
+  Skeleton,
+  Tooltip,
+  Typography,
+  Row,
+  Col
+} from "antd";
 import debounce from "lodash.debounce";
 import React, { Suspense, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,23 +16,23 @@ import * as layoutService from "../../service/layout.service";
 import * as menuService from "../../service/menu.service";
 import { MENU_ID_PREFIX, JOB_ID_PREFIX } from "../../shared/constants";
 import { getJobId, getJobMenuId } from "../../utils/id.utils";
+import { getColor } from "../../utils/job.utils";
 import JobLink from "../shared/JobLink";
+import JobStatusIconFactory from "./JobStatusIconFactory";
 
 interface IMenu {}
 export const Menu: React.FC<IMenu> = props => {
   const dispatch = useDispatch();
 
   const data = useSelector((store: IRootState) => store.jobFilter.filteredData);
-  const showZeroBuilds = useSelector(
-    (store: IRootState) => store.jobFilter.filter.showZeroBuilds
-  );
+  const filter = useSelector((store: IRootState) => store.jobFilter.filter);
   const selectedKey = useSelector((store: IRootState) => store.menu.key);
   const projectsLoaded = useSelector(
     (store: IRootState) => store.layout.projectsLoaded
   );
   const headingElementsRef: any = useRef({});
 
-  const show = (job: IJob) => showZeroBuilds || job.builds.length > 0;
+  const show = (job: IJob) => filter.showZeroBuilds || job.builds.length > 0;
 
   // Menu selection on scroll
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,7 +100,7 @@ export const Menu: React.FC<IMenu> = props => {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, data, projectsLoaded, showZeroBuilds]);
+  }, [dispatch, data, projectsLoaded, filter]);
 
   const MenuComponent = (props: { jobs: IJob[] }) => (
     <AntdMenu
@@ -109,20 +117,30 @@ export const Menu: React.FC<IMenu> = props => {
             key={getJobId(job)}
             style={{ scrollMarginTop: 162 }}
           >
-            <Tooltip title={job.name} placement="left">
-              {job.builds.length ? (
-                <JobLink job={job} />
-              ) : (
-                <Badge
-                  showZero
-                  count={0}
-                  offset={[15, 0]}
-                  style={{ backgroundColor: "#108ee9" }}
-                >
+            {job.builds.length ? (
+              <Row gutter={[10, 16]}>
+                <Col flex="none" style={{ marginTop: 2 }}>
+                  <JobStatusIconFactory
+                    color={getColor(job?.color)}
+                    building={job.builds[0].building}
+                    result={job.builds[0].result}
+                    size={16}
+                  />
+                </Col>
+                <Col flex="auto">
                   <JobLink job={job} />
-                </Badge>
-              )}
-            </Tooltip>
+                </Col>
+              </Row>
+            ) : (
+              <Badge
+                showZero
+                count={0}
+                offset={[15, 0]}
+                style={{ backgroundColor: "#108ee9" }}
+              >
+                <JobLink job={job} />
+              </Badge>
+            )}
           </AntdMenu.Item>
         ))}
     </AntdMenu>

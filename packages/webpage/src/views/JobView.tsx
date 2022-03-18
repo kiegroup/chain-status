@@ -8,7 +8,12 @@ import MenuLayout from "../components/layout/MenuLayout";
 import { IRootState } from "../service";
 import * as jobDataService from "../service/jobs-data.service";
 import * as productService from "../service/product.service";
-import { GENERAL_MARGIN, MENU_MARGIN_TOP, STATUS_MARGIN_RIGHT, STATUS_MARGIN_TOP } from "../shared/constants";
+import {
+  GENERAL_MARGIN,
+  MENU_MARGIN_TOP,
+  STATUS_MARGIN_RIGHT,
+  STATUS_MARGIN_TOP
+} from "../shared/constants";
 const JobViewHeader = React.lazy(() => import("../components/jobs/Header"));
 interface IJobView {}
 

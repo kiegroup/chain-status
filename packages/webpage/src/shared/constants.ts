@@ -37,9 +37,9 @@ export const COLOURS = {
 
 export const GENERAL_MARGIN = 10;
 export const MENU_MARGIN_TOP = 64;
+export const MENU_WIDTH = 350;
 export const STATUS_MARGIN_TOP = 198 + MENU_MARGIN_TOP;
-export const STATUS_MARGIN_RIGHT =
-  STATUS_MARGIN_TOP - MENU_MARGIN_TOP + GENERAL_MARGIN / 2;
+export const STATUS_MARGIN_RIGHT = MENU_WIDTH + GENERAL_MARGIN / 2;
 
 export const STATISTICS_STYLE = { fontSize: 18 };
 
