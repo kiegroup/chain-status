@@ -17,8 +17,8 @@ export const Menu: React.FC<IMenu> = props => {
   const data = useSelector(
     (store: IRootState) => store.pullrequestFilter.filteredData
   );
-  const showZeroPullRequests = useSelector(
-    (store: IRootState) => store.pullrequestFilter.filter.showZeroPullRequests
+  const filter = useSelector(
+    (store: IRootState) => store.pullrequestFilter.filter
   );
   const selectedKey = useSelector((store: IRootState) => store.menu.key);
   const projectsLoaded = useSelector(
@@ -27,7 +27,7 @@ export const Menu: React.FC<IMenu> = props => {
   const headingElementsRef: any = useRef({});
 
   const show = (project: IProject) =>
-    showZeroPullRequests || project.pullRequests.length > 0;
+    filter.showZeroPullRequests || project.pullRequests.length > 0;
 
   // Menu selection on scroll
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,11 +45,8 @@ export const Menu: React.FC<IMenu> = props => {
 
   useEffect(() => {
     if (data?.projects?.length && projectsLoaded) {
-      const scrollMenu = (projectElementId: string) => {
-        const menuId = projectElementId.replace(
-          PROJECT_ID_PREFIX,
-          MENU_ID_PREFIX
-        );
+      const scrollMenu = (elementId: string) => {
+        const menuId = elementId.replace(PROJECT_ID_PREFIX, MENU_ID_PREFIX);
         document
           ?.getElementById(menuId)
           ?.scrollIntoView({ behavior: "smooth" });
@@ -92,10 +89,13 @@ export const Menu: React.FC<IMenu> = props => {
       );
       headingElements.forEach(element => observer.observe(element));
 
-      return () => observer.disconnect();
+      return () => {
+        observer.disconnect();
+        dispatch(layoutService.reset());
+      };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, data, projectsLoaded, showZeroPullRequests]);
+  }, [dispatch, data, projectsLoaded, filter]);
 
   const MenuComponent = (props: { projects: IProject[] }) => (
     <AntdMenu

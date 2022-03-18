@@ -5,6 +5,7 @@ export interface IBuild {
   estimatedDuration?: number;
   result?: string;
   url?: string;
+  console_url?: string;
   date?: number;
 }
 

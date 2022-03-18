@@ -1,10 +1,9 @@
-import { List, Skeleton, Tag } from "antd";
+import { FileTextOutlined } from "@ant-design/icons";
+import { Button, Col, List, Row, Skeleton, Tooltip } from "antd";
 import React, { Suspense } from "react";
 import { IBuild } from "../../model/build.model";
 import { IJob } from "../../model/job.model";
-import {
-  STATUS_MARGIN_TOP
-} from "../../shared/constants";
+import { STATISTICS_STYLE, STATUS_MARGIN_TOP } from "../../shared/constants";
 import { getColor } from "../../utils/job.utils";
 import JobStatusIconFactory from "../jobs/JobStatusIconFactory";
 import PrettyMiliseconds from "../shared/PrettyMiliseconds";
@@ -79,19 +78,35 @@ export const ListItem: React.FC<IListItem> = props => {
           )
         }
         title={
-          <>
-            <a
-              href={props.build.url}
-              rel="noopener noreferrer"
-              target="_blank"
-              style={{ fontWeight: "bold" }}
-            >
-              {props.build.id}
-            </a>
-            {props.showProject ? (
-              <Tag style={{ marginLeft: 5 }}>{props.build.duration}</Tag>
-            ) : null}
-          </>
+          <Row gutter={[5, 0]}>
+            <Col flex="none" style={{ marginTop: -4 }}>
+              <Tooltip title="Go to the build log">
+                <Button
+                  type="link"
+                  href={props.build.console_url}
+                  target="_blank"
+                  icon={<FileTextOutlined />}
+                  style={{
+                    padding: 0,
+                    ...STATISTICS_STYLE,
+                    fontWeight: "bold"
+                  }}
+                />
+              </Tooltip>
+            </Col>
+            <Col flex="auto">
+              <Tooltip title="Go to the build Jenkins information">
+                <a
+                  href={props.build.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  style={{ fontWeight: "bold" }}
+                >
+                  {props.build.id}
+                </a>
+              </Tooltip>
+            </Col>
+          </Row>
         }
       />
     </List.Item>
