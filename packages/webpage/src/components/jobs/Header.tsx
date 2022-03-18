@@ -78,11 +78,11 @@ export const Header: React.FC<IHeader> = props => {
       <PageHeader
         title={
           data.metadata?.title ? (
-            <Typography.Title level={2}>
+            <Typography.Title level={2} style={{ marginBottom: 18 }}>
               {data.metadata?.title}
             </Typography.Title>
           ) : (
-            <Skeleton.Input style={{ width: 200, height: 55.5 }} />
+            <Skeleton.Input style={{ width: 200, marginBottom: 15 }} />
           )
         }
         subTitle={

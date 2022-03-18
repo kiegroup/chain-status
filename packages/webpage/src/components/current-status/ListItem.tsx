@@ -31,7 +31,7 @@ export const ListItem: React.FC<
     return () => {
       dispatch(layoutService.reset());
     };
-  }, [dispatch]);
+  }, [dispatch, props.project]);
 
   useEffect(() => {
     if (props.project.pullRequests) {
