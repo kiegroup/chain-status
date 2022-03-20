@@ -80,9 +80,9 @@ export const MenuLayout: React.FC<IMenuLayout> = props => {
           padding: 0
         }}
       >
-        {loading || defaultSelectedKeys.length === 0 ? (
+        {loading ? (
           <Loading style={{ marginLeft: 24 }} />
-        ) : (
+        ) : defaultSelectedKeys.length > 0 ? (
           <Menu
             theme="dark"
             mode="horizontal"
@@ -97,7 +97,7 @@ export const MenuLayout: React.FC<IMenuLayout> = props => {
               </Menu.Item>
             ))}
           </Menu>
-        )}
+        ) : null}
       </Layout.Header>
       <Layout.Content>{props.children}</Layout.Content>
     </Layout>
