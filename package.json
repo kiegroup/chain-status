@@ -9,6 +9,7 @@
     "test": "lerna run test",
     "build": "lerna run build -- --if-present",
     "predeploy": "lerna run predeploy",
+    "deploy": "lerna run deploy",
     "pre-commit": "lerna run pre:commit",
     "pre-push": "lerna run pre:push"
   },
