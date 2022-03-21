@@ -1,10 +1,10 @@
 {
-  "name": "chain-status-action",
-  "version": "0.0.5",
+  "name": "@kie/chain-status-action",
+  "version": "0.0.1",
   "description": "Generates data for chain status webpage",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ginxo/chain-status.git"
+    "url": "git+https://github.com/kiegroup/chain-status.git"
   },
   "keywords": [
     "build-chain",
@@ -20,9 +20,9 @@
   "author": "Enrique Mingorance Cano <emingora@redhat.com>",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/Ginxo/chain-status/issues"
+    "url": "https://github.com/kiegroup/chain-status/issues"
   },
-  "homepage": "https://github.com/Ginxo/chain-status#readme",
+  "homepage": "https://github.com/kiegroup/chain-status#readme",
   "private": false,
   "bin": {
     "build-chain-status-report": "src/bin/cli.js"
