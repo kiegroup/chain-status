@@ -45,7 +45,7 @@ export const ReloadButton: React.FC<IReloadButton> = props => {
     if (!newProductVersionAvailable) {
       const interval = setInterval(() => {
         dispatch(productService.preloadData());
-      }, 2000);
+      }, 30000);
       return () => {
         clearInterval(interval);
       };
