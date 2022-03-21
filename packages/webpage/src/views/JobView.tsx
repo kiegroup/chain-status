@@ -8,6 +8,7 @@ import MenuLayout from "../components/layout/MenuLayout";
 import { IRootState } from "../service";
 import * as jobDataService from "../service/jobs-data.service";
 import * as productService from "../service/product.service";
+import * as layoutService from "../service/layout.service";
 import {
   GENERAL_MARGIN,
   MENU_MARGIN_TOP,
@@ -47,6 +48,7 @@ export const JobView: React.FC<IJobView> = props => {
       dispatch(
         jobDataService.loadData(`${selectedProduct?.folder}/latest.json`)
       );
+      dispatch(layoutService.reset());
     }
     return () => {
       dispatch(jobDataService.reset());

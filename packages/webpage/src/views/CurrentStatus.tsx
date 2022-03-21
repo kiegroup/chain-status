@@ -5,6 +5,7 @@ import Content from "../components/current-status/Content";
 import MenuLayout from "../components/layout/MenuLayout";
 import * as dataService from "../service/data.service";
 import * as productService from "../service/product.service";
+import * as layoutService from "../service/layout.service";
 import {
   GENERAL_MARGIN,
   MENU_MARGIN_TOP,
@@ -13,16 +14,16 @@ import {
 } from "../shared/constants";
 import { useParams } from "react-router-dom";
 import { IRootState } from "../service";
-const Header = React.lazy(
-  () => import("../components/current-status/Header")
-);
+const Header = React.lazy(() => import("../components/current-status/Header"));
 const CrossPullRequestDrawer = React.lazy(
   () => import("../components/pullrequests/CrossPullRequestDrawer")
 );
 const ChecksDrawer = React.lazy(
   () => import("../components/checks/ChecksDrawer")
 );
-const FilterComponent = React.lazy(() => import("../components/current-status/Filter"));
+const FilterComponent = React.lazy(
+  () => import("../components/current-status/Filter")
+);
 interface ICurrentStatus {}
 
 export const CurrentStatus: React.FC<ICurrentStatus> = props => {
@@ -55,6 +56,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
   useEffect(() => {
     if (selectedProduct) {
       dispatch(dataService.loadData(`${selectedProduct?.folder}/latest.json`));
+      dispatch(layoutService.reset());
     }
     return () => {
       dispatch(dataService.reset());
