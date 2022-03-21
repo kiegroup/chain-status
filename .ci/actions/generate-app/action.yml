@@ -45,10 +45,13 @@ runs:
       run: ls ./current-project/data
     - name: ls new data
       shell: bash
-      run: ls ./chain-status/packages/webpage/public/
+      run: ls ./chain-status/packages/webpage/public/data
     - run: yarn predeploy
       shell: bash
       working-directory: ./chain-status
+    - name: ls build folder
+      shell: bash
+      run: ls ./chain-status/packages/webpage/build/data
     - name: Deploy with gh-pages
       shell: bash
       working-directory: ./chain-status
