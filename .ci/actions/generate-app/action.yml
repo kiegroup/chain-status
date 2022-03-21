@@ -17,9 +17,9 @@ runs:
       run: |
         PUBLIC_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
         echo "PUBLIC_URL=${PUBLIC_URL}" >> $GITHUB_ENV
-    - name: printenv
+    - name: print PUBLIC_URL
       shell: bash
-      run: printenv
+      run: echo $PUBLIC_URL
     - name: Checkout chain-status repo
       uses: actions/checkout@v2
       with:
@@ -39,7 +39,13 @@ runs:
       working-directory: ./chain-status
     - name: Copy old data
       shell: bash
-      run: cp ./current-project/data ./chain-status/packages/webpage/build/ -r
+      run: cp ./current-project/data ./chain-status/packages/webpage/public/ -r
+    - name: ls old data
+      shell: bash
+      run: ls ./current-project/data
+    - name: ls new data
+      shell: bash
+      run: ls ./chain-status/packages/webpage/public/
     - run: yarn predeploy
       shell: bash
       working-directory: ./chain-status
