@@ -1,0 +1,610 @@
+{
+  "metadata": {
+    "title": "Productization Jobs",
+    "subtitle": "Business Automation Productization Jobs",
+    "date": "2022-03-18T10:51:48.287Z",
+    "createdBy": "local execution"
+  },
+  "jobs": [
+    {
+      "id": "7.59.x",
+      "name": "7.59.x",
+      "description": null,
+      "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/",
+      "color": "blue",
+      "parent": {
+        "id": "rhba.nightly",
+        "name": "rhba.nightly",
+        "description": "nightly build for RHBA",
+        "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/"
+      },
+      "builds": [
+        {
+          "id": 65,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13823168,
+          "estimatedDuration": 13593010,
+          "date": 1647548371830,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/65/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/65//console"
+        },
+        {
+          "id": 64,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13497443,
+          "estimatedDuration": 13593010,
+          "date": 1647461883580,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/64/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/64//console"
+        },
+        {
+          "id": 63,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13458419,
+          "estimatedDuration": 13593010,
+          "date": 1647375304749,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/63/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/63//console"
+        },
+        {
+          "id": 62,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13357599,
+          "estimatedDuration": 13593010,
+          "date": 1647288536466,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/62/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/62//console"
+        },
+        {
+          "id": 61,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13684957,
+          "estimatedDuration": 13593010,
+          "date": 1647202232810,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/61/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/61//console"
+        },
+        {
+          "id": 60,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13812960,
+          "estimatedDuration": 13593010,
+          "date": 1647153391779,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/60/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/60//console"
+        },
+        {
+          "id": 59,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 12898653,
+          "estimatedDuration": 13593010,
+          "date": 1647029204852,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/59/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/59//console"
+        },
+        {
+          "id": 58,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13284572,
+          "estimatedDuration": 13593010,
+          "date": 1646942205045,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/58/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/58//console"
+        },
+        {
+          "id": 57,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13433819,
+          "estimatedDuration": 13593010,
+          "date": 1646855333961,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/57/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/57//console"
+        },
+        {
+          "id": 56,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13376929,
+          "estimatedDuration": 13593010,
+          "date": 1646769357978,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/56/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.59.x/56//console"
+        }
+      ]
+    },
+    {
+      "id": "7.67.x",
+      "name": "7.67.x",
+      "description": null,
+      "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.67.x/",
+      "color": "blue",
+      "parent": {
+        "id": "rhba.nightly",
+        "name": "rhba.nightly",
+        "description": "nightly build for RHBA",
+        "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/"
+      },
+      "builds": [
+        {
+          "id": 1,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13648091,
+          "estimatedDuration": 13648091,
+          "date": 1647301894801,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.67.x/1/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/7.67.x/1//console"
+        }
+      ]
+    },
+    {
+      "id": "main",
+      "name": "main",
+      "description": null,
+      "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/",
+      "color": "blue",
+      "parent": {
+        "id": "rhba.nightly",
+        "name": "rhba.nightly",
+        "description": "nightly build for RHBA",
+        "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/"
+      },
+      "builds": [
+        {
+          "id": 66,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 14031338,
+          "estimatedDuration": 13884999,
+          "date": 1647530383645,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/66/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/66//console"
+        },
+        {
+          "id": 65,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13899782,
+          "estimatedDuration": 13884999,
+          "date": 1647443862783,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/65/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/65//console"
+        },
+        {
+          "id": 64,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13723877,
+          "estimatedDuration": 13884999,
+          "date": 1647357621970,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/64/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/64//console"
+        },
+        {
+          "id": 63,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13475714,
+          "estimatedDuration": 13884999,
+          "date": 1647271022076,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/63/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/63//console"
+        },
+        {
+          "id": 62,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13657096,
+          "estimatedDuration": 13884999,
+          "date": 1647184661854,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/62/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/62//console"
+        },
+        {
+          "id": 61,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13573877,
+          "estimatedDuration": 13884999,
+          "date": 1647098417631,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/61/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/61//console"
+        },
+        {
+          "id": 60,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 13119266,
+          "estimatedDuration": 13884999,
+          "date": 1647011976615,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/60/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/60//console"
+        },
+        {
+          "id": 59,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 12875982,
+          "estimatedDuration": 13884999,
+          "date": 1646925658864,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/59/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/59//console"
+        },
+        {
+          "id": 58,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 12361977,
+          "estimatedDuration": 13884999,
+          "date": 1646839022345,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/58/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/58//console"
+        },
+        {
+          "id": 57,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 12897062,
+          "estimatedDuration": 13884999,
+          "date": 1646752623933,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/57/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/rhba.nightly/job/main/57//console"
+        }
+      ]
+    },
+    {
+      "id": "1.11.x",
+      "name": "1.11.x",
+      "description": null,
+      "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/",
+      "color": "blue",
+      "parent": {
+        "id": "kogito.nightly",
+        "name": "kogito.nightly",
+        "description": "nightly build for RHBA",
+        "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/"
+      },
+      "builds": [
+        {
+          "id": 171,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2341860,
+          "estimatedDuration": 2334439,
+          "date": 1647562195701,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/171/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/171//console"
+        },
+        {
+          "id": 170,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2334775,
+          "estimatedDuration": 2334439,
+          "date": 1647475382071,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/170/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/170//console"
+        },
+        {
+          "id": 169,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2326682,
+          "estimatedDuration": 2334439,
+          "date": 1647388763971,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/169/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/169//console"
+        },
+        {
+          "id": 168,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2643296,
+          "estimatedDuration": 2334439,
+          "date": 1647315544656,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/168/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/168//console"
+        },
+        {
+          "id": 167,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2629499,
+          "estimatedDuration": 2334439,
+          "date": 1647215918463,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/167/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/167//console"
+        },
+        {
+          "id": 166,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2897005,
+          "estimatedDuration": 2334439,
+          "date": 1647167205433,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/166/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/166//console"
+        },
+        {
+          "id": 165,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2267363,
+          "estimatedDuration": 2334439,
+          "date": 1647042104453,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/165/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/165//console"
+        },
+        {
+          "id": 164,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2782551,
+          "estimatedDuration": 2334439,
+          "date": 1646955490290,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/164/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/164//console"
+        },
+        {
+          "id": 163,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2862798,
+          "estimatedDuration": 2334439,
+          "date": 1646868768576,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/163/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/163//console"
+        },
+        {
+          "id": 162,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2640206,
+          "estimatedDuration": 2334439,
+          "date": 1646782735562,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/162/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.11.x/162//console"
+        }
+      ]
+    },
+    {
+      "id": "1.13.x",
+      "name": "1.13.x",
+      "description": null,
+      "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/",
+      "color": "blue",
+      "parent": {
+        "id": "kogito.nightly",
+        "name": "kogito.nightly",
+        "description": "nightly build for RHBA",
+        "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/"
+      },
+      "builds": [
+        {
+          "id": 40,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2469302,
+          "estimatedDuration": 2210149,
+          "date": 1647564538414,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/40/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/40//console"
+        },
+        {
+          "id": 39,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2155110,
+          "estimatedDuration": 2210149,
+          "date": 1647477717763,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/39/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/39//console"
+        },
+        {
+          "id": 38,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2006035,
+          "estimatedDuration": 2210149,
+          "date": 1647391091442,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/38/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/38//console"
+        },
+        {
+          "id": 37,
+          "building": false,
+          "result": "FAILURE",
+          "duration": 9348,
+          "estimatedDuration": 2210149,
+          "date": 1647318188779,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/37/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/37//console"
+        },
+        {
+          "id": 36,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2334281,
+          "estimatedDuration": 2210149,
+          "date": 1647218548708,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/36/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/36//console"
+        },
+        {
+          "id": 35,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2352701,
+          "estimatedDuration": 2210149,
+          "date": 1647170103176,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/35/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/35//console"
+        },
+        {
+          "id": 34,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 1963105,
+          "estimatedDuration": 2210149,
+          "date": 1647044372568,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/34/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/34//console"
+        },
+        {
+          "id": 33,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2015073,
+          "estimatedDuration": 2210149,
+          "date": 1646958273580,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/33/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/33//console"
+        },
+        {
+          "id": 32,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2072685,
+          "estimatedDuration": 2210149,
+          "date": 1646871632099,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/32/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/32//console"
+        },
+        {
+          "id": 31,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 2527040,
+          "estimatedDuration": 2210149,
+          "date": 1646785376521,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/31/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/1.13.x/31//console"
+        }
+      ]
+    },
+    {
+      "id": "main",
+      "name": "main",
+      "description": null,
+      "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/",
+      "color": "blue",
+      "parent": {
+        "id": "kogito.nightly",
+        "name": "kogito.nightly",
+        "description": "nightly build for RHBA",
+        "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/"
+      },
+      "builds": [
+        {
+          "id": 251,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 3953872,
+          "estimatedDuration": 4010080,
+          "date": 1647544417279,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/251/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/251//console"
+        },
+        {
+          "id": 250,
+          "building": false,
+          "result": "UNSTABLE",
+          "duration": 4119318,
+          "estimatedDuration": 4010080,
+          "date": 1647457763448,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/250/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/250//console"
+        },
+        {
+          "id": 249,
+          "building": false,
+          "result": "UNSTABLE",
+          "duration": 3957049,
+          "estimatedDuration": 4010080,
+          "date": 1647371346815,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/249/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/249//console"
+        },
+        {
+          "id": 248,
+          "building": false,
+          "result": "UNSTABLE",
+          "duration": 4037151,
+          "estimatedDuration": 4010080,
+          "date": 1647284498585,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/248/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/248//console"
+        },
+        {
+          "id": 247,
+          "building": false,
+          "result": "UNSTABLE",
+          "duration": 3912406,
+          "estimatedDuration": 4010080,
+          "date": 1647198319683,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/247/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/247//console"
+        },
+        {
+          "id": 246,
+          "building": false,
+          "result": "UNSTABLE",
+          "duration": 41398421,
+          "estimatedDuration": 4010080,
+          "date": 1647111992591,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/246/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/246//console"
+        },
+        {
+          "id": 245,
+          "building": false,
+          "result": "UNSTABLE",
+          "duration": 4107281,
+          "estimatedDuration": 4010080,
+          "date": 1647025096793,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/245/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/245//console"
+        },
+        {
+          "id": 244,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 3668731,
+          "estimatedDuration": 4010080,
+          "date": 1646938535566,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/244/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/244//console"
+        },
+        {
+          "id": 243,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 3947926,
+          "estimatedDuration": 4010080,
+          "date": 1646851385288,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/243/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/243//console"
+        },
+        {
+          "id": 242,
+          "building": false,
+          "result": "SUCCESS",
+          "duration": 3835189,
+          "estimatedDuration": 4010080,
+          "date": 1646765521979,
+          "url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/242/",
+          "console_url": "https://eng-jenkins-csb-business-automation.apps.ocp-c1.prod.psi.redhat.com/job/PROD/job/kogito.nightly/job/main/242//console"
+        }
+      ]
+    }
+  ]
+}
