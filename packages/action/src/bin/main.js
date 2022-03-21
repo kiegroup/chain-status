@@ -37,6 +37,7 @@ const generateProductFile = (
   projectStatusElement.name = name;
   projectStatusElement.folder = id;
   projectStatusElement.order = order;
+  projectStatusElement.date = new Date().getTime();
   if (!existingStatus) {
     content[key] = [...content[key], projectStatusElement];
   }

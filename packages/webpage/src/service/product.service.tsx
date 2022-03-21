@@ -4,18 +4,21 @@ import { REQUEST, SUCCESS, FAILURE } from "./action-type.util";
 
 export const ACTION_TYPES = {
   LOAD_DATA: "product/LOAD_DATA",
+  PRE_LOAD_DATA: "product/PRE_LOAD_DATA",
   SELECT_PRODUCT: "product/SELECT_PRODUCT",
   RESET: "product/RESET"
 };
 
 interface IInitialState {
   data: IProduct;
+  predata: IProduct;
   loading: boolean;
   errorMessage?: boolean;
   selectedProduct?: IProjectStatus;
 }
 const initialState: IInitialState = {
   data: defaultValue,
+  predata: defaultValue,
   loading: false,
   errorMessage: undefined,
   selectedProduct: undefined
@@ -35,6 +38,7 @@ const handle = (
         loading: true
       };
     case FAILURE(ACTION_TYPES.LOAD_DATA):
+    case FAILURE(ACTION_TYPES.PRE_LOAD_DATA):
       return {
         ...state,
         loading: false,
@@ -44,7 +48,13 @@ const handle = (
       return {
         ...state,
         loading: false,
+        predata: action.payload,
         data: action.payload
+      };
+    case SUCCESS(ACTION_TYPES.PRE_LOAD_DATA):
+      return {
+        ...state,
+        predata: action.payload
       };
     case ACTION_TYPES.SELECT_PRODUCT:
       return {
@@ -61,14 +71,22 @@ const handle = (
 };
 
 // Actions
-export const loadData = () => ({
-  type: ACTION_TYPES.LOAD_DATA,
+export const loadProductFileData = (type: string) => ({
+  type,
   payload: fetch(`${process.env.PUBLIC_URL}/data/product.json`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json"
     }
   }).then(response => response.json())
+});
+
+export const loadData = () => ({
+  ...loadProductFileData(ACTION_TYPES.LOAD_DATA)
+});
+
+export const preloadData = () => ({
+  ...loadProductFileData(ACTION_TYPES.PRE_LOAD_DATA)
 });
 
 export const selectProduct = (product: IProjectStatus) => ({

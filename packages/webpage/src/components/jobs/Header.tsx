@@ -1,9 +1,7 @@
 import {
   CloudSyncOutlined,
   InfoCircleOutlined,
-  LinkOutlined,
-  ReloadOutlined,
-  RocketOutlined
+  LinkOutlined, RocketOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -30,6 +28,7 @@ import BuildStatisticErrorIndexByJob from "../shared/BuildStatisticErrorIndexByJ
 import Loading from "../shared/Loading";
 import StaticJobs from "../shared/StatisticBuilds";
 import StatisticDate from "../shared/StatisticDate";
+const ReloadButton = React.lazy(() => import("../shared/ReloadButton"));
 
 const ProjectStatusInformation = React.lazy(
   () => import("../shared/ProjectStatusInformation")
@@ -47,9 +46,11 @@ export const Header: React.FC<IHeader> = props => {
     (store: IRootState) => store.product.selectedProduct
   );
 
-  const getData = () => {
+  const loadData = () => {
     if (selectedProduct?.folder) {
-      dispatch(jobDataService.loadData(selectedProduct.folder));
+      dispatch(
+        jobDataService.loadData(`${selectedProduct?.folder}/latest.json`)
+      );
     }
   };
 
@@ -90,17 +91,9 @@ export const Header: React.FC<IHeader> = props => {
         }
         style={{ padding: 0 }}
         extra={[
-          <Tooltip key="reaload" title="Reload information from service">
-            <Button
-              key="reload"
-              type="primary"
-              icon={<ReloadOutlined />}
-              loading={loading}
-              onClick={getData}
-            >
-              Reload
-            </Button>
-          </Tooltip>,
+          <Suspense fallback={<Skeleton.Input style={{ width: 100 }} />}>
+            <ReloadButton reloadAction={loadData} loading={loading} />
+          </Suspense>,
           <Tooltip key="info" title="Show project status information">
             <Button
               key="info"

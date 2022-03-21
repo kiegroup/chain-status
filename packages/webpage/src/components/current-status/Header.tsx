@@ -2,7 +2,6 @@ import {
   InfoCircleOutlined,
   LinkOutlined,
   NodeCollapseOutlined,
-  ReloadOutlined,
   PullRequestOutlined
 } from "@ant-design/icons";
 import {
@@ -18,17 +17,18 @@ import {
   Tooltip,
   Typography
 } from "antd";
+import moment from "moment";
 import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
+import * as dataService from "../../service/data.service";
 import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
 import Loading from "../shared/Loading";
-import StatisticDate from "../shared/StatisticDate";
 import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
-import * as dataService from "../../service/data.service";
-import moment from "moment";
-import { IPullRequest } from "../../model/pullrequest.model";
+import StatisticDate from "../shared/StatisticDate";
 
+const ReloadButton = React.lazy(() => import("../shared/ReloadButton"));
 const ProjectStatusInformation = React.lazy(
   () => import("../shared/ProjectStatusInformation")
 );
@@ -55,9 +55,9 @@ export const Header: React.FC<IHeader> = props => {
     (store: IRootState) => store.product.selectedProduct
   );
 
-  const getData = () => {
+  const loadData = () => {
     if (selectedProduct?.folder) {
-      dispatch(dataService.loadData(selectedProduct.folder));
+      dispatch(dataService.loadData(`${selectedProduct?.folder}/latest.json`));
     }
   };
 
@@ -98,17 +98,9 @@ export const Header: React.FC<IHeader> = props => {
         }
         style={{ padding: 0 }}
         extra={[
-          <Tooltip key="reaload" title="Reload information from service">
-            <Button
-              key="reload"
-              type="primary"
-              icon={<ReloadOutlined />}
-              loading={loading}
-              onClick={getData}
-            >
-              Reload
-            </Button>
-          </Tooltip>,
+          <Suspense fallback={<Skeleton.Input style={{ width: 100 }} />}>
+            <ReloadButton reloadAction={loadData} loading={loading} />
+          </Suspense>,
           <Tooltip key="info" title="Show project status information">
             <Button
               key="info"
