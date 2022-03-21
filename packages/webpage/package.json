@@ -5,7 +5,7 @@
   "homepage": "https://kiegroup.github.io/chain-status",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ginxo/chain-status.git"
+    "url": "git+https://github.com/kiegroup/chain-status.git"
   },
   "keywords": [
     "build-chain",
