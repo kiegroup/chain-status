@@ -1,8 +1,8 @@
 {
-  "name": "chain-status-webpage",
+  "name": "@kie/chain-status-webpage",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://ginxo.github.io/chain-status",
+  "homepage": "https://kiegroup.github.io/chain-status",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ginxo/chain-status.git"
