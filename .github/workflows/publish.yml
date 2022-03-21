@@ -1,25 +1,25 @@
-name: Publish
-
+name: Generate status page
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - "packages/webpage/**"
+
 jobs:
-  build:
+  generate-status-page:
+    concurrency:
+      group: generate-status-page
+      cancel-in-progress: true
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+      fail-fast: true
     runs-on: ubuntu-latest
+    name: Generate status page
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Generate status page
+        uses: Ginxo/chain-status/.ci/actions/generate-app@main
         with:
-          node-version: 14
-          registry-url: https://registry.npmjs.org/
-      - run: yarn
-      - run: yarn predeploy
-      - name: Deploy with gh-pages
-        run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d packages/webpage/build -u "github-actions-bot <support+actions@github.com>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github-token: "${{ secrets.GITHUB_TOKEN }}"          
