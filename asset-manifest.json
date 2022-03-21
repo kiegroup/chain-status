@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://Ginxo.github.io/chain-status/static/css/main.d35ee324.css",
-    "main.js": "https://Ginxo.github.io/chain-status/static/js/main.9eb35365.js",
+    "main.js": "https://Ginxo.github.io/chain-status/static/js/main.ff46ff68.js",
     "static/js/69.733036f2.chunk.js": "https://Ginxo.github.io/chain-status/static/js/69.733036f2.chunk.js",
     "static/js/501.0ce39dc6.chunk.js": "https://Ginxo.github.io/chain-status/static/js/501.0ce39dc6.chunk.js",
     "static/js/923.3082e4d3.chunk.js": "https://Ginxo.github.io/chain-status/static/js/923.3082e4d3.chunk.js",
@@ -9,7 +9,7 @@
     "static/js/113.9898e490.chunk.js": "https://Ginxo.github.io/chain-status/static/js/113.9898e490.chunk.js",
     "static/js/763.89b14e78.chunk.js": "https://Ginxo.github.io/chain-status/static/js/763.89b14e78.chunk.js",
     "static/js/564.579948b3.chunk.js": "https://Ginxo.github.io/chain-status/static/js/564.579948b3.chunk.js",
-    "static/js/116.dc08f021.chunk.js": "https://Ginxo.github.io/chain-status/static/js/116.dc08f021.chunk.js",
+    "static/js/116.d3883515.chunk.js": "https://Ginxo.github.io/chain-status/static/js/116.d3883515.chunk.js",
     "static/js/489.251b91a8.chunk.js": "https://Ginxo.github.io/chain-status/static/js/489.251b91a8.chunk.js",
     "static/js/273.a86e4f66.chunk.js": "https://Ginxo.github.io/chain-status/static/js/273.a86e4f66.chunk.js",
     "static/js/551.b69ec5ab.chunk.js": "https://Ginxo.github.io/chain-status/static/js/551.b69ec5ab.chunk.js",
@@ -36,7 +36,7 @@
     "static/js/316.d0f31861.chunk.js": "https://Ginxo.github.io/chain-status/static/js/316.d0f31861.chunk.js",
     "index.html": "https://Ginxo.github.io/chain-status/index.html",
     "main.d35ee324.css.map": "https://Ginxo.github.io/chain-status/static/css/main.d35ee324.css.map",
-    "main.9eb35365.js.map": "https://Ginxo.github.io/chain-status/static/js/main.9eb35365.js.map",
+    "main.ff46ff68.js.map": "https://Ginxo.github.io/chain-status/static/js/main.ff46ff68.js.map",
     "69.733036f2.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/69.733036f2.chunk.js.map",
     "501.0ce39dc6.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/501.0ce39dc6.chunk.js.map",
     "923.3082e4d3.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/923.3082e4d3.chunk.js.map",
@@ -44,7 +44,7 @@
     "113.9898e490.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/113.9898e490.chunk.js.map",
     "763.89b14e78.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/763.89b14e78.chunk.js.map",
     "564.579948b3.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/564.579948b3.chunk.js.map",
-    "116.dc08f021.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/116.dc08f021.chunk.js.map",
+    "116.d3883515.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/116.d3883515.chunk.js.map",
     "489.251b91a8.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/489.251b91a8.chunk.js.map",
     "273.a86e4f66.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/273.a86e4f66.chunk.js.map",
     "551.b69ec5ab.chunk.js.map": "https://Ginxo.github.io/chain-status/static/js/551.b69ec5ab.chunk.js.map",
@@ -72,6 +72,6 @@
   },
   "entrypoints": [
     "static/css/main.d35ee324.css",
-    "static/js/main.9eb35365.js"
+    "static/js/main.ff46ff68.js"
   ]
 }
