@@ -4,6 +4,9 @@ inputs:
   github-token:
     description: "the github token"
     required: true
+  info-md-url:
+    description: "the markdown info file url for the info section"
+    required: true
   gh-pages-branch:
     description: "the gh-pages branch"
     default: "gh-pages"
@@ -40,6 +43,9 @@ runs:
     - name: Copy old data
       shell: bash
       run: cp ./current-project/data ./chain-status/packages/webpage/public/ -r
+    - name: Download info file
+      shell: bash
+      run: wget ${{ inputs.info-md-url }} -O ./chain-status/packages/webpage/public/data/info.md
     - run: yarn predeploy
       shell: bash
       working-directory: ./chain-status

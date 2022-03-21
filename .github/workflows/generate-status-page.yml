@@ -22,4 +22,5 @@ jobs:
       - name: Generate status page
         uses: Ginxo/chain-status/.ci/actions/generate-app@main
         with:
+          info-md-url: "https://raw.githubusercontent.com/kiegroup/chain-status/gh-pages/data/info.md"          
           github-token: "${{ secrets.GITHUB_TOKEN }}"          
