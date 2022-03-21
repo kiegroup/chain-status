@@ -1,5 +1,5 @@
 {
-  "name": "chain-status",
+  "name": "@kie/chain-status",
   "private": true,
   "homepage": "https://ginxo.github.io/chain-status/",
   "workspaces": [
