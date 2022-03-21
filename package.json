@@ -1,7 +1,7 @@
 {
   "name": "@kie/chain-status",
   "private": true,
-  "homepage": "https://ginxo.github.io/chain-status/",
+  "homepage": "https://kiegroup.github.io/chain-status/",
   "workspaces": [
     "packages/*"
   ],
