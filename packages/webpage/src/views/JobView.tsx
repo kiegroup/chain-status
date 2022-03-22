@@ -65,7 +65,7 @@ export const JobView: React.FC<IJobView> = props => {
         `Error loading product file. Are you sure ${selectedProduct?.folder}/latest.json file is present on github pages branch?`
       );
     }
-  }, [errorMessageData]);
+  }, [errorMessageData, selectedProduct?.folder]);
 
   return (
     <MenuLayout>
