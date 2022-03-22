@@ -64,13 +64,18 @@ export const ListItem: React.FC<IListItem> = props => {
         extra={[
           latestBuild ? (
             <JobStatusIconFactory
+              key={`job_status_icon_${getJobId(props.job)}`}
               color={getColor(props.job.color)}
               building={latestBuild.building}
               result={latestBuild.result}
               size={24}
             />
           ) : (
-            <Tooltip placement="left" title="Not built">
+            <Tooltip
+              key={`job_status_icon_stop_${getJobId(props.job)}`}
+              placement="left"
+              title="Not built"
+            >
               <StopOutlined
                 style={{
                   fontSize: 24,

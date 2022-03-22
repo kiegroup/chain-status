@@ -22,12 +22,12 @@ export const ReloadButton: React.FC<IReloadButton> = props => {
   useEffect(() => {
     if (predata && selectedProduct) {
       const selectedProductFromData = [
-        ...data.jobs,
-        ...data.projectStatuses
+        ...data.jobs ?? [],
+        ...data.projectStatuses ?? []
       ].find(project => project.id === selectedProduct.id);
       const selectedProductFromPreData = [
-        ...predata.jobs,
-        ...predata.projectStatuses
+        ...predata.jobs ?? [],
+        ...predata.projectStatuses ?? []
       ].find(project => project.id === selectedProduct.id);
       if (
         selectedProductFromPreData && selectedProductFromData &&

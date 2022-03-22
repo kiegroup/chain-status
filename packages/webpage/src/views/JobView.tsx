@@ -33,12 +33,16 @@ export const JobView: React.FC<IJobView> = props => {
   );
 
   useEffect(() => {
-    if (id && jobs) {
+    if (id && jobs?.length) {
       const job = jobs.find(e => e.id === id);
       if (job) {
         dispatch(productService.selectProduct(job));
       } else {
-        setErrorMessage(`${id} does not exist as a project`);
+        setErrorMessage(
+          `${id} does not exist as a project. List of available projects ${jobs.map(
+            e => e.id
+          )}`
+        );
       }
     }
   }, [dispatch, id, jobs]);

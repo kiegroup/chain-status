@@ -1,7 +1,8 @@
 import {
   CloudSyncOutlined,
   InfoCircleOutlined,
-  LinkOutlined, RocketOutlined
+  LinkOutlined,
+  RocketOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -91,10 +92,13 @@ export const Header: React.FC<IHeader> = props => {
         }
         style={{ padding: 0 }}
         extra={[
-          <Suspense fallback={<Skeleton.Input style={{ width: 100 }} />}>
+          <Suspense
+            key="header_reload_button"
+            fallback={<Skeleton.Input style={{ width: 100 }} />}
+          >
             <ReloadButton reloadAction={loadData} loading={loading} />
           </Suspense>,
-          <Tooltip key="info" title="Show project status information">
+          <Tooltip key="header_info" title="Show project status information">
             <Button
               key="info"
               type="text"

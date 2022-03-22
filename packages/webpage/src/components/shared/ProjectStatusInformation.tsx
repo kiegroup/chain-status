@@ -16,7 +16,7 @@ export const ProjectStatusInformation: React.FC<
 
   const loadMarkdown = () => {
     setLoading(true);
-    fetch("data/info.md", {
+    fetch(`${process.env.PUBLIC_URL}/data/info.md`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json"

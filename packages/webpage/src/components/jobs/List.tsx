@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 import { IRootState } from "../../service";
 import Loading from "../shared/Loading";
+import { getJobId } from "../../utils/id.utils";
 const ListItem = React.lazy(() => import("./ListItem"));
 interface IList {}
 
@@ -17,7 +18,7 @@ export const List: React.FC<IList> = props => {
       <AntdList
         style={{ minHeight: 700 }}
         dataSource={data.jobs}
-        renderItem={job => <ListItem job={job} />}
+        renderItem={job => <ListItem key={`list_item_${getJobId(job)}`} job={job} />}
       />
     </Suspense>
   );
