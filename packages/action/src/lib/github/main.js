@@ -49,7 +49,12 @@ const mapStatus = status => ({
 });
 
 const loadChecks = async (node, sha, octokit) => {
-  const checks = (await getChecks(node.project, sha, octokit)).map(mapCheck);
+  let checks = [];
+  try {
+    checks = (await getChecks(node.project, sha, octokit)).map(mapCheck);
+  } catch (e) {
+    logger.error(`Check for ${node.project}:${sha} does not exist. Skipping`);
+  }
   const statuses = (await getRefStatuses(node.project, sha, octokit)).map(
     mapStatus
   );
