@@ -43,7 +43,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
   );
 
   useEffect(() => {
-    if (id && projectStatuses) {
+    if (id && projectStatuses?.length) {
       const projectStatus = projectStatuses.find(e => e.id === id);
       if (projectStatus) {
         dispatch(productService.selectProduct(projectStatus));
