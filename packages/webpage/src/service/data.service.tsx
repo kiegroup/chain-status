@@ -56,7 +56,11 @@ export const loadData = (file: string) => ({
       "Content-Type": "application/json",
       Accept: "application/json"
     }
-  }).then(response => response.json())
+  })
+    .then(response => response.json())
+    .catch(error => {
+      throw new Error(error);
+    })
 });
 
 export const reset = () => ({
