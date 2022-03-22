@@ -42,7 +42,7 @@ runs:
       working-directory: ./chain-status
     - name: Copy old data
       shell: bash
-      run: [[ -e ./current-project/data ]] &&  cp ./current-project/data ./chain-status/packages/webpage/public/ -r
+      run: "[[ -e ./current-project/data ]] &&  cp ./current-project/data ./chain-status/packages/webpage/public/ -r"
     - name: Download info file
       shell: bash
       run: wget ${{ inputs.info-md-url }} -O ./chain-status/packages/webpage/public/data/info.md
