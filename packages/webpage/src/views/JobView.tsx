@@ -56,7 +56,11 @@ export const JobView: React.FC<IJobView> = props => {
   }, [dispatch, selectedProduct]);
 
   useEffect(() => {
-    setErrorMessage(errorMessageData);
+    if (errorMessageData) {
+      setErrorMessage(
+        `Error loading product file. Are you sure ${selectedProduct?.folder}/latest.json file is present on github pages branch?`
+      );
+    }
   }, [errorMessageData]);
 
   return (
@@ -73,11 +77,6 @@ export const JobView: React.FC<IJobView> = props => {
             top: MENU_MARGIN_TOP
           }}
         >
-          <Suspense fallback={<Skeleton />}>
-            <JobViewHeader />
-          </Suspense>
-        </Layout.Header>
-        <Layout.Content>
           {errorMessage ? (
             <Alert
               message="Error"
@@ -86,6 +85,13 @@ export const JobView: React.FC<IJobView> = props => {
               showIcon
             />
           ) : (
+            <Suspense fallback={<Skeleton />}>
+              <JobViewHeader />
+            </Suspense>
+          )}
+        </Layout.Header>
+        <Layout.Content>
+          {!errorMessage ? (
             <Layout
               style={{
                 padding: "0 24px",
@@ -111,7 +117,7 @@ export const JobView: React.FC<IJobView> = props => {
                 <JobViewContent />
               </Layout.Content>
             </Layout>
-          )}
+          ) : null}
         </Layout.Content>
       </Layout>
     </MenuLayout>

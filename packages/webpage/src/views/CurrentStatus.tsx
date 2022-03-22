@@ -64,7 +64,11 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
   }, [dispatch, selectedProduct]);
 
   useEffect(() => {
-    setErrorMessage(errorMessageData);
+    if (errorMessageData) {
+      setErrorMessage(
+        `Error loading product file. Are you sure ${selectedProduct?.folder}/latest.json file is present on github pages branch?`
+      );
+    }
   }, [errorMessageData]);
 
   return (
@@ -81,11 +85,6 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
             top: MENU_MARGIN_TOP
           }}
         >
-          <Suspense fallback={<Skeleton />}>
-            <Header />
-          </Suspense>
-        </Layout.Header>
-        <Layout.Content>
           {errorMessage ? (
             <Alert
               message="Error"
@@ -94,6 +93,13 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
               showIcon
             />
           ) : (
+            <Suspense fallback={<Skeleton />}>
+              <Header />
+            </Suspense>
+          )}
+        </Layout.Header>
+        <Layout.Content>
+          {!errorMessage ? (
             <Layout
               style={{
                 padding: "0 24px",
@@ -125,7 +131,7 @@ export const CurrentStatus: React.FC<ICurrentStatus> = props => {
                 </Suspense>
               </Layout.Content>
             </Layout>
-          )}
+          ) : null}
         </Layout.Content>
       </Layout>
     </MenuLayout>
