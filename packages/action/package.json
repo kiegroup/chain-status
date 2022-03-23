@@ -1,6 +1,6 @@
 {
   "name": "@kie/chain-status-action",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generates data for chain status webpage",
   "repository": {
     "type": "git",

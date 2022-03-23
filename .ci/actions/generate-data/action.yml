@@ -16,7 +16,10 @@ inputs:
     default: "Contribution status"
     required: false
   base-branch-filter:
-    description: "A comma separated list of base branches to be filtered. Like `main,7.59.x,8.x`"
+    description: "A comma separated list of base branches RegEx to be filtered. Like `main,7.59.x,8.x` or `main,^7.*`"
+    required: false
+  project-filter:
+    description: "A comma separated list of project RegEx to be filtered. Like `drools,opta.*` or `jbpm,^drools.*`"
     required: false
   created-by:
     description: "The user/machine/whatever that regenerates the report"
@@ -51,6 +54,7 @@ runs:
         subtitle: ${{ inputs.subtitle }}
         output-folder-path: ./chain-status/data
         base-branch-filter: ${{ inputs.base-branch-filter }}
+        project-filter: ${{ inputs.base-branch-filter }}
         created-by: ${{ inputs.created-by }}
         created-url: ${{ inputs.created-url }}
         logger-level: ${{ inputs.logger-level }}

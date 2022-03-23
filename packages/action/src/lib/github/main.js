@@ -134,14 +134,28 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
   if (!orderedList || !orderedList.length) {
     throw new ClientError("No projects on the definition file");
   }
+  logger.info(
+    `Projects from defintion file [${orderedList.map(e => e.project)}]`
+  );
+  const filteredList =
+    args.projectFilter && args.projectFilter.length > 0
+      ? orderedList.filter(e =>
+          args.projectFilter.find(filter => new RegExp(filter).test(e.project))
+        )
+      : orderedList;
+  if (!filteredList || !filteredList.length) {
+    throw new ClientError("No projects left after applying the filter");
+  }
+
+  logger.info(`Filtered projects [${filteredList.map(e => e.project)}]`);
 
   const pullRequestInformation = await Promise.all(
-    orderedList.map(async node => {
+    filteredList.map(async node => {
       try {
         return await mapPullRequestInfo(
           node,
           filterPullRequests(
-            orderedList[0],
+            filteredList[0],
             node,
             await getPullRequests(node.project, octokit, {
               state: "open",
@@ -149,7 +163,7 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
               per_page: 100
             }),
             await mainProjectBranches(
-              orderedList[0].project,
+              filteredList[0].project,
               octokit,
               args.baseBranchFilter
             )

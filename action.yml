@@ -20,6 +20,9 @@ inputs:
   base-branch-filter:
     description: "A comma separated list of base branches RegEx to be filtered. Like `main,7.59.x,8.x` or `main,^7.*`"
     required: false
+  project-filter:
+    description: "A comma separated list of project RegEx to be filtered. Like `drools,opta.*` or `jbpm,^drools.*`"
+    required: false
   created-by:
     description: "The user/machine/whatever that regenerates the report"
     default: "github action"
