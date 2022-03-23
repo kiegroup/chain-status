@@ -47,6 +47,11 @@ function getArgumentsObject() {
       "Skip jobs or projects with zero builds or pull requests",
       1000
     )
+    .option(
+      "--projectFilter <project...>",
+      "a list of RegEx to filter project names",
+      []
+    )
     .parse();
 
   return { ...program.opts() };
