@@ -47,7 +47,7 @@ runs:
         ref: ${{ inputs.gh-pages-branch }}
     - name: Chain Status Generator
       id: build-chain
-      uses: Ginxo/chain-status@main
+      uses: kiegroup/chain-status@main
       with:
         definition-file: ${{ inputs.definition-file }}
         title: ${{ inputs.title }}
