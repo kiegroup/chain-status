@@ -1,6 +1,5 @@
 import { NodeCollapseOutlined } from "@ant-design/icons";
 import { Col, Row, Statistic, Typography } from "antd";
-import { TooltipPlacement } from "antd/lib/tooltip";
 import React from "react";
 import { IProject } from "../../model/project.model";
 import { STATISTICS_STYLE } from "../../shared/constants";
@@ -9,7 +8,6 @@ import ProjectLink from "./ProjectLink";
 interface IStaticPullRequests {
   projects: IProject[];
   size?: number;
-  placement?: TooltipPlacement;
 }
 export const StaticPullRequests: React.FC<IStaticPullRequests> = props => {
   const fontSizeStyle = props.size
