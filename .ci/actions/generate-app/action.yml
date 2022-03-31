@@ -40,9 +40,15 @@ runs:
     - run: yarn
       shell: bash
       working-directory: ./chain-status
+    - name: Check old data existence
+      id: check_old_data
+      uses: andstor/file-existence-action@v1
+      with:
+        files: "./current-project/data"
     - name: Copy old data
+      if: steps.check_old_data.outputs.files_exists == 'true'
       shell: bash
-      run: "[[ -e ./current-project/data ]] &&  cp ./current-project/data ./chain-status/packages/webpage/public/ -r"
+      run: "cp ./current-project/data ./chain-status/packages/webpage/public/ -r"
     - name: Download info file
       shell: bash
       run: wget ${{ inputs.info-md-url }} -O ./chain-status/packages/webpage/public/data/info.md
