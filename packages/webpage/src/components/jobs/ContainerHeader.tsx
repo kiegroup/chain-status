@@ -1,7 +1,6 @@
 import {
   CloudSyncOutlined,
-  LinkOutlined,
-  CheckCircleOutlined
+  LinkOutlined
 } from "@ant-design/icons";
 import { Button, Col, PageHeader, Row, Statistic, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";

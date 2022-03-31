@@ -1,10 +1,9 @@
 import { ClockCircleOutlined } from "@ant-design/icons";
-import { Statistic, Popover } from "antd";
+import { Popover, Statistic } from "antd";
 import { TooltipPlacement } from "antd/lib/tooltip";
+import prettyMilliseconds from "pretty-ms";
 import React, { useEffect, useState } from "react";
 import { STATISTICS_STYLE } from "../../shared/constants";
-import Loading from "./Loading";
-import prettyMilliseconds from "pretty-ms";
 
 interface IStaticDuration {
   title: string;
