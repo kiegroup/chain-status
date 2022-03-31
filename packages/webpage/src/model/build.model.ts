@@ -1,7 +1,7 @@
 export interface IBuild {
   id?: number;
   building?: boolean;
-  duration?: number;
+  duration: number;
   estimatedDuration?: number;
   result?: string;
   url?: string;
@@ -9,4 +9,6 @@ export interface IBuild {
   date?: number;
 }
 
-export const defaultValue: Readonly<IBuild> = {};
+export const defaultValue: Readonly<IBuild> = {
+  duration: 0
+};
