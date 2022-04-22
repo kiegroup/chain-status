@@ -24,7 +24,6 @@ const handle = (
   state: PullRequestFilterState = initialState,
   action: any
 ): PullRequestFilterState => {
-  console.log(action.type, action.payload)
   switch (action.type) {
     case ACTION_TYPES.FILTER:
       return {
