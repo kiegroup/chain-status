@@ -31,7 +31,7 @@ runs:
     - name: Checkout chain-status repo
       uses: actions/checkout@v2
       with:
-        repository: Ginxo/chain-status
+        repository: kiegroup/chain-status
         path: ./chain-status
     - uses: actions/setup-node@v1
       with:
