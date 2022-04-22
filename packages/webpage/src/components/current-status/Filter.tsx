@@ -171,10 +171,26 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
       [null, undefined, ""].includes(filter.search) &&
       (!filter.date || filter.date.length !== 2));
 
+  const filterZeroPullRequests = (
+    projects: IProject[],
+    showZeroPullRequests: boolean | undefined
+  ) =>
+    showZeroPullRequests
+      ? projects
+      : projects.filter(project => project.pullRequests?.length > 0);
+
   useEffect(() => {
     if (data?.projects) {
       if (isFilterEmpty(filter)) {
-        dispatch(pullRequestFilterService.setData(data));
+        dispatch(
+          pullRequestFilterService.setData({
+            metadata: data.metadata,
+            projects: filterZeroPullRequests(
+              data.projects,
+              filter.showZeroPullRequests
+            )
+          })
+        );
       } else {
         const searchLowerCase = filter.search
           ? filter.search.toLocaleLowerCase()
@@ -203,9 +219,10 @@ export const FilterComponent: React.FC<IFilterComponent> = props => {
         dispatch(
           pullRequestFilterService.setData({
             metadata: data.metadata,
-            projects: filter.showZeroPullRequests
-              ? projects
-              : projects.filter(project => project.pullRequests?.length > 0)
+            projects: filterZeroPullRequests(
+              projects,
+              filter.showZeroPullRequests
+            )
           })
         );
       }
