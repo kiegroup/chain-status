@@ -161,3 +161,8 @@ Here the steps you should follow to integrate your project with **chain-status**
     - [Optional] Include `schedule` option only if you aim to automatically tun the Github action periodically - this is recommended if you want to have the status data always up to date.
     
 3. Once both workflows have been created I recommend running first the content generation one (`generate_status_page_data`), such that the projects configuration that you want to use is already present when you create the webpage content (using the `generate_status_page` workflow).
+
+
+### Example
+
+You can find a simple example of integration in [chain-status-example](https://github.com/lampajr/chain-status-example/) repository.
