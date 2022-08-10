@@ -1,6 +1,6 @@
 # Chain Status tool
 
-JS tool + React web application called chain-status that allows us to centralize, expose, consume and filter information about Github Pull Requests and Jenkins jobs status as a Github page resource.
+JS tool + React web application called chain-status that allows us to centralize, expose, consume and filter information about Github Pull Requests and Jenkins jobs status as a web page resource.
 The JS tool basically consumes information from Github API or Jenkins API and generates a JSON file which is retrieved by the React web application. 
 
 The best part here is everybody can easily use it for their projects, no additional source code is required and we are using external and free resources (like Github API jobs and Github Pages).
@@ -82,7 +82,7 @@ Here the main important steps performed by **generate-data** action:
 ## Usage
 
 
-Since this project is already providing configurable actions (more details in [actions](#actions) section), if you want to use this tool - in order to automate the Github page generation for project statuses - you will only have to add two specific workflows to your target project and configure it as you prefer.\
+Since this project is already providing configurable actions (more details in [actions](#actions) section), if you want to use this tool - in order to automate the Github page generation for project statuses - you will only have to add two specific workflows to your target project and configure it as you prefer.
 
 ### Prerequisites 
 
