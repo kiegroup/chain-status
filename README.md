@@ -61,7 +61,7 @@ The **generate-data** [action](https://github.com/kiegroup/chain-status/blob/mai
 Here the main important steps performed by **generate-data** action:
 
 1. Checkout in the branch where you want to store the webpage code and content, the default is `gh-pages`.
-2. Execute the [chain-status tool](https://github.com/kiegroup/chain-status/tree/main/packages/action) that, given a set of inputs, compute the configuration files and all the contents that are used by the webpage.
+2. Execute the [chain-status](https://github.com/kiegroup/chain-status/tree/main/packages/action) tool that, given a set of inputs, compute the configuration files and all the contents that are used by the webpage.
 3. Commit and push the newly generated data in the target branch (e.g., `gh-pages`).
 
 #### Inputs
@@ -69,7 +69,7 @@ Here the main important steps performed by **generate-data** action:
 | Field              | Required | Default             | Description                                                                                                                                                                                      |
 |--------------------|----------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | github-token       | true     |                     | The Github token that must be used to interact with Github API                                                                                                                                   |
-| definition-file    | true     |                     | The file containing all projects for which you want to provide the status, an [example](https://raw.githubusercontent.com/kiegroup/droolsjbpm-build-bootstrap/main/.ci/pull-request-config.yaml) |
+| definition-file    | true     |                     | The file containing all projects for which you want to provide the status, an [example](https://raw.githubusercontent.com/kiegroup/droolsjbpm-build-bootstrap/main/.ci/pull-request-config.yaml) - more infos [here](https://github.com/kiegroup/build-chain-configuration-reader) |
 | title              | false    | Project status      | The project/webapp title                                                                                                                                                                         |
 | subtitle           | false    | Contribution status | The project/webapp subtitle                                                                                                                                                                      |
 | base-branch-filter | false    |                     | A comma separated list of base branches RegEx to be filtered. Like `main,7.59.x,8.x` or `main,^7.*`                                                                                              |
@@ -159,3 +159,5 @@ Here the steps you should follow to integrate your project with **chain-status**
     ```
     - Replace `<..>` data with your project-specific one, for further details about fields usage see [Generate Data](#Generate-Data) action.
     - [Optional] Include `schedule` option only if you aim to automatically tun the Github action periodically - this is recommended if you want to have the status data always up to date.
+    
+3. Once both workflows have been created I recommend running first the content generation one (`generate_status_page_data`), such that the projects configuration that you want to use is already present when you create the webpage content (using the `generate_status_page` workflow).
