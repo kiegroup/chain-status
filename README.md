@@ -5,6 +5,14 @@ The JS tool basically consumes information from Github API or Jenkins API and ge
 
 The best part here is everybody can easily use it for their projects, no additional source code is required and we are using external and free resources (like Github API jobs and Github Pages).
 
+## Working examples
+
+If you want to learn this tool directly from concrete, working examples we suggest to take a look at [droolsjbpm-build-bootstrap](https://github.com/kiegroup/droolsjbpm-build-bootstrap) project. This project integrates the `chain-status` tool as Github workflows in order to provide a [Kiegroup status](https://kiegroup.github.io/droolsjbpm-build-bootstrap/status/kiegroup-status) page that is continuously updated in an automated way.
+
+### Examples
+
+1. [droolsjbpm-build-bootstrap](https://github.com/kiegroup/droolsjbpm-build-bootstrap), a working and complete example of a real application.
+2. [chain-status-example](https://github.com/lampajr/chain-status-example), a step by step simple example of how to integrate the tool.
 ## Technical information
 
 It is multipackage npm project. We recommend to use yarn, since just yarn.lock files are provided.
@@ -161,8 +169,3 @@ Here the steps you should follow to integrate your project with **chain-status**
     - [Optional] Include `schedule` option only if you aim to automatically tun the Github action periodically - this is recommended if you want to have the status data always up to date.
     
 3. Once both workflows have been created I recommend running first the content generation one (`generate_status_page_data`), such that the projects configuration that you want to use is already present when you create the webpage content (using the `generate_status_page` workflow).
-
-
-### Example
-
-You can find a simple example of integration in [chain-status-example](https://github.com/lampajr/chain-status-example/) repository.
