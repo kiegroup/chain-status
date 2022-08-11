@@ -6,7 +6,10 @@ inputs:
     required: true
   definition-file:
     description: "The `definition-file` input for the build-chain"
-    required: true
+    required: false
+  projects:
+    description: "The comma-separated list of projects from which  you want to gather data"
+    required: false
   title:
     description: "The project/webapp title."
     default: "Project Status"
@@ -50,6 +53,7 @@ runs:
       uses: kiegroup/chain-status@main
       with:
         definition-file: ${{ inputs.definition-file }}
+        projects: ${{ inputs.projects }}
         title: ${{ inputs.title }}
         subtitle: ${{ inputs.subtitle }}
         output-folder-path: ./chain-status/data
