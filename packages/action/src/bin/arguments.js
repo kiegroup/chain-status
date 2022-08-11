@@ -11,7 +11,7 @@ function getArgumentsObject() {
     )
     .option(
       "-p, --projects <project...>",
-      "a list of RegEx to filter project names"
+      "a list of project names including organization <owner>/<proj>"
     )
     .requiredOption("-t, --title <title>", "Project title.")
     .requiredOption("-st, --subtitle <subtitle>", "Project subtitle.")

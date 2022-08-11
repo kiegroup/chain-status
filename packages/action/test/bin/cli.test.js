@@ -8,7 +8,7 @@ const empty_args = {
   createdBy: undefined,
   createdUrl: undefined,
   definitionFile: undefined,
-  projects: [],
+  projects: undefined,
   debug: false,
   baseBranchFilter: [],
   projectFilter: []
@@ -33,7 +33,7 @@ describe("main", () => {
         createdBy: undefined,
         createdUrl: undefined,
         definitionFile: undefined,
-        projects: [],
+        projects: undefined,
         debug: false,
         baseBranchFilter: [],
         projectFilter: []
@@ -56,7 +56,7 @@ describe("main", () => {
     expect(main).toHaveBeenCalledWith(
       expect.objectContaining({
         definitionFile: "definition-file",
-        projects: []
+        projects: undefined
       })
     );
   });

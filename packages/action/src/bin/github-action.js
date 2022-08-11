@@ -8,7 +8,7 @@ const start = async () => {
     definitionFile: core.getInput("definition-file"),
     projects: core.getInput("projects")
       ? core.getInput("projects").split(",")
-      : [],
+      : undefined,
     outputFolderPath: core.getInput("output-folder-path")
       ? core.getInput("output-folder-path")
       : __dirname,
