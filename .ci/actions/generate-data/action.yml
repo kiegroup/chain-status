@@ -8,7 +8,7 @@ inputs:
     description: "The `definition-file` input for the build-chain"
     required: false
   projects:
-    description: "The comma-separated list of projects from which  you want to gather data"
+    description: "The comma-separated list of projects from which you want to gather data"
     required: false
   title:
     description: "The project/webapp title."

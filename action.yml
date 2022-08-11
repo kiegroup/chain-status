@@ -4,8 +4,11 @@ description: Generates data for chain status webpage
 
 inputs:
   definition-file:
-    description: "the file where the build chain is defined. It can a file in the same repository (relative path) or a URL."
-    required: true
+    description: "The file where the build chain is defined. It can a file in the same repository (relative path) or a URL."
+    required: false
+  projects:
+    description: "The comma-separated list of projects from which you want to gather data"
+    required: false
   title:
     description: "The project title."
     default: "Project Status"
