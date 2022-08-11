@@ -9,6 +9,10 @@ function getArgumentsObject() {
       "-df, --definition-file <filePath or URL>",
       "Filesystem path or URL to the definition file."
     )
+    .option(
+      "-p, --projects <project...>",
+      "a list of RegEx to filter project names"
+    )
     .requiredOption("-t, --title <title>", "Project title.")
     .requiredOption("-st, --subtitle <subtitle>", "Project subtitle.")
     .option(

@@ -127,6 +127,8 @@ async function mainProjectBranches(project, octokit, baseBranchFilter) {
 async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
   const octokit = createOctokitInstance(args.token);
 
+  // TODO: if definition file is set -> use it, otherwise check projects property
+  // TODO: if both unset -> throw ClientError
   logger.info(`Getting projects from definition file ${args.definitionFile}`);
   const orderedList = await getOrderedListForTree(args.definitionFile, {
     token: args.token
