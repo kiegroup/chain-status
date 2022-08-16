@@ -127,7 +127,7 @@ async function mainProjectBranches(project, octokit, baseBranchFilter) {
 async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
   const octokit = createOctokitInstance(args.token);
 
-  var orderedList;
+  let orderedList;
   if (args.definitionFile) {
     logger.info(
       `Getting projects from build-chain definition file ${args.definitionFile}`
