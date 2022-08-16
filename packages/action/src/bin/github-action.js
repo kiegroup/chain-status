@@ -6,9 +6,7 @@ const { main } = require("./main");
 const start = async () => {
   const args = {
     definitionFile: core.getInput("definition-file"),
-    projects: core.getInput("projects")
-      ? core.getInput("projects").split(",")
-      : undefined,
+    projects: core.getInput("projects")?.split(",")
     outputFolderPath: core.getInput("output-folder-path")
       ? core.getInput("output-folder-path")
       : __dirname,
