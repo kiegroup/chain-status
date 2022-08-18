@@ -4,8 +4,8 @@ const { formatDate } = require("./date-util");
 const fs = require("fs");
 const path = require("path");
 
-const saveFiles = (data, outputFolderPath, extesion = "json") => {
-  logger.info(`Writting files to ${outputFolderPath}`);
+const saveFiles = (data, outputFolderPath, extension = "json") => {
+  logger.info(`Writing files to ${outputFolderPath}`);
   if (!fs.existsSync(outputFolderPath)) {
     logger.info(
       `Directory '${outputFolderPath}' does not exist. Creating it...`
@@ -19,13 +19,13 @@ const saveFiles = (data, outputFolderPath, extesion = "json") => {
 
   const todayFilePath = path.join(
     outputFolderPath,
-    `${formatDate(new Date())}.${extesion}`
+    `${formatDate(new Date())}.${extension}`
   );
-  logger.info(`Writting file to ${todayFilePath}`);
+  logger.info(`Writing file to ${todayFilePath}`);
   fs.writeFileSync(todayFilePath, data);
 
-  const latestFilePath = path.join(outputFolderPath, `latest.${extesion}`);
-  logger.info(`Writting file to ${latestFilePath}`);
+  const latestFilePath = path.join(outputFolderPath, `latest.${extension}`);
+  logger.info(`Writing file to ${latestFilePath}`);
   fs.writeFileSync(latestFilePath, data);
   return { latest: latestFilePath, today: todayFilePath };
 };

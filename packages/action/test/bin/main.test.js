@@ -1,5 +1,5 @@
-const fs = require("fs");
 jest.mock("fs");
+const { existsSync, readFileSync, writeFileSync } = require("fs");
 const { main } = require("../../src/bin/main");
 const { main: executeGithub } = require("../../src/lib/github/main");
 jest.mock("../../src/lib/github/main");
@@ -43,17 +43,19 @@ describe("github main", () => {
 
   test("append new project status", () => {
     // simulate a product.json file already exists
-    fs.existsSync.mockReturnValueOnce(true);
-    fs.readFileSync.mockReturnValueOnce(
+    existsSync.mockReturnValueOnce(true);
+    readFileSync.mockReturnValueOnce(
       '{"projectStatuses": [{"id": "kiegroup-status", "name": "Kiegroup Status","folder": "kiegroup-status","date": 1660748832737}]}'
     );
 
     main({ ...defaultArgs });
 
-    // expectations
     expect(executeGithub).toBeCalledTimes(1);
-    // expect(fs.existsSync).toBeCalledTimes(1);
-    // expect(fs.readFileSync).toBeCalledTimes(1);
+    // TODO: not working checks on fs
+    // expect(writeFileSync).toHaveBeenCalledWith(
+    //   "/tmp/product.json",
+    //   ""
+    // );
   });
 });
 
