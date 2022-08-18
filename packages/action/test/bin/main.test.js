@@ -1,5 +1,5 @@
 jest.mock("fs");
-const { existsSync, readFileSync, writeFileSync } = require("fs");
+const { existsSync, readFileSync } = require("fs");
 const { main } = require("../../src/bin/main");
 const { main: executeGithub } = require("../../src/lib/github/main");
 jest.mock("../../src/lib/github/main");
