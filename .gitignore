@@ -105,5 +105,9 @@ typings/
 # Test reports
 */**/test-report.xml
 
+# Default nvm node version
+.nvmrc
+
 packages/webpage/build/
 .vscode/
+
