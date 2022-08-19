@@ -156,7 +156,7 @@ const listBranches = async (
       result.push(...data);
       if (data.length === options.per_page) {
         result.push(
-          ...(await getChecks(project, octokit, {
+          ...(await listBranches(project, octokit, {
             ...options,
             page: ++options.page
           }))
