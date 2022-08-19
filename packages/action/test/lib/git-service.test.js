@@ -3,12 +3,19 @@ const {
   getDefaultBranch,
   getRepository,
   getPullRequests,
-  getChecks
-  // getRefStatuses,
-  // listBranches
+  getChecks,
+  getRefStatuses,
+  listBranches
 } = require("../../src/lib/git-service");
 
 const mockOctokitOk = {
+  paginate() {
+    return Promise.resolve([
+      { id: 1, name: "name1", state: "ok" },
+      { id: 2, name: "nam2", state: "ok" },
+      { id: 3, name: "name3", state: "ok" }
+    ]);
+  },
   repos: {
     get() {
       return {
@@ -16,6 +23,12 @@ const mockOctokitOk = {
         data: {
           default_branch: "main"
         }
+      };
+    },
+    listBranches() {
+      return {
+        status: 200,
+        data: [{ data: "content" }, { data: "content2" }]
       };
     }
   },
@@ -42,6 +55,12 @@ const mockOctokitOk = {
 const mockOctokitKo = {
   repos: {
     get() {
+      return {
+        status: 400,
+        data: "error"
+      };
+    },
+    listBranches() {
       return {
         status: 400,
         data: "error"
@@ -145,5 +164,38 @@ describe("get checks", () => {
       mockOctokitKo
     );
     expect(result.length).toEqual(0);
+  });
+});
+
+describe("get branches", () => {
+  test("list of branches received", async () => {
+    const result = await listBranches("kiegroup/chain-status", mockOctokitOk);
+    expect(result.length).toEqual(2);
+    expect(result).toEqual(
+      expect.arrayContaining([{ data: "content" }, { data: "content2" }])
+    );
+  });
+
+  test("empty list on ~200 status", async () => {
+    const result = await listBranches("kiegroup/chain-status", mockOctokitKo);
+    expect(result.length).toEqual(0);
+  });
+});
+
+describe("get ref statuses", () => {
+  test("ref statuses received", async () => {
+    const result = await getRefStatuses(
+      "kiegroup/chain-status",
+      "ref",
+      mockOctokitOk
+    );
+    expect(result.length).toEqual(3);
+    expect(result).toEqual(
+      expect.arrayContaining([
+        { id: 1, name: "name1", state: "ok" },
+        { id: 2, name: "nam2", state: "ok" },
+        { id: 3, name: "name3", state: "ok" }
+      ])
+    );
   });
 });
