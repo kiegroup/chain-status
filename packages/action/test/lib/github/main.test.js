@@ -9,7 +9,6 @@ jest.mock("fs", () => ({
   })
 }));
 jest.mock("../../../src/utils/bin-utils");
-const { readFileSync } = jest.requireActual("fs");
 const { main } = require("../../../src/lib/github/main");
 const { createOctokitInstance } = require("../../../src/utils/bin-utils");
 const { octokit } = require("../../support/mock-octokit");

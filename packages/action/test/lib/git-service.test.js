@@ -7,50 +7,7 @@ const {
   getRefStatuses,
   listBranches
 } = require("../../src/lib/git-service");
-
-const mockOctokitOk = {
-  paginate() {
-    return Promise.resolve([
-      { id: 1, name: "name1", state: "ok" },
-      { id: 2, name: "nam2", state: "ok" },
-      { id: 3, name: "name3", state: "ok" }
-    ]);
-  },
-  repos: {
-    get() {
-      return {
-        status: 200,
-        data: {
-          default_branch: "main"
-        }
-      };
-    },
-    listBranches() {
-      return {
-        status: 200,
-        data: [{ data: "content" }, { data: "content2" }]
-      };
-    }
-  },
-  pulls: {
-    list() {
-      return {
-        status: 200,
-        data: [{ data: "content" }, { data: "content2" }]
-      };
-    }
-  },
-  checks: {
-    listForRef() {
-      return {
-        status: 200,
-        data: {
-          check_runs: [{ data: "content" }, { data: "content2" }]
-        }
-      };
-    }
-  }
-};
+const { octokit } = require("../support/mock-octokit");
 
 const mockOctokitKo = {
   repos: {
@@ -88,7 +45,7 @@ const mockOctokitKo = {
 describe("get default branch", () => {
   test("valid request", () => {
     return expect(
-      getDefaultBranch("kiegroup/chain-status", mockOctokitOk)
+      getDefaultBranch("kiegroup/chain-status", octokit)
     ).resolves.toEqual("main");
   });
 
@@ -106,10 +63,12 @@ describe("get default branch", () => {
 describe("get repository", () => {
   test("valid request", () => {
     return expect(
-      getRepository("kiegroup/chain-status", mockOctokitOk)
-    ).resolves.toEqual({
-      default_branch: "main"
-    });
+      getRepository("kiegroup/chain-status", octokit)
+    ).resolves.toEqual(
+      expect.objectContaining({
+        default_branch: "main"
+      })
+    );
   });
 
   test("invalid request", () => {
@@ -125,13 +84,15 @@ describe("get repository", () => {
 
 describe("get pull requests", () => {
   test("some pull requests received", async () => {
-    const result = await getPullRequests(
-      "kiegroup/chain-status",
-      mockOctokitOk
-    );
+    const result = await getPullRequests("kiegroup/chain-status", octokit);
     expect(result.length).toEqual(2);
     expect(result).toEqual(
-      expect.arrayContaining([{ data: "content" }, { data: "content2" }])
+      expect.arrayContaining([
+        expect.objectContaining({
+          title: "Bump undertow-core from 2.2.15.Final to 2.2.19.Final",
+          url: "https://api.github.com/repos/kiegroup/droolsjbpm-build-bootstrap/pulls/2037"
+        })
+      ])
     );
   });
 
@@ -146,11 +107,7 @@ describe("get pull requests", () => {
 
 describe("get checks", () => {
   test("check runs received", async () => {
-    const result = await getChecks(
-      "kiegroup/chain-status",
-      "ref",
-      mockOctokitOk
-    );
+    const result = await getChecks("kiegroup/chain-status", "ref", octokit);
     expect(result.length).toEqual(2);
     expect(result).toEqual(
       expect.arrayContaining([{ data: "content" }, { data: "content2" }])
@@ -169,10 +126,10 @@ describe("get checks", () => {
 
 describe("get branches", () => {
   test("list of branches received", async () => {
-    const result = await listBranches("kiegroup/chain-status", mockOctokitOk);
+    const result = await listBranches("kiegroup/chain-status", octokit);
     expect(result.length).toEqual(2);
     expect(result).toEqual(
-      expect.arrayContaining([{ data: "content" }, { data: "content2" }])
+      expect.arrayContaining([{ name: "main" }, { name: "7.67.x" }])
     );
   });
 
@@ -187,7 +144,7 @@ describe("get ref statuses", () => {
     const result = await getRefStatuses(
       "kiegroup/chain-status",
       "ref",
-      mockOctokitOk
+      octokit
     );
     expect(result.length).toEqual(3);
     expect(result).toEqual(
