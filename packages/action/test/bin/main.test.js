@@ -1,5 +1,5 @@
 jest.mock("fs");
-const { existsSync, readFileSync } = require("fs");
+const { existsSync, readFileSync, writeFileSync } = require("fs");
 const { main } = require("../../src/bin/main");
 const { main: executeGithub } = require("../../src/lib/github/main");
 jest.mock("../../src/lib/github/main");
@@ -19,9 +19,9 @@ const defaultArgs = {
 };
 
 describe("github main", () => {
-  test("branching github flow", () => {
+  test("branching github flow", async () => {
     // since args.jenkinsUrl is undefined we will go in the github flow
-    main({ ...defaultArgs });
+    await main({ ...defaultArgs });
     expect(executeJenkins).toBeCalledTimes(0);
 
     expect(executeGithub).toBeCalledTimes(1);
@@ -41,28 +41,44 @@ describe("github main", () => {
     );
   });
 
-  test("append new project status", () => {
+  test("append new project status", async () => {
     // simulate a product.json file already exists
     existsSync.mockReturnValueOnce(true);
     readFileSync.mockReturnValueOnce(
       '{"projectStatuses": [{"id": "kiegroup-status", "name": "Kiegroup Status","folder": "kiegroup-status","date": 1660748832737}]}'
     );
 
-    main({ ...defaultArgs });
+    await main({ ...defaultArgs });
 
     expect(executeGithub).toBeCalledTimes(1);
-    // TODO: not working checks on fs
+    expect(writeFileSync).toBeCalledTimes(1);
+    // TODO: fix
     // expect(writeFileSync).toHaveBeenCalledWith(
     //   "/tmp/product.json",
-    //   ""
+    //   JSON.stringify({
+    //     projectStatuses: [
+    //       {
+    //         id: "kiegroup-status",
+    //         name: "Kiegroup Status",
+    //         folder: "kiegroup-status",
+    //         date: 1660748832737
+    //       },
+    //       {
+    //         id: "title",
+    //         name: "Title",
+    //         folder: "title",
+    //         date: 1660915702755
+    //       }
+    //     ]
+    //   }, null, 4)
     // );
   });
 });
 
 describe("jenkins main", () => {
-  test("", () => {
+  test("", async () => {
     // since args.jenkinsUrl is not undefined we will go in the jenkins flow
-    main({
+    await main({
       ...defaultArgs,
       ...{
         jenkinsUrl: "jenkins-url",
@@ -88,7 +104,7 @@ describe("jenkins main", () => {
       undefined,
       true
     );
-    // expect(fs.existsSync).toBeCalledTimes(1);
-    // expect(fs.readFileSync).toBeCalledTimes(0);
+    expect(existsSync).toBeCalledTimes(1);
+    expect(readFileSync).toBeCalledTimes(0);
   });
 });
