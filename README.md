@@ -15,7 +15,12 @@ If you want to learn this tool directly from concrete, working examples we sugge
 2. [chain-status-example](https://github.com/lampajr/chain-status-example), a step by step simple example of how to integrate the tool.
 ## Technical information
 
-It is multipackage npm project. We recommend to use yarn, since just yarn.lock files are provided.
+It is multipackage npm project managed using *Lerna*.
+
+* **webpage**, providing a React web application (see [more details](./packages/webpage/README.md))
+* **action**, JS tool for the data generation (see [more details](./packages/action/README.md))
+
+We recommend to use yarn, since just yarn.lock files are provided.
 
 ### Available Scripts
 
