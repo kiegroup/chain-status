@@ -127,16 +127,36 @@ async function mainProjectBranches(project, octokit, baseBranchFilter) {
 async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
   const octokit = createOctokitInstance(args.token);
 
-  logger.info(`Getting projects from definition file ${args.definitionFile}`);
-  const orderedList = await getOrderedListForTree(args.definitionFile, {
-    token: args.token
-  });
-  if (!orderedList || !orderedList.length) {
-    throw new ClientError("No projects on the definition file");
+  let orderedList;
+  if (args.definitionFile) {
+    logger.info(
+      `Getting projects from build-chain definition file ${args.definitionFile}`
+    );
+    orderedList = await getOrderedListForTree(args.definitionFile, {
+      token: args.token
+    });
+  } else if (args.projects && args.projects.length) {
+    logger.info(
+      `Getting projects definition from 'projects' list property ${args.projects}`
+    );
+    orderedList = args.projects.map(p =>
+      Object.assign({}, { project: p.trim() })
+    );
+  } else {
+    // both definition-file and projects properties are undefined
+    throw new ClientError(
+      "You must provide either `definition-file` or `projects` argument"
+    );
   }
-  logger.info(
-    `Projects from defintion file [${orderedList.map(e => e.project)}]`
-  );
+
+  if (!orderedList || !orderedList.length) {
+    throw new ClientError(
+      "No projects defined in either definition file or projects property"
+    );
+  }
+
+  logger.info(`Projects definition [${orderedList.map(e => e.project)}]`);
+
   const filteredList =
     args.projectFilter && args.projectFilter.length > 0
       ? orderedList.filter(e =>

@@ -1,8 +1,18 @@
-const { start } = require("../../src/bin/github-action");
-const { getInput } = require("@actions/core");
-jest.mock("@actions/core");
+const { start } = require("../../src/bin/cli");
+const { getArgumentsObject } = require("../../src/bin/arguments");
+jest.mock("../../src/bin/arguments");
 const { main } = require("../../src/bin/main");
 jest.mock("../../src/bin/main");
+
+const empty_args = {
+  createdBy: undefined,
+  createdUrl: undefined,
+  definitionFile: undefined,
+  projects: undefined,
+  debug: false,
+  baseBranchFilter: [],
+  projectFilter: []
+};
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -10,6 +20,9 @@ afterEach(() => {
 
 describe("main", () => {
   test("no inputs", () => {
+    // Mock
+    getArgumentsObject.mockReturnValueOnce(empty_args);
+
     // Act
     start();
 
@@ -29,8 +42,11 @@ describe("main", () => {
   });
 
   test("definition-file input", () => {
-    // Arrange
-    getInput.mockReturnValueOnce("definition-file");
+    // Mock
+    getArgumentsObject.mockReturnValueOnce({
+      ...empty_args,
+      ...{ definitionFile: "definition-file" }
+    });
 
     // Act
     start();
@@ -46,10 +62,11 @@ describe("main", () => {
   });
 
   test("projects input", () => {
-    // Arrange
-    getInput.mockReturnValueOnce(undefined);
-    getInput.mockReturnValueOnce("project1,project2,project3");
-    getInput.mockReturnValueOnce("project1,project2,project3");
+    // Mock
+    getArgumentsObject.mockReturnValueOnce({
+      ...empty_args,
+      ...{ projects: ["project1", "project2", "project3"] }
+    });
 
     // Act
     start();
