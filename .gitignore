@@ -102,5 +102,12 @@ typings/
 # TernJS port file
 .tern-port
 
+# Test reports
+*/**/test-report.xml
+
+# Default nvm node version
+.nvmrc
+
 packages/webpage/build/
 .vscode/
+

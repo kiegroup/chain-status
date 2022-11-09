@@ -186,7 +186,7 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
         metadata,
         projects: skipZero
           ? pullRequestInformation.filter(
-              e => e.pullRequests && e.pullRequest.length > 0
+              e => e.pullRequests && e.pullRequests.length > 0
             )
           : pullRequestInformation
       },
