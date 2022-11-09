@@ -1,10 +1,14 @@
 # Generate Data JS Tool 
 
-This package provides a JS tool which basically consumes information from Github API or Jenkins API and generates a JSON file which is retrieved by the [React web application](https://github.com/kiegroup/chain-status/tree/main/packages/webpage/README.md).
+This package provides a NodeJS CLI tool which basically consumes information from Github API and/or Jenkins API and generates a JSON file which is retrieved by the [React web application](https://github.com/kiegroup/chain-status/tree/main/packages/webpage/README.md).
 
 ## Usage
 
-This tool is an easy to use JS tool, in order to use you just need to install all required libraries, build the project and run the automatically generated distribution file at `packages/action/dist/index.js`.
+This tool can be easy use as a NodeJS CLI tool or as a Github Action
+
+### NodeJS CLI Usage
+
+In order to use you just need to install all required libraries, build the project and run the automatically generated distribution file at `packages/action/dist/index.js`.
 
 1. Install libraries [run it from the project's root]
 ```bash
@@ -41,7 +45,7 @@ Here an usage example:
 $ node packages/action/src/bin/cli.js -t 'Title' -st 'Subtitle' --token <GH-TOKEN> -df https://raw.githubusercontent.com/kiegroup/kogito-pipelines/main/.ci/pull-request-config.yaml [-o <PATH-TO-REACT-WEBAPP-DATA>]
 ```
 
-### Action Flow
+### Github Action Flow
 
 This tool can be integrated in a Github action in order to automate the data generation process, for this purpose this project comes with an easy to use [Github action](https://github.com/kiegroup/chain-status/blob/main/.ci/actions/generate-data/action.yml) that you only need to use in your own Github workflows.
 

@@ -1,6 +1,7 @@
 # Project Status Web Page
 
-This package contains the source code of React web application.
+This package contains the source code of React web application. The web application has to be instantiated by your own configuration like information page markdown file. 
+The data consumed by the app is preprocessed by [action package](https://github.com/kiegroup/chain-status/tree/main/packages/action) so no need for a backend and can be easily published on services like Github Packages.
 
 The look and feel of this web application mainly relies on the [Ant Design](https://ant.design/docs/react/introduce) React library, which provides a set of high quality components for building rich, interactive user interfaces.
 
@@ -30,7 +31,7 @@ Keep in mind that the page will reload if you make edits on the source code.
 $ yarn build
 ```
 
-## Action Flow
+## Installation
 
 If you want to install this web application on your repository in an automated way, this project comes with an easy to use [Github action](https://github.com/kiegroup/chain-status/blob/main/.ci/actions/generate-app/action.yml) that you can use on your Github workflows.
 
