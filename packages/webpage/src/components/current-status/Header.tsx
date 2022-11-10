@@ -2,7 +2,8 @@ import {
   InfoCircleOutlined,
   LinkOutlined,
   NodeCollapseOutlined,
-  PullRequestOutlined
+  PullRequestOutlined,
+  DiffOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -12,6 +13,7 @@ import {
   PageHeader,
   Popover,
   Row,
+  Select,
   Skeleton,
   Statistic,
   Tooltip,
@@ -24,9 +26,12 @@ import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
 import * as dataService from "../../service/data.service";
 import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
+import BranchesDiffsByProject from "../branches/BranchesDiffsByProject";
 import Loading from "../shared/Loading";
 import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
 import StatisticDate from "../shared/StatisticDate";
+import * as branchesService from "../../service/branches.service";
+import { getCrossProjectBranchesDiffs } from "../../utils/branches.utils";
 
 const ReloadButton = React.lazy(() => import("../shared/ReloadButton"));
 const ProjectStatusInformation = React.lazy(
@@ -61,12 +66,53 @@ export const Header: React.FC<IHeader> = props => {
     }
   };
 
+  // branches comparison
+  const [totalBranches, setTotalBranches] = useState<string[]>(
+    []
+  );
+  const [totalTargetBranches, setTotalTargetBranches] = useState<string[]>(
+    []
+  );
+
+  const baseBranch = useSelector(
+    (store: IRootState) => store.branches.baseBranch
+  );
+  const targetBranch = useSelector(
+    (store: IRootState) => store.branches.targetBranch
+  );
+  const totalDiffs = useSelector(
+    (store: IRootState) => store.branches.diffs
+  );
+  
+
+  const handleFirstBranchChange = (value: string) => {
+    const filteredBranches = totalBranches.filter(b => b !== value);
+    dispatch(branchesService.setBaseBranch(value))
+    setTotalTargetBranches(filteredBranches);
+    updateTargetBranch(value, filteredBranches[0]);
+  }
+
+  const handleTargetBranchChange = (value: string) => {
+    if (baseBranch) {
+      updateTargetBranch(baseBranch, value)
+    }
+  }
+
+  const updateTargetBranch = (base: string, target: string) => {
+    dispatch(branchesService.setTargetBranch(target));
+    if (base && target) {
+      dispatch(branchesService.setDiffs(getCrossProjectBranchesDiffs(data?.projects, base, target)))
+    }
+  }
+
   useEffect(() => {
     if (data?.projects) {
       setLatestLoad(new Date());
       setTotalPullRequests(data.projects.flatMap(p => p.pullRequests));
+      setTotalBranches(Array.from(new Set(data.projects.flatMap(p => Object.keys(p.branchesComparison ?? {} )))));
     } else {
       setTotalPullRequests([]);
+      setTotalBranches([]);
     }
   }, [data]);
 
@@ -82,7 +128,7 @@ export const Header: React.FC<IHeader> = props => {
       centered: true
     });
   return (
-    <Card style={{ margin: 24, marginTop: 10 }}>
+    <Card style={{ margin: 24, marginTop: 10, marginBottom: 100 }}>
       <PageHeader
         title={
           data.metadata?.title ? (
@@ -208,6 +254,45 @@ export const Header: React.FC<IHeader> = props => {
             </Suspense>
           </Col>
         </Row>
+        {1 && // enable this only if at least one project has branchesComparison
+        <Row gutter={16}>
+          <Col>
+            {// TODO: wrap this for nicer view and add title
+            }
+            
+              <Select
+                style={{ width: 120 }}
+                defaultValue={baseBranch}
+                value={baseBranch}
+                onChange={handleFirstBranchChange}
+                options={totalBranches.map(b => ({label: b, value: b}))}
+              />
+              <Select
+                style={{ width: 120 }}
+                value={targetBranch}
+                onChange={handleTargetBranchChange}
+                options={totalTargetBranches.map(b => ({label: b, value: b}))}
+              />
+          </Col>
+          <Col>
+            <Popover
+              content={
+                <Suspense fallback={<Loading />}>
+                  <BranchesDiffsByProject projects={data.projects} size={12} />
+                </Suspense>
+              }
+              placement="bottom"
+            >
+              <Statistic
+                title="Number of Differences"
+                prefix={<DiffOutlined />}
+                value={totalDiffs}
+                valueStyle={STATISTICS_STYLE}
+              />
+            </Popover>
+          </Col>
+        </Row>
+        }
       </PageHeader>
     </Card>
   );

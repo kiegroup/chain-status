@@ -8,6 +8,7 @@ import pullrequestFilter, {
   PullRequestFilterState
 } from "./pullrequest-filter.service";
 import jobFilter, { JobFilterState } from "./job-filter.service";
+import branches, { BranchesState } from "./branches.service";
 
 export interface IRootState {
   readonly layout: LayoutState;
@@ -17,6 +18,7 @@ export interface IRootState {
   readonly menu: MenuState;
   readonly pullrequestFilter: PullRequestFilterState;
   readonly jobFilter: JobFilterState;
+  readonly branches: BranchesState;
 }
 
 const rootReducer = combineReducers<IRootState>({
@@ -26,7 +28,8 @@ const rootReducer = combineReducers<IRootState>({
   product,
   menu,
   pullrequestFilter,
-  jobFilter
+  jobFilter,
+  branches
 });
 
 export default rootReducer;

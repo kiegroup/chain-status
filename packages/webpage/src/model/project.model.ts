@@ -1,4 +1,5 @@
 import { IPullRequest } from "./pullrequest.model";
+import { IBranchComparison } from "./branch-comparison.model";
 
 export interface IProject {
   key: string;
@@ -11,9 +12,13 @@ export interface IProject {
   language?: string;
   default_branch?: string;
   pullRequests: IPullRequest[];
+  branchesComparison: {
+    [key: string]: IBranchComparison;
+  };
 }
 
 export const defaultValue: Readonly<IProject> = {
   key: "",
-  pullRequests: []
+  pullRequests: [],
+  branchesComparison: {}
 };

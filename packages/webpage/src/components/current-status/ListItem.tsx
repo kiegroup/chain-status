@@ -1,13 +1,13 @@
 import { NodeCollapseOutlined } from "@ant-design/icons";
-import { Card, List, Tag, Tooltip, Typography } from "antd";
+import { Card, List, Typography } from "antd";
 import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IProject } from "../../model/project.model";
 import { IRootState } from "../../service";
 import * as layoutService from "../../service/layout.service";
 import { STATUS_MARGIN_TOP } from "../../shared/constants";
-import { alphabeticallySort } from "../../utils/common.utils";
 import { getProjectId } from "../../utils/id.utils";
+import ProjectBranchesDiffsByBranch from "../branches/ProjectBranchesDiffsByBranch";
 import PullRequestCheckTag from "../pullrequests/PullRequestCheckTag";
 import PullRequestStatistics from "../pullrequests/PullRequestStatistics";
 import Loading from "../shared/Loading";
@@ -56,16 +56,7 @@ export const ListItem: React.FC<IListItem> = props => {
         }
         key={props.project.key}
         extra={[
-          <Tooltip key="affected-branches-tooltip" title="Affected Branches">
-            {Array.from(
-              new Set(props.project.pullRequests.map(e => e.base?.ref))
-            )
-              .filter(e => e)
-              .sort(alphabeticallySort)
-              .map(e => (
-                <Tag key={e}>{e}</Tag>
-              ))}
-          </Tooltip>,
+          <ProjectBranchesDiffsByBranch project={props.project}/>,
           <Suspense
             key="affected-branches-statistics"
             fallback={<Loading style={{ fontSize: 16 }} />}
