@@ -37,7 +37,7 @@ export const BranchesDiffsByProject: React.FC<IBranchesDiffsByProject> = props =
               <ProjectLink project={project} />
             </Typography.Text>
           </Col>
-          <Col flex="auto" style={{ textAlign: "end" }}>
+          <Col flex="auto" style={{ textAlign: "end", marginTop: "2.5px" }}>
             <FileDifferenceStatistic diffs={getNumberOfDiffFiles(project)} size={props.size} />
           </Col>
         </Row>

@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { IProject } from "../../model/project.model";
 import { getProjectBranchDiffs, getProjectBranches, getTotalBranchDiffs } from "../../utils/branches.utils";
 import { alphabeticallySort } from "../../utils/common.utils";
+import BranchesCompareLink from "../shared/BranchesCompareBucketLink";
 import FileDifferenceStatistic from "../shared/FilesDifferenceStatistic";
 import Loading from "../shared/Loading";
 
@@ -26,18 +27,18 @@ export const ProjectBranchesDiffsByBranch: React.FC<IBranchesInfo> = props => {
 
           return (
             <Popover
+              key={b}
               content={
-                <Suspense fallback={<Loading />}>
+                <Suspense key={b} fallback={<Loading />}>
                   <>
-                    {Object.entries(diffsByBranch).map(([innerBranch, diffs], _) => (
-                      <Row key={innerBranch} gutter={[16, 16]}>
+                    {Object.entries(diffsByBranch).map(([headBranch, diffs], _) => (
+                      <Row key={`${b}-${headBranch}`} gutter={[16, 16]}>
                         <Col flex="none">
                           <Typography.Text ellipsis={true} style={{ fontWeight: "bold" }}>
-                            {innerBranch // TODO add link 
-                            }
+                            <BranchesCompareLink project={props.project} baseBranch={b as string} headBranch={headBranch} linkName={headBranch}/>
                           </Typography.Text>
                         </Col>
-                        <Col flex="auto" style={{ textAlign: "end" }}>
+                        <Col flex="auto" style={{ textAlign: "end", marginTop: "2.5px" }}>
                           <FileDifferenceStatistic diffs={diffs} size={12} />
                         </Col>
                       </Row>
