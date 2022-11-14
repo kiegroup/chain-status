@@ -1,4 +1,5 @@
 import { Col, Row, Typography } from "antd";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { IProject } from "../../model/project.model";
 import { IRootState } from "../../service";
@@ -18,19 +19,24 @@ export const BranchesDiffsByProject: React.FC<IBranchesDiffsByProject> = props =
     (store: IRootState) => store.branches.targetBranch
   );
 
-  const getNumberOfDiffFiles = (project: IProject) => {
-    if (project.branchesComparison && baseBranch && targetBranch 
-      && project.branchesComparison[baseBranch]
-      && project.branchesComparison[baseBranch][targetBranch]) {
-     return project.branchesComparison[baseBranch][targetBranch].length;
-    }
+  const [numberOfDiffFiles, setNumberOfDiffFiles] = useState<Record<string, number>>({});
 
-    return undefined;
-  }  
+  useEffect(() => {
+    if(baseBranch && targetBranch && props.projects?.length) {
+      const numOfDiffFilesByProject = Object.fromEntries(
+        props.projects.map(project => [project.name, project.branchesComparison?.[baseBranch]?.[targetBranch]?.length])
+      )
+      setNumberOfDiffFiles(numOfDiffFilesByProject)
+    } else {
+         setNumberOfDiffFiles({})
+    }
+  }, [baseBranch, targetBranch, props.projects]); 
 
   return (
     <>
-      {props.projects.map(project => (
+      {props.projects
+        .filter(project => project.name)
+        .map(project => (
         <Row key={project.key} gutter={[16, 16]}>
           <Col flex="none">
             <Typography.Text ellipsis={true} style={{ fontWeight: "bold" }}>
@@ -38,7 +44,7 @@ export const BranchesDiffsByProject: React.FC<IBranchesDiffsByProject> = props =
             </Typography.Text>
           </Col>
           <Col flex="auto" style={{ textAlign: "end", marginTop: "2.5px" }}>
-            <FileDifferenceStatistic diffs={getNumberOfDiffFiles(project)} size={props.size} />
+            <FileDifferenceStatistic diffs={numberOfDiffFiles[project.name as string]} size={props.size} />
           </Col>
         </Row>
       ))}

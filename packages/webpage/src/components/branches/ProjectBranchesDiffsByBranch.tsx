@@ -19,23 +19,24 @@ export const ProjectBranchesDiffsByBranch: React.FC<IBranchesInfo> = props => {
   return (
     <Tooltip key="affected-branches-tooltip" title="Affected Branches">
       {branches
-        .filter(b => b)
+        .filter(branch => branch)
         .sort(alphabeticallySort)
-        .map(b => {
-          const diffsByBranch = getProjectBranchDiffs(props.project, b as string)
+        .map(branch => {
+          // branch is not undefined
+          const diffsByBranch = getProjectBranchDiffs(props.project, branch as string)
           const totDiffs = getTotalBranchDiffs(diffsByBranch)
 
           return (
             <Popover
-              key={b}
+              key={branch}
               content={
-                <Suspense key={b} fallback={<Loading />}>
+                <Suspense key={branch} fallback={<Loading />}>
                   <>
                     {Object.entries(diffsByBranch).map(([headBranch, diffs], _) => (
-                      <Row key={`${b}-${headBranch}`} gutter={[16, 16]}>
+                      <Row key={`${branch}-${headBranch}`} gutter={[16, 16]}>
                         <Col flex="none">
                           <Typography.Text ellipsis={true} style={{ fontWeight: "bold" }}>
-                            <BranchesCompareLink project={props.project} baseBranch={b as string} headBranch={headBranch} linkName={headBranch}/>
+                            <BranchesCompareLink project={props.project} baseBranch={branch as string} headBranch={headBranch} linkName={headBranch}/>
                           </Typography.Text>
                         </Col>
                         <Col flex="auto" style={{ textAlign: "end", marginTop: "2.5px" }}>
@@ -49,7 +50,7 @@ export const ProjectBranchesDiffsByBranch: React.FC<IBranchesInfo> = props => {
               placement="bottom"
             >
               <Badge size="small" offset={[-10, 0]} count={totDiffs}>
-                <Tag key={b}>{b}</Tag>
+                <Tag key={branch}>{branch}</Tag>
               </Badge>
             </Popover>
           )
