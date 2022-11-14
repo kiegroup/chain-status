@@ -21,7 +21,10 @@ const start = async () => {
     title: core.getInput("title"),
     subtitle: core.getInput("subtitle"),
     createdBy: core.getInput("created-by"),
-    createdUrl: core.getInput("created-url")
+    createdUrl: core.getInput("created-url"),
+    branches: core.getInput("branches")
+      ? core.getInput("branches").split(",")
+      : []
   };
   await main(args);
 };
