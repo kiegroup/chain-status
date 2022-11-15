@@ -277,11 +277,14 @@ export const Header: React.FC<IHeader> = props => {
                 <Col>
                   <Select
                     className="ant-statistic-content"
-                    style={{ width: 120, ...STATISTICS_STYLE }}
-                    defaultValue={baseBranch}
-                    value={baseBranch}
+                    showSearch
+                    placeholder="Base"
                     onChange={handleBaseBranchChange}
+                    filterOption={(input, option) =>
+                      (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    }
                     options={totalBranches.map(b => ({label: b, value: b}))}
+                    style={{ width: 120, fontSize: '16px' }}
                   />
                 </Col>
                 <Col>
@@ -290,10 +293,15 @@ export const Header: React.FC<IHeader> = props => {
                 <Col>
                   <Select
                     className="ant-statistic-content"
-                    style={{ width: 120, ...STATISTICS_STYLE}}
+                    showSearch
+                    placeholder="Head"
                     value={headBranch}
                     onChange={handleHeadBranchChange}
+                    filterOption={(input, option) =>
+                      (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    }
                     options={totalHeadBranches.map(branch => ({label: branch, value: branch}))}
+                    style={{ width: 120, fontSize: '16px' }}
                   />
                 </Col>
                 <Row className="ant-statistic-content" style={{ marginLeft: '8px', ...STATISTICS_STYLE }}>
