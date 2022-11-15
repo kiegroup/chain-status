@@ -10,8 +10,10 @@ interface IFileDifferenceStatistic {
   project: IProject;
   baseBranch?: string;
   headBranch?: string;
+  title?: string;
   diffs?: number;
   size?: number;
+  prefix?: React.ReactNode;
 }
 
 export const FileDifferenceStatistic: React.FC<IFileDifferenceStatistic> = props => {
@@ -21,19 +23,19 @@ export const FileDifferenceStatistic: React.FC<IFileDifferenceStatistic> = props
 
   return (
     <Statistic
+      title={props.title}
       value={props.diffs}
       precision={0}
       valueStyle={{
-        ...fontSizeStyle,
-        fontWeight: "bold"
+        ...fontSizeStyle
       }}
-      prefix={<DiffOutlined />}
+      prefix={props.prefix ?? <DiffOutlined />}
       suffix={
         props.baseBranch && props.headBranch ?
         <BranchesComparisonLink 
           project={props.project} 
           baseBranch={props.baseBranch} 
-          headBranch={props.headBranch} 
+          headBranch={props.headBranch}
         /> : null
       }
     />

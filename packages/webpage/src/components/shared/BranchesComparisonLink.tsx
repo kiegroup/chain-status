@@ -27,8 +27,6 @@ export const BranchesComparisonLink: React.FC<IBranchesComparisonLink> = props =
       target="_blank"
       icon={<LinkOutlined />}
       style={{
-        padding: 0,
-        fontWeight: "bold",
         ...fontSizeStyle
       }}
     />

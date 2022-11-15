@@ -11,6 +11,7 @@ import {
   Button,
   Card,
   Col,
+  Divider,
   Modal,
   PageHeader,
   Popover,
@@ -27,7 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
 import * as dataService from "../../service/data.service";
-import { APP_TIMESTAMP_FORMAT, COLOURS, STATISTICS_STYLE } from "../../shared/constants";
+import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
 import BranchesDiffsByProject from "../branches/BranchesDiffsByProject";
 import Loading from "../shared/Loading";
 import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
@@ -255,53 +256,61 @@ export const Header: React.FC<IHeader> = props => {
               />
             </Suspense>
           </Col>
-          <Col style={{ background: COLOURS.GRAY, paddingBottom: '5px' }}>
-            <div className="ant-statistic-title">Branches Comparison</div>
-            <Row gutter={16} align="middle" justify="center">
-              <Col>
-                <RetweetOutlined />
-              </Col>
-              <Col>
-                <Select
-                  className="ant-statistic-content"
-                  style={{ width: 120, fontSize: '18px' }}
-                  defaultValue={baseBranch}
-                  value={baseBranch}
-                  onChange={handleFirstBranchChange}
-                  options={totalBranches.map(b => ({label: b, value: b}))}
-                />
-              </Col>
-              <Col>
-                <ArrowLeftOutlined />
-              </Col>
-              <Col>
-                <Select
-                  className="ant-statistic-content"
-                  style={{ width: 120, fontSize: '18px' }}
-                  value={targetBranch}
-                  onChange={handleTargetBranchChange}
-                  options={totalTargetBranches.map(b => ({label: b, value: b}))}
-                />
-              </Col>
-            </Row>
-          </Col>
-          <Col style={{ background: COLOURS.GRAY }}>
-              <Popover
-                content={
-                  <Suspense fallback={<Loading />}>
-                    <BranchesDiffsByProject projects={data.projects} size={12} />
-                  </Suspense>
-                }
-                placement="bottom"
-              >
-                <Statistic
-                  title="Number of Differences"
-                  prefix={<DiffOutlined />}
-                  value={totalDiffs}
-                  valueStyle={STATISTICS_STYLE}
-                />
-              </Popover>
-          </Col>
+          { 1 ?
+          <>
+            <Col>
+              <Divider type="vertical" style={{ height: "100%" }} />
+            </Col>
+            <Col style={{ paddingBottom: '5px' }}>
+              <div className="ant-statistic-title">Branches Comparison</div>
+              <Row gutter={16} align="middle" justify="center">
+                <Col>
+                  <RetweetOutlined />
+                </Col>
+                <Col>
+                  <Select
+                    className="ant-statistic-content"
+                    style={{ width: 120, ...STATISTICS_STYLE }}
+                    defaultValue={baseBranch}
+                    value={baseBranch}
+                    onChange={handleFirstBranchChange}
+                    options={totalBranches.map(b => ({label: b, value: b}))}
+                  />
+                </Col>
+                <Col>
+                  <ArrowLeftOutlined />
+                </Col>
+                <Col>
+                  <Select
+                    className="ant-statistic-content"
+                    style={{ width: 120, ...STATISTICS_STYLE}}
+                    value={targetBranch}
+                    onChange={handleTargetBranchChange}
+                    options={totalTargetBranches.map(b => ({label: b, value: b}))}
+                  />
+                </Col>
+                <Row className="ant-statistic-content" style={{ marginLeft: '8px', ...STATISTICS_STYLE }}>
+                  <Col style={{ marginRight: '8px'}}>
+                    <DiffOutlined />
+                  </Col>
+                  <Col>
+                    <Popover
+                      content={
+                        <Suspense fallback={<Loading />}>
+                          <BranchesDiffsByProject projects={data.projects} size={12} />
+                        </Suspense>
+                      }
+                      placement="bottom"
+                    >
+                      {totalDiffs ?? "-"}
+                    </Popover>
+                  </Col>
+                </Row>
+              </Row>
+            </Col>
+          </>
+          : null
+          }
         </Row>
       </PageHeader>
     </Card>
