@@ -70,41 +70,33 @@ export const Header: React.FC<IHeader> = props => {
   };
 
   // branches comparison
-  const [totalBranches, setTotalBranches] = useState<string[]>(
-    []
-  );
-  const [totalTargetBranches, setTotalTargetBranches] = useState<string[]>(
-    []
-  );
+  const [totalBranches, setTotalBranches] = useState<string[]>([]);
+  const [totalHeadBranches, setTotalHeadBranches] = useState<string[]>([]);
+  const [totalDiffs, setTotalDiffs] = useState<number>(0)
 
   const baseBranch = useSelector(
     (store: IRootState) => store.branches.baseBranch
   );
-  const targetBranch = useSelector(
+  const headBranch = useSelector(
     (store: IRootState) => store.branches.targetBranch
-  );
-  const totalDiffs = useSelector(
-    (store: IRootState) => store.branches.diffs
   );
   
 
-  const handleFirstBranchChange = (value: string) => {
+  const handleBaseBranchChange = (value: string) => {
     const filteredBranches = totalBranches.filter(b => b !== value);
-    dispatch(branchesService.setBaseBranch(value))
-    setTotalTargetBranches(filteredBranches);
-    updateTargetBranch(value, filteredBranches[0]);
+    dispatch(branchesService.setBaseBranch(value));
+    setTotalHeadBranches(filteredBranches);
+    handleHeadBranchChange(filteredBranches[0]);
   }
 
-  const handleTargetBranchChange = (value: string) => {
-    if (baseBranch) {
-      updateTargetBranch(baseBranch, value)
-    }
+  const handleHeadBranchChange = (value: string) => {
+    dispatch(branchesService.setTargetBranch(value));
   }
 
-  const updateTargetBranch = (base: string, target: string) => {
-    dispatch(branchesService.setTargetBranch(target));
-    if (base && target) {
-      dispatch(branchesService.setDiffs(getCrossProjectBranchesDiffs(data?.projects, base, target)))
+  const handleSwapBranchesChange = () => {
+    if (baseBranch && headBranch) {
+      handleBaseBranchChange(headBranch);
+      handleHeadBranchChange(baseBranch);
     }
   }
 
@@ -118,6 +110,12 @@ export const Header: React.FC<IHeader> = props => {
       setTotalBranches([]);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (baseBranch && headBranch) {
+      setTotalDiffs(getCrossProjectBranchesDiffs(data?.projects, baseBranch, headBranch))
+    }
+  }, [data.projects, baseBranch, headBranch])
 
   const infoModal = () =>
     Modal.info({
@@ -256,7 +254,7 @@ export const Header: React.FC<IHeader> = props => {
               />
             </Suspense>
           </Col>
-          { 1 ?
+          { totalBranches ? // enable branches comparison only if there is some data fetched
           <>
             <Col>
               <Divider type="vertical" style={{ height: "100%" }} />
@@ -264,8 +262,17 @@ export const Header: React.FC<IHeader> = props => {
             <Col style={{ paddingBottom: '5px' }}>
               <div className="ant-statistic-title">Branches Comparison</div>
               <Row gutter={16} align="middle" justify="center">
-                <Col>
-                  <RetweetOutlined />
+                <Col>  
+                  <Button
+                    size="small"
+                    type="default"
+                    onClick={handleSwapBranchesChange}
+                    disabled={!baseBranch || !headBranch}
+                    icon={<RetweetOutlined />}
+                    style={{
+                      ...STATISTICS_STYLE
+                    }}
+                  />
                 </Col>
                 <Col>
                   <Select
@@ -273,7 +280,7 @@ export const Header: React.FC<IHeader> = props => {
                     style={{ width: 120, ...STATISTICS_STYLE }}
                     defaultValue={baseBranch}
                     value={baseBranch}
-                    onChange={handleFirstBranchChange}
+                    onChange={handleBaseBranchChange}
                     options={totalBranches.map(b => ({label: b, value: b}))}
                   />
                 </Col>
@@ -284,9 +291,9 @@ export const Header: React.FC<IHeader> = props => {
                   <Select
                     className="ant-statistic-content"
                     style={{ width: 120, ...STATISTICS_STYLE}}
-                    value={targetBranch}
-                    onChange={handleTargetBranchChange}
-                    options={totalTargetBranches.map(b => ({label: b, value: b}))}
+                    value={headBranch}
+                    onChange={handleHeadBranchChange}
+                    options={totalHeadBranches.map(branch => ({label: branch, value: branch}))}
                   />
                 </Col>
                 <Row className="ant-statistic-content" style={{ marginLeft: '8px', ...STATISTICS_STYLE }}>

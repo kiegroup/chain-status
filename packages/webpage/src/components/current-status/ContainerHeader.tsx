@@ -79,7 +79,7 @@ export const ContainerHeader: React.FC<IContainerHeader> = props => {
   useEffect(() => {
     if (baseBranch && headBranch) {
       setAreBranchesSelected(true)
-      const diffs = props.project?.branchesComparison?.[baseBranch]?.[headBranch].length
+      const diffs = props.project?.branchesComparison?.[baseBranch]?.[headBranch]?.length
       setNumberOfDiffFiles(diffs)
     }
   }, [props.project, baseBranch, headBranch]);
