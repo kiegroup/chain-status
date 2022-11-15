@@ -33,7 +33,8 @@ export const BUILDS = {
 export const COLOURS = {
   GREEN: "#3f8600",
   RED: "#cf1322",
-  YELLOW: "#ffcc00"
+  YELLOW: "#ffcc00",
+  GRAY: '#ececec'
 };
 
 export const GENERAL_MARGIN = 10;
@@ -43,6 +44,7 @@ export const STATUS_MARGIN_TOP = 252 + MENU_MARGIN_TOP;
 export const STATUS_MARGIN_RIGHT = MENU_WIDTH + GENERAL_MARGIN / 2;
 
 export const STATISTICS_STYLE = { fontSize: 18 };
+export const COMPARISON_LINK_STYLE = { fontSize: 5}
 
 export const APP_TIMESTAMP_FORMAT = "YYYY/MM/DD HH:mm:ss";
 

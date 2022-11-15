@@ -1,7 +1,15 @@
+import {
+  DiffOutlined
+} from "@ant-design/icons";
 import { Statistic } from "antd";
-import { COLOURS, STATISTICS_STYLE } from "../../shared/constants";
+import { IProject } from "../../model/project.model";
+import { STATISTICS_STYLE } from "../../shared/constants";
+import BranchesComparisonLink from "./BranchesComparisonLink";
 
 interface IFileDifferenceStatistic {
+  project: IProject;
+  baseBranch?: string;
+  headBranch?: string;
   diffs?: number;
   size?: number;
 }
@@ -11,20 +19,23 @@ export const FileDifferenceStatistic: React.FC<IFileDifferenceStatistic> = props
     ? { fontSize: props.size }
     : STATISTICS_STYLE;
 
-  const getColor = () => {
-    return props.diffs === undefined ? COLOURS.YELLOW : (props.diffs === 0 ? COLOURS.GREEN : COLOURS.RED) 
-  }
-
   return (
     <Statistic
       value={props.diffs}
       precision={0}
       valueStyle={{
         ...fontSizeStyle,
-        color: getColor(),
         fontWeight: "bold"
       }}
-      suffix="files"
+      prefix={<DiffOutlined />}
+      suffix={
+        props.baseBranch && props.headBranch ?
+        <BranchesComparisonLink 
+          project={props.project} 
+          baseBranch={props.baseBranch} 
+          headBranch={props.headBranch} 
+        /> : null
+      }
     />
   )
 }

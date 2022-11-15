@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import { IProject } from "../../model/project.model";
 import { getProjectBranchDiffs, getProjectBranches, getTotalBranchDiffs } from "../../utils/branches.utils";
 import { alphabeticallySort } from "../../utils/common.utils";
-import BranchesCompareLink from "../shared/BranchesCompareBucketLink";
+import BranchesComparisonLink from "../shared/BranchesComparisonLink";
 import FileDifferenceStatistic from "../shared/FilesDifferenceStatistic";
 import Loading from "../shared/Loading";
 
@@ -36,11 +36,11 @@ export const ProjectBranchesDiffsByBranch: React.FC<IBranchesInfo> = props => {
                       <Row key={`${branch}-${headBranch}`} gutter={[16, 16]}>
                         <Col flex="none">
                           <Typography.Text ellipsis={true} style={{ fontWeight: "bold" }}>
-                            <BranchesCompareLink project={props.project} baseBranch={branch as string} headBranch={headBranch} linkName={headBranch}/>
+                            {headBranch}
                           </Typography.Text>
                         </Col>
                         <Col flex="auto" style={{ textAlign: "end", marginTop: "2.5px" }}>
-                          <FileDifferenceStatistic diffs={diffs} size={12} />
+                          <FileDifferenceStatistic diffs={diffs} size={12} project={props.project} baseBranch={branch as string} headBranch={headBranch} />
                         </Col>
                       </Row>
                     ))}

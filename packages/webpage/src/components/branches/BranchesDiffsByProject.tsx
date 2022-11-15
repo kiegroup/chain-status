@@ -15,22 +15,22 @@ export const BranchesDiffsByProject: React.FC<IBranchesDiffsByProject> = props =
   const baseBranch = useSelector(
     (store: IRootState) => store.branches.baseBranch
   );
-  const targetBranch = useSelector(
+  const headBranch = useSelector(
     (store: IRootState) => store.branches.targetBranch
   );
 
   const [numberOfDiffFiles, setNumberOfDiffFiles] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    if(baseBranch && targetBranch && props.projects?.length) {
+    if(baseBranch && headBranch && props.projects?.length) {
       const numOfDiffFilesByProject = Object.fromEntries(
-        props.projects.map(project => [project.name, project.branchesComparison?.[baseBranch]?.[targetBranch]?.length])
+        props.projects.map(project => [project.name, project.branchesComparison?.[baseBranch]?.[headBranch]?.length])
       )
       setNumberOfDiffFiles(numOfDiffFilesByProject)
     } else {
          setNumberOfDiffFiles({})
     }
-  }, [baseBranch, targetBranch, props.projects]); 
+  }, [baseBranch, headBranch, props.projects]); 
 
   return (
     <>
@@ -44,7 +44,12 @@ export const BranchesDiffsByProject: React.FC<IBranchesDiffsByProject> = props =
             </Typography.Text>
           </Col>
           <Col flex="auto" style={{ textAlign: "end", marginTop: "2.5px" }}>
-            <FileDifferenceStatistic diffs={numberOfDiffFiles[project.name as string]} size={props.size} />
+            <FileDifferenceStatistic 
+              diffs={numberOfDiffFiles[project.name as string]} 
+              project={project}
+              baseBranch={baseBranch}
+              headBranch={headBranch}
+              size={props.size} />
           </Col>
         </Row>
       ))}
