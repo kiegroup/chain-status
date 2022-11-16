@@ -117,7 +117,28 @@ const mapBranchComparison = async (
     )
   );
 
+  // [b1, {b2: [files..], b3: [files..]]
   return [baseBranch, diffsByBranch];
+};
+
+const mapProjectBranchesComparison = async (
+  project,
+  branchesToCompare,
+  octokit
+) => {
+  return Object.fromEntries(
+    await Promise.all(
+      (branchesToCompare ?? []).map(
+        async branch =>
+          await mapBranchComparison(
+            project,
+            branch,
+            branchesToCompare.filter(br => br !== branch),
+            octokit
+          )
+      )
+    )
+  );
 };
 
 const mapProjectInfo = async (
@@ -131,18 +152,31 @@ const mapProjectInfo = async (
       ? pullRequests[0].base.repo
       : await getRepository(node.project, octokit);
 
-  const branchesComparison = Object.fromEntries(
-    await Promise.all(
-      (branchesToCompare ?? []).map(
-        async b =>
-          await mapBranchComparison(
-            node.project,
-            b,
-            branchesToCompare.filter(br => br !== b),
-            octokit
-          )
-      )
-    )
+  const branchesComparison = await mapProjectBranchesComparison(
+    node.project,
+    branchesToCompare,
+    octokit
+  );
+
+  const allFiles = Object.entries(branchesComparison).flatMap(
+    // eslint-disable-next-line no-unused-vars
+    ([_, diffsByBranch]) =>
+      // eslint-disable-next-line no-unused-vars
+      Object.entries(diffsByBranch).flatMap(([_, files]) => files)
+  );
+
+  const simplifiedBranchesComparison = Object.fromEntries(
+    Object.entries(branchesComparison).map(([base, diffsByBranch]) => {
+      return [
+        base,
+        Object.fromEntries(
+          Object.entries(diffsByBranch).map(([head, files]) => [
+            head,
+            files.map(f => f.sha)
+          ])
+        )
+      ];
+    })
   );
 
   return {
@@ -159,7 +193,8 @@ const mapProjectInfo = async (
     pullRequests: await Promise.all(
       pullRequests.map(async e => await mapPullRequest(node, e, octokit))
     ),
-    branchesComparison
+    branchesComparison: simplifiedBranchesComparison,
+    files: Object.fromEntries(allFiles.map(f => [f.sha, f]))
   };
 };
 
@@ -220,7 +255,7 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
 
   logger.info(`Filtered projects [${filteredList.map(e => e.project)}]`);
 
-  const pullRequestInformation = await Promise.all(
+  const projectsInformation = await Promise.all(
     filteredList.map(async node => {
       try {
         return await mapProjectInfo(
@@ -258,10 +293,10 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
       {
         metadata,
         projects: skipZero
-          ? pullRequestInformation.filter(
-              e => e.pullRequests && e.pullRequests.length > 0
+          ? projectsInformation.filter(
+              p => p.pullRequests && p.pullRequests.length > 0
             )
-          : pullRequestInformation
+          : projectsInformation
       },
       null,
       isDebug ? 2 : 0
