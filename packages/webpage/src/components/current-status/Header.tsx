@@ -28,7 +28,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
 import * as dataService from "../../service/data.service";
-import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
+import { APP_TIMESTAMP_FORMAT, DISABLED_ITEM_STYLE, STATISTICS_STYLE } from "../../shared/constants";
 import BranchesDiffsByProject from "../branches/BranchesDiffsByProject";
 import Loading from "../shared/Loading";
 import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
@@ -81,6 +81,7 @@ export const Header: React.FC<IHeader> = props => {
     (store: IRootState) => store.branches.targetBranch
   );
   
+  const branchesSelected = () => !baseBranch || !headBranch
 
   const handleBaseBranchChange = (value: string) => {
     const filteredBranches = totalBranches.filter(b => b !== value);
@@ -267,7 +268,7 @@ export const Header: React.FC<IHeader> = props => {
                     size="small"
                     type="default"
                     onClick={handleSwapBranchesChange}
-                    disabled={!baseBranch || !headBranch}
+                    disabled={branchesSelected()}
                     icon={<RetweetOutlined />}
                     style={{
                       ...STATISTICS_STYLE
@@ -304,21 +305,32 @@ export const Header: React.FC<IHeader> = props => {
                     style={{ width: 120, fontSize: '16px' }}
                   />
                 </Col>
-                <Row className="ant-statistic-content" style={{ marginLeft: '8px', ...STATISTICS_STYLE }}>
+                <Row 
+                  className="ant-statistic-content" 
+                  style={{ 
+                    marginLeft: '8px', 
+                    ...STATISTICS_STYLE,
+                    ...(branchesSelected() ? DISABLED_ITEM_STYLE : {})
+                  }}
+                >
                   <Col style={{ marginRight: '8px'}}>
                     <DiffOutlined />
                   </Col>
                   <Col>
-                    <Popover
-                      content={
-                        <Suspense fallback={<Loading />}>
-                          <BranchesDiffsByProject projects={data.projects} size={12} />
-                        </Suspense>
-                      }
-                      placement="bottom"
-                    >
-                      {totalDiffs ?? "-"}
-                    </Popover>
+                    {!branchesSelected() ?
+                      <Popover
+                        content={
+                          <Suspense fallback={<Loading />}>
+                            <BranchesDiffsByProject projects={data.projects} size={12} />
+                          </Suspense>
+                        }
+                        placement="bottom"
+                      >
+                        {totalDiffs}
+                      </Popover>
+                      : totalDiffs ?? '-'
+                    }
+                    
                   </Col>
                 </Row>
               </Row>
