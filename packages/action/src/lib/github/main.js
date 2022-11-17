@@ -93,10 +93,7 @@ const mapPullRequest = async (node, pullRequest, octokit) => {
 
 const mapFileDiff = file => {
   return {
-    sha: file.sha,
-    filename: file.filename,
-    blob_url: file.blob_url,
-    contents_url: file.contents_url
+    sha: file.sha
   };
 };
 
@@ -152,35 +149,6 @@ const mapProjectInfo = async (
       ? pullRequests[0].base.repo
       : await getRepository(node.project, octokit);
 
-  const branchesComparison = await mapProjectBranchesComparison(
-    node.project,
-    branchesToCompare,
-    octokit
-  );
-
-  // atm we don't need all these information, removing them to save size
-  // TODO: include when optimized, externalizing file
-  // const allFiles = Object.entries(branchesComparison).flatMap(
-  //   // eslint-disable-next-line no-unused-vars
-  //   ([_, diffsByBranch]) =>
-  //     // eslint-disable-next-line no-unused-vars
-  //     Object.entries(diffsByBranch).flatMap(([_, files]) => files ?? [])
-  // );
-
-  const simplifiedBranchesComparison = Object.fromEntries(
-    Object.entries(branchesComparison).map(([base, diffsByBranch]) => {
-      return [
-        base,
-        Object.fromEntries(
-          Object.entries(diffsByBranch).map(([head, files]) => [
-            head,
-            files?.map(f => f.sha) ?? []
-          ])
-        )
-      ];
-    })
-  );
-
   return {
     key: node.project,
     name: baseRepo.name,
@@ -195,8 +163,11 @@ const mapProjectInfo = async (
     pullRequests: await Promise.all(
       pullRequests.map(async e => await mapPullRequest(node, e, octokit))
     ),
-    branchesComparison: simplifiedBranchesComparison
-    // files: Object.fromEntries(allFiles.map(f => [f.sha, f]))
+    branchesComparison: await mapProjectBranchesComparison(
+      node.project,
+      branchesToCompare,
+      octokit
+    )
   };
 };
 
