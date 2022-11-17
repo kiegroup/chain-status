@@ -79,8 +79,7 @@ export const ContainerHeader: React.FC<IContainerHeader> = props => {
   useEffect(() => {
     if (baseBranch && headBranch) {
       setAreBranchesSelected(true)
-      const diffs = props.project?.branchesComparison?.[baseBranch]?.[headBranch]?.length
-      setNumberOfDiffFiles(diffs)
+      setNumberOfDiffFiles(props.project?.branchesComparison?.[baseBranch]?.[headBranch]?.length)
     }
   }, [props.project, baseBranch, headBranch]);
 
@@ -204,14 +203,12 @@ export const ContainerHeader: React.FC<IContainerHeader> = props => {
                 baseBranch={baseBranch}
                 headBranch={headBranch}
                 prefix={
-                  <>
-                    <Row align="middle">
-                      <Tag style={{ marginRight: '4px' }}>{baseBranch}</Tag>
-                      <ArrowLeftOutlined style={{ marginTop: 0 }}/>
-                      <Tag style={{ marginLeft: '4px' }}>{headBranch}</Tag>
-                      <DiffOutlined />
-                    </Row>
-                  </>
+                  <Row align="middle">
+                    <Tag style={{ marginRight: '4px' }}>{baseBranch}</Tag>
+                    <ArrowLeftOutlined style={{ marginTop: 0 }}/>
+                    <Tag style={{ marginLeft: '4px' }}>{headBranch}</Tag>
+                    <DiffOutlined />
+                  </Row>
                 }
               />
             </Col>

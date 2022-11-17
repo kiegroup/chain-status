@@ -84,7 +84,6 @@ export const Header: React.FC<IHeader> = props => {
   const branchesSelected = () => !baseBranch || !headBranch
 
   const handleBaseBranchChange = (value: string, branchesToCompare?: string[]) => {
-    console.log(totalBranches)
     const filteredBranches = branchesToCompare ?? totalBranches.filter(b => b !== value);
     dispatch(branchesService.setBaseBranch(value));
     setTotalHeadBranches(filteredBranches);

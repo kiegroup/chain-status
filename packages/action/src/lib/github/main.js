@@ -91,11 +91,9 @@ const mapPullRequest = async (node, pullRequest, octokit) => {
   };
 };
 
-const mapFileDiff = file => {
-  return {
+const mapFileDiff = file => ({
     sha: file.sha
-  };
-};
+  });
 
 const mapBranchComparison = async (
   project,
