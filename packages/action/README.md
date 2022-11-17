@@ -34,6 +34,8 @@ In this section you can find overall list of inputs that you can or must provide
 | created-url        | false    |                     | Normally the job generating the info URL                                                                                                                                                                                                                                           |
 | logger-level       | false    | info                | The log level. 'info' (default) \| 'trace' \| 'debug'                                                                                                                                                                                                                              |
 | gh-pages-branch    | false    | gh-pages            | The branch used by `gh-pages` tool, where the webpage will be stored                                                                                                                                                                                                               |
+| branches    | false    | []            | The list of branches for which to provide branches comparison                                                                                                                                                                                                               |
+
 
 ### Local Execution
 

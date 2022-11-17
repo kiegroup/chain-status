@@ -91,6 +91,7 @@ Here the main important steps performed by **generate-data** action:
 | created-url        | false    |                     | Normally the job generating the info URL                                                                                                                                                         |
 | logger-level       | false    | info                | The log level. 'info' (default) \| 'trace' \| 'debug'                                                                                                                                            |
 | gh-pages-branch    | false    | gh-pages            | The branch used by `gh-pages` tool, where the webpage will be stored                                                                                                                             |
+| branches    | false    | []            | The list of branches for which to provide branches comparison                                                                                                                             |
 
 ## Usage
 
