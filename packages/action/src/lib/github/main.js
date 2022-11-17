@@ -158,12 +158,14 @@ const mapProjectInfo = async (
     octokit
   );
 
-  const allFiles = Object.entries(branchesComparison).flatMap(
-    // eslint-disable-next-line no-unused-vars
-    ([_, diffsByBranch]) =>
-      // eslint-disable-next-line no-unused-vars
-      Object.entries(diffsByBranch).flatMap(([_, files]) => files ?? [])
-  );
+  // atm we don't need all these information, removing them to save size
+  // TODO: include when optimized, externalizing file
+  // const allFiles = Object.entries(branchesComparison).flatMap(
+  //   // eslint-disable-next-line no-unused-vars
+  //   ([_, diffsByBranch]) =>
+  //     // eslint-disable-next-line no-unused-vars
+  //     Object.entries(diffsByBranch).flatMap(([_, files]) => files ?? [])
+  // );
 
   const simplifiedBranchesComparison = Object.fromEntries(
     Object.entries(branchesComparison).map(([base, diffsByBranch]) => {
@@ -193,8 +195,8 @@ const mapProjectInfo = async (
     pullRequests: await Promise.all(
       pullRequests.map(async e => await mapPullRequest(node, e, octokit))
     ),
-    branchesComparison: simplifiedBranchesComparison,
-    files: Object.fromEntries(allFiles.map(f => [f.sha, f]))
+    branchesComparison: simplifiedBranchesComparison
+    // files: Object.fromEntries(allFiles.map(f => [f.sha, f]))
   };
 };
 

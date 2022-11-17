@@ -83,8 +83,9 @@ export const Header: React.FC<IHeader> = props => {
   
   const branchesSelected = () => !baseBranch || !headBranch
 
-  const handleBaseBranchChange = (value: string) => {
-    const filteredBranches = totalBranches.filter(b => b !== value);
+  const handleBaseBranchChange = (value: string, branchesToCompare?: string[]) => {
+    console.log(totalBranches)
+    const filteredBranches = branchesToCompare ?? totalBranches.filter(b => b !== value);
     dispatch(branchesService.setBaseBranch(value));
     setTotalHeadBranches(filteredBranches);
     handleHeadBranchChange(filteredBranches[0]);
@@ -105,18 +106,26 @@ export const Header: React.FC<IHeader> = props => {
     if (data?.projects) {
       setLatestLoad(new Date());
       setTotalPullRequests(data.projects.flatMap(p => p.pullRequests));
-      setTotalBranches(Array.from(new Set(data.projects.flatMap(p => Object.keys(p.branchesComparison ?? {} )))));
+
+      const branchesToCompare = Array.from(new Set(data.projects.flatMap(p => Object.keys(p.branchesComparison ?? {} ))))
+      setTotalBranches(branchesToCompare);
+      
+      if (branchesToCompare && branchesToCompare.length > 0) {
+        const defaultBase = branchesToCompare[0]
+        handleBaseBranchChange(defaultBase, branchesToCompare.filter(b => b !== defaultBase))
+      }
     } else {
       setTotalPullRequests([]);
       setTotalBranches([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
     if (baseBranch && headBranch) {
       setTotalDiffs(getCrossProjectBranchesDiffs(data?.projects, baseBranch, headBranch))
     }
-  }, [data.projects, baseBranch, headBranch])
+  }, [data?.projects, baseBranch, headBranch])
 
   const infoModal = () =>
     Modal.info({
@@ -280,7 +289,8 @@ export const Header: React.FC<IHeader> = props => {
                     className="ant-statistic-content"
                     showSearch
                     placeholder="Base"
-                    onChange={handleBaseBranchChange}
+                    value={baseBranch}
+                    onChange={(value) => handleBaseBranchChange(value)}
                     filterOption={(input, option) =>
                       (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
                     }
