@@ -70,7 +70,7 @@ export const Header: React.FC<IHeader> = props => {
   };
 
   // branches comparison
-  const [totalBranches, setTotalBranches] = useState<string[]>([]);
+  const [totalBranches, setTotalBranches] = useState<string[] | undefined>(undefined);
   const [totalHeadBranches, setTotalHeadBranches] = useState<string[]>([]);
   const [totalDiffs, setTotalDiffs] = useState<number>(0)
 
@@ -84,10 +84,12 @@ export const Header: React.FC<IHeader> = props => {
   const branchesSelected = () => !baseBranch || !headBranch
 
   const handleBaseBranchChange = (value: string, branchesToCompare?: string[]) => {
-    const filteredBranches = branchesToCompare ?? totalBranches.filter(b => b !== value);
+    const filteredBranches = branchesToCompare ?? totalBranches?.filter(b => b !== value);
     dispatch(branchesService.setBaseBranch(value));
-    setTotalHeadBranches(filteredBranches);
-    handleHeadBranchChange(filteredBranches[0]);
+    setTotalHeadBranches(filteredBranches ?? []);
+    if (filteredBranches && filteredBranches.length > 0) {
+      handleHeadBranchChange(filteredBranches[0]);
+    }
   }
 
   const handleHeadBranchChange = (value: string) => {
@@ -107,7 +109,7 @@ export const Header: React.FC<IHeader> = props => {
       setTotalPullRequests(data.projects.flatMap(p => p.pullRequests));
 
       const branchesToCompare = Array.from(new Set(data.projects.flatMap(p => Object.keys(p.branchesComparison ?? {} ))))
-      setTotalBranches(branchesToCompare);
+      setTotalBranches(branchesToCompare.length ? branchesToCompare : undefined);
       
       if (branchesToCompare && branchesToCompare.length > 0) {
         const defaultBase = branchesToCompare[0]
@@ -115,7 +117,7 @@ export const Header: React.FC<IHeader> = props => {
       }
     } else {
       setTotalPullRequests([]);
-      setTotalBranches([]);
+      setTotalBranches(undefined);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
@@ -263,90 +265,92 @@ export const Header: React.FC<IHeader> = props => {
               />
             </Suspense>
           </Col>
-          { totalBranches ? // enable branches comparison only if there is some data fetched
-          <>
-            <Col>
-              <Divider type="vertical" style={{ height: "100%" }} />
-            </Col>
-            <Col style={{ paddingBottom: '5px' }}>
-              <div className="ant-statistic-title">Branches Comparison</div>
-              <Row gutter={16} align="middle" justify="center">
-                <Col>  
-                  <Button
-                    size="small"
-                    type="default"
-                    onClick={handleSwapBranchesChange}
-                    disabled={branchesSelected()}
-                    icon={<RetweetOutlined />}
-                    style={{
-                      ...STATISTICS_STYLE
-                    }}
-                  />
-                </Col>
-                <Col>
-                  <Select
-                    className="ant-statistic-content"
-                    showSearch
-                    placeholder="Base"
-                    value={baseBranch}
-                    onChange={(value) => handleBaseBranchChange(value)}
-                    filterOption={(input, option) =>
-                      (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                    }
-                    options={totalBranches.map(b => ({label: b, value: b}))}
-                    style={{ width: 120, fontSize: '16px' }}
-                  />
-                </Col>
-                <Col>
-                  <ArrowLeftOutlined />
-                </Col>
-                <Col>
-                  <Select
-                    className="ant-statistic-content"
-                    showSearch
-                    placeholder="Head"
-                    value={headBranch}
-                    onChange={handleHeadBranchChange}
-                    filterOption={(input, option) =>
-                      (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                    }
-                    options={totalHeadBranches.map(branch => ({label: branch, value: branch}))}
-                    style={{ width: 120, fontSize: '16px' }}
-                  />
-                </Col>
-                <Row 
-                  className="ant-statistic-content" 
-                  style={{ 
-                    marginLeft: '8px', 
-                    ...STATISTICS_STYLE,
-                    ...(branchesSelected() ? DISABLED_ITEM_STYLE : {})
-                  }}
-                >
-                  <Col style={{ marginRight: '8px'}}>
-                    <DiffOutlined />
+          <Suspense fallback={<Loading style={{ fontSize: 16 }} />}>
+            { totalBranches && totalBranches.length > 0 ? // enable branches comparison only if there is some data fetched
+            <>
+              <Col>
+                <Divider type="vertical" style={{ height: "100%" }} />
+              </Col>
+              <Col style={{ paddingBottom: '5px' }}>
+                <div className="ant-statistic-title">Branches Comparison</div>
+                <Row gutter={16} align="middle" justify="center">
+                  <Col>  
+                    <Button
+                      size="small"
+                      type="default"
+                      onClick={handleSwapBranchesChange}
+                      disabled={branchesSelected()}
+                      icon={<RetweetOutlined />}
+                      style={{
+                        ...STATISTICS_STYLE
+                      }}
+                    />
                   </Col>
                   <Col>
-                    {!branchesSelected() ?
-                      <Popover
-                        content={
-                          <Suspense fallback={<Loading />}>
-                            <BranchesDiffsByProject projects={data.projects} size={12} />
-                          </Suspense>
-                        }
-                        placement="bottom"
-                      >
-                        {totalDiffs}
-                      </Popover>
-                      : totalDiffs ?? '-'
-                    }
-                    
+                    <Select
+                      className="ant-statistic-content"
+                      showSearch
+                      placeholder="Base"
+                      value={baseBranch}
+                      onChange={(value) => handleBaseBranchChange(value)}
+                      filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                      }
+                      options={totalBranches.map(b => ({label: b, value: b}))}
+                      style={{ width: 120, fontSize: '16px' }}
+                    />
                   </Col>
+                  <Col>
+                    <ArrowLeftOutlined />
+                  </Col>
+                  <Col>
+                    <Select
+                      className="ant-statistic-content"
+                      showSearch
+                      placeholder="Head"
+                      value={headBranch}
+                      onChange={handleHeadBranchChange}
+                      filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                      }
+                      options={totalHeadBranches.map(branch => ({label: branch, value: branch}))}
+                      style={{ width: 120, fontSize: '16px' }}
+                    />
+                  </Col>
+                  <Row 
+                    className="ant-statistic-content" 
+                    style={{ 
+                      marginLeft: '8px', 
+                      ...STATISTICS_STYLE,
+                      ...(branchesSelected() ? DISABLED_ITEM_STYLE : {})
+                    }}
+                  >
+                    <Col style={{ marginRight: '8px'}}>
+                      <DiffOutlined />
+                    </Col>
+                    <Col>
+                      {!branchesSelected() ?
+                        <Popover
+                          content={
+                            <Suspense fallback={<Loading />}>
+                              <BranchesDiffsByProject projects={data.projects} size={12} />
+                            </Suspense>
+                          }
+                          placement="bottom"
+                        >
+                          {totalDiffs}
+                        </Popover>
+                        : totalDiffs ?? '-'
+                      }
+                      
+                    </Col>
+                  </Row>
                 </Row>
-              </Row>
-            </Col>
-          </>
-          : null
-          }
+              </Col>
+            </>
+            : null
+            }
+          </Suspense>
         </Row>
       </PageHeader>
     </Card>
