@@ -1,0 +1,269 @@
+version: "2.1"
+
+# dependencies:
+#   - project: kiegroup/lienzo-core
+
+#   - project: kiegroup/lienzo-tests
+#     dependencies:
+#       - project: kiegroup/lienzo-core
+
+#   - project: kiegroup/droolsjbpm-build-bootstrap
+
+#   - project: kiegroup/kie-soup
+#     dependencies:
+#       - project: kiegroup/droolsjbpm-build-bootstrap
+
+#   - project: kiegroup/appformer
+#     dependencies:
+#       - project: kiegroup/lienzo-core
+#       - project: kiegroup/droolsjbpm-build-bootstrap
+#       - project: kiegroup/lienzo-tests
+#       - project: kiegroup/kie-soup
+
+#   - project: kiegroup/droolsjbpm-knowledge
+#     dependencies:
+#       - project: kiegroup/kie-soup
+#     mapping:
+#       dependencies:
+#         default:
+#           - source: 7.x
+#             target: main
+#       dependant:
+#         default:
+#           - source: main
+#             target: 7.x
+#       exclude:
+#         - kiegroup/optaweb-employee-rostering
+#         - kiegroup/optaweb-vehicle-routing
+#         - kiegroup/optaplanner
+#         - kiegroup/drools
+
+#   - project: kiegroup/drools
+#     dependencies:
+#       - project: kiegroup/kie-soup
+#       - project: kiegroup/droolsjbpm-knowledge
+#     mapping:
+#       dependencies:
+#         default:
+#           - source: 7.x
+#             target: main
+#       dependant:
+#         default:
+#           - source: main
+#             target: 7.x
+#       exclude:
+#         - kiegroup/optaweb-employee-rostering
+#         - kiegroup/optaweb-vehicle-routing
+#         - kiegroup/optaplanner
+#         - kiegroup/droolsjbpm-knowledge
+
+#   - project: kiegroup/jbpm
+#     dependencies:
+#       - project: kiegroup/drools
+#       - project: kiegroup/kie-soup
+
+#   - project: kiegroup/optaplanner
+#     dependencies:
+#       - project: kiegroup/drools
+#     mapping:
+#       dependencies:
+#         default:
+#           - source: 7.x
+#             target: main
+#         kiegroup/drools:
+#           - source: main
+#             target: 7.x
+#           - source: 7.x
+#             target: 7.x
+#         kiegroup/droolsjbpm-knowledge:
+#           - source: main
+#             target: 7.x
+#           - source: 7.x
+#             target: 7.x
+#       dependant:
+#         default:
+#           - source: main
+#             target: 7.x
+#       exclude:
+#         - kiegroup/optaweb-employee-rostering
+#         - kiegroup/optaweb-vehicle-routing
+
+#   - project: kiegroup/kie-jpmml-integration
+#     dependencies:
+#       - project: kiegroup/drools
+#       - project: kiegroup/jbpm
+
+#   - project: kiegroup/droolsjbpm-integration
+#     dependencies:
+#       - project: kiegroup/optaplanner
+#       - project: kiegroup/drools
+#       - project: kiegroup/jbpm
+
+#   - project: kiegroup/openshift-drools-hacep
+#     dependencies:
+#       - project: kiegroup/droolsjbpm-integration
+
+#   - project: kiegroup/kie-uberfire-extensions
+#     dependencies:
+#       - project: kiegroup/appformer
+
+#   - project: kiegroup/kie-wb-playground
+#     dependencies:
+#       - project: kiegroup/droolsjbpm-integration
+
+#   - project: kiegroup/kie-wb-common
+#     dependencies:
+#       - project: kiegroup/lienzo-core
+#       - project: kiegroup/appformer
+#       - project: kiegroup/kie-uberfire-extensions
+#       - project: kiegroup/kie-wb-playground
+#       - project: kiegroup/droolsjbpm-integration
+
+#   - project: kiegroup/drools-wb
+#     dependencies:
+#       - project: kiegroup/lienzo-core
+#       - project: kiegroup/kie-wb-common
+
+#   - project: kiegroup/optaplanner-wb
+#     dependencies:
+#       - project: kiegroup/appformer
+#       - project: kiegroup/kie-uberfire-extensions
+#       - project: kiegroup/drools-wb
+#       - project: kiegroup/drools
+#       - project: kiegroup/optaplanner
+#       - project: kiegroup/kie-soup
+#       - project: kiegroup/kie-wb-common
+#       - project: kiegroup/kie-wb-playground
+
+#   - project: kiegroup/jbpm-designer
+#     dependencies:
+#       - project: kiegroup/kie-wb-common
+
+#   - project: kiegroup/jbpm-work-items
+#     dependencies:
+#       - project: kiegroup/jbpm
+#       - project: kiegroup/droolsjbpm-integration
+
+#   - project: kiegroup/jbpm-wb
+#     dependencies:
+#       - project: kiegroup/kie-uberfire-extensions
+#       - project: kiegroup/drools-wb
+#       - project: kiegroup/jbpm-designer
+#       - project: kiegroup/jbpm-work-items
+
+#   - project: kiegroup/kie-docs
+
+#   - project: kiegroup/optaweb-employee-rostering
+#     dependencies:
+#       - project: kiegroup/optaplanner
+#     mapping:
+#       dependencies:
+#         default:
+#           - source: 7.x
+#             target: main
+#         kiegroup/drools:
+#           - source: main
+#             target: 7.x
+#           - source: 7.x
+#             target: 7.x
+#         kiegroup/droolsjbpm-knowledge:
+#           - source: main
+#             target: 7.x
+#           - source: 7.x
+#             target: 7.x
+#       dependant:
+#         default:
+#           - source: main
+#             target: 7.x
+#       exclude:
+#         - kiegroup/optaweb-vehicle-routing
+#         - kiegroup/optaplanner
+
+#   - project: kiegroup/optaweb-vehicle-routing
+#     dependencies:
+#       - project: kiegroup/optaplanner
+#     mapping:
+#       dependencies:
+#         default:
+#           - source: 7.x
+#             target: main
+#         kiegroup/drools:
+#           - source: main
+#             target: 7.x
+#           - source: 7.x
+#             target: 7.x
+#         kiegroup/droolsjbpm-knowledge:
+#           - source: main
+#             target: 7.x
+#           - source: 7.x
+#             target: 7.x
+#       dependant:
+#         default:
+#           - source: main
+#             target: 7.x
+#       exclude:
+#         - kiegroup/optaweb-employee-rostering
+#         - kiegroup/optaplanner
+
+#   - project: kiegroup/kie-wb-distributions
+#     dependencies:
+#       - project: kiegroup/kie-soup
+#       - project: kiegroup/drools
+#       - project: kiegroup/optaplanner
+#       - project: kiegroup/jbpm-wb
+#       - project: kiegroup/appformer
+#       - project: kiegroup/kie-uberfire-extensions
+#       - project: kiegroup/optaplanner-wb
+
+#   - project: kiegroup/process-migration-service
+#     dependencies:
+#       - project: kiegroup/droolsjbpm-integration
+
+pre: |
+  export BUILD_MVN_OPTS="${{ env.BUILD_MVN_OPTS }} dependency:tree -Dmaven.wagon.httpconnectionManager.ttlSeconds=25 -Dmaven.wagon.http.retryHandler.count=3
+  echo "BUILD_MVN_OPTS=${{ env.BUILD_MVN_OPTS }}"
+  java -version
+default:
+  build-command:
+    current: mvn ${{ env.BUILD_MVN_OPTS }} -e -fae -nsu --builder smart --builder smart -T1C clean install -Dfull -DskipTests
+    upstream: mvn ${{ env.BUILD_MVN_OPTS }} -e --builder smart -T1C clean install -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true -Denforcer.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true -Drevapi.skip=true
+    downstream: mvn ${{ env.BUILD_MVN_OPTS }} -e -nsu -fae --builder smart -T1C clean install -Dfull -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true
+    after:
+      upstream: |
+        rm -rf ./*
+        df -h
+      downstream: |
+        rm -rf ./*
+        df -h
+build:
+  - project: kiegroup/appformer
+    build-command:
+      upstream: mvn ${{ env.BUILD_MVN_OPTS }} -e clean install -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true -Denforcer.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true -Drevapi.skip=true
+    archive-artifacts:
+      path: |
+        **/dashbuilder-runtime.war
+  - project: kiegroup/drools
+    build-command:
+      upstream: mvn ${{ env.BUILD_MVN_OPTS }} -e clean install -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true -Denforcer.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true -Drevapi.skip=true
+
+  - project: kiegroup/optaplanner
+    build-command:
+      current: mvn ${{ env.BUILD_MVN_OPTS }} -e -fae -nsu clean install -Dfull -DskipTests
+      upstream: mvn ${{ env.BUILD_MVN_OPTS }} -e clean install -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true -Denforcer.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true -Drevapi.skip=true
+      downstream: mvn ${{ env.BUILD_MVN_OPTS }} -e -nsu -fae clean install -Dfull -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true
+
+  - project: kiegroup/kie-wb-common
+    build-command:
+      current: mvn ${{ env.BUILD_MVN_OPTS }} -e -fae -nsu clean install -Dfull -DskipTests
+      upstream: mvn ${{ env.BUILD_MVN_OPTS }} -e clean install -DskipTests -Dgwt.compiler.skip=true -Dgwt.skipCompilation=true -Denforcer.skip=true -Dcheckstyle.skip=true -Dspotbugs.skip=true -Drevapi.skip=true
+    archive-artifacts:
+      path: |
+        **/target/screenshots/**
+  - project: kiegroup/process-migration-service
+    skip: true
+
+  - project: kiegroup/kie-docs
+    skip: true
+
+  - project: kiegroup/kie-jpmml-integration
+    skip: true
