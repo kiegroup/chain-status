@@ -162,7 +162,7 @@ const mapProjectInfo = async (
     // eslint-disable-next-line no-unused-vars
     ([_, diffsByBranch]) =>
       // eslint-disable-next-line no-unused-vars
-      Object.entries(diffsByBranch).flatMap(([_, files]) => files)
+      Object.entries(diffsByBranch).flatMap(([_, files]) => files ?? [])
   );
 
   const simplifiedBranchesComparison = Object.fromEntries(
@@ -172,7 +172,7 @@ const mapProjectInfo = async (
         Object.fromEntries(
           Object.entries(diffsByBranch).map(([head, files]) => [
             head,
-            files.map(f => f.sha)
+            files?.map(f => f.sha) ?? []
           ])
         )
       ];
