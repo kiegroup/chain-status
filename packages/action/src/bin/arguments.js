@@ -53,7 +53,12 @@ function getArgumentsObject() {
     )
     .option(
       "--projectFilter <project...>",
-      "a list of RegEx to filter project names",
+      "A list of RegEx to filter project names",
+      []
+    )
+    .option(
+      "-b, --branches <branch...>",
+      "The list of branches for which you want to provide comparison",
       []
     )
     .parse();

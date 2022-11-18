@@ -5,7 +5,8 @@ const {
   getPullRequests,
   getChecks,
   getRefStatuses,
-  listBranches
+  listBranches,
+  compareBranches
 } = require("../../src/lib/git-service");
 const { octokit } = require("../support/mock-octokit");
 
@@ -18,6 +19,12 @@ const mockOctokitKo = {
       };
     },
     listBranches() {
+      return {
+        status: 400,
+        data: "error"
+      };
+    },
+    compareCommitsWithBasehead() {
       return {
         status: 400,
         data: "error"
@@ -154,5 +161,35 @@ describe("get ref statuses", () => {
         { id: 3, name: "name3", state: "ok" }
       ])
     );
+  });
+});
+
+describe("compare branches", () => {
+  test("list of branches comparison received", async () => {
+    const files = await compareBranches(
+      "kiegroup/chain-status",
+      "base",
+      "head",
+      octokit
+    );
+    expect(files.length).toEqual(3);
+    const filenames = files.map(f => f.filename);
+    expect(filenames).toEqual(
+      expect.arrayContaining([
+        ".ci/jenkins/config/branch.yaml",
+        ".ci/jenkins/dsl/jobs.groovy",
+        ".ci/jenkins/Jenkinsfile.prod.nightly"
+      ])
+    );
+  });
+
+  test("empty list on ~200 status", async () => {
+    const files = await compareBranches(
+      "kiegroup/chain-status",
+      "base",
+      "head",
+      mockOctokitKo
+    );
+    expect(files.length).toEqual(0);
   });
 });

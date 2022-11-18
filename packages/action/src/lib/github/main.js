@@ -9,7 +9,8 @@ const {
   getChecks,
   getRepository,
   getRefStatuses,
-  listBranches
+  listBranches,
+  compareBranches
 } = require("../git-service");
 const { ClientError } = require("../common");
 const { filterPullRequests } = require("../../utils/pullrequest-utils");
@@ -62,7 +63,7 @@ const loadChecks = async (node, sha, octokit) => {
 };
 
 const mapPullRequest = async (node, pullRequest, octokit) => {
-  return await {
+  return {
     number: pullRequest.number,
     title: pullRequest.title,
     url: pullRequest.url,
@@ -90,11 +91,62 @@ const mapPullRequest = async (node, pullRequest, octokit) => {
   };
 };
 
-const mapPullRequestInfo = async (node, pullRequests, octokit) => {
+const mapFileDiff = file => ({
+  sha: file.sha
+});
+
+const mapBranchComparison = async (
+  project,
+  baseBranch,
+  headBranches,
+  octokit
+) => {
+  const diffsByBranch = Object.fromEntries(
+    await Promise.all(
+      headBranches.map(async b => [
+        b,
+        (
+          await compareBranches(project, baseBranch, b, octokit)
+        )?.map(mapFileDiff)
+      ])
+    )
+  );
+
+  // [b1, {b2: [files..], b3: [files..]]
+  return [baseBranch, diffsByBranch];
+};
+
+const mapProjectBranchesComparison = async (
+  project,
+  branchesToCompare,
+  octokit
+) => {
+  return Object.fromEntries(
+    await Promise.all(
+      (branchesToCompare ?? []).map(
+        async branch =>
+          await mapBranchComparison(
+            project,
+            branch,
+            branchesToCompare.filter(br => br !== branch),
+            octokit
+          )
+      )
+    )
+  );
+};
+
+const mapProjectInfo = async (
+  node,
+  pullRequests,
+  branchesToCompare,
+  octokit
+) => {
   const baseRepo =
     pullRequests && pullRequests.length
       ? pullRequests[0].base.repo
       : await getRepository(node.project, octokit);
+
   return {
     key: node.project,
     name: baseRepo.name,
@@ -108,6 +160,11 @@ const mapPullRequestInfo = async (node, pullRequests, octokit) => {
     pulls_url: baseRepo.pulls_url,
     pullRequests: await Promise.all(
       pullRequests.map(async e => await mapPullRequest(node, e, octokit))
+    ),
+    branchesComparison: await mapProjectBranchesComparison(
+      node.project,
+      branchesToCompare,
+      octokit
     )
   };
 };
@@ -169,10 +226,10 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
 
   logger.info(`Filtered projects [${filteredList.map(e => e.project)}]`);
 
-  const pullRequestInformation = await Promise.all(
+  const projectsInformation = await Promise.all(
     filteredList.map(async node => {
       try {
-        return await mapPullRequestInfo(
+        return await mapProjectInfo(
           node,
           filterPullRequests(
             filteredList[0],
@@ -188,6 +245,7 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
               args.baseBranchFilter
             )
           ),
+          args.branches,
           octokit
         );
       } catch (err) {
@@ -200,15 +258,16 @@ async function main(args, outputFolderPath, metadata, skipZero, isDebug) {
       logger.error(`[${err.project}] Error checking it out. ${err.message}`);
       throw err.message;
     });
+
   return saveFiles(
     JSON.stringify(
       {
         metadata,
         projects: skipZero
-          ? pullRequestInformation.filter(
-              e => e.pullRequests && e.pullRequests.length > 0
+          ? projectsInformation.filter(
+              p => p.pullRequests && p.pullRequests.length > 0
             )
-          : pullRequestInformation
+          : projectsInformation
       },
       null,
       isDebug ? 2 : 0

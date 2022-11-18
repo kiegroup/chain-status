@@ -2,16 +2,21 @@ import {
   InfoCircleOutlined,
   LinkOutlined,
   NodeCollapseOutlined,
-  PullRequestOutlined
+  PullRequestOutlined,
+  DiffOutlined,
+  ArrowLeftOutlined,
+  RetweetOutlined
 } from "@ant-design/icons";
 import {
   Button,
   Card,
   Col,
+  Divider,
   Modal,
   PageHeader,
   Popover,
   Row,
+  Select,
   Skeleton,
   Statistic,
   Tooltip,
@@ -23,10 +28,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { IPullRequest } from "../../model/pullrequest.model";
 import { IRootState } from "../../service";
 import * as dataService from "../../service/data.service";
-import { APP_TIMESTAMP_FORMAT, STATISTICS_STYLE } from "../../shared/constants";
+import { APP_TIMESTAMP_FORMAT, DISABLED_ITEM_STYLE, STATISTICS_STYLE } from "../../shared/constants";
+import BranchesDiffsByProject from "../branches/BranchesDiffsByProject";
 import Loading from "../shared/Loading";
 import PullRequestStatisticErrorIndex from "../shared/PullRequestStatisticErrorIndex";
 import StatisticDate from "../shared/StatisticDate";
+import * as branchesService from "../../service/branches.service";
+import { getCrossProjectBranchesDiffs } from "../../utils/branches.utils";
 
 const ReloadButton = React.lazy(() => import("../shared/ReloadButton"));
 const ProjectStatusInformation = React.lazy(
@@ -61,14 +69,64 @@ export const Header: React.FC<IHeader> = props => {
     }
   };
 
+  // branches comparison
+  const [totalBranches, setTotalBranches] = useState<string[] | undefined>(undefined);
+  const [totalHeadBranches, setTotalHeadBranches] = useState<string[]>([]);
+  const [totalDiffs, setTotalDiffs] = useState<number>(0)
+
+  const baseBranch = useSelector(
+    (store: IRootState) => store.branches.baseBranch
+  );
+  const headBranch = useSelector(
+    (store: IRootState) => store.branches.targetBranch
+  );
+  
+  const branchesSelected = () => !baseBranch || !headBranch
+
+  const handleBaseBranchChange = (value: string, branchesToCompare?: string[]) => {
+    const filteredBranches = branchesToCompare ?? totalBranches?.filter(b => b !== value);
+    dispatch(branchesService.setBaseBranch(value));
+    setTotalHeadBranches(filteredBranches ?? []);
+    if (filteredBranches && filteredBranches.length > 0) {
+      handleHeadBranchChange(filteredBranches[0]);
+    }
+  }
+
+  const handleHeadBranchChange = (value: string) => {
+    dispatch(branchesService.setTargetBranch(value));
+  }
+
+  const handleSwapBranchesChange = () => {
+    if (baseBranch && headBranch) {
+      handleBaseBranchChange(headBranch);
+      handleHeadBranchChange(baseBranch);
+    }
+  }
+
   useEffect(() => {
     if (data?.projects) {
       setLatestLoad(new Date());
       setTotalPullRequests(data.projects.flatMap(p => p.pullRequests));
+
+      const branchesToCompare = Array.from(new Set(data.projects.flatMap(p => Object.keys(p.branchesComparison ?? {} ))))
+      setTotalBranches(branchesToCompare.length ? branchesToCompare : undefined);
+      
+      if (branchesToCompare && branchesToCompare.length > 0) {
+        const defaultBase = branchesToCompare[0]
+        handleBaseBranchChange(defaultBase, branchesToCompare.filter(b => b !== defaultBase))
+      }
     } else {
       setTotalPullRequests([]);
+      setTotalBranches(undefined);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  useEffect(() => {
+    if (baseBranch && headBranch) {
+      setTotalDiffs(getCrossProjectBranchesDiffs(data?.projects, baseBranch, headBranch))
+    }
+  }, [data?.projects, baseBranch, headBranch])
 
   const infoModal = () =>
     Modal.info({
@@ -82,7 +140,7 @@ export const Header: React.FC<IHeader> = props => {
       centered: true
     });
   return (
-    <Card style={{ margin: 24, marginTop: 10 }}>
+    <Card style={{ margin: 24, marginTop: 10, marginBottom: 100 }}>
       <PageHeader
         title={
           data.metadata?.title ? (
@@ -207,6 +265,92 @@ export const Header: React.FC<IHeader> = props => {
               />
             </Suspense>
           </Col>
+          <Suspense fallback={<Loading style={{ fontSize: 16 }} />}>
+            { totalBranches && totalBranches.length > 0 ? // enable branches comparison only if there is some data fetched
+            <>
+              <Col>
+                <Divider type="vertical" style={{ height: "100%" }} />
+              </Col>
+              <Col style={{ paddingBottom: '5px' }}>
+                <div className="ant-statistic-title">Branches Comparison</div>
+                <Row gutter={16} align="middle" justify="center">
+                  <Col>  
+                    <Button
+                      size="small"
+                      type="default"
+                      onClick={handleSwapBranchesChange}
+                      disabled={branchesSelected()}
+                      icon={<RetweetOutlined />}
+                      style={{
+                        ...STATISTICS_STYLE
+                      }}
+                    />
+                  </Col>
+                  <Col>
+                    <Select
+                      className="ant-statistic-content"
+                      showSearch
+                      placeholder="Base"
+                      value={baseBranch}
+                      onChange={(value) => handleBaseBranchChange(value)}
+                      filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                      }
+                      options={totalBranches.map(b => ({label: b, value: b}))}
+                      style={{ width: 120, fontSize: '16px' }}
+                    />
+                  </Col>
+                  <Col>
+                    <ArrowLeftOutlined />
+                  </Col>
+                  <Col>
+                    <Select
+                      className="ant-statistic-content"
+                      showSearch
+                      placeholder="Head"
+                      value={headBranch}
+                      onChange={handleHeadBranchChange}
+                      filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                      }
+                      options={totalHeadBranches.map(branch => ({label: branch, value: branch}))}
+                      style={{ width: 120, fontSize: '16px' }}
+                    />
+                  </Col>
+                  <Row 
+                    className="ant-statistic-content" 
+                    style={{ 
+                      marginLeft: '8px', 
+                      ...STATISTICS_STYLE,
+                      ...(branchesSelected() ? DISABLED_ITEM_STYLE : {})
+                    }}
+                  >
+                    <Col style={{ marginRight: '8px'}}>
+                      <DiffOutlined />
+                    </Col>
+                    <Col>
+                      {!branchesSelected() ?
+                        <Popover
+                          content={
+                            <Suspense fallback={<Loading />}>
+                              <BranchesDiffsByProject projects={data.projects} size={12} />
+                            </Suspense>
+                          }
+                          placement="bottom"
+                        >
+                          {totalDiffs}
+                        </Popover>
+                        : totalDiffs ?? '-'
+                      }
+                      
+                    </Col>
+                  </Row>
+                </Row>
+              </Col>
+            </>
+            : null
+            }
+          </Suspense>
         </Row>
       </PageHeader>
     </Card>

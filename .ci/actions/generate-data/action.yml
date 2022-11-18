@@ -39,6 +39,9 @@ inputs:
     description: "the gh-pages branch"
     default: "gh-pages"
     required: false
+  branches:
+    description: "A comma separated list of branches to compare. Like `main,8.30.x,8.29.x`"
+    required: false
 
 runs:
   using: "composite"
@@ -62,6 +65,7 @@ runs:
         created-by: ${{ inputs.created-by }}
         created-url: ${{ inputs.created-url }}
         logger-level: ${{ inputs.logger-level }}
+        branches: ${{ inputs.branches }}
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
     - name: Commit & Push changes

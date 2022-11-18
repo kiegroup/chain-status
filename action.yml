@@ -37,6 +37,9 @@ inputs:
     description: "the log level. 'info' (default) | 'trace' | 'debug'"
     default: "info"
     required: false
+  branches:
+    description: "A comma separated list of branches to compare. Like `main,8.30.x,8.29.x`"
+    required: false
 runs:
   using: "node16"
   main: "packages/action/dist/index.js"

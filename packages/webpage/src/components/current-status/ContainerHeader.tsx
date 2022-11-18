@@ -1,4 +1,4 @@
-import { LinkOutlined, NodeCollapseOutlined } from "@ant-design/icons";
+import { LinkOutlined, NodeCollapseOutlined, DiffOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { Button, Col, PageHeader, Row, Statistic, Tag, Divider } from "antd";
 import React, { Suspense, useEffect, useState } from "react";
 import { IProject } from "../../model/project.model";
@@ -14,6 +14,9 @@ import moment from "moment";
 import StatisticDuration from "../shared/StatisticDuration";
 import { calculateAverage } from "../../utils/math.utils";
 import { getDifferenceBetweenTwoDates } from "../../utils/date.utils";
+import { IRootState } from "../../service";
+import { useSelector } from "react-redux";
+import FileDifferenceStatistic from "../shared/FilesDifferenceStatistic";
 
 const PullRequestStatisticErrorIndexByPullRequest = React.lazy(
   () => import("../shared/PullRequestStatisticErrorIndexByPullRequest")
@@ -24,12 +27,24 @@ interface IContainerHeader {
 }
 
 export const ContainerHeader: React.FC<IContainerHeader> = props => {
+  const baseBranch = useSelector(
+    (store: IRootState) => store.branches.baseBranch
+  );
+  const headBranch = useSelector(
+    (store: IRootState) => store.branches.targetBranch
+  );
+  
   const [averageChecksOK, setAverageChecksOK] = useState<number | undefined>(
     undefined
   );
+  
   const [averageChecksNotOK, setAverageChecksNotOK] = useState<
     number | undefined
   >(undefined);
+
+  const [areBranchesSelected, setAreBranchesSelected] = useState<boolean>(false);
+
+  const [numberOfDiffFiles, setNumberOfDiffFiles] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     if (props.project?.pullRequests?.length > 0) {
@@ -60,6 +75,13 @@ export const ContainerHeader: React.FC<IContainerHeader> = props => {
       setAverageChecksOK(calculateAverage(successCheckDurations));
     }
   }, [props.project]);
+
+  useEffect(() => {
+    if (baseBranch && headBranch) {
+      setAreBranchesSelected(true)
+      setNumberOfDiffFiles(props.project?.branchesComparison?.[baseBranch]?.[headBranch]?.length)
+    }
+  }, [props.project, baseBranch, headBranch]);
 
   return (
     <PageHeader
@@ -168,6 +190,31 @@ export const ContainerHeader: React.FC<IContainerHeader> = props => {
             </Suspense>
           ) : null}
         </Col>
+        {areBranchesSelected ?
+          <>
+            <Col>
+              <Divider type="vertical" style={{ height: "100%" }} />
+            </Col>
+            <Col>
+              <FileDifferenceStatistic
+                title="Number of Differences"
+                diffs={numberOfDiffFiles} 
+                project={props.project}
+                baseBranch={baseBranch}
+                headBranch={headBranch}
+                prefix={
+                  <Row align="middle">
+                    <Tag style={{ marginRight: '4px' }}>{baseBranch}</Tag>
+                    <ArrowLeftOutlined style={{ marginTop: 0 }}/>
+                    <Tag style={{ marginLeft: '4px' }}>{headBranch}</Tag>
+                    <DiffOutlined />
+                  </Row>
+                }
+              />
+            </Col>
+          </>
+          : null
+        }
       </Row>
     </PageHeader>
   );

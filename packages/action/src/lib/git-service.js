@@ -173,11 +173,63 @@ const listBranches = async (
   }
 };
 
+const compareBranches = async (
+  project,
+  baseBranch,
+  headBranch,
+  octokit,
+  options = { page: 1, per_page: 100 }
+) => {
+  const basehead = baseBranch + "..." + headBranch;
+  logger.info(
+    `Comparing branches ${baseBranch} and ${headBranch} for ${project}. https://api.github.com/repos/${project}/compare/${basehead}`
+  );
+
+  try {
+    const result = [];
+    const { status, data } = await octokit.repos.compareCommitsWithBasehead({
+      ...getOwnerProject(project),
+      ...options,
+      basehead
+    });
+
+    if (status === 200 && data && data.files.length > 0) {
+      result.push.apply(result, data.files);
+      if (data.length === options.per_page) {
+        result.push.apply(
+          result,
+          await compareBranches(project, baseBranch, headBranch, octokit, {
+            ...options,
+            page: ++options.page
+          })
+        );
+      }
+    }
+    return result;
+  } catch (e) {
+    if (e.status == 404) {
+      logger.warn(
+        `Branch not found for ${project}. https://api.github.com/repos/${project}/compare/${basehead}`
+      );
+      // DO NOT BREAK - return undefined
+      return undefined;
+    }
+
+    logger.error(
+      `Error requesting branches comparison for ${project}. https://api.github.com/repos/${project}/compare/${basehead}`,
+      e
+    );
+
+    throw e;
+  }
+};
+
 module.exports = {
   getDefaultBranch,
   getRepository,
   getPullRequests,
   getChecks,
   getRefStatuses,
-  listBranches
+  listBranches,
+  compareBranches
 };

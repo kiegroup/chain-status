@@ -30,6 +30,68 @@ const octokit = {
         status: 200,
         data: [{ name: "main" }, { name: "7.67.x" }]
       };
+    },
+    compareCommitsWithBasehead() {
+      return {
+        status: 200,
+        data: {
+          url: "https://api.github.com/repos/kiegroup/optaplanner/compare/main...8.29.x",
+          html_url:
+            "https://github.com/kiegroup/optaplanner/compare/main...8.29.x",
+          permalink_url:
+            "https://github.com/kiegroup/optaplanner/compare/kiegroup:985ccac...kiegroup:40382e9",
+          files: [
+            {
+              sha: "04149c58bdbfdd98bd96e59e274443e8a9492143",
+              filename: ".ci/jenkins/Jenkinsfile.prod.nightly",
+              status: "modified",
+              additions: 1,
+              deletions: 1,
+              changes: 2,
+              blob_url:
+                "https://github.com/kiegroup/optaplanner/blob/40382e92fa314ce9d6c6a691a4d3b387501882d9/.ci%2Fjenkins%2FJenkinsfile.prod.nightly",
+              raw_url:
+                "https://github.com/kiegroup/optaplanner/raw/40382e92fa314ce9d6c6a691a4d3b387501882d9/.ci%2Fjenkins%2FJenkinsfile.prod.nightly",
+              contents_url:
+                "https://api.github.com/repos/kiegroup/optaplanner/contents/.ci%2Fjenkins%2FJenkinsfile.prod.nightly?ref=40382e92fa314ce9d6c6a691a4d3b387501882d9",
+              patch:
+                "@@ -103,7 +103,7 @@ pipeline {\n                         echo '[INFO] Sending RHBOP UMB message to QE.'\n                         def PME_BUILD_VARIABLES = env.PME_BUILD_VARIABLES.split(';').collect{ it.split('=')}.inject([:]) {map, item -> map << [(item.length == 2 ? item[0] : null): (item.length == 2 ? item[1] : null)]}\n \n-                        def optaplannerArchiveUrl = \"https://bxms-qe.rhev-ci-vms.eng.rdu2.redhat.com:8443/nexus/content/groups/rhbop-${getCurrentBranch()}-nightly/\"\n+                        def optaplannerArchiveUrl = \"https://${env.LOCAL_NEXUS_IP}:8443/nexus/content/groups/rhbop-${getCurrentBranch()}-nightly/\"\n                         def optaplannerSourcesFileUrl = \"${env.STAGING_SERVER_URL}rhbop/RHBOP-${PRODUCT_VERSION}.nightly/rhbop-${PRODUCT_VERSION}.redhat-${PME_BUILD_VARIABLES['datetimeSuffix']}-optaplanner-sources.zip\"\n                         def optaplannerQuickstartsSourcesFileUrl = \"${env.STAGING_SERVER_URL}rhbop/RHBOP-${PRODUCT_VERSION}.nightly/rhbop-${PRODUCT_VERSION}.redhat-${PME_BUILD_VARIABLES['datetimeSuffix']}-optaplanner-quickstarts-sources.zip\"\n "
+            },
+            {
+              sha: "3ed6895536446a60a78903a79dd798635eb5815b",
+              filename: ".ci/jenkins/config/branch.yaml",
+              status: "modified",
+              additions: 10,
+              deletions: 9,
+              changes: 19,
+              blob_url:
+                "https://github.com/kiegroup/optaplanner/blob/40382e92fa314ce9d6c6a691a4d3b387501882d9/.ci%2Fjenkins%2Fconfig%2Fbranch.yaml",
+              raw_url:
+                "https://github.com/kiegroup/optaplanner/raw/40382e92fa314ce9d6c6a691a4d3b387501882d9/.ci%2Fjenkins%2Fconfig%2Fbranch.yaml",
+              contents_url:
+                "https://api.github.com/repos/kiegroup/optaplanner/contents/.ci%2Fjenkins%2Fconfig%2Fbranch.yaml?ref=40382e92fa314ce9d6c6a691a4d3b387501882d9",
+              patch:
+                "@@ -1,20 +1,20 @@\n environment:\n   quarkus:\n     main:\n-      enabled: true\n+      enabled: false\n     branch:\n       enabled: true\n-      version: '2.13'\n+      version: '2.7'\n     lts:\n-      enabled: true\n+      enabled: false\n       version: '2.7'\n   native:\n-    enabled: true\n+    enabled: false\n   mandrel:\n     enabled: true\n-    builder_image: quay.io/quarkus/ubi-quarkus-mandrel:22.2-java11\n+    builder_image: quay.io/quarkus/ubi-quarkus-mandrel:21.3-java11\n   mandrel_lts:\n-    enabled: true\n+    enabled: false\n     builder_image: quay.io/quarkus/ubi-quarkus-mandrel:21.3-java11\n     quarkus_version: 2.7\n   runtimes_bdd:\n@@ -24,11 +24,12 @@ disable:\n   triggers: false\n repositories:\n - name: optaplanner\n-  branch: main\n+  branch: 8.29.x\n+  is_branch_config_repo: true\n - name: optaweb-vehicle-routing\n-  branch: main\n+  branch: 8.29.x\n - name: optaplanner-quickstarts\n-  branch: development\n+  branch: 8.29.x\n git:\n   author:\n     name: kiegroup"
+            },
+            {
+              sha: "88123151e66d0baa61313f8ab143281203096169",
+              filename: ".ci/jenkins/dsl/jobs.groovy",
+              status: "modified",
+              additions: 1,
+              deletions: 0,
+              changes: 1,
+              blob_url:
+                "https://github.com/kiegroup/optaplanner/blob/40382e92fa314ce9d6c6a691a4d3b387501882d9/.ci%2Fjenkins%2Fdsl%2Fjobs.groovy",
+              raw_url:
+                "https://github.com/kiegroup/optaplanner/raw/40382e92fa314ce9d6c6a691a4d3b387501882d9/.ci%2Fjenkins%2Fdsl%2Fjobs.groovy",
+              contents_url:
+                "https://api.github.com/repos/kiegroup/optaplanner/contents/.ci%2Fjenkins%2Fdsl%2Fjobs.groovy?ref=40382e92fa314ce9d6c6a691a4d3b387501882d9",
+              patch:
+                "@@ -205,6 +205,7 @@ if (Utils.isMainBranch(this)) {\n // Tools folder\n KogitoJobUtils.createQuarkusUpdateToolsJob(this, 'optaplanner', [\n   modules: [ 'optaplanner-build-parent' ],\n+  compare_deps_remote_poms: [ 'io.quarkus:quarkus-bom' ],\n   properties: [ 'version.io.quarkus' ],\n ])\n "
+            }
+          ]
+        }
+      };
     }
   },
   pulls: {
