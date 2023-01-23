@@ -9,6 +9,7 @@ interface IProjectLink {
 export const ProjectLink: React.FC<IProjectLink> = props => {
   return (
     <a
+      style={{ textOverflow: "ellipsis" }}
       href={`#${getProjectId(props.project)}`}
       rel="noopener noreferrer"
       onClick={e => {
