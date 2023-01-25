@@ -10,7 +10,7 @@ interface IJobLink {
 export const JobLink: React.FC<IJobLink> = props => {
   return (
     <a
-      style={{ textOverflow: "ellipsis", display: "block", overflow: "hidden", width: "13vw" }}
+      style={{ display: "block", width: "10vw" }}
       href={`#${getJobId(props.job)}`}
       rel="noopener noreferrer"
       onClick={e => {
