@@ -18,6 +18,7 @@ export const ProjectLink: React.FC<IProjectLink> = props => {
         rel="noopener noreferrer"
         onClick={e => {
           e.preventDefault();
+          
           document
             ?.getElementById(getProjectId(props.project))
             ?.scrollIntoView({ behavior: "smooth" });

@@ -1,3 +1,4 @@
+import React from "react";
 import { IJob } from "../../model/job.model";
 import { getJobId } from "../../utils/id.utils";
 import { getJobName } from "../../utils/job.utils";
@@ -18,6 +19,7 @@ export const JobLink: React.FC<IJobLink> = props => {
           rel="noopener noreferrer"
           onClick={e => {
             e.preventDefault();
+            
             document
               ?.getElementById(getJobId(props.job) ?? "")
               ?.scrollIntoView({ behavior: "smooth" });
