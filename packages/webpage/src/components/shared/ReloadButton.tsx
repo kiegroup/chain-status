@@ -63,8 +63,8 @@ export const ReloadButton: React.FC<IReloadButton> = props => {
       key="reload"
       title={
         newProductVersionAvailable
-          ? "Reload information from service. NEW VERSION AVAILABLE."
-          : "Reload information from service"
+          ? "Reload information from service. The data is asynchronously generated, A NEW DATA HAS BEEN PRODUCED and it's ready to be consumed."
+          : "Reload information from service. The data is asynchronously generated, this reloading mechanism is in case you know new data has been produced."
       }
     >
       <Badge dot={newProductVersionAvailable}>
