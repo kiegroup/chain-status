@@ -82,7 +82,7 @@ Here the main important steps performed by **generate-data** action:
 | Field              | Required | Default             | Description                                                                                                                                                                                      |
 |--------------------|----------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | github-token       | true     |                     | The Github token that must be used to interact with Github API                                                                                                                                   |
-| definition-file    | true     |                     | The file containing all projects for which you want to provide the status, an [example](https://raw.githubusercontent.com/kiegroup/droolsjbpm-build-bootstrap/main/.ci/pull-request-config.yaml) - more infos [here](https://github.com/kiegroup/build-chain-configuration-reader) |
+| definition-file    | true     |                     | The file containing all projects for which you want to provide the status, an [example](https://raw.githubusercontent.com/kiegroup/droolsjbpm-build-bootstrap/main/.ci/pull-request-config.yaml) - more infos [here](https://github.com/kiegroup/build-chain-configuration-reader).  Optional if the `projects` parameter is provided. |
 | title              | false    | Project status      | The project/webapp title                                                                                                                                                                         |
 | subtitle           | false    | Contribution status | The project/webapp subtitle                                                                                                                                                                      |
 | base-branch-filter | false    |                     | A comma separated list of base branches RegEx to be filtered. Like `main,7.59.x,8.x` or `main,^7.*`                                                                                              |
@@ -92,6 +92,7 @@ Here the main important steps performed by **generate-data** action:
 | logger-level       | false    | info                | The log level. 'info' (default) \| 'trace' \| 'debug'                                                                                                                                            |
 | gh-pages-branch    | false    | gh-pages            | The branch used by `gh-pages` tool, where the webpage will be stored                                                                                                                             |
 | branches    | false    | []            | The list of branches for which to provide branches comparison                                                                                                                             |
+| projects    | false    | []            | The list of projects from which gather data. If provided, the `definition-file` parameter will be no more required.  |
 
 ## Usage
 
