@@ -35,7 +35,7 @@ runs:
         path: ./chain-status
     - uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 20
         registry-url: https://registry.npmjs.org/
     - run: yarn
       shell: bash
