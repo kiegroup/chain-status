@@ -41,7 +41,7 @@ inputs:
     description: "A comma separated list of branches to compare. Like `main,8.30.x,8.29.x`"
     required: false
 runs:
-  using: "node16"
+  using: "node20"
   main: "packages/action/dist/index.js"
 branding:
   icon: "box"

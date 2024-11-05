@@ -29,13 +29,13 @@ runs:
         path: ./current-project
         ref: ${{ inputs.gh-pages-branch }}
     - name: Checkout chain-status repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: kiegroup/chain-status
         path: ./chain-status
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v4
       with:
-        node-version: 14
+        node-version: 20
         registry-url: https://registry.npmjs.org/
     - run: yarn
       shell: bash
