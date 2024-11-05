@@ -26,7 +26,6 @@ jobs:
           -Dsonar.sources=$GITHUB_WORKSPACE
           -Dsonar.host.url=${{ secrets.SONAR_URL }}
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-         # -Dsonar.tests=test
           -Dsonar.testExecutionReportPaths=packages/action/test-report.xml
           -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
           -Dsonar.exclusions=packages/action/test/**,packages/action/webpage/**
