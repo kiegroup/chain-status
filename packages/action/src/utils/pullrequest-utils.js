@@ -1,4 +1,4 @@
-const { getBaseMappingInfo } = require("@kie/build-chain-configuration-reader");
+const { getMapping } = require("@kie/build-chain-configuration-reader");
 const { logger } = require("../lib/logger");
 
 function filterPullRequests(
@@ -15,7 +15,7 @@ function filterPullRequests(
   );
   if (baseBranchesToFilter && baseBranchesToFilter.length) {
     const baseBranchesToFilterMapped = baseBranchesToFilter.map(baseBranch => {
-      const baseMappingInfo = getBaseMappingInfo(
+      const baseMappingInfo = getMapping(
         nodeTriggeringTheJob.project,
         nodeTriggeringTheJob.mapping,
         node.project,
