@@ -42,7 +42,7 @@ runs:
       working-directory: ./chain-status
     - name: Check old data existence
       id: check_old_data
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v3
       with:
         files: "./current-project/data"
     - name: Copy old data
