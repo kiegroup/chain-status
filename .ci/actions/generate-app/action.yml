@@ -24,25 +24,25 @@ runs:
       shell: bash
       run: echo $PUBLIC_URL
     - name: Checkout chain-status repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v5
       with:
         path: ./current-project
         ref: ${{ inputs.gh-pages-branch }}
     - name: Checkout chain-status repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: kiegroup/chain-status
         path: ./chain-status
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
-        node-version: 20
+        node-version: 22
         registry-url: https://registry.npmjs.org/
     - run: yarn
       shell: bash
       working-directory: ./chain-status
     - name: Check old data existence
       id: check_old_data
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v3
       with:
         files: "./current-project/data"
     - name: Copy old data
