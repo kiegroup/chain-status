@@ -24,16 +24,16 @@ runs:
       shell: bash
       run: echo $PUBLIC_URL
     - name: Checkout chain-status repo
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
       with:
         path: ./current-project
         ref: ${{ inputs.gh-pages-branch }}
     - name: Checkout chain-status repo
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
       with:
         repository: kiegroup/chain-status
         path: ./chain-status
-    - uses: actions/setup-node@v5
+    - uses: actions/setup-node@v6
       with:
         node-version: 24
         registry-url: https://registry.npmjs.org/
