@@ -47,7 +47,7 @@ runs:
   using: "composite"
   steps:
     - name: Checkout chain-status repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         path: ./chain-status
         ref: ${{ inputs.gh-pages-branch }}
